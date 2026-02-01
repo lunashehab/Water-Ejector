@@ -4,21 +4,21 @@
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5129097020907805" crossorigin="anonymous"></script>
 
     <meta charset="UTF-8" />
-    <title>Fix My Speaker | Water Ejector & Sound Cleaner</title>
+    <title>Water In My Speaker | Fix & Eject Water Instantly</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <meta name="description" content="Get water out of your phone speaker instantly. Plays specific sound frequencies to eject moisture. No installation required. Works on iPhone and Android.">
-    <meta name="keywords" content="water ejector, fix my speaker, get water out of phone, speaker cleaner, sound test">
+    <meta name="description" content="Water in your speaker? Use this free sound tool to eject moisture instantly. Plays specific 165Hz frequencies to push water out. No install needed.">
+    <meta name="keywords" content="water in my speaker, water ejector, fix my speaker, get water out of phone, speaker cleaner, sound test">
     
-    <meta property="og:title" content="Fix My Speaker | Instant Water Ejector">
+    <meta property="og:title" content="Water In My Speaker | Instant Fix">
     <meta property="og:description" content="Dropped your phone in water? Use this sound tool to push water out of your speakers now.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://fixmyspeaker.com"> 
-    
-    <script type="application/ld+json">
+    <meta property="og:url" content="https://waterinmyspeaker.com"> 
+    <meta property="og:image" content="https://waterinmyspeaker.com/icon.png"> <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "SoftwareApplication",
-      "name": "Water Ejector",
+      "name": "Water In My Speaker",
+      "url": "https://waterinmyspeaker.com",
       "applicationCategory": "Utility",
       "operatingSystem": "Any",
       "offers": {
@@ -179,7 +179,7 @@
 
 <div class="shell">
     <header>
-        <h1>FixMy<span>Speaker</span></h1>
+        <h1>Water In My <span>Speaker</span></h1>
         <p class="tagline">The #1 Emergency Water Ejector Tool</p>
     </header>
 
@@ -224,8 +224,8 @@
     </div>
 
     <footer>
-        <a href="privacy.html">Privacy Policy</a> • <a href="#">Terms</a> • <a href="mailto:contact@fixmyspeaker.com">Contact</a>
-        <br><br>© 2026 WaterEjector Utility
+        <a href="privacy.html">Privacy Policy</a> • <a href="#">Terms</a> • <a href="mailto:contact@waterinmyspeaker.com">Contact</a>
+        <br><br>© 2026 WaterInMySpeaker.com
     </footer>
 </div>
 
@@ -235,9 +235,8 @@
     let oscillator;
     let gainNode;
     let isPlaying = false;
-    let currentMode = null; // 'eject', 'sweep', 'left', 'right'
+    let currentMode = null; 
 
-    // Initialize Audio Context (Must happen on user click)
     function initAudio() {
         if (!audioCtx) {
             const AudioContext = window.AudioContext || window.webkitAudioContext;
@@ -245,7 +244,6 @@
         }
     }
 
-    // Stop all sounds
     function stopSound() {
         if (oscillator) {
             try {
@@ -259,10 +257,9 @@
         updateUI();
     }
 
-    // Play Tone Logic
     function startTone(freq, type = 'sine', pan = 0) {
         initAudio();
-        stopSound(); // Clear previous
+        stopSound(); 
 
         oscillator = audioCtx.createOscillator();
         gainNode = audioCtx.createGain();
@@ -271,12 +268,80 @@
         oscillator.type = type;
         oscillator.frequency.value = freq;
         
-        // Signal Chain: Osc -> Gain -> Pan -> Destination
         oscillator.connect(gainNode);
         gainNode.connect(panNode);
         panNode.connect(audioCtx.destination);
-        panNode.pan.value = pan; // -1 (Left) to 1 (Right)
+        panNode.pan.value = pan; 
 
-        // Volume Ramp (Avoid popping)
         gainNode.gain.setValueAtTime(0.01, audioCtx.currentTime);
-        gainNode.gain.exponentialRampToValueAtTime(1, audio
+        gainNode.gain.exponentialRampToValueAtTime(1, audioCtx.currentTime + 0.1);
+
+        oscillator.start();
+        isPlaying = true;
+        updateUI();
+    }
+
+    // --- UI HANDLERS ---
+    const ejectBtn = document.getElementById('eject-btn');
+    const sweepBtn = document.getElementById('sweep-btn');
+    const leftBtn = document.getElementById('test-left');
+    const rightBtn = document.getElementById('test-right');
+    const slider = document.getElementById('freq-slider');
+    const freqDisplay = document.getElementById('freq-val');
+
+    function updateUI() {
+        ejectBtn.classList.remove('playing');
+        ejectBtn.innerHTML = isPlaying && currentMode === 'eject' 
+            ? '<svg viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12"/></svg><span>STOP</span>' 
+            : '<svg viewBox="0 0 24 24"><path d="M12 22c4.97 0 9-4.03 9-9-4.5 0-9-5-9-13 0 8-4.5 13-9 13 0 4.97 4.03 9 9 9z"/></svg><span>ACTIVATE</span>';
+        
+        sweepBtn.textContent = isPlaying && currentMode === 'sweep' ? "⏹ Stop Tone" : "▶ Play Continuous Tone";
+        sweepBtn.classList.toggle('active', isPlaying && currentMode === 'sweep');
+        
+        leftBtn.classList.toggle('active', isPlaying && currentMode === 'left');
+        rightBtn.classList.toggle('active', isPlaying && currentMode === 'right');
+
+        if (isPlaying && currentMode === 'eject') {
+            ejectBtn.classList.add('playing');
+        }
+    }
+
+    ejectBtn.addEventListener('click', () => {
+        if (isPlaying && currentMode === 'eject') {
+            stopSound();
+        } else {
+            currentMode = 'eject';
+            startTone(165, 'sawtooth', 0); 
+        }
+    });
+
+    window.playTone = (side) => {
+        if (isPlaying && currentMode === side) {
+            stopSound();
+        } else {
+            currentMode = side;
+            const pan = side === 'left' ? -1 : 1;
+            startTone(440, 'sine', pan); 
+        }
+    };
+
+    slider.addEventListener('input', (e) => {
+        const val = e.target.value;
+        freqDisplay.textContent = val;
+        if (isPlaying && oscillator) {
+            oscillator.frequency.setValueAtTime(val, audioCtx.currentTime);
+        }
+    });
+
+    sweepBtn.addEventListener('click', () => {
+        if (isPlaying && currentMode === 'sweep') {
+            stopSound();
+        } else {
+            currentMode = 'sweep';
+            startTone(slider.value, 'sine', 0);
+        }
+    });
+</script>
+
+</body>
+</html>
