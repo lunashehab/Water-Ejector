@@ -75,17 +75,7 @@
             overflow: hidden;
         }
 
-        /* --- TICK MARKS (NEW) --- */
-        .ticks {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 50%;
-            background: conic-gradient(from 225deg, transparent 0deg, transparent 2deg, #555 3deg, transparent 4deg);
-            background-size: 100% 100%;
-            mask-image: radial-gradient(transparent 65%, black 66%);
-            -webkit-mask-image: radial-gradient(transparent 65%, black 66%);
-            z-index: 1; transform: rotate(0deg);
-        }
-        /* Create repeating ticks using repeated background or multiple elements is complex in pure CSS, 
-           so we use a repeating conic gradient approximation for the look */
+        /* --- TICK MARKS & OVERLAYS --- */
         .ticks-overlay {
             position: absolute; width: 100%; height: 100%; border-radius: 50%;
             background: repeating-conic-gradient(from 225deg, rgba(255,255,255,0.2) 0deg 1deg, transparent 1deg 15deg);
@@ -107,12 +97,18 @@
         .n-50 { top: 15%; left: 50%; transform: translateX(-50%); }
         .n-100 { bottom: 20%; right: 20%; }
 
+        /* --- NEEDLE FIX --- */
         .needle {
-            position: absolute; top: 50%; left: 50%; width: 45%; height: 2px;
-            background: var(--danger); transform-origin: 0% 50%;
-            transform: rotate(-135deg); transition: transform 0.2s cubic-bezier(0.1, 0, 0.2, 1);
-            box-shadow: 0 0 4px var(--danger); z-index: 4;
+            position: absolute; top: 50%; left: 50%; 
+            width: 45%; /* Length */
+            height: 3px; /* Thickness - FIXED */
+            background: var(--danger); 
+            transform-origin: 0% 50%; /* Rotate from center */
+            transform: rotate(-135deg); 
+            transition: transform 0.1s cubic-bezier(0.1, 0, 0.2, 1);
+            box-shadow: 0 0 4px var(--danger); 
             border-radius: 2px;
+            z-index: 4;
         }
         
         .gauge-center {
@@ -253,7 +249,7 @@
                 <div class="scratch-overlay"></div>
                 <div class="gauge-numbers" style="color:var(--neon);"><span class="n-0">0</span><span class="n-50">10k</span><span class="n-100">20k</span></div>
                 <div class="gauge-center" style="background: radial-gradient(#333,#000);"></div>
-                <div class="needle" id="needle-hz" style="background: #fff; height: 48%;"></div>
+                <div class="needle" id="needle-hz" style="background: #fff; width: 45%; height: 3px; border-radius: 3px;"></div>
                 <div class="gauge-val" id="val-hz" style="color: var(--neon); font-size: 13px;">0 Hz</div>
             </div>
             <div class="gauge-label" style="color: var(--neon);">FREQUENCY</div>
@@ -412,9 +408,6 @@
         if (volOnly && !isPlaying) return;
 
         // 2. Hz Needle (Scale 0 to 20000)
-        // Fix for needle math: 
-        // 0Hz = -135
-        // 20000Hz = +135
         let hRot = -135 + (Math.min(hz, 20000) / 20000 * 270);
         if (hz === 0) hRot = -135;
         document.getElementById('needle-hz').style.transform = `rotate(${hRot}deg)`;
