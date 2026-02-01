@@ -4,9 +4,9 @@
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5129097020907805" crossorigin="anonymous"></script>
 
     <meta charset="UTF-8" />
-    <title>Speaker Cleaner Pro | Mars Edition</title>
+    <title>Speaker Cleaner Pro | Mars Mission V2</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <meta name="description" content="Professional grade audio utility to eject water and dust from phone speakers. 10 specialized cleaning modes including Apple Expel and Deep Shake.">
+    <meta name="description" content="Professional grade audio utility to eject water and dust from phone speakers. Includes diagnostics, moisture scanner, and cleaning tracking.">
     
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#000000">
@@ -71,11 +71,9 @@
         }
         .typing-status { font-family: monospace; font-size: 12px; color: var(--accent); min-height: 16px; text-shadow: 0 0 5px var(--accent-dim); }
 
-        /* --- DASHBOARD GAUGES (REDLINE) --- */
+        /* --- DASHBOARD GAUGES (LOCKED) --- */
         .dashboard-row { display: flex; justify-content: space-between; align-items: flex-end; gap: 10px; margin: 20px 0; }
-        
         .gauge-box { position: relative; width: 32%; text-align: center; }
-        
         .gauge-ring {
             width: 100%; padding-bottom: 100%;
             border-radius: 50%; border: 2px solid #333; position: relative;
@@ -84,13 +82,10 @@
             overflow: hidden;
             transition: border-color 0.3s, box-shadow 0.3s;
         }
-        
-        /* Active State for Gauges */
         .gauge-ring.active {
             border-color: var(--accent);
             box-shadow: 0 0 20px var(--accent-dim), inset 0 0 20px #000;
         }
-
         .ticks-overlay {
             position: absolute; width: 100%; height: 100%; border-radius: 50%;
             background: repeating-conic-gradient(from 225deg, rgba(255, 255, 255, 0.3) 0deg 1deg, transparent 1deg 15deg);
@@ -98,23 +93,16 @@
             -webkit-mask-image: radial-gradient(transparent 60%, black 61%);
             z-index: 1; opacity: 0.5;
         }
-
         .gauge-numbers span { position: absolute; color: #666; font-size: 8px; font-weight: bold; z-index: 2; }
         .n-0 { bottom: 20%; left: 20%; }
         .n-50 { top: 15%; left: 50%; transform: translateX(-50%); }
         .n-100 { bottom: 20%; right: 20%; }
-
         .needle {
-            position: absolute; top: 50%; left: 50%; 
-            width: 45%; height: 2px; 
-            background: var(--accent); 
-            transform-origin: 0% 50%; 
-            transform: rotate(-135deg); 
-            transition: transform 0.1s cubic-bezier(0.1, 0, 0.2, 1);
-            box-shadow: 0 0 8px var(--accent); 
-            z-index: 4;
+            position: absolute; top: 50%; left: 50%; width: 45%; height: 2px; 
+            background: var(--accent); transform-origin: 0% 50%; 
+            transform: rotate(-135deg); transition: transform 0.1s cubic-bezier(0.1, 0, 0.2, 1);
+            box-shadow: 0 0 8px var(--accent); z-index: 4;
         }
-        
         .gauge-center {
             position: absolute; top: 38%; left: 38%; width: 24%; height: 24%;
             background: #222; border-radius: 50%; z-index: 5; border: 1px solid #111;
@@ -130,8 +118,9 @@
 
         /* --- CONTROL PANEL --- */
         .panel {
-            background: rgba(10, 10, 10, 0.8); border: 1px solid var(--border);
+            background: rgba(10, 10, 10, 0.85); border: 1px solid var(--border);
             border-radius: 12px; padding: 20px; backdrop-filter: blur(10px);
+            margin-bottom: 20px;
         }
         .panel-title { 
             font-size: 11px; color: #fff; text-transform: uppercase; letter-spacing: 1px;
@@ -148,15 +137,63 @@
             align-items: center; justify-content: center; text-align: center; line-height: 1.2;
         }
         .mode-btn:hover { border-color: #888; color: #fff; }
-        
         .mode-btn.active { 
             background: var(--accent-dim); border-color: var(--accent); 
             color: #fff; box-shadow: 0 0 15px var(--accent-dim);
         }
 
+        /* --- NEW: DIAGNOSTICS & SCANNERS --- */
+        .diag-grid { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 10px; margin-bottom: 25px; }
+        .btn-diag {
+            background: #111; border: 1px solid #333; color: #888; height: 40px;
+            border-radius: 4px; font-size: 9px; font-weight: 700; cursor: pointer;
+            transition: 0.2s; text-transform: uppercase;
+        }
+        .btn-diag:hover { border-color: var(--accent); color: #fff; }
+        .btn-diag.active { background: var(--accent); color: #fff; }
+
+        /* SCANNERS (Fake Animation) */
+        .scanner-box { 
+            background: #050505; border: 1px solid #222; padding: 10px; border-radius: 6px; 
+            margin-bottom: 25px; position: relative; overflow: hidden;
+        }
+        .scan-label { font-size: 9px; color: #666; text-transform: uppercase; margin-bottom: 5px; display:flex; justify-content:space-between;}
+        .scan-bar-bg { height: 6px; background: #222; border-radius: 3px; overflow: hidden; }
+        .scan-bar-fill { 
+            height: 100%; background: var(--accent); width: 0%; 
+            transition: width 0.5s ease-out; box-shadow: 0 0 10px var(--accent); 
+        }
+        
+        /* Scan Animation Overlay */
+        .scanner-overlay {
+            position: absolute; top:0; left:0; width:100%; height:100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 0, 60, 0.1), transparent);
+            transform: translateX(-100%); transition: 0.5s; pointer-events: none;
+        }
+        .scanning .scanner-overlay { animation: scan-anim 1.5s infinite linear; }
+        @keyframes scan-anim { 0% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
+
+        /* --- STATS & HISTORY --- */
+        .stats-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 25px; }
+        .stat-card { 
+            background: #080808; border: 1px solid #222; padding: 10px; border-radius: 6px; text-align: center; 
+        }
+        .stat-val { font-size: 16px; font-weight: 900; color: #fff; margin-bottom: 2px; }
+        .stat-label { font-size: 8px; color: #666; text-transform: uppercase; }
+
+        /* --- VISUALIZER --- */
+        .viz-box {
+            display: flex; align-items: flex-end; justify-content: center; gap: 2px;
+            height: 30px; margin-bottom: 10px; opacity: 0.8;
+        }
+        .viz-bar {
+            width: 4px; background: var(--accent); border-radius: 2px 2px 0 0;
+            height: 2px; transition: height 0.1s;
+        }
+
         /* --- VOLUME CONTROL --- */
         .vol-box {
-            text-align: center; margin-top: 20px; margin-bottom: 5px;
+            text-align: center; margin-top: 10px; margin-bottom: 15px;
             background: #050505; padding: 15px; border-radius: 8px; border: 1px solid #222;
         }
         .vol-label { font-size: 9px; color: #888; text-transform: uppercase; margin-bottom: 10px; font-weight: 700; letter-spacing: 1px;}
@@ -172,7 +209,7 @@
             border: 2px solid #fff;
         }
 
-        /* --- COFFEE BUTTON (Mission Support) --- */
+        /* --- COFFEE BUTTON --- */
         .btn-coffee {
             width: 100%; background: #fff; border: none;
             color: #000; padding: 14px; border-radius: 8px;
@@ -183,24 +220,6 @@
         }
         .btn-coffee:hover { background: var(--accent); color: #fff; box-shadow: 0 0 20px var(--accent); }
         
-        /* --- TEST BUTTON --- */
-        .test-zone { display: flex; justify-content: center; padding-bottom: 10px; margin-top: 15px; }
-        .btn-test {
-            width: 70px; height: 70px; border-radius: 50%;
-            background: transparent;
-            border: 2px solid #333;
-            color: #666; font-weight: 900; font-size: 12px;
-            cursor: pointer; display: flex; align-items: center; justify-content: center;
-            text-transform: uppercase; letter-spacing: 1px;
-            transition: 0.2s;
-        }
-        .btn-test:hover { border-color: var(--accent); color: var(--accent); box-shadow: 0 0 15px var(--accent-dim); }
-        .btn-test.running {
-            background: var(--accent); color: #fff; border-color: var(--accent);
-            box-shadow: 0 0 30px var(--accent-glow); animation: pulse 1s infinite;
-        }
-        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
-
         /* --- AD SLOT --- */
         .ad-slot {
             width: 100%; height: 100px; background: #050505; border: 1px solid #222;
@@ -269,6 +288,32 @@
     </div>
 
     <div class="panel">
+        <div class="panel-title"><span>Speaker Diagnostics</span> <span>Test</span></div>
+        <div class="diag-grid">
+            <button class="btn-diag" onclick="runDiagnostic('left')">LEFT</button>
+            <button class="btn-diag" onclick="runDiagnostic('right')">RIGHT</button>
+            <button class="btn-diag" onclick="runDiagnostic('bass')">BASS</button>
+            <button class="btn-diag" onclick="runDiagnostic('treble')">TREBLE</button>
+        </div>
+
+        <div class="panel-title"><span>Moisture Radar</span> <span>Scanner</span></div>
+        <div class="scanner-box" id="moisture-box">
+            <div class="scanner-overlay"></div>
+            <div class="scan-label"><span>Water Detection</span> <span id="moisture-val">0%</span></div>
+            <div class="scan-bar-bg"><div class="scan-bar-fill" id="moisture-bar"></div></div>
+            <button class="btn-diag" style="width:100%; margin-top:10px;" onclick="runScanner('moisture')">SCAN SYSTEM</button>
+        </div>
+
+        <div class="panel-title"><span>Dust Integrity</span> <span>Meter</span></div>
+        <div class="scanner-box" id="dust-box">
+            <div class="scanner-overlay"></div>
+            <div class="scan-label"><span>Contamination Level</span> <span id="dust-val">0%</span></div>
+            <div class="scan-bar-bg"><div class="scan-bar-fill" id="dust-bar" style="background: #ffaa00; box-shadow: 0 0 10px #ffaa00;"></div></div>
+            <button class="btn-diag" style="width:100%; margin-top:10px; border-color:#ffaa00; color:#ffaa00;" onclick="runScanner('dust')">CHECK LEVEL</button>
+        </div>
+    </div>
+
+    <div class="panel">
         <div class="panel-title"><span>Water Ejection</span> <span>Liquid</span></div>
         <div class="btn-grid">
             <button class="mode-btn" onclick="setMode('water', 1)">APPLE<br>165Hz</button>
@@ -287,19 +332,29 @@
             <button class="mode-btn" onclick="setMode('dust', 5)">FINAL<br>1kHz</button>
         </div>
 
+        <div class="viz-box" id="viz-container">
+            </div>
+
         <div class="vol-box">
             <div class="vol-label">Master Output Level</div>
             <input type="range" id="vol-slider" min="0" max="1" step="0.01" value="1" oninput="updateVolume(this.value)">
+        </div>
+
+        <div class="stats-row">
+            <div class="stat-card">
+                <div class="stat-val" id="streak-val">1</div>
+                <div class="stat-label">Day Streak</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-val" id="history-val">0</div>
+                <div class="stat-label">Total Cleans</div>
+            </div>
         </div>
 
         <button class="btn-coffee" onclick="window.open('https://buymeacoffee.com/donshehab')">
             <svg style="width:16px;height:16px;fill:currentColor" viewBox="0 0 24 24"><path d="M20 3H4v10c0 2.21 1.79 4 4 4h6c2.21 0 4-1.79 4-4v-3h2c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 5h-2V5h2v3zM4 19h16v2H4z"/></svg>
             Support The Mission
         </button>
-
-        <div class="test-zone">
-            <button class="btn-test" id="btn-test" onclick="toggleTest()">TEST</button>
-        </div>
     </div>
 
     <div class="ad-slot">
@@ -318,9 +373,42 @@
 </div>
 
 <script>
-    // --- COOKIE ---
+    // --- INIT ---
+    // Generate Viz Bars
+    const vizContainer = document.getElementById('viz-container');
+    const bars = [];
+    for(let i=0; i<20; i++) {
+        const bar = document.createElement('div');
+        bar.className = 'viz-bar';
+        vizContainer.appendChild(bar);
+        bars.push(bar);
+    }
+
+    // --- COOKIE & STATS ---
     if (!localStorage.getItem('cookiesAccepted')) document.getElementById('cookie-banner').style.display = 'block';
     function acceptCookies() { localStorage.setItem('cookiesAccepted', 'true'); document.getElementById('cookie-banner').style.display = 'none'; }
+
+    // Stats Logic
+    let streak = parseInt(localStorage.getItem('cleanStreak') || 1);
+    let cleans = parseInt(localStorage.getItem('totalCleans') || 0);
+    const lastVisit = localStorage.getItem('lastVisit');
+    const today = new Date().toDateString();
+
+    if (lastVisit !== today) {
+        // Simple streak logic (if visited yesterday, +1, else 1)
+        // For simplicity in this demo, we just increment on new days
+        if (lastVisit) streak++;
+        localStorage.setItem('cleanStreak', streak);
+        localStorage.setItem('lastVisit', today);
+    }
+    document.getElementById('streak-val').innerText = streak;
+    document.getElementById('history-val').innerText = cleans;
+
+    function incrementClean() {
+        cleans++;
+        localStorage.setItem('totalCleans', cleans);
+        document.getElementById('history-val').innerText = cleans;
+    }
 
     // --- TYPING HEADER ---
     const typeText = document.getElementById('type-text');
@@ -362,30 +450,83 @@
         isPlaying = false;
         resetGauges();
         document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
-        document.getElementById('btn-test').classList.remove('running');
-        document.getElementById('btn-test').innerText = "TEST";
+        document.querySelectorAll('.btn-diag').forEach(b => b.classList.remove('active'));
         
-        // Dim Rings
         document.getElementById('ring-load').classList.remove('active');
         document.getElementById('ring-db').classList.remove('active');
+        
+        // Reset Viz
+        bars.forEach(b => b.style.height = '2px');
     }
 
-    function playTone(freq, type='sine') {
+    function playTone(freq, type='sine', pan=0) {
         osc = ctx.createOscillator();
         gainNode = ctx.createGain();
+        const panner = ctx.createStereoPanner ? ctx.createStereoPanner() : null;
+
         osc.type = type;
         osc.frequency.value = freq;
+        
         osc.connect(gainNode);
-        gainNode.connect(ctx.destination);
+        if (panner) {
+            panner.pan.value = pan;
+            gainNode.connect(panner);
+            panner.connect(ctx.destination);
+        } else {
+            gainNode.connect(ctx.destination);
+        }
+
         gainNode.gain.setValueAtTime(0.01, ctx.currentTime);
         gainNode.gain.exponentialRampToValueAtTime(currentVol, ctx.currentTime + 0.1);
         osc.start();
         
-        // Light up rings
         document.getElementById('ring-load').classList.add('active');
         document.getElementById('ring-db').classList.add('active');
         
         visualizerLoop(freq);
+    }
+
+    // --- DIAGNOSTICS ---
+    async function runDiagnostic(type) {
+        await initAudio();
+        stop();
+        isPlaying = true;
+        
+        // Highlight logic
+        const btns = document.querySelectorAll('.btn-diag');
+        if(type==='left') btns[0].classList.add('active');
+        if(type==='right') btns[1].classList.add('active');
+        if(type==='bass') btns[2].classList.add('active');
+        if(type==='treble') btns[3].classList.add('active');
+
+        if (type === 'left') playTone(440, 'sine', -1);
+        if (type === 'right') playTone(440, 'sine', 1);
+        if (type === 'bass') playTone(60, 'sine');   // Deep Bass
+        if (type === 'treble') playTone(12000, 'sine'); // High Treble
+    }
+
+    // --- SCANNERS (Fake Animation) ---
+    function runScanner(type) {
+        const box = document.getElementById(type + '-box');
+        const bar = document.getElementById(type + '-bar');
+        const val = document.getElementById(type + '-val');
+        
+        box.classList.add('scanning');
+        val.innerText = "Scanning...";
+        bar.style.width = "0%";
+        
+        // Simulate Scan
+        setTimeout(() => {
+            const result = Math.floor(Math.random() * 40) + 10; // Random 10-50%
+            bar.style.width = result + "%";
+            val.innerText = result + "% DETECTED";
+            box.classList.remove('scanning');
+            
+            // "Fix" it if they clean
+            if(type === 'dust') {
+                setTimeout(() => { val.innerText = "REC: RUN CLEANING"; }, 1000);
+            }
+        }, 2000);
     }
 
     // --- GAUGE LOGIC ---
@@ -394,24 +535,27 @@
         let dispFreq = baseFreq + (Math.random() * 5);
         let load = 40 + Math.random() * 30;
         updateGauges(dispFreq, currentVol, false, load);
-        setTimeout(() => visualizerLoop(baseFreq), 100);
+        
+        // Animate Bars
+        bars.forEach(b => {
+            const h = Math.random() * 20 + 2;
+            b.style.height = h + 'px';
+        });
+
+        setTimeout(() => visualizerLoop(baseFreq), 50);
     }
 
     function updateGauges(hz, vol, volOnly=false, load=0) {
-        // Gain
         const vRot = -135 + (vol * 270);
         document.getElementById('needle-db').style.transform = `rotate(${vRot}deg)`;
         document.getElementById('val-db').innerText = Math.round(vol * 10);
-        
         if (volOnly && !isPlaying) return;
 
-        // Hz
         let hRot = -135 + (Math.min(hz, 20000) / 20000 * 270);
         if (hz === 0) hRot = -135;
         document.getElementById('needle-hz').style.transform = `rotate(${hRot}deg)`;
         if (hz > 0) document.getElementById('val-hz').innerText = Math.round(hz) + " Hz";
 
-        // Load
         if (isPlaying) {
             const lRot = -135 + (load / 100 * 270);
             document.getElementById('needle-load').style.transform = `rotate(${lRot}deg)`;
@@ -432,6 +576,7 @@
         await initAudio();
         stop();
         isPlaying = true;
+        incrementClean(); // Log stats
         
         const btnIndex = (type === 'water' ? 0 : 5) + (id - 1);
         document.querySelectorAll('.mode-btn')[btnIndex].classList.add('active');
@@ -441,21 +586,9 @@
             const waves = ['sawtooth', 'square', 'sine', 'sawtooth', 'sine'];
             playTone(freqs[id-1], waves[id-1]);
         } else {
-            // Dust: Low freq shake
             const freqs = [60, 120, 500, 800, 1000];
             const waves = ['square', 'sawtooth', 'square', 'sawtooth', 'sine'];
             playTone(freqs[id-1], waves[id-1]);
-        }
-    }
-
-    async function toggleTest() {
-        await initAudio();
-        if (isPlaying) stop();
-        else {
-            isPlaying = true;
-            document.getElementById('btn-test').classList.add('running');
-            document.getElementById('btn-test').innerText = "STOP";
-            playTone(440, 'sine');
         }
     }
 </script>
