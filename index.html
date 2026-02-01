@@ -4,7 +4,7 @@
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5129097020907805" crossorigin="anonymous"></script>
 
     <meta charset="UTF-8" />
-    <title>Speaker Cleaner Pro | Ultimate Water & Dust Ejector</title>
+    <title>Speaker Cleaner Pro | Redline Edition</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <meta name="description" content="Professional grade audio utility to eject water and dust from phone speakers. 10 specialized cleaning modes.">
     
@@ -17,10 +17,10 @@
         :root {
             --bg: #050505;
             --panel: #111111;
-            --neon: #39ff14;
+            --neon: #39ff14; /* Green for buttons */
             --neon-glow: rgba(57, 255, 20, 0.4);
-            --danger: #ff003c;
-            --danger-glow: rgba(255, 0, 60, 0.4);
+            --danger: #ff003c; /* Red for gauges */
+            --danger-glow: rgba(255, 0, 60, 0.6);
             --text-main: #e0e0e0;
             --border: #333333;
         }
@@ -67,18 +67,23 @@
         
         .gauge-box { position: relative; width: 32%; text-align: center; }
         
+        /* THE RED GLOWING RING */
         .gauge-ring {
             width: 100%; padding-bottom: 100%; /* Square Aspect Ratio */
-            border-radius: 50%; border: 3px solid #444; position: relative;
+            border-radius: 50%; 
+            border: 3px solid var(--danger); /* RED BORDER */
+            position: relative;
             background: radial-gradient(circle, #222 0%, #000 100%);
-            box-shadow: inset 0 0 20px #000, 0 5px 15px rgba(0,0,0,0.5);
+            box-shadow: 
+                inset 0 0 20px #000, 
+                0 0 15px var(--danger-glow); /* RED GLOW */
             overflow: hidden;
         }
 
         /* --- TICK MARKS & OVERLAYS --- */
         .ticks-overlay {
             position: absolute; width: 100%; height: 100%; border-radius: 50%;
-            background: repeating-conic-gradient(from 225deg, rgba(255,255,255,0.2) 0deg 1deg, transparent 1deg 15deg);
+            background: repeating-conic-gradient(from 225deg, rgba(255, 0, 60, 0.4) 0deg 1deg, transparent 1deg 15deg);
             mask-image: radial-gradient(transparent 60%, black 61%);
             -webkit-mask-image: radial-gradient(transparent 60%, black 61%);
             z-index: 1;
@@ -92,21 +97,20 @@
             z-index: 5; pointer-events: none;
         }
 
-        .gauge-numbers span { position: absolute; color: #666; font-size: 8px; font-weight: bold; z-index: 2; }
+        .gauge-numbers span { position: absolute; color: #888; font-size: 8px; font-weight: bold; z-index: 2; }
         .n-0 { bottom: 20%; left: 20%; }
         .n-50 { top: 15%; left: 50%; transform: translateX(-50%); }
         .n-100 { bottom: 20%; right: 20%; }
 
-        /* --- NEEDLE FIX --- */
+        /* --- RED GLOWING NEEDLE --- */
         .needle {
             position: absolute; top: 50%; left: 50%; 
-            width: 45%; /* Length */
-            height: 3px; /* Thickness - FIXED */
+            width: 45%; height: 3px; 
             background: var(--danger); 
-            transform-origin: 0% 50%; /* Rotate from center */
+            transform-origin: 0% 50%; 
             transform: rotate(-135deg); 
             transition: transform 0.1s cubic-bezier(0.1, 0, 0.2, 1);
-            box-shadow: 0 0 4px var(--danger); 
+            box-shadow: 0 0 8px var(--danger); /* Stronger Glow */
             border-radius: 2px;
             z-index: 4;
         }
@@ -117,12 +121,17 @@
             border-radius: 50%; z-index: 5; border: 1px solid #111;
             box-shadow: 0 2px 5px rgba(0,0,0,0.8);
         }
+        
+        /* RED LABELS */
         .gauge-label {
-            font-size: 10px; color: #888; margin-top: 5px; text-transform: uppercase; font-weight: 700; letter-spacing: 0.5px;
+            font-size: 10px; color: #666; margin-top: 8px; text-transform: uppercase; font-weight: 700; letter-spacing: 0.5px;
+            transition: color 0.3s;
         }
+        
         .gauge-val {
             position: absolute; bottom: 25%; width: 100%; text-align: center;
-            font-family: monospace; color: #fff; font-size: 10px; font-weight: bold; z-index: 1;
+            font-family: monospace; color: var(--danger); font-size: 10px; font-weight: bold; z-index: 1;
+            text-shadow: 0 0 5px var(--danger-glow);
         }
 
         /* --- CONTROL PANEL --- */
@@ -243,17 +252,19 @@
             </div>
             <div class="gauge-label">CPU LOAD</div>
         </div>
+        
         <div class="gauge-box" style="width: 40%;">
-            <div class="gauge-ring" style="border-color: var(--neon); box-shadow: 0 0 15px rgba(57,255,20,0.1);">
+            <div class="gauge-ring">
                 <div class="ticks-overlay"></div>
                 <div class="scratch-overlay"></div>
-                <div class="gauge-numbers" style="color:var(--neon);"><span class="n-0">0</span><span class="n-50">10k</span><span class="n-100">20k</span></div>
+                <div class="gauge-numbers" style="color:var(--danger); text-shadow: 0 0 5px var(--danger-glow);"><span class="n-0">0</span><span class="n-50">10k</span><span class="n-100">20k</span></div>
                 <div class="gauge-center" style="background: radial-gradient(#333,#000);"></div>
-                <div class="needle" id="needle-hz" style="background: #fff; width: 45%; height: 3px; border-radius: 3px;"></div>
-                <div class="gauge-val" id="val-hz" style="color: var(--neon); font-size: 13px;">0 Hz</div>
+                <div class="needle" id="needle-hz" style="height: 3px;"></div>
+                <div class="gauge-val" id="val-hz" style="font-size: 13px;">0 Hz</div>
             </div>
-            <div class="gauge-label" style="color: var(--neon);">FREQUENCY</div>
+            <div class="gauge-label" style="color: var(--danger);">FREQUENCY</div>
         </div>
+        
         <div class="gauge-box">
             <div class="gauge-ring">
                 <div class="ticks-overlay"></div>
