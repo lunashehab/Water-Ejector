@@ -99,7 +99,7 @@
         }
         .typing-status { font-family: monospace; font-size: 12px; color: var(--accent); min-height: 16px; text-shadow: 0 0 5px var(--accent-glow); }
 
-        /* --- DASHBOARD GAUGES (CALIBRATED) --- */
+        /* --- DASHBOARD GAUGES (RE-CALIBRATED) --- */
         .dashboard-row { display: flex; justify-content: space-between; align-items: flex-end; gap: 10px; margin: 20px 0; }
         .gauge-box { position: relative; width: 32%; text-align: center; }
         .gauge-ring {
@@ -121,18 +121,19 @@
             -webkit-mask-image: radial-gradient(transparent 60%, black 61%);
             z-index: 1; opacity: 0.5;
         }
-        /* CALIBRATED NUMBERS */
-        .gauge-numbers span { position: absolute; color: #666; font-size: 8px; font-weight: bold; z-index: 2; }
-        .n-0 { bottom: 18%; left: 18%; }
-        .n-50 { top: 15%; left: 50%; transform: translateX(-50%); }
-        .n-100 { bottom: 18%; right: 18%; }
         
-        /* CALIBRATED NEEDLE */
+        /* CALIBRATED NUMBERS (FIXED) */
+        .gauge-numbers span { position: absolute; color: #666; font-size: 8px; font-weight: bold; z-index: 2; }
+        .n-0 { bottom: 22%; left: 22%; }
+        .n-50 { top: 12%; left: 50%; transform: translateX(-50%); }
+        .n-100 { bottom: 22%; right: 22%; }
+        
+        /* CALIBRATED NEEDLE (FIXED) */
         .needle {
             position: absolute; 
             top: 50%; left: 50%; 
             width: 45%; height: 2px;
-            margin-top: -1px; /* Exact center correction */
+            margin-top: -1px;
             background: var(--accent); 
             transform-origin: 0% 50%; 
             transform: rotate(-135deg); 
@@ -751,6 +752,7 @@
         document.getElementById('val-db').innerText = Math.round(vol * 10);
         if (volOnly && !isPlaying) return;
 
+        // FIXED: Maps 0-20k to 270 degrees
         let hRot = -135 + (Math.min(hz, 20000) / 20000 * 270);
         if (hz === 0) hRot = -135;
         document.getElementById('needle-hz').style.transform = `rotate(${hRot}deg)`;
