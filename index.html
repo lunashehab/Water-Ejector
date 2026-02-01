@@ -9,11 +9,16 @@
     <meta name="description" content="Water in your speaker? Use this free sound tool to eject moisture instantly. Plays specific 165Hz frequencies to push water out. No install needed.">
     <meta name="keywords" content="water in my speaker, water ejector, fix my speaker, get water out of phone, speaker cleaner, sound test">
     
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#0f172a">
+
     <meta property="og:title" content="Water In My Speaker | Instant Fix">
     <meta property="og:description" content="Dropped your phone in water? Use this sound tool to push water out of your speakers now.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://waterinmyspeaker.com"> 
-    <meta property="og:image" content="https://waterinmyspeaker.com/icon.png"> <script type="application/ld+json">
+    <meta property="og:image" content="https://waterinmyspeaker.com/icon.png"> 
+    
+    <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "SoftwareApplication",
@@ -173,6 +178,15 @@
         
         /* Volume Warning */
         .warning { color: #f59e0b; font-size: 13px; margin-top: 10px; display: flex; align-items: center; justify-content: center; gap: 6px;}
+
+        /* --- COOKIE BANNER --- */
+        #cookie-banner {
+            display: none; position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
+            background: #1e293b; padding: 20px; border-radius: 16px; 
+            border: 1px solid rgba(255,255,255,0.1); 
+            box-shadow: 0 10px 40px rgba(0,0,0,0.8); 
+            width: 90%; max-width: 400px; z-index: 1000; text-align: center;
+        }
     </style>
 </head>
 <body>
@@ -224,12 +238,26 @@
     </div>
 
     <footer>
-        <a href="privacy.html">Privacy Policy</a> • <a href="#">Terms</a> • <a href="mailto:contact@waterinmyspeaker.com">Contact</a>
+        <a href="privacy.html">Privacy Policy</a> • <a href="terms.html">Terms</a> • <a href="contact.html">Contact</a>
         <br><br>© 2026 WaterInMySpeaker.com
     </footer>
 </div>
 
+<div id="cookie-banner">
+    <p style="color: #94a3b8; font-size: 14px; margin-bottom: 15px;">We use cookies to analyze traffic and show personalized ads.</p>
+    <button onclick="acceptCookies()" style="background: #0ea5e9; border: none; color: white; padding: 10px 30px; border-radius: 20px; font-weight: bold; cursor: pointer; font-size: 14px;">I Accept</button>
+</div>
+
 <script>
+    // --- COOKIE LOGIC ---
+    if (!localStorage.getItem('cookiesAccepted')) {
+        document.getElementById('cookie-banner').style.display = 'block';
+    }
+    function acceptCookies() {
+        localStorage.setItem('cookiesAccepted', 'true');
+        document.getElementById('cookie-banner').style.display = 'none';
+    }
+
     // --- AUDIO ENGINE ---
     let audioCtx;
     let oscillator;
@@ -306,6 +334,7 @@
         }
     }
 
+    // Handlers
     ejectBtn.addEventListener('click', () => {
         if (isPlaying && currentMode === 'eject') {
             stopSound();
