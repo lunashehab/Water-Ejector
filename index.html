@@ -21,6 +21,18 @@
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#000000">
 
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Speaker Cleaner Pro",
+      "applicationCategory": "UtilityApplication",
+      "operatingSystem": "Any",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "featureList": "Water Ejection, Dust Removal, 165Hz Frequency"
+    }
+    </script>
+
     <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;500;700;900&display=swap" rel="stylesheet">
 
     <style>
@@ -85,8 +97,8 @@
         }
         .typing-status { font-family: monospace; font-size: 12px; color: var(--accent); min-height: 16px; text-shadow: 0 0 5px var(--accent-glow); }
 
-        /* --- NEW GAUGE ENGINE (MECHANIC FIX) --- */
-        .dashboard-row { display: flex; justify-content: space-between; align-items: flex-end; gap: 10px; margin: 20px 0; }
+        /* --- GAUGE ENGINE --- */
+        .dashboard-row { display: flex; justify-content: space-between; align-items: flex-end; gap: 10px; margin: 25px 0; }
         .gauge-box { position: relative; width: 32%; text-align: center; }
         
         .gauge-ring {
@@ -110,27 +122,20 @@
             z-index: 1; opacity: 0.5;
         }
 
-        /* FIXED NUMBER POSITIONS (Aligns with -120 to +120 swing) */
         .gauge-numbers span { position: absolute; color: #666; font-size: 8px; font-weight: bold; z-index: 2; }
         .n-0 { bottom: 25%; left: 20%; }
         .n-50 { top: 12%; left: 50%; transform: translateX(-50%); }
         .n-100 { bottom: 25%; right: 20%; }
 
-        /* FIXED NEEDLE LOGIC (Bottom Pivot) */
         .needle {
             position: absolute; 
-            bottom: 50%; left: 50%; /* Pinned to center */
-            width: 2px; height: 45%; /* Vertical Stick */
-            margin-left: -1px; /* Exact center alignment */
+            bottom: 50%; left: 50%; width: 2px; height: 45%; margin-left: -1px;
             background: var(--accent); 
-            transform-origin: bottom center; /* PIVOT FROM BOTTOM */
-            transform: rotate(-120deg); /* Start Position (7 o'clock) */
+            transform-origin: bottom center; 
+            transform: rotate(-120deg); 
             transition: transform 0.2s cubic-bezier(0.1, 0, 0.2, 1);
-            box-shadow: 0 0 8px var(--accent); 
-            z-index: 4;
-            border-radius: 2px;
+            box-shadow: 0 0 8px var(--accent); z-index: 4; border-radius: 2px;
         }
-        
         .gauge-center {
             position: absolute; top: 40%; left: 40%; width: 20%; height: 20%;
             background: #222; border-radius: 50%; z-index: 5; border: 1px solid #111;
@@ -171,7 +176,7 @@
             color: #fff; box-shadow: 0 0 15px var(--accent-dim);
         }
 
-        /* --- DIAGNOSTICS --- */
+        /* --- DIAGNOSTICS & TRUST --- */
         .diag-grid { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 10px; margin-bottom: 25px; }
         .btn-diag {
             background: #111; border: 1px solid #333; color: #888; height: 40px;
@@ -252,12 +257,13 @@
             border: 2px solid #fff;
         }
 
-        /* --- STATS & TRUST --- */
+        /* --- STATS ROW --- */
         .stats-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 25px; }
         .stat-card { background: #080808; border: 1px solid #222; padding: 10px; border-radius: 6px; text-align: center; }
         .stat-val { font-size: 16px; font-weight: 900; color: #fff; margin-bottom: 2px; }
         .stat-label { font-size: 8px; color: #666; text-transform: uppercase; }
 
+        /* --- TRUST GRID --- */
         .trust-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px; }
         .trust-item {
             background: #080808; border: 1px solid #222; padding: 10px; 
@@ -336,6 +342,40 @@
         <div class="typing-status" id="type-text">System Online.</div>
     </header>
 
+    <div class="panel">
+        <div class="panel-title"><span>Speaker Test</span> <span>Isolation</span></div>
+        <div class="diag-grid">
+            <button class="btn-diag" onclick="runDiagnostic('left')">LEFT</button>
+            <button class="btn-diag" onclick="runDiagnostic('right')">RIGHT</button>
+            <button class="btn-diag" onclick="runDiagnostic('bass')">BASS</button>
+            <button class="btn-diag" onclick="runDiagnostic('treble')">TREBLE</button>
+        </div>
+
+        <div class="panel-title"><span>Advanced Ops</span> <span>Deep Clean</span></div>
+        <div class="ops-grid">
+            <button class="btn-ops" id="btn-deep" onclick="runDeepClean()">
+                <span class="ops-label">PRO MODE</span>
+                <span class="boost-icon"></span> AUTO CYCLE
+            </button>
+            <button class="btn-ops" id="btn-boost" onclick="toggleBoost()">
+                <span class="ops-label">TURBO MODE</span>
+                <span class="boost-icon"></span> BOOST
+            </button>
+        </div>
+        
+        <div class="progress-container" id="prog-cont">
+            <div class="progress-fill" id="prog-fill"></div>
+        </div>
+
+        <div class="panel-title"><span>Dust Integrity</span> <span>Meter</span></div>
+        <div class="scanner-box" id="dust-box">
+            <div class="scanner-overlay"></div>
+            <div class="scan-label"><span>Contamination Level</span> <span id="dust-val">0%</span></div>
+            <div class="scan-bar-bg"><div class="scan-bar-fill" id="dust-bar" style="background: #ffaa00; box-shadow: 0 0 10px #ffaa00;"></div></div>
+            <button class="btn-diag" style="width:100%; margin-top:10px; border-color:#ffaa00; color:#ffaa00;" onclick="runScanner('dust')">CHECK LEVEL</button>
+        </div>
+    </div>
+
     <div class="dashboard-row">
         <div class="gauge-box">
             <div class="gauge-ring" id="ring-load">
@@ -368,40 +408,6 @@
                 <div class="gauge-val" id="val-db">0</div>
             </div>
             <div class="gauge-label">GAIN</div>
-        </div>
-    </div>
-
-    <div class="panel">
-        <div class="panel-title"><span>Speaker Test</span> <span>Isolation</span></div>
-        <div class="diag-grid">
-            <button class="btn-diag" onclick="runDiagnostic('left')">LEFT</button>
-            <button class="btn-diag" onclick="runDiagnostic('right')">RIGHT</button>
-            <button class="btn-diag" onclick="runDiagnostic('bass')">BASS</button>
-            <button class="btn-diag" onclick="runDiagnostic('treble')">TREBLE</button>
-        </div>
-
-        <div class="panel-title"><span>Advanced Ops</span> <span>Deep Clean</span></div>
-        <div class="ops-grid">
-            <button class="btn-ops" id="btn-deep" onclick="runDeepClean()">
-                <span class="ops-label">PRO MODE</span>
-                <span class="boost-icon"></span> AUTO CYCLE
-            </button>
-            <button class="btn-ops" id="btn-boost" onclick="toggleBoost()">
-                <span class="ops-label">TURBO MODE</span>
-                <span class="boost-icon"></span> BOOST
-            </button>
-        </div>
-        
-        <div class="progress-container" id="prog-cont">
-            <div class="progress-fill" id="prog-fill"></div>
-        </div>
-
-        <div class="panel-title"><span>Dust Integrity</span> <span>Meter</span></div>
-        <div class="scanner-box" id="dust-box">
-            <div class="scanner-overlay"></div>
-            <div class="scan-label"><span>Contamination Level</span> <span id="dust-val">0%</span></div>
-            <div class="scan-bar-bg"><div class="scan-bar-fill" id="dust-bar" style="background: #ffaa00; box-shadow: 0 0 10px #ffaa00;"></div></div>
-            <button class="btn-diag" style="width:100%; margin-top:10px; border-color:#ffaa00; color:#ffaa00;" onclick="runScanner('dust')">CHECK LEVEL</button>
         </div>
     </div>
 
