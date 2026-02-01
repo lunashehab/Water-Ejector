@@ -2,28 +2,130 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Contact Us | Water In My Speaker</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Support | Speaker Cleaner Pro</title>
+    <meta name="robots" content="noindex">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;500;700&display=swap" rel="stylesheet">
+
     <style>
-        body { font-family: sans-serif; background: #0f172a; color: white; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
-        .card { background: #1e293b; padding: 40px; border-radius: 24px; text-align: center; max-width: 400px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 10px 40px rgba(0,0,0,0.5); }
-        h1 { color: #0ea5e9; margin-bottom: 10px; }
-        p { color: #94a3b8; margin-bottom: 30px; }
-        .email-box { background: rgba(0,0,0,0.3); padding: 15px; border-radius: 10px; font-family: monospace; border: 1px dashed #0ea5e9; color: #0ea5e9; font-size: 16px; margin-bottom: 30px; }
-        .btn { background: #0ea5e9; color: white; padding: 12px 30px; border-radius: 50px; text-decoration: none; font-weight: bold; transition: 0.3s; }
-        .btn:hover { background: #0284c7; }
+        :root {
+            --bg: #000000;
+            --panel: #0a0a0a;
+            --accent: #ff003c; /* MARS RED */
+            --text-main: #ffffff;
+            --text-muted: #888888;
+            --border: #333333;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text-muted);
+            font-family: 'Exo 2', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 600px;
+            width: 100%;
+            background: var(--panel);
+            padding: 40px;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        h1 {
+            color: var(--text-main);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+            font-size: 24px;
+            display: inline-block;
+        }
+
+        p {
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        .email-box {
+            background: #111;
+            border: 1px solid #333;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 30px 0;
+        }
+
+        .email-link {
+            color: var(--accent);
+            font-size: 18px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: 0.2s;
+        }
+
+        .email-link:hover {
+            color: #fff;
+            text-shadow: 0 0 10px var(--accent);
+        }
+
+        .btn-back {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 12px 30px;
+            border: 1px solid var(--accent);
+            color: var(--text-main);
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: 0.2s;
+        }
+
+        .btn-back:hover {
+            background: var(--accent);
+            box-shadow: 0 0 20px rgba(255, 0, 60, 0.4);
+        }
+        
+        .don-sig {
+            display: block;
+            margin-top: 40px;
+            font-size: 10px;
+            opacity: 0.5;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
     </style>
 </head>
 <body>
-    <div class="card">
-        <h1>Get in Touch</h1>
-        <p>Have questions about the tool or need support? We are here to help.</p>
+
+    <div class="container">
+        <h1>Contact Support</h1>
+
+        <p>Having trouble with the frequency generator? Need to report a bug or request a feature for the <strong>Don System</strong>?</p>
         
-        <div class="email-box">contact@waterinmyspeaker.com</div>
-        
-        <a href="mailto:contact@waterinmyspeaker.com" class="btn">Send Email</a>
-        <br><br><br>
-        <a href="index.html" style="color: #94a3b8; text-decoration: none; font-size: 14px;">← Back to Home</a>
+        <p>Our team is ready to assist you. Please email us directly at:</p>
+
+        <div class="email-box">
+            <a href="mailto:waterinmyspeaker@support.com" class="email-link">waterinmyspeaker@support.com</a>
+        </div>
+
+        <p>We aim to respond to all inquiries within 24-48 hours.</p>
+
+        <a href="index.html" class="btn-back">Return to Mission Control</a>
+
+        <span class="don-sig">© 2025 DON SYSTEM</span>
     </div>
+
 </body>
 </html>
