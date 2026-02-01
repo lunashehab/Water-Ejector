@@ -4,49 +4,41 @@
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5129097020907805" crossorigin="anonymous"></script>
 
     <meta charset="UTF-8" />
-    <title>Water In My Speaker | Fix & Eject Water Instantly</title>
+    <title>Speaker Cleaner Pro | Water & Dust Ejector</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <meta name="description" content="Water in your speaker? Use this free sound tool to eject moisture instantly. Plays specific 165Hz frequencies to push water out. No install needed.">
-    <meta name="keywords" content="water in my speaker, water ejector, fix my speaker, get water out of phone, speaker cleaner, sound test">
+    <meta name="description" content="Premium audio utility to remove water and dust from phone speakers. Precision frequency generator with multiple cleaning modes.">
     
     <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#0f172a">
+    <meta name="theme-color" content="#000000">
 
-    <meta property="og:title" content="Water In My Speaker | Instant Fix">
-    <meta property="og:description" content="Dropped your phone in water? Use this sound tool to push water out of your speakers now.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://waterinmyspeaker.com"> 
-    <meta property="og:image" content="https://waterinmyspeaker.com/icon.png"> 
-    
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;600;800&display=swap" rel="stylesheet">
+
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "SoftwareApplication",
-      "name": "Water In My Speaker",
-      "url": "https://waterinmyspeaker.com",
+      "name": "Speaker Cleaner Pro",
       "applicationCategory": "Utility",
       "operatingSystem": "Any",
-      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
-      "featureList": "165Hz Water Ejection, Stereo Testing, Frequency Generator"
+      "featureList": "Water Ejection, Dust Removal, Stereo Test"
     }
     </script>
 
     <style>
         :root {
-            --bg: #0f172a;
-            --surface: #1e293b;
-            --accent: #0ea5e9; /* Water Blue */
-            --accent-glow: rgba(14, 165, 233, 0.4);
-            --text-main: #f8fafc;
-            --text-soft: #94a3b8;
-            --border: rgba(255, 255, 255, 0.1);
-            --danger: #ef4444;
+            --bg: #000000;
+            --panel: #111111;
+            --neon: #39ff14; /* Tesla/Neon Green */
+            --neon-dim: rgba(57, 255, 20, 0.1);
+            --text-main: #ffffff;
+            --text-muted: #666666;
+            --border: #222222;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            font-family: 'Exo 2', sans-serif;
             background: var(--bg);
             color: var(--text-main);
             min-height: 100vh;
@@ -54,152 +46,168 @@
             flex-direction: column;
             align-items: center;
             padding: 20px;
+            overflow-x: hidden;
         }
 
-        .shell { width: 100%; max-width: 600px; display: flex; flex-direction: column; gap: 20px; }
+        /* --- BACKGROUND FX --- */
+        .bg-glow {
+            position: fixed; top: -50%; left: -50%; width: 200%; height: 200%;
+            background: radial-gradient(circle at center, rgba(57, 255, 20, 0.03) 0%, transparent 50%);
+            z-index: -1; pointer-events: none;
+        }
+
+        .shell { width: 100%; max-width: 500px; display: flex; flex-direction: column; gap: 24px; z-index: 1; }
 
         /* --- HEADER --- */
-        header { text-align: center; margin: 20px 0; }
-        h1 { font-size: 32px; font-weight: 800; letter-spacing: -1px; margin-bottom: 8px; }
-        h1 span { color: var(--accent); }
-        .tagline { color: var(--text-soft); font-size: 15px; }
+        header { text-align: center; margin: 30px 0 10px; }
+        h1 { 
+            font-size: 36px; font-weight: 800; text-transform: uppercase; letter-spacing: 2px;
+            background: linear-gradient(to bottom, #fff, #888);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+        .tagline { color: var(--neon); font-size: 12px; letter-spacing: 3px; text-transform: uppercase; font-weight: 600; }
 
-        /* --- CARDS --- */
-        .card {
-            background: var(--surface);
+        /* --- DASHBOARD PANELS --- */
+        .panel {
+            background: var(--panel);
             border: 1px solid var(--border);
-            border-radius: 24px;
+            border-radius: 16px;
             padding: 24px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            text-align: center;
+            position: relative;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+            backdrop-filter: blur(10px);
         }
-        .card-title {
-            font-size: 14px; text-transform: uppercase; letter-spacing: 1px;
-            color: var(--text-soft); margin-bottom: 20px; font-weight: 700;
-        }
-
-        /* --- MAIN BUTTON --- */
-        .eject-btn-container { position: relative; height: 180px; display: flex; align-items: center; justify-content: center; }
         
-        .btn-eject {
-            width: 140px; height: 140px;
-            border-radius: 50%; border: none;
-            background: radial-gradient(circle, #0ea5e9 0%, #0284c7 100%);
-            color: white; font-weight: 800; font-size: 18px; cursor: pointer;
-            box-shadow: 0 0 0 8px rgba(14, 165, 233, 0.15);
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            z-index: 2; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px;
-        }
-        .btn-eject:active { transform: scale(0.95); }
-        .btn-eject svg { width: 32px; height: 32px; fill: white; }
-
-        .btn-eject.playing {
-            animation: shake 0.5s infinite;
-            background: radial-gradient(circle, #ef4444 0%, #b91c1c 100%);
-            box-shadow: 0 0 40px var(--danger);
+        .panel::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 2px;
+            background: linear-gradient(90deg, transparent, var(--neon), transparent);
+            opacity: 0.5;
         }
 
-        /* Ripples */
-        .ripple {
-            position: absolute; border-radius: 50%; border: 2px solid var(--accent);
-            opacity: 0; pointer-events: none; top: 50%; left: 50%; transform: translate(-50%, -50%);
+        .panel-header {
+            display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;
         }
-        .playing + .ripple-box .ripple { animation: ripple-anim 2s infinite linear; }
-        .ripple:nth-child(2) { animation-delay: 0.6s; }
-        .ripple:nth-child(3) { animation-delay: 1.2s; }
+        .panel-title { font-size: 14px; text-transform: uppercase; color: var(--text-muted); letter-spacing: 1px; }
+        .status-light { width: 8px; height: 8px; background: #333; border-radius: 50%; box-shadow: 0 0 5px #000; transition: 0.3s; }
+        .status-light.active { background: var(--neon); box-shadow: 0 0 10px var(--neon); }
 
-        @keyframes shake {
-            0% { transform: translate(1px, 1px) rotate(0deg); }
-            50% { transform: translate(-1px, 2px) rotate(-1deg); }
-            100% { transform: translate(1px, -2px) rotate(-1deg); }
+        /* --- MAIN BUTTONS --- */
+        .mode-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+
+        .btn-mode {
+            background: #0a0a0a; border: 1px solid var(--border);
+            border-radius: 12px; height: 120px;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            cursor: pointer; transition: all 0.3s ease;
+            position: relative; overflow: hidden;
         }
-        @keyframes ripple-anim {
-            0% { width: 140px; height: 140px; opacity: 0.6; border-width: 4px; }
-            100% { width: 300px; height: 300px; opacity: 0; border-width: 0px; }
-        }
-
-        /* --- STEREO TOOLS --- */
-        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
-        .btn-tool {
-            background: rgba(255,255,255,0.05); border: 1px solid var(--border);
-            color: white; padding: 15px; border-radius: 12px; font-weight: 600; cursor: pointer;
-            transition: background 0.2s;
-        }
-        .btn-tool:hover { background: rgba(255,255,255,0.1); }
-        .btn-tool.active { background: var(--accent); border-color: var(--accent); }
-
-        /* --- SLIDER --- */
-        input[type=range] { width: 100%; -webkit-appearance: none; background: transparent; margin: 15px 0; }
-        input[type=range]::-webkit-slider-runnable-track { width: 100%; height: 6px; background: rgba(255,255,255,0.1); border-radius: 10px; }
-        input[type=range]::-webkit-slider-thumb { height: 20px; width: 20px; border-radius: 50%; background: var(--accent); -webkit-appearance: none; margin-top: -7px; box-shadow: 0 0 10px var(--accent-glow); }
-        .freq-display { font-size: 24px; font-weight: 800; color: var(--accent); }
-
-        /* --- GUIDE TEXT (SEO) --- */
-        .guide-box {
-            background: rgba(0,0,0,0.2); padding: 20px; border-radius: 16px; 
-            border: 1px solid var(--border); text-align: left;
-        }
-        .guide-box h3 { color: var(--accent); font-size: 16px; margin-bottom: 10px; }
-        .guide-box p { color: var(--text-soft); font-size: 14px; margin-bottom: 10px; line-height: 1.5; }
-        .guide-box li { color: var(--text-soft); font-size: 14px; margin-left: 20px; margin-bottom: 5px; }
-
-        footer { margin-top: 40px; text-align: center; font-size: 12px; color: var(--text-soft); }
-        footer a { color: var(--text-soft); margin: 0 5px; text-decoration: none; }
         
-        .warning { color: #f59e0b; font-size: 13px; margin-top: 10px; display: flex; align-items: center; justify-content: center; gap: 6px;}
+        .btn-mode svg { width: 32px; height: 32px; fill: #444; margin-bottom: 10px; transition: 0.3s; }
+        .btn-mode span { color: #666; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; transition: 0.3s; }
+
+        .btn-mode:hover { border-color: var(--neon); box-shadow: 0 0 20px var(--neon-dim); }
+        .btn-mode:hover svg { fill: var(--neon); }
+        .btn-mode:hover span { color: #fff; }
+
+        /* Active State */
+        .btn-mode.active { background: rgba(57, 255, 20, 0.05); border-color: var(--neon); }
+        .btn-mode.active svg { fill: var(--neon); animation: pulse 1s infinite alternate; }
+        .btn-mode.active span { color: var(--neon); }
+        
+        @keyframes pulse { 0% { opacity: 0.6; transform: scale(0.95); } 100% { opacity: 1; transform: scale(1.05); } }
+
+        /* --- MANUAL SLIDER --- */
+        .slider-container { margin-top: 10px; }
+        input[type=range] {
+            width: 100%; -webkit-appearance: none; background: transparent;
+        }
+        input[type=range]::-webkit-slider-runnable-track {
+            width: 100%; height: 4px; background: #333; border-radius: 2px;
+        }
+        input[type=range]::-webkit-slider-thumb {
+            height: 20px; width: 10px; background: var(--neon);
+            border-radius: 2px; -webkit-appearance: none; margin-top: -8px;
+            box-shadow: 0 0 10px var(--neon); cursor: grab;
+        }
+        .freq-readout {
+            font-family: monospace; font-size: 32px; color: var(--neon);
+            text-align: right; margin-bottom: 10px; text-shadow: 0 0 10px var(--neon-dim);
+        }
+
+        /* --- DESCRIPTION --- */
+        .desc-box {
+            color: #888; font-size: 13px; line-height: 1.6; text-align: justify;
+        }
+        .desc-box strong { color: #fff; }
+
+        /* --- FOOTER --- */
+        footer { margin-top: 40px; text-align: center; font-size: 11px; color: #444; }
+        footer a { color: #666; text-decoration: none; margin: 0 10px; text-transform: uppercase; }
+        footer a:hover { color: var(--neon); }
 
         /* --- COOKIE BANNER --- */
         #cookie-banner {
             display: none; position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
-            background: #1e293b; padding: 20px; border-radius: 16px; 
-            border: 1px solid rgba(255,255,255,0.1); 
-            box-shadow: 0 10px 40px rgba(0,0,0,0.8); 
+            background: rgba(17, 17, 17, 0.95); padding: 20px; border-radius: 12px; 
+            border: 1px solid var(--neon); 
+            box-shadow: 0 0 30px rgba(0,0,0,0.9); 
             width: 90%; max-width: 400px; z-index: 1000; text-align: center;
+            backdrop-filter: blur(10px);
         }
     </style>
 </head>
 <body>
 
+<div class="bg-glow"></div>
+
 <div class="shell">
     <header>
-        <h1>Water In My <span>Speaker</span></h1>
-        <p class="tagline">The #1 Emergency Water Ejector Tool</p>
+        <h1>Speaker<span>Cleaner</span></h1>
+        <div class="tagline">Audio Maintenance System</div>
     </header>
 
-    <main class="card">
-        <div class="card-title">💧 Main Ejector (165Hz)</div>
-        <div class="eject-btn-container">
-            <button id="eject-btn" class="btn-eject">
+    <div class="panel">
+        <div class="panel-header">
+            <span class="panel-title">Cleaning Protocols</span>
+            <div id="status-light" class="status-light"></div>
+        </div>
+        
+        <div class="mode-grid">
+            <button class="btn-mode" id="btn-water" onclick="toggleMode('water')">
                 <svg viewBox="0 0 24 24"><path d="M12 22c4.97 0 9-4.03 9-9-4.5 0-9-5-9-13 0 8-4.5 13-9 13 0 4.97 4.03 9 9 9z"/></svg>
-                <span>ACTIVATE</span>
+                <span>Liquid Eject</span>
             </button>
-            <div class="ripple-box"><div class="ripple"></div><div class="ripple"></div><div class="ripple"></div></div>
-        </div>
-        <div class="warning">⚠️ Set Volume to 100%</div>
-    </main>
-
-    <div class="card">
-        <div class="card-title">🔊 Stereo Diagnostics</div>
-        <div class="grid-2">
-            <button class="btn-tool" id="test-left" onclick="playTone('left')">Test Left</button>
-            <button class="btn-tool" id="test-right" onclick="playTone('right')">Test Right</button>
+            
+            <button class="btn-mode" id="btn-dust" onclick="toggleMode('dust')">
+                <svg viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM14 13v4h-4v-4H7l5-5 5 5h-3z"/></svg>
+                <span>Dust Purge</span>
+            </button>
         </div>
     </div>
 
-    <div class="card">
-        <div class="card-title">🎚️ Manual Frequency</div>
-        <div class="freq-display"><span id="freq-val">165</span> Hz</div>
-        <input type="range" id="freq-slider" min="20" max="20000" value="165" step="5">
-        <button class="btn-tool" id="sweep-btn" style="width:100%;">▶ Play Continuous Tone</button>
+    <div class="panel">
+        <div class="panel-header">
+            <span class="panel-title">Manual Frequency Override</span>
+        </div>
+        <div class="freq-readout"><span id="freq-val">165</span><span style="font-size:14px; color:#444;"> Hz</span></div>
+        <div class="slider-container">
+            <input type="range" id="freq-slider" min="20" max="20000" value="165" step="1">
+        </div>
+        <button class="btn-mode" id="btn-manual" style="width:100%; height: 50px; margin-top:20px; flex-direction:row; gap:10px;" onclick="toggleMode('manual')">
+            <svg style="width:18px;height:18px;margin:0;" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+            <span>Activate Signal</span>
+        </button>
     </div>
 
-    <div class="guide-box">
-        <h3>How to use this tool:</h3>
-        <p>1. Disconnect headphones and Bluetooth.</p>
-        <p>2. Set your phone volume to the maximum level (100%).</p>
-        <p>3. Tap the "ACTIVATE" button above.</p>
-        <p>4. Hold your phone upright or face down for 15-30 seconds.</p>
-        <p><em>The specific 165Hz frequency creates air pressure waves that push water droplets out of the speaker mesh.</em></p>
+    <div class="panel">
+        <p class="desc-box">
+            <strong>System Ready.</strong> Advanced acoustic engineering for device longevity. 
+            <br><br>
+            Use <strong>Liquid Eject</strong> (165Hz) to generate low-frequency pressure waves that physically push water droplets out of speaker mesh. 
+            <br><br>
+            Use <strong>Dust Purge</strong> to initiate a variable high-frequency sweep that dislodges dry particles and lint accumulation.
+        </p>
     </div>
 
     <footer>
@@ -209,8 +217,8 @@
 </div>
 
 <div id="cookie-banner">
-    <p style="color: #94a3b8; font-size: 14px; margin-bottom: 15px;">We use cookies to analyze traffic and show personalized ads.</p>
-    <button onclick="acceptCookies()" style="background: #0ea5e9; border: none; color: white; padding: 10px 30px; border-radius: 20px; font-weight: bold; cursor: pointer;">I Accept</button>
+    <p style="color: #ccc; font-size: 13px; margin-bottom: 15px;">We use cookies to enhance system performance and analyze traffic.</p>
+    <button onclick="acceptCookies()" style="background: var(--neon); color: black; border: none; padding: 10px 30px; border-radius: 4px; font-weight: 800; cursor: pointer;">ACKNOWLEDGE</button>
 </div>
 
 <script>
@@ -223,14 +231,14 @@
         document.getElementById('cookie-banner').style.display = 'none';
     }
 
-    // --- AUDIO ENGINE (ANTI-LAG) ---
+    // --- AUDIO CORE ---
     let audioCtx;
     let oscillator;
     let gainNode;
     let isPlaying = false;
     let currentMode = null; 
+    let dustInterval;
 
-    // Wake up Audio Context for Mobile
     async function initAudio() {
         if (!audioCtx) {
             const AudioContext = window.AudioContext || window.webkitAudioContext;
@@ -243,99 +251,106 @@
 
     function stopSound() {
         if (oscillator) {
-            try {
-                oscillator.stop();
-                oscillator.disconnect();
-            } catch(e) {}
+            try { oscillator.stop(); oscillator.disconnect(); } catch(e) {}
             oscillator = null;
         }
+        if (dustInterval) clearInterval(dustInterval);
+        
         isPlaying = false;
         currentMode = null;
         updateUI();
     }
 
-    async function startTone(freq, type = 'sine', pan = 0) {
-        await initAudio(); // Wait for wakeup
+    async function startTone(freq, type = 'sine') {
+        await initAudio();
         stopSound(); 
+        
+        // Start Sound
+        isPlaying = true;
+        playOscillator(freq, type);
+        updateUI();
+    }
 
+    function playOscillator(freq, type) {
         oscillator = audioCtx.createOscillator();
         gainNode = audioCtx.createGain();
-        const panNode = audioCtx.createStereoPanner();
-
+        
         oscillator.type = type;
         oscillator.frequency.value = freq;
         
         oscillator.connect(gainNode);
-        gainNode.connect(panNode);
-        panNode.connect(audioCtx.destination);
-        panNode.pan.value = pan; 
-
-        // Smooth Start (No Clicking)
-        gainNode.gain.setValueAtTime(0.001, audioCtx.currentTime);
+        gainNode.connect(audioCtx.destination);
+        
+        gainNode.gain.setValueAtTime(0.01, audioCtx.currentTime);
         gainNode.gain.exponentialRampToValueAtTime(1, audioCtx.currentTime + 0.1);
-
+        
         oscillator.start();
-        isPlaying = true;
-        updateUI();
     }
 
-    // --- UI HANDLERS ---
-    const ejectBtn = document.getElementById('eject-btn');
-    const sweepBtn = document.getElementById('sweep-btn');
-    const leftBtn = document.getElementById('test-left');
-    const rightBtn = document.getElementById('test-right');
-    const slider = document.getElementById('freq-slider');
-    const freqDisplay = document.getElementById('freq-val');
+    // --- MODES ---
+    async function toggleMode(mode) {
+        if (isPlaying && currentMode === mode) {
+            stopSound();
+            return;
+        }
 
+        currentMode = mode;
+        
+        if (mode === 'water') {
+            // Standard Water Eject Frequency
+            startTone(165, 'sawtooth');
+        } 
+        else if (mode === 'dust') {
+            // Dust Mode: Alternating High Frequencies
+            await initAudio();
+            stopSound();
+            isPlaying = true;
+            currentMode = 'dust';
+            updateUI();
+            
+            let high = true;
+            const cycleDust = () => {
+                if (oscillator) { try{oscillator.stop();}catch(e){} }
+                playOscillator(high ? 12000 : 8000, 'square');
+                high = !high;
+            };
+            cycleDust();
+            dustInterval = setInterval(cycleDust, 500); // Switch every 500ms
+        }
+        else if (mode === 'manual') {
+            const val = document.getElementById('freq-slider').value;
+            startTone(val, 'sine');
+        }
+    }
+
+    // --- UI UPDATES ---
     function updateUI() {
-        ejectBtn.classList.remove('playing');
-        ejectBtn.innerHTML = isPlaying && currentMode === 'eject' 
-            ? '<svg viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12"/></svg><span>STOP</span>' 
-            : '<svg viewBox="0 0 24 24"><path d="M12 22c4.97 0 9-4.03 9-9-4.5 0-9-5-9-13 0 8-4.5 13-9 13 0 4.97 4.03 9 9 9z"/></svg><span>ACTIVATE</span>';
-        
-        sweepBtn.textContent = isPlaying && currentMode === 'sweep' ? "⏹ Stop Tone" : "▶ Play Continuous Tone";
-        
-        leftBtn.classList.toggle('active', isPlaying && currentMode === 'left');
-        rightBtn.classList.toggle('active', isPlaying && currentMode === 'right');
-        sweepBtn.classList.toggle('active', isPlaying && currentMode === 'sweep');
+        // Reset all buttons
+        document.querySelectorAll('.btn-mode').forEach(b => b.classList.remove('active'));
+        document.getElementById('status-light').classList.remove('active');
 
-        if (isPlaying && currentMode === 'eject') ejectBtn.classList.add('playing');
+        if (isPlaying) {
+            document.getElementById('status-light').classList.add('active');
+            if (currentMode === 'water') document.getElementById('btn-water').classList.add('active');
+            if (currentMode === 'dust') document.getElementById('btn-dust').classList.add('active');
+            if (currentMode === 'manual') {
+                document.getElementById('btn-manual').classList.add('active');
+                document.querySelector('#btn-manual span').innerText = "DEACTIVATE";
+            }
+        } else {
+            document.querySelector('#btn-manual span').innerText = "ACTIVATE SIGNAL";
+        }
     }
 
-    // Buttons
-    ejectBtn.addEventListener('click', () => {
-        if (isPlaying && currentMode === 'eject') stopSound();
-        else {
-            currentMode = 'eject';
-            startTone(165, 'sawtooth', 0); 
-        }
-    });
-
-    window.playTone = (side) => {
-        if (isPlaying && currentMode === side) stopSound();
-        else {
-            currentMode = side;
-            const pan = side === 'left' ? -1 : 1;
-            startTone(440, 'sine', pan); 
-        }
-    };
-
-    slider.addEventListener('input', (e) => {
+    // Slider Logic
+    document.getElementById('freq-slider').addEventListener('input', (e) => {
         const val = e.target.value;
-        freqDisplay.textContent = val;
-        if (isPlaying && oscillator) {
+        document.getElementById('freq-val').innerText = val;
+        if (isPlaying && currentMode === 'manual' && oscillator) {
             oscillator.frequency.setValueAtTime(val, audioCtx.currentTime);
         }
     });
 
-    sweepBtn.addEventListener('click', () => {
-        if (isPlaying && currentMode === 'sweep') stopSound();
-        else {
-            currentMode = 'sweep';
-            startTone(slider.value, 'sine', 0);
-        }
-    });
 </script>
-
 </body>
 </html>
