@@ -4,9 +4,9 @@
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5129097020907805" crossorigin="anonymous"></script>
 
     <meta charset="UTF-8" />
-    <title>Speaker Cleaner Pro | Mars Mission V2</title>
+    <title>Speaker Cleaner Pro | Mars Mission V3</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <meta name="description" content="Professional grade audio utility to eject water and dust from phone speakers. Includes diagnostics, moisture scanner, and cleaning tracking.">
+    <meta name="description" content="Professional audio utility. Features Deep Clean automation, Boost Mode, and channel isolation for speaker repair.">
     
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#000000">
@@ -142,7 +142,7 @@
             color: #fff; box-shadow: 0 0 15px var(--accent-dim);
         }
 
-        /* --- NEW: DIAGNOSTICS & SCANNERS --- */
+        /* --- DIAGNOSTICS --- */
         .diag-grid { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 10px; margin-bottom: 25px; }
         .btn-diag {
             background: #111; border: 1px solid #333; color: #888; height: 40px;
@@ -152,7 +152,28 @@
         .btn-diag:hover { border-color: var(--accent); color: #fff; }
         .btn-diag.active { background: var(--accent); color: #fff; }
 
-        /* SCANNERS (Fake Animation) */
+        /* --- NEW FEATURES: DEEP CLEAN & BOOST --- */
+        .ops-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 25px; }
+        .btn-ops {
+            height: 50px; border: 1px solid var(--accent); background: rgba(255, 0, 60, 0.05);
+            color: #fff; font-weight: 800; text-transform: uppercase; letter-spacing: 1px;
+            border-radius: 6px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;
+            transition: 0.2s; font-size: 10px;
+        }
+        .btn-ops:hover { background: var(--accent); box-shadow: 0 0 15px var(--accent-glow); }
+        .btn-ops.active { background: var(--accent); color: #000; box-shadow: 0 0 20px var(--accent); }
+        .boost-icon { width: 8px; height: 8px; background: #fff; border-radius: 50%; box-shadow: 0 0 5px #fff; }
+        .btn-ops.active .boost-icon { background: #000; box-shadow: none; }
+
+        /* --- PROGRESS BAR --- */
+        .progress-container {
+            width: 100%; height: 6px; background: #222; border-radius: 3px; overflow: hidden; margin-bottom: 20px;
+            opacity: 0.5; transition: opacity 0.3s;
+        }
+        .progress-container.active { opacity: 1; }
+        .progress-fill { height: 100%; width: 0%; background: var(--accent); box-shadow: 0 0 10px var(--accent); transition: width 0.1s linear; }
+
+        /* --- SCANNERS (Animation) --- */
         .scanner-box { 
             background: #050505; border: 1px solid #222; padding: 10px; border-radius: 6px; 
             margin-bottom: 25px; position: relative; overflow: hidden;
@@ -163,8 +184,6 @@
             height: 100%; background: var(--accent); width: 0%; 
             transition: width 0.5s ease-out; box-shadow: 0 0 10px var(--accent); 
         }
-        
-        /* Scan Animation Overlay */
         .scanner-overlay {
             position: absolute; top:0; left:0; width:100%; height:100%;
             background: linear-gradient(90deg, transparent, rgba(255, 0, 60, 0.1), transparent);
@@ -172,14 +191,6 @@
         }
         .scanning .scanner-overlay { animation: scan-anim 1.5s infinite linear; }
         @keyframes scan-anim { 0% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
-
-        /* --- STATS & HISTORY --- */
-        .stats-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 25px; }
-        .stat-card { 
-            background: #080808; border: 1px solid #222; padding: 10px; border-radius: 6px; text-align: center; 
-        }
-        .stat-val { font-size: 16px; font-weight: 900; color: #fff; margin-bottom: 2px; }
-        .stat-label { font-size: 8px; color: #666; text-transform: uppercase; }
 
         /* --- VISUALIZER --- */
         .viz-box {
@@ -209,7 +220,13 @@
             border: 2px solid #fff;
         }
 
-        /* --- COFFEE BUTTON --- */
+        /* --- STATS ROW --- */
+        .stats-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 25px; }
+        .stat-card { background: #080808; border: 1px solid #222; padding: 10px; border-radius: 6px; text-align: center; }
+        .stat-val { font-size: 16px; font-weight: 900; color: #fff; margin-bottom: 2px; }
+        .stat-label { font-size: 8px; color: #666; text-transform: uppercase; }
+
+        /* --- COFFEE --- */
         .btn-coffee {
             width: 100%; background: #fff; border: none;
             color: #000; padding: 14px; border-radius: 8px;
@@ -288,12 +305,22 @@
     </div>
 
     <div class="panel">
-        <div class="panel-title"><span>Speaker Diagnostics</span> <span>Test</span></div>
+        <div class="panel-title"><span>Speaker Test</span> <span>Isolation</span></div>
         <div class="diag-grid">
             <button class="btn-diag" onclick="runDiagnostic('left')">LEFT</button>
             <button class="btn-diag" onclick="runDiagnostic('right')">RIGHT</button>
             <button class="btn-diag" onclick="runDiagnostic('bass')">BASS</button>
             <button class="btn-diag" onclick="runDiagnostic('treble')">TREBLE</button>
+        </div>
+
+        <div class="panel-title"><span>Advanced Ops</span> <span>Deep Clean</span></div>
+        <div class="ops-grid">
+            <button class="btn-ops" id="btn-deep" onclick="runDeepClean()"><span class="boost-icon"></span> AUTO CYCLE</button>
+            <button class="btn-ops" id="btn-boost" onclick="toggleBoost()"><span class="boost-icon"></span> BOOST MODE</button>
+        </div>
+        
+        <div class="progress-container" id="prog-cont">
+            <div class="progress-fill" id="prog-fill"></div>
         </div>
 
         <div class="panel-title"><span>Moisture Radar</span> <span>Scanner</span></div>
@@ -314,7 +341,7 @@
     </div>
 
     <div class="panel">
-        <div class="panel-title"><span>Water Ejection</span> <span>Liquid</span></div>
+        <div class="panel-title"><span>Water-Expulsion</span> <span>Mode</span></div>
         <div class="btn-grid">
             <button class="mode-btn" onclick="setMode('water', 1)">APPLE<br>165Hz</button>
             <button class="mode-btn" onclick="setMode('water', 2)">PRESS<br>200Hz</button>
@@ -323,20 +350,19 @@
             <button class="mode-btn" onclick="setMode('water', 5)">AIR<br>440Hz</button>
         </div>
 
-        <div class="panel-title"><span>Dust Purge</span> <span>Vibrate</span></div>
+        <div class="panel-title"><span>Dust-Shake</span> <span>Mode</span></div>
         <div class="btn-grid">
-            <button class="mode-btn" onclick="setMode('dust', 1)">DEEP<br>60Hz</button>
+            <button class="mode-btn" onclick="setMode('dust', 1)">SHAKE<br>60Hz</button>
             <button class="mode-btn" onclick="setMode('dust', 2)">BRKR<br>120Hz</button>
             <button class="mode-btn" onclick="setMode('dust', 3)">MESH<br>500Hz</button>
             <button class="mode-btn" onclick="setMode('dust', 4)">FINE<br>800Hz</button>
             <button class="mode-btn" onclick="setMode('dust', 5)">FINAL<br>1kHz</button>
         </div>
 
-        <div class="viz-box" id="viz-container">
-            </div>
+        <div class="viz-box" id="viz-container"></div>
 
         <div class="vol-box">
-            <div class="vol-label">Master Output Level</div>
+            <div class="vol-label">Volume Calibration</div>
             <input type="range" id="vol-slider" min="0" max="1" step="0.01" value="1" oninput="updateVolume(this.value)">
         </div>
 
@@ -374,7 +400,6 @@
 
 <script>
     // --- INIT ---
-    // Generate Viz Bars
     const vizContainer = document.getElementById('viz-container');
     const bars = [];
     for(let i=0; i<20; i++) {
@@ -388,15 +413,12 @@
     if (!localStorage.getItem('cookiesAccepted')) document.getElementById('cookie-banner').style.display = 'block';
     function acceptCookies() { localStorage.setItem('cookiesAccepted', 'true'); document.getElementById('cookie-banner').style.display = 'none'; }
 
-    // Stats Logic
     let streak = parseInt(localStorage.getItem('cleanStreak') || 1);
     let cleans = parseInt(localStorage.getItem('totalCleans') || 0);
     const lastVisit = localStorage.getItem('lastVisit');
     const today = new Date().toDateString();
 
     if (lastVisit !== today) {
-        // Simple streak logic (if visited yesterday, +1, else 1)
-        // For simplicity in this demo, we just increment on new days
         if (lastVisit) streak++;
         localStorage.setItem('cleanStreak', streak);
         localStorage.setItem('lastVisit', today);
@@ -432,6 +454,7 @@
     let ctx, osc, gainNode, interval;
     let isPlaying = false;
     let currentVol = 1;
+    let isBoost = false;
 
     async function initAudio() {
         if (!ctx) ctx = new (window.AudioContext || window.webkitAudioContext)();
@@ -444,6 +467,18 @@
         updateGauges(0, val, true);
     }
 
+    function toggleBoost() {
+        isBoost = !isBoost;
+        const btn = document.getElementById('btn-boost');
+        if (isBoost) {
+            btn.classList.add('active');
+            updateVolume(1); // Force Max
+            document.getElementById('vol-slider').value = 1;
+        } else {
+            btn.classList.remove('active');
+        }
+    }
+
     function stop() {
         if (osc) { try{osc.stop(); osc.disconnect();}catch(e){} osc = null; }
         if (interval) clearInterval(interval);
@@ -451,11 +486,15 @@
         resetGauges();
         document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
         document.querySelectorAll('.btn-diag').forEach(b => b.classList.remove('active'));
+        document.getElementById('btn-deep').classList.remove('active');
         
         document.getElementById('ring-load').classList.remove('active');
         document.getElementById('ring-db').classList.remove('active');
         
-        // Reset Viz
+        // Stop Progress
+        document.getElementById('prog-cont').classList.remove('active');
+        document.getElementById('prog-fill').style.width = "0%";
+        
         bars.forEach(b => b.style.height = '2px');
     }
 
@@ -464,7 +503,7 @@
         gainNode = ctx.createGain();
         const panner = ctx.createStereoPanner ? ctx.createStereoPanner() : null;
 
-        osc.type = type;
+        osc.type = isBoost ? 'square' : type; // Boost Logic
         osc.frequency.value = freq;
         
         osc.connect(gainNode);
@@ -486,13 +525,46 @@
         visualizerLoop(freq);
     }
 
+    // --- DEEP CLEAN (AUTO) ---
+    async function runDeepClean() {
+        await initAudio();
+        stop();
+        isPlaying = true;
+        incrementClean();
+        document.getElementById('btn-deep').classList.add('active');
+        
+        // Sequence: Water 165 (5s) -> Dust Shake 60 (5s) -> Sweep (5s)
+        const runSeq = async () => {
+             startProgress(15000); // 15s Total
+             
+             playTone(165, 'sawtooth'); // Phase 1
+             setTimeout(() => { if(isPlaying) playTone(60, 'square'); }, 5000); // Phase 2
+             setTimeout(() => { 
+                 if(isPlaying) {
+                     // Sweep
+                     playTone(1000, 'sine');
+                     interval = setInterval(() => { if(osc) osc.frequency.setValueAtTime(1000 + Math.random()*5000, ctx.currentTime); }, 100);
+                 }
+             }, 10000);
+             setTimeout(() => { stop(); }, 15000); // End
+        };
+        runSeq();
+    }
+
+    function startProgress(duration) {
+        const bar = document.getElementById('prog-fill');
+        const cont = document.getElementById('prog-cont');
+        cont.classList.add('active');
+        bar.style.transition = `width ${duration}ms linear`;
+        setTimeout(() => bar.style.width = "100%", 10);
+    }
+
     // --- DIAGNOSTICS ---
     async function runDiagnostic(type) {
         await initAudio();
         stop();
         isPlaying = true;
         
-        // Highlight logic
         const btns = document.querySelectorAll('.btn-diag');
         if(type==='left') btns[0].classList.add('active');
         if(type==='right') btns[1].classList.add('active');
@@ -501,11 +573,11 @@
 
         if (type === 'left') playTone(440, 'sine', -1);
         if (type === 'right') playTone(440, 'sine', 1);
-        if (type === 'bass') playTone(60, 'sine');   // Deep Bass
-        if (type === 'treble') playTone(12000, 'sine'); // High Treble
+        if (type === 'bass') playTone(60, 'sine');
+        if (type === 'treble') playTone(12000, 'sine');
     }
 
-    // --- SCANNERS (Fake Animation) ---
+    // --- SCANNERS ---
     function runScanner(type) {
         const box = document.getElementById(type + '-box');
         const bar = document.getElementById(type + '-bar');
@@ -515,17 +587,12 @@
         val.innerText = "Scanning...";
         bar.style.width = "0%";
         
-        // Simulate Scan
         setTimeout(() => {
-            const result = Math.floor(Math.random() * 40) + 10; // Random 10-50%
+            const result = Math.floor(Math.random() * 40) + 10;
             bar.style.width = result + "%";
             val.innerText = result + "% DETECTED";
             box.classList.remove('scanning');
-            
-            // "Fix" it if they clean
-            if(type === 'dust') {
-                setTimeout(() => { val.innerText = "REC: RUN CLEANING"; }, 1000);
-            }
+            if(type === 'dust') setTimeout(() => { val.innerText = "REC: RUN CLEANING"; }, 1000);
         }, 2000);
     }
 
@@ -536,7 +603,6 @@
         let load = 40 + Math.random() * 30;
         updateGauges(dispFreq, currentVol, false, load);
         
-        // Animate Bars
         bars.forEach(b => {
             const h = Math.random() * 20 + 2;
             b.style.height = h + 'px';
@@ -576,10 +642,13 @@
         await initAudio();
         stop();
         isPlaying = true;
-        incrementClean(); // Log stats
+        incrementClean();
         
         const btnIndex = (type === 'water' ? 0 : 5) + (id - 1);
         document.querySelectorAll('.mode-btn')[btnIndex].classList.add('active');
+
+        // Progress Bar
+        startProgress(10000); // 10s generic for manual modes
 
         if (type === 'water') {
             const freqs = [165, 200, 285, 350, 440];
