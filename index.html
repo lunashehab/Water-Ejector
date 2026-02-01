@@ -67,7 +67,6 @@
         
         .gauge-box { position: relative; width: 32%; text-align: center; }
         
-        /* Realistic Gauge Housing */
         .gauge-ring {
             width: 100%; padding-bottom: 100%; /* Square Aspect Ratio */
             border-radius: 50%; border: 3px solid #444; position: relative;
@@ -76,7 +75,25 @@
             overflow: hidden;
         }
 
-        /* Scratched Glass Effect */
+        /* --- TICK MARKS (NEW) --- */
+        .ticks {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 50%;
+            background: conic-gradient(from 225deg, transparent 0deg, transparent 2deg, #555 3deg, transparent 4deg);
+            background-size: 100% 100%;
+            mask-image: radial-gradient(transparent 65%, black 66%);
+            -webkit-mask-image: radial-gradient(transparent 65%, black 66%);
+            z-index: 1; transform: rotate(0deg);
+        }
+        /* Create repeating ticks using repeated background or multiple elements is complex in pure CSS, 
+           so we use a repeating conic gradient approximation for the look */
+        .ticks-overlay {
+            position: absolute; width: 100%; height: 100%; border-radius: 50%;
+            background: repeating-conic-gradient(from 225deg, rgba(255,255,255,0.2) 0deg 1deg, transparent 1deg 15deg);
+            mask-image: radial-gradient(transparent 60%, black 61%);
+            -webkit-mask-image: radial-gradient(transparent 60%, black 61%);
+            z-index: 1;
+        }
+
         .scratch-overlay {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 50%;
             background: 
@@ -85,10 +102,7 @@
             z-index: 5; pointer-events: none;
         }
 
-        /* Gauge Markings (Numbers) */
-        .gauge-numbers span {
-            position: absolute; color: #666; font-size: 8px; font-weight: bold;
-        }
+        .gauge-numbers span { position: absolute; color: #666; font-size: 8px; font-weight: bold; z-index: 2; }
         .n-0 { bottom: 20%; left: 20%; }
         .n-50 { top: 15%; left: 50%; transform: translateX(-50%); }
         .n-100 { bottom: 20%; right: 20%; }
@@ -97,12 +111,14 @@
             position: absolute; top: 50%; left: 50%; width: 45%; height: 2px;
             background: var(--danger); transform-origin: 0% 50%;
             transform: rotate(-135deg); transition: transform 0.2s cubic-bezier(0.1, 0, 0.2, 1);
-            box-shadow: 0 0 4px var(--danger); z-index: 2;
+            box-shadow: 0 0 4px var(--danger); z-index: 4;
+            border-radius: 2px;
         }
+        
         .gauge-center {
-            position: absolute; top: 35%; left: 35%; width: 30%; height: 30%;
+            position: absolute; top: 38%; left: 38%; width: 24%; height: 24%;
             background: linear-gradient(135deg, #444, #222); 
-            border-radius: 50%; z-index: 3; border: 1px solid #111;
+            border-radius: 50%; z-index: 5; border: 1px solid #111;
             box-shadow: 0 2px 5px rgba(0,0,0,0.8);
         }
         .gauge-label {
@@ -125,14 +141,13 @@
             display: flex; justify-content: space-between;
         }
 
-        /* --- MODE BUTTONS (More Visible) --- */
         .btn-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin-bottom: 20px; }
         .mode-btn {
             background: #111; border: 2px solid #333; color: #888;
             height: 50px; border-radius: 8px; font-size: 10px; font-weight: 800;
             cursor: pointer; transition: all 0.1s; display: flex; flex-direction: column;
             align-items: center; justify-content: center;
-            box-shadow: 0 4px 0 #000; /* 3D Clicky Look */
+            box-shadow: 0 4px 0 #000;
         }
         .mode-btn:active { transform: translateY(2px); box-shadow: 0 2px 0 #000; }
         .mode-btn:hover { border-color: #666; color: #fff; background: #1a1a1a; }
@@ -148,10 +163,10 @@
 
         /* --- VOLUME CONTROL --- */
         .vol-box {
-            text-align: center; margin-top: 30px; margin-bottom: 10px;
-            background: #000; padding: 10px; border-radius: 12px; border: 1px solid #333;
+            text-align: center; margin-top: 30px; margin-bottom: 15px;
+            background: #000; padding: 12px; border-radius: 12px; border: 1px solid #333;
         }
-        .vol-label { font-size: 10px; color: #666; text-transform: uppercase; margin-bottom: 5px; }
+        .vol-label { font-size: 10px; color: #666; text-transform: uppercase; margin-bottom: 8px; font-weight: 700; letter-spacing: 1px;}
         input[type=range] {
             width: 100%; -webkit-appearance: none; background: transparent;
         }
@@ -163,8 +178,19 @@
             background: var(--neon); margin-top: -6px; box-shadow: 0 0 10px var(--neon); cursor: grab;
         }
 
-        /* --- RED TEST BUTTON --- */
-        .test-zone { display: flex; justify-content: center; margin-top: 10px; }
+        /* --- COFFEE BUTTON --- */
+        .btn-coffee {
+            width: 100%; background: #000; border: 1px solid var(--neon);
+            color: var(--neon); padding: 15px; border-radius: 12px;
+            font-weight: 800; text-transform: uppercase; cursor: pointer;
+            box-shadow: 0 0 10px var(--neon-glow); margin-bottom: 25px;
+            display: flex; align-items: center; justify-content: center; gap: 10px;
+            transition: 0.2s;
+        }
+        .btn-coffee:hover { background: var(--neon); color: #000; box-shadow: 0 0 20px var(--neon); }
+        
+        /* --- TEST BUTTON --- */
+        .test-zone { display: flex; justify-content: center; padding-bottom: 10px; }
         .btn-test {
             width: 80px; height: 80px; border-radius: 50%;
             background: radial-gradient(circle, #ff003c 0%, #800000 100%);
@@ -178,17 +204,6 @@
         .btn-test:active { transform: scale(0.95); background: #ff003c; }
         @keyframes pulse-red { 0% { box-shadow: 0 0 0 0 rgba(255, 0, 60, 0.7); } 70% { box-shadow: 0 0 0 15px rgba(255, 0, 60, 0); } 100% { box-shadow: 0 0 0 0 rgba(255, 0, 60, 0); } }
 
-        /* --- COFFEE BUTTON (Green Glowing) --- */
-        .btn-coffee {
-            width: 100%; background: #000; border: 1px solid var(--neon);
-            color: var(--neon); padding: 15px; border-radius: 12px;
-            font-weight: 800; text-transform: uppercase; cursor: pointer;
-            box-shadow: 0 0 10px var(--neon-glow); margin: 20px 0;
-            display: flex; align-items: center; justify-content: center; gap: 10px;
-            transition: 0.2s;
-        }
-        .btn-coffee:hover { background: var(--neon); color: #000; box-shadow: 0 0 20px var(--neon); }
-        
         /* --- AD SLOT --- */
         .ad-slot {
             width: 100%; height: 100px; background: #080808; border: 1px dashed #333;
@@ -196,11 +211,9 @@
             color: #444; font-size: 10px; margin-top: 5px;
         }
 
-        /* --- FOOTER --- */
         footer { margin-top: 30px; text-align: center; font-size: 10px; color: #444; padding-bottom: 20px;}
         footer a { color: #666; text-decoration: none; margin: 0 8px; }
 
-        /* Cookie */
         #cookie-banner {
             display: none; position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
             background: #111; padding: 15px 30px; border-radius: 50px; border: 1px solid var(--neon);
@@ -225,6 +238,7 @@
     <div class="dashboard-row">
         <div class="gauge-box">
             <div class="gauge-ring">
+                <div class="ticks-overlay"></div>
                 <div class="scratch-overlay"></div>
                 <div class="gauge-numbers"><span class="n-0">0</span><span class="n-50">50</span><span class="n-100">100</span></div>
                 <div class="gauge-center"></div>
@@ -235,16 +249,18 @@
         </div>
         <div class="gauge-box" style="width: 40%;">
             <div class="gauge-ring" style="border-color: var(--neon); box-shadow: 0 0 15px rgba(57,255,20,0.1);">
+                <div class="ticks-overlay"></div>
                 <div class="scratch-overlay"></div>
                 <div class="gauge-numbers" style="color:var(--neon);"><span class="n-0">0</span><span class="n-50">10k</span><span class="n-100">20k</span></div>
                 <div class="gauge-center" style="background: radial-gradient(#333,#000);"></div>
-                <div class="needle" id="needle-hz" style="background: #fff; height: 45%;"></div>
+                <div class="needle" id="needle-hz" style="background: #fff; height: 48%;"></div>
                 <div class="gauge-val" id="val-hz" style="color: var(--neon); font-size: 13px;">0 Hz</div>
             </div>
             <div class="gauge-label" style="color: var(--neon);">FREQUENCY</div>
         </div>
         <div class="gauge-box">
             <div class="gauge-ring">
+                <div class="ticks-overlay"></div>
                 <div class="scratch-overlay"></div>
                 <div class="gauge-numbers"><span class="n-0">0</span><span class="n-50">5</span><span class="n-100">10</span></div>
                 <div class="gauge-center"></div>
@@ -274,15 +290,15 @@
             <button class="mode-btn" onclick="setMode('dust', 5)">MAX<br>PWR</button>
         </div>
 
+        <div class="vol-box">
+            <div class="vol-label">Master Output Volume</div>
+            <input type="range" id="vol-slider" min="0" max="1" step="0.01" value="1" oninput="updateVolume(this.value)">
+        </div>
+
         <button class="btn-coffee" onclick="window.open('https://buymeacoffee.com/donshehab')">
             <svg style="width:20px;height:20px;fill:currentColor" viewBox="0 0 24 24"><path d="M20 3H4v10c0 2.21 1.79 4 4 4h6c2.21 0 4-1.79 4-4v-3h2c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 5h-2V5h2v3zM4 19h16v2H4z"/></svg>
             Buy Me A Coffee
         </button>
-
-        <div class="vol-box">
-            <div class="vol-label">System Output Gain</div>
-            <input type="range" id="vol-slider" min="0" max="1" step="0.01" value="1" oninput="updateVolume(this.value)">
-        </div>
 
         <div class="test-zone">
             <button class="btn-test" id="btn-test" onclick="toggleTest()">TEST<br>SPKR</button>
@@ -396,6 +412,9 @@
         if (volOnly && !isPlaying) return;
 
         // 2. Hz Needle (Scale 0 to 20000)
+        // Fix for needle math: 
+        // 0Hz = -135
+        // 20000Hz = +135
         let hRot = -135 + (Math.min(hz, 20000) / 20000 * 270);
         if (hz === 0) hRot = -135;
         document.getElementById('needle-hz').style.transform = `rotate(${hRot}deg)`;
