@@ -4,9 +4,9 @@
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5129097020907805" crossorigin="anonymous"></script>
 
     <meta charset="UTF-8" />
-    <title>Speaker Cleaner Pro | Redline Edition</title>
+    <title>Speaker Cleaner Pro | Mars Edition</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <meta name="description" content="Professional grade audio utility to eject water and dust from phone speakers. 10 specialized cleaning modes.">
+    <meta name="description" content="Professional grade audio utility to eject water and dust from phone speakers. High-frequency precision cleaning.">
     
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#000000">
@@ -15,13 +15,13 @@
 
     <style>
         :root {
-            --bg: #050505;
-            --panel: #111111;
-            --neon: #39ff14; /* Green for buttons */
-            --neon-glow: rgba(57, 255, 20, 0.4);
-            --danger: #ff003c; /* Red for gauges */
-            --danger-glow: rgba(255, 0, 60, 0.6);
-            --text-main: #e0e0e0;
+            --bg: #000000;
+            --panel: #0a0a0a;
+            --accent: #ff003c; /* MARS RED */
+            --accent-glow: rgba(255, 0, 60, 0.5);
+            --accent-dim: rgba(255, 0, 60, 0.1);
+            --text-main: #ffffff;
+            --text-muted: #666666;
             --border: #333333;
         }
 
@@ -39,196 +39,189 @@
             overflow-x: hidden;
         }
 
-        .grid-bg {
+        /* SPACE GRID BACKGROUND */
+        .space-grid {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background-image: 
-                linear-gradient(var(--border) 1px, transparent 1px),
-                linear-gradient(90deg, var(--border) 1px, transparent 1px);
-            background-size: 40px 40px; opacity: 0.15; z-index: -1; pointer-events: none;
+            background: 
+                linear-gradient(rgba(255, 0, 60, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 0, 60, 0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            background-position: center top;
+            transform: perspective(500px) rotateX(20deg) scale(1.5);
+            opacity: 0.2; z-index: -1; pointer-events: none;
+            mask-image: linear-gradient(to bottom, transparent 0%, black 40%);
+            -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 40%);
         }
 
         .shell { width: 100%; max-width: 500px; display: flex; flex-direction: column; gap: 20px; z-index: 1; }
 
         /* --- HEADER --- */
-        header { text-align: center; margin-top: 20px; text-transform: uppercase; }
+        header { text-align: center; margin-top: 30px; text-transform: uppercase; }
         .logo-box { display: flex; justify-content: center; align-items: center; gap: 10px; margin-bottom: 5px; }
-        .logo-icon { width: 28px; height: 28px; fill: var(--neon); filter: drop-shadow(0 0 5px var(--neon)); }
-        h1 { font-size: 26px; font-weight: 900; color: #fff; margin: 0; letter-spacing: 1px; }
-        .badge-pro { background: var(--neon); color: #000; font-size: 10px; padding: 2px 6px; border-radius: 4px; transform: skew(-10deg); margin-left: 5px; }
+        .logo-icon { width: 32px; height: 32px; fill: var(--accent); filter: drop-shadow(0 0 10px var(--accent)); }
+        h1 { font-size: 28px; font-weight: 900; color: #fff; margin: 0; letter-spacing: 2px; }
+        .badge-pro { 
+            background: var(--accent); color: #fff; font-size: 10px; padding: 2px 6px; 
+            border-radius: 2px; margin-left: 5px; letter-spacing: 1px;
+        }
         
         .tagline { 
-            font-size: 12px; color: var(--neon); font-weight: 600; letter-spacing: 1px;
-            text-shadow: 0 0 10px var(--neon-glow); margin-bottom: 5px;
+            font-size: 11px; color: var(--text-muted); font-weight: 600; letter-spacing: 3px;
+            margin-bottom: 5px;
         }
-        .typing-status { font-family: monospace; font-size: 11px; color: #666; min-height: 14px; }
+        .typing-status { font-family: monospace; font-size: 12px; color: var(--accent); min-height: 16px; text-shadow: 0 0 5px var(--accent-dim); }
 
-        /* --- DASHBOARD GAUGES --- */
-        .dashboard-row { display: flex; justify-content: space-between; align-items: flex-end; gap: 8px; margin: 10px 0; }
+        /* --- DASHBOARD GAUGES (REDLINE) --- */
+        .dashboard-row { display: flex; justify-content: space-between; align-items: flex-end; gap: 10px; margin: 20px 0; }
         
         .gauge-box { position: relative; width: 32%; text-align: center; }
         
-        /* THE RED GLOWING RING */
         .gauge-ring {
-            width: 100%; padding-bottom: 100%; /* Square Aspect Ratio */
-            border-radius: 50%; 
-            border: 3px solid var(--danger); /* RED BORDER */
-            position: relative;
-            background: radial-gradient(circle, #222 0%, #000 100%);
-            box-shadow: 
-                inset 0 0 20px #000, 
-                0 0 15px var(--danger-glow); /* RED GLOW */
+            width: 100%; padding-bottom: 100%;
+            border-radius: 50%; border: 2px solid #333; position: relative;
+            background: radial-gradient(circle, #151515 0%, #000 100%);
+            box-shadow: inset 0 0 20px #000;
             overflow: hidden;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        
+        /* Active State for Gauges */
+        .gauge-ring.active {
+            border-color: var(--accent);
+            box-shadow: 0 0 20px var(--accent-dim), inset 0 0 20px #000;
         }
 
-        /* --- TICK MARKS & OVERLAYS --- */
         .ticks-overlay {
             position: absolute; width: 100%; height: 100%; border-radius: 50%;
-            background: repeating-conic-gradient(from 225deg, rgba(255, 0, 60, 0.4) 0deg 1deg, transparent 1deg 15deg);
+            background: repeating-conic-gradient(from 225deg, rgba(255, 255, 255, 0.3) 0deg 1deg, transparent 1deg 15deg);
             mask-image: radial-gradient(transparent 60%, black 61%);
             -webkit-mask-image: radial-gradient(transparent 60%, black 61%);
-            z-index: 1;
+            z-index: 1; opacity: 0.5;
         }
 
-        .scratch-overlay {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 50%;
-            background: 
-                linear-gradient(115deg, transparent 40%, rgba(255,255,255,0.05) 45%, transparent 50%),
-                repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255,255,255,0.02) 11px, transparent 12px);
-            z-index: 5; pointer-events: none;
-        }
-
-        .gauge-numbers span { position: absolute; color: #888; font-size: 8px; font-weight: bold; z-index: 2; }
+        .gauge-numbers span { position: absolute; color: #666; font-size: 8px; font-weight: bold; z-index: 2; }
         .n-0 { bottom: 20%; left: 20%; }
         .n-50 { top: 15%; left: 50%; transform: translateX(-50%); }
         .n-100 { bottom: 20%; right: 20%; }
 
-        /* --- RED GLOWING NEEDLE --- */
         .needle {
             position: absolute; top: 50%; left: 50%; 
-            width: 45%; height: 3px; 
-            background: var(--danger); 
+            width: 45%; height: 2px; 
+            background: var(--accent); 
             transform-origin: 0% 50%; 
             transform: rotate(-135deg); 
             transition: transform 0.1s cubic-bezier(0.1, 0, 0.2, 1);
-            box-shadow: 0 0 8px var(--danger); /* Stronger Glow */
-            border-radius: 2px;
+            box-shadow: 0 0 8px var(--accent); 
             z-index: 4;
         }
         
         .gauge-center {
             position: absolute; top: 38%; left: 38%; width: 24%; height: 24%;
-            background: linear-gradient(135deg, #444, #222); 
-            border-radius: 50%; z-index: 5; border: 1px solid #111;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.8);
+            background: #222; border-radius: 50%; z-index: 5; border: 1px solid #111;
         }
-        
-        /* RED LABELS */
         .gauge-label {
-            font-size: 10px; color: #666; margin-top: 8px; text-transform: uppercase; font-weight: 700; letter-spacing: 0.5px;
-            transition: color 0.3s;
+            font-size: 9px; color: #555; margin-top: 8px; text-transform: uppercase; font-weight: 700; letter-spacing: 1px;
         }
-        
         .gauge-val {
             position: absolute; bottom: 25%; width: 100%; text-align: center;
-            font-family: monospace; color: var(--danger); font-size: 10px; font-weight: bold; z-index: 1;
-            text-shadow: 0 0 5px var(--danger-glow);
+            font-family: monospace; color: var(--accent); font-size: 10px; font-weight: bold; z-index: 1;
+            text-shadow: 0 0 5px var(--accent-glow);
         }
 
         /* --- CONTROL PANEL --- */
         .panel {
-            background: rgba(20, 20, 20, 0.95); border: 1px solid #444;
-            border-radius: 16px; padding: 20px; backdrop-filter: blur(10px);
-            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+            background: rgba(10, 10, 10, 0.8); border: 1px solid var(--border);
+            border-radius: 12px; padding: 20px; backdrop-filter: blur(10px);
         }
         .panel-title { 
-            font-size: 12px; color: var(--neon); text-transform: uppercase; 
+            font-size: 11px; color: #fff; text-transform: uppercase; letter-spacing: 1px;
             border-bottom: 1px solid #333; padding-bottom: 8px; margin-bottom: 15px; 
-            display: flex; justify-content: space-between;
+            display: flex; justify-content: space-between; font-weight: 700;
         }
+        .panel-title span:last-child { color: var(--accent); }
 
-        .btn-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin-bottom: 20px; }
+        .btn-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; margin-bottom: 25px; }
         .mode-btn {
-            background: #111; border: 2px solid #333; color: #888;
-            height: 50px; border-radius: 8px; font-size: 10px; font-weight: 800;
-            cursor: pointer; transition: all 0.1s; display: flex; flex-direction: column;
+            background: #050505; border: 1px solid #333; color: #666;
+            height: 50px; border-radius: 6px; font-size: 9px; font-weight: 700;
+            cursor: pointer; transition: all 0.2s; display: flex; flex-direction: column;
             align-items: center; justify-content: center;
-            box-shadow: 0 4px 0 #000;
         }
-        .mode-btn:active { transform: translateY(2px); box-shadow: 0 2px 0 #000; }
-        .mode-btn:hover { border-color: #666; color: #fff; background: #1a1a1a; }
+        .mode-btn:hover { border-color: #888; color: #fff; }
         
         .mode-btn.active { 
-            background: #000; border-color: var(--neon); 
-            color: var(--neon); box-shadow: 0 0 15px var(--neon-glow);
-        }
-        .mode-btn.dust-active {
-            background: #222; border-color: #fff;
-            color: #fff; box-shadow: 0 0 15px rgba(255,255,255,0.2);
+            background: var(--accent-dim); border-color: var(--accent); 
+            color: #fff; box-shadow: 0 0 15px var(--accent-dim);
         }
 
         /* --- VOLUME CONTROL --- */
         .vol-box {
-            text-align: center; margin-top: 30px; margin-bottom: 15px;
-            background: #000; padding: 12px; border-radius: 12px; border: 1px solid #333;
+            text-align: center; margin-top: 20px; margin-bottom: 5px;
+            background: #050505; padding: 15px; border-radius: 8px; border: 1px solid #222;
         }
-        .vol-label { font-size: 10px; color: #666; text-transform: uppercase; margin-bottom: 8px; font-weight: 700; letter-spacing: 1px;}
+        .vol-label { font-size: 9px; color: #888; text-transform: uppercase; margin-bottom: 10px; font-weight: 700; letter-spacing: 1px;}
         input[type=range] {
             width: 100%; -webkit-appearance: none; background: transparent;
         }
         input[type=range]::-webkit-slider-runnable-track {
-            width: 100%; height: 6px; background: #333; border-radius: 3px;
+            width: 100%; height: 4px; background: #333; border-radius: 2px;
         }
         input[type=range]::-webkit-slider-thumb {
-            -webkit-appearance: none; height: 18px; width: 18px; border-radius: 50%;
-            background: var(--neon); margin-top: -6px; box-shadow: 0 0 10px var(--neon); cursor: grab;
+            -webkit-appearance: none; height: 16px; width: 16px; border-radius: 50%;
+            background: var(--accent); margin-top: -6px; box-shadow: 0 0 10px var(--accent); cursor: grab;
+            border: 2px solid #fff;
         }
 
-        /* --- COFFEE BUTTON --- */
+        /* --- COFFEE BUTTON (Mission Support) --- */
         .btn-coffee {
-            width: 100%; background: #000; border: 1px solid var(--neon);
-            color: var(--neon); padding: 15px; border-radius: 12px;
-            font-weight: 800; text-transform: uppercase; cursor: pointer;
-            box-shadow: 0 0 10px var(--neon-glow); margin-bottom: 25px;
+            width: 100%; background: #fff; border: none;
+            color: #000; padding: 14px; border-radius: 8px;
+            font-weight: 900; text-transform: uppercase; cursor: pointer;
+            box-shadow: 0 0 20px rgba(255,255,255,0.2); margin-bottom: 25px;
             display: flex; align-items: center; justify-content: center; gap: 10px;
-            transition: 0.2s;
+            transition: 0.2s; letter-spacing: 1px; font-size: 11px;
         }
-        .btn-coffee:hover { background: var(--neon); color: #000; box-shadow: 0 0 20px var(--neon); }
+        .btn-coffee:hover { background: var(--accent); color: #fff; box-shadow: 0 0 20px var(--accent); }
         
         /* --- TEST BUTTON --- */
-        .test-zone { display: flex; justify-content: center; padding-bottom: 10px; }
+        .test-zone { display: flex; justify-content: center; padding-bottom: 10px; margin-top: 15px; }
         .btn-test {
-            width: 80px; height: 80px; border-radius: 50%;
-            background: radial-gradient(circle, #ff003c 0%, #800000 100%);
-            border: 4px solid #333;
-            box-shadow: 0 0 20px var(--danger-glow);
-            color: white; font-weight: 900; font-size: 14px;
+            width: 70px; height: 70px; border-radius: 50%;
+            background: transparent;
+            border: 2px solid #333;
+            color: #666; font-weight: 900; font-size: 12px;
             cursor: pointer; display: flex; align-items: center; justify-content: center;
             text-transform: uppercase; letter-spacing: 1px;
-            animation: pulse-red 2s infinite; transition: transform 0.1s;
+            transition: 0.2s;
         }
-        .btn-test:active { transform: scale(0.95); background: #ff003c; }
-        @keyframes pulse-red { 0% { box-shadow: 0 0 0 0 rgba(255, 0, 60, 0.7); } 70% { box-shadow: 0 0 0 15px rgba(255, 0, 60, 0); } 100% { box-shadow: 0 0 0 0 rgba(255, 0, 60, 0); } }
+        .btn-test:hover { border-color: var(--accent); color: var(--accent); box-shadow: 0 0 15px var(--accent-dim); }
+        .btn-test.running {
+            background: var(--accent); color: #fff; border-color: var(--accent);
+            box-shadow: 0 0 30px var(--accent-glow); animation: pulse 1s infinite;
+        }
+        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
 
         /* --- AD SLOT --- */
         .ad-slot {
-            width: 100%; height: 100px; background: #080808; border: 1px dashed #333;
-            border-radius: 12px; display: flex; align-items: center; justify-content: center;
-            color: #444; font-size: 10px; margin-top: 5px;
+            width: 100%; height: 100px; background: #050505; border: 1px solid #222;
+            border-radius: 8px; display: flex; align-items: center; justify-content: center;
+            color: #333; font-size: 9px; margin-top: 10px;
         }
 
-        footer { margin-top: 30px; text-align: center; font-size: 10px; color: #444; padding-bottom: 20px;}
-        footer a { color: #666; text-decoration: none; margin: 0 8px; }
+        footer { margin-top: 40px; text-align: center; font-size: 10px; color: #444; padding-bottom: 20px;}
+        footer a { color: #666; text-decoration: none; margin: 0 10px; transition: color 0.2s; }
+        footer a:hover { color: var(--accent); }
 
         #cookie-banner {
             display: none; position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
-            background: #111; padding: 15px 30px; border-radius: 50px; border: 1px solid var(--neon);
-            z-index: 1000; color: #ccc; font-size: 12px;
+            background: #111; padding: 15px 30px; border-radius: 4px; border: 1px solid var(--accent);
+            z-index: 1000; color: #ccc; font-size: 11px; box-shadow: 0 0 20px rgba(0,0,0,0.8);
         }
     </style>
 </head>
 <body>
 
-<div class="grid-bg"></div>
+<div class="space-grid"></div>
 
 <div class="shell">
     <header>
@@ -236,15 +229,14 @@
             <svg class="logo-icon" viewBox="0 0 24 24"><path d="M12 22c4.97 0 9-4.03 9-9-4.5 0-9-5-9-13 0 8-4.5 13-9 13 0 4.97 4.03 9 9 9zM12 14c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"/></svg>
             <h1>SPEAKER CLEANER<span class="badge-pro">PRO</span></h1>
         </div>
-        <div class="tagline">#1 Phone Speaker Utility</div>
-        <div class="typing-status" id="type-text">System Standby...</div>
+        <div class="tagline">Orbital Audio Diagnostics</div>
+        <div class="typing-status" id="type-text">Initialization Complete.</div>
     </header>
 
     <div class="dashboard-row">
         <div class="gauge-box">
-            <div class="gauge-ring">
+            <div class="gauge-ring" id="ring-load">
                 <div class="ticks-overlay"></div>
-                <div class="scratch-overlay"></div>
                 <div class="gauge-numbers"><span class="n-0">0</span><span class="n-50">50</span><span class="n-100">100</span></div>
                 <div class="gauge-center"></div>
                 <div class="needle" id="needle-load"></div>
@@ -254,21 +246,19 @@
         </div>
         
         <div class="gauge-box" style="width: 40%;">
-            <div class="gauge-ring">
+            <div class="gauge-ring active" id="ring-hz">
                 <div class="ticks-overlay"></div>
-                <div class="scratch-overlay"></div>
-                <div class="gauge-numbers" style="color:var(--danger); text-shadow: 0 0 5px var(--danger-glow);"><span class="n-0">0</span><span class="n-50">10k</span><span class="n-100">20k</span></div>
-                <div class="gauge-center" style="background: radial-gradient(#333,#000);"></div>
-                <div class="needle" id="needle-hz" style="height: 3px;"></div>
-                <div class="gauge-val" id="val-hz" style="font-size: 13px;">0 Hz</div>
+                <div class="gauge-numbers" style="color: #888;"><span class="n-0">0</span><span class="n-50">10k</span><span class="n-100">20k</span></div>
+                <div class="gauge-center"></div>
+                <div class="needle" id="needle-hz" style="height: 3px; background: #fff; box-shadow: 0 0 10px #fff;"></div>
+                <div class="gauge-val" id="val-hz" style="color: #fff; text-shadow:none;">0 Hz</div>
             </div>
-            <div class="gauge-label" style="color: var(--danger);">FREQUENCY</div>
+            <div class="gauge-label" style="color: var(--accent);">FREQUENCY</div>
         </div>
         
         <div class="gauge-box">
-            <div class="gauge-ring">
+            <div class="gauge-ring" id="ring-db">
                 <div class="ticks-overlay"></div>
-                <div class="scratch-overlay"></div>
                 <div class="gauge-numbers"><span class="n-0">0</span><span class="n-50">5</span><span class="n-100">10</span></div>
                 <div class="gauge-center"></div>
                 <div class="needle" id="needle-db"></div>
@@ -279,7 +269,7 @@
     </div>
 
     <div class="panel">
-        <div class="panel-title"><span>💧 Water Ejection Modes</span> <span>165Hz+</span></div>
+        <div class="panel-title"><span>Water Ejection</span> <span>Sequence A</span></div>
         <div class="btn-grid">
             <button class="mode-btn" onclick="setMode('water', 1)">STD<br>165</button>
             <button class="mode-btn" onclick="setMode('water', 2)">LOW<br>RMB</button>
@@ -288,7 +278,7 @@
             <button class="mode-btn" onclick="setMode('water', 5)">DEEP<br>BASS</button>
         </div>
 
-        <div class="panel-title" style="margin-top: 25px;"><span>💨 Dust Purge Modes</span> <span>Ultra-Sonic</span></div>
+        <div class="panel-title"><span>Dust Purge</span> <span>Sequence B</span></div>
         <div class="btn-grid">
             <button class="mode-btn" onclick="setMode('dust', 1)">HIGH<br>PITCH</button>
             <button class="mode-btn" onclick="setMode('dust', 2)">WAVE<br>SWP</button>
@@ -298,22 +288,22 @@
         </div>
 
         <div class="vol-box">
-            <div class="vol-label">Master Output Volume</div>
+            <div class="vol-label">Master Output Level</div>
             <input type="range" id="vol-slider" min="0" max="1" step="0.01" value="1" oninput="updateVolume(this.value)">
         </div>
 
         <button class="btn-coffee" onclick="window.open('https://buymeacoffee.com/donshehab')">
-            <svg style="width:20px;height:20px;fill:currentColor" viewBox="0 0 24 24"><path d="M20 3H4v10c0 2.21 1.79 4 4 4h6c2.21 0 4-1.79 4-4v-3h2c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 5h-2V5h2v3zM4 19h16v2H4z"/></svg>
-            Buy Me A Coffee
+            <svg style="width:16px;height:16px;fill:currentColor" viewBox="0 0 24 24"><path d="M20 3H4v10c0 2.21 1.79 4 4 4h6c2.21 0 4-1.79 4-4v-3h2c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 5h-2V5h2v3zM4 19h16v2H4z"/></svg>
+            Support The Mission
         </button>
 
         <div class="test-zone">
-            <button class="btn-test" id="btn-test" onclick="toggleTest()">TEST<br>SPKR</button>
+            <button class="btn-test" id="btn-test" onclick="toggleTest()">TEST</button>
         </div>
     </div>
 
     <div class="ad-slot">
-        <span style="opacity: 0.5;">Advertisement Space</span>
+        <span style="opacity: 0.5;">ADVERTISEMENT</span>
     </div>
 
     <footer>
@@ -323,8 +313,8 @@
 </div>
 
 <div id="cookie-banner">
-    <span style="margin-right: 15px;">We use cookies for analytics.</span>
-    <button onclick="acceptCookies()" style="background: var(--neon); border: none; padding: 5px 15px; border-radius: 15px; font-weight: bold; cursor:pointer;">OK</button>
+    <span style="margin-right: 15px;">System uses cookies for telemetry.</span>
+    <button onclick="acceptCookies()" style="background: var(--accent); color: white; border: none; padding: 5px 15px; border-radius: 2px; font-weight: bold; cursor:pointer;">ACKNOWLEDGE</button>
 </div>
 
 <script>
@@ -334,12 +324,12 @@
 
     // --- TYPING HEADER ---
     const typeText = document.getElementById('type-text');
-    const phrases = ["System Ready.", "Select Cleaning Mode.", "Hardware Detected."];
+    const phrases = ["System Ready.", "Select Sequence.", "Hardware Detected."];
     let pIdx = 0;
     function typeWriter(text, i, cb) {
         if (i < text.length) {
             typeText.innerHTML = text.substring(0, i+1);
-            setTimeout(() => typeWriter(text, i+1, cb), 50);
+            setTimeout(() => typeWriter(text, i+1, cb), 40);
         } else setTimeout(cb, 2000);
     }
     function loopType() {
@@ -363,7 +353,7 @@
     function updateVolume(val) {
         currentVol = val;
         if(gainNode) gainNode.gain.setTargetAtTime(val, ctx.currentTime, 0.1);
-        updateGauges(0, val, true); // Update only volume gauge visually
+        updateGauges(0, val, true);
     }
 
     function stop() {
@@ -371,12 +361,13 @@
         if (interval) clearInterval(interval);
         isPlaying = false;
         resetGauges();
-        document.querySelectorAll('.mode-btn').forEach(b => {
-            b.classList.remove('active');
-            b.classList.remove('dust-active');
-        });
-        document.getElementById('btn-test').style.animation = "pulse-red 2s infinite";
-        document.getElementById('btn-test').innerHTML = "TEST<br>SPKR";
+        document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
+        document.getElementById('btn-test').classList.remove('running');
+        document.getElementById('btn-test').innerText = "TEST";
+        
+        // Dim Rings
+        document.getElementById('ring-load').classList.remove('active');
+        document.getElementById('ring-db').classList.remove('active');
     }
 
     function playTone(freq, type='sine') {
@@ -390,41 +381,37 @@
         gainNode.gain.exponentialRampToValueAtTime(currentVol, ctx.currentTime + 0.1);
         osc.start();
         
-        // Start visuals
+        // Light up rings
+        document.getElementById('ring-load').classList.add('active');
+        document.getElementById('ring-db').classList.add('active');
+        
         visualizerLoop(freq);
     }
 
     // --- GAUGE LOGIC ---
     function visualizerLoop(baseFreq) {
         if (!isPlaying) return;
-        
-        // Jitter Frequency for visual effect
-        let dispFreq = baseFreq + (Math.random() * 10);
-        // CPU Load Simulate
-        let load = 30 + Math.random() * 40;
-        
+        let dispFreq = baseFreq + (Math.random() * 5);
+        let load = 40 + Math.random() * 30;
         updateGauges(dispFreq, currentVol, false, load);
-        
         setTimeout(() => visualizerLoop(baseFreq), 100);
     }
 
     function updateGauges(hz, vol, volOnly=false, load=0) {
-        // Needle Range: -135deg (0) to 135deg (MAX) = 270deg span
-        
-        // 1. Gain Needle
+        // Gain
         const vRot = -135 + (vol * 270);
         document.getElementById('needle-db').style.transform = `rotate(${vRot}deg)`;
         document.getElementById('val-db').innerText = Math.round(vol * 10);
         
         if (volOnly && !isPlaying) return;
 
-        // 2. Hz Needle (Scale 0 to 20000)
+        // Hz
         let hRot = -135 + (Math.min(hz, 20000) / 20000 * 270);
         if (hz === 0) hRot = -135;
         document.getElementById('needle-hz').style.transform = `rotate(${hRot}deg)`;
         if (hz > 0) document.getElementById('val-hz').innerText = Math.round(hz) + " Hz";
 
-        // 3. Load Needle
+        // Load
         if (isPlaying) {
             const lRot = -135 + (load / 100 * 270);
             document.getElementById('needle-load').style.transform = `rotate(${lRot}deg)`;
@@ -437,7 +424,6 @@
         document.getElementById('val-hz').innerText = "0 Hz";
         document.getElementById('needle-load').style.transform = `rotate(-135deg)`;
         document.getElementById('val-load').innerText = "0%";
-        // Keep gain where slider is
         updateGauges(0, currentVol, true);
     }
 
@@ -447,24 +433,18 @@
         stop();
         isPlaying = true;
         
-        // Highlight Button
         const btnIndex = (type === 'water' ? 0 : 5) + (id - 1);
-        const btn = document.querySelectorAll('.mode-btn')[btnIndex];
-        btn.classList.add(type === 'water' ? 'active' : 'dust-active');
+        document.querySelectorAll('.mode-btn')[btnIndex].classList.add('active');
 
-        // Logic
         if (type === 'water') {
             const freqs = [165, 80, 120, 165, 40];
             const waves = ['sawtooth', 'sine', 'square', 'sawtooth', 'sine'];
             playTone(freqs[id-1], waves[id-1]);
         } else {
-            // Dust Logic (Sweeps/High Pitch)
             if (id === 1) playTone(10000, 'sine');
-            if (id === 2) { // Sweep
+            if (id === 2) { 
                 playTone(15000, 'sawtooth');
-                interval = setInterval(() => {
-                    if(osc) osc.frequency.setValueAtTime(15000 + Math.random()*4000, ctx.currentTime);
-                }, 150);
+                interval = setInterval(() => { if(osc) osc.frequency.setValueAtTime(15000 + Math.random()*4000, ctx.currentTime); }, 150);
             }
             if (id === 3) playTone(12000, 'square');
             if (id === 4) playTone(17000, 'sine');
@@ -477,13 +457,11 @@
         if (isPlaying) stop();
         else {
             isPlaying = true;
-            document.getElementById('btn-test').style.animation = "none";
-            document.getElementById('btn-test').style.transform = "scale(0.95)";
+            document.getElementById('btn-test').classList.add('running');
             document.getElementById('btn-test').innerText = "STOP";
-            playTone(440, 'sine'); // Standard A4 Test Tone
+            playTone(440, 'sine');
         }
     }
-
 </script>
 </body>
 </html>
