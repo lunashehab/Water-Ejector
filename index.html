@@ -28,46 +28,8 @@
       "name": "Speaker Cleaner Pro",
       "applicationCategory": "UtilityApplication",
       "operatingSystem": "Any",
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "USD"
-      },
-      "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": "4.9",
-        "ratingCount": "12500"
-      },
-      "featureList": "Water Ejection, Dust Removal, 165Hz Frequency, Stereo Test"
-    }
-    </script>
-
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": [{
-        "@type": "Question",
-        "name": "How does Speaker Cleaner Pro work?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "It plays a specific 165Hz low-frequency sound that vibrates your phone's speaker mechanism, physically shaking out trapped water droplets and dust particles."
-        }
-      }, {
-        "@type": "Question",
-        "name": "Is this safe for my phone?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Yes. The frequencies used are within the safe operating range of standard mobile speakers. We do not use overdrive volumes that damage hardware."
-        }
-      }, {
-        "@type": "Question",
-        "name": "Does it remove dust?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Yes. Use the 'Dust Mode' which utilizes square waves to create a harsher vibration, effectively dislodging dry dust and lint."
-        }
-      }]
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "featureList": "Water Ejection, Dust Removal, 165Hz Frequency"
     }
     </script>
 
@@ -79,7 +41,7 @@
             --panel: #0a0a0a;
             --accent: #ff003c; /* MARS RED */
             --accent-glow: rgba(255, 0, 60, 0.5);
-            --accent-dim: rgba(255, 0, 60, 0.1);
+            --neon-green: #39ff14; /* COFFEE GREEN */
             --text-main: #ffffff;
             --text-muted: #666666;
             --border: #333333;
@@ -115,7 +77,7 @@
 
         .shell { width: 100%; max-width: 500px; display: flex; flex-direction: column; gap: 20px; z-index: 1; }
 
-        /* --- PREMIUM HEADER --- */
+        /* --- HEADER --- */
         header { text-align: center; margin-top: 30px; text-transform: uppercase; position: relative; }
         .logo-box { display: flex; justify-content: center; align-items: center; gap: 10px; margin-bottom: 5px; }
         .logo-icon { width: 32px; height: 32px; fill: var(--accent); filter: drop-shadow(0 0 10px var(--accent)); }
@@ -135,7 +97,7 @@
             font-size: 11px; color: var(--text-muted); font-weight: 600; letter-spacing: 3px;
             margin-bottom: 5px; margin-top: 10px;
         }
-        .typing-status { font-family: monospace; font-size: 12px; color: var(--accent); min-height: 16px; text-shadow: 0 0 5px var(--accent-dim); }
+        .typing-status { font-family: monospace; font-size: 12px; color: var(--accent); min-height: 16px; text-shadow: 0 0 5px var(--accent-glow); }
 
         /* --- DASHBOARD GAUGES (LOCKED) --- */
         .dashboard-row { display: flex; justify-content: space-between; align-items: flex-end; gap: 10px; margin: 20px 0; }
@@ -208,7 +170,7 @@
             color: #fff; box-shadow: 0 0 15px var(--accent-dim);
         }
 
-        /* --- DIAGNOSTICS --- */
+        /* --- DIAGNOSTICS & TRUST --- */
         .diag-grid { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 10px; margin-bottom: 25px; }
         .btn-diag {
             background: #111; border: 1px solid #333; color: #888; height: 40px;
@@ -218,7 +180,7 @@
         .btn-diag:hover { border-color: var(--accent); color: #fff; }
         .btn-diag.active { background: var(--accent); color: #fff; }
 
-        /* --- ADVANCED OPS (PRO/TURBO) --- */
+        /* --- ADVANCED OPS --- */
         .ops-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 25px; }
         .btn-ops {
             height: 50px; border: 1px solid var(--accent); background: rgba(255, 0, 60, 0.05);
@@ -235,7 +197,7 @@
         }
         .btn-ops.active .ops-label { background: #000; color: #fff; }
 
-        /* --- PROGRESS BAR --- */
+        /* --- PROGRESS & SCANNER --- */
         .progress-container {
             width: 100%; height: 6px; background: #222; border-radius: 3px; overflow: hidden; margin-bottom: 20px;
             opacity: 0.5; transition: opacity 0.3s;
@@ -243,7 +205,6 @@
         .progress-container.active { opacity: 1; }
         .progress-fill { height: 100%; width: 0%; background: var(--accent); box-shadow: 0 0 10px var(--accent); transition: width 0.1s linear; }
 
-        /* --- SCANNERS --- */
         .scanner-box { 
             background: #050505; border: 1px solid #222; padding: 10px; border-radius: 6px; 
             margin-bottom: 25px; position: relative; overflow: hidden;
@@ -305,13 +266,7 @@
         }
         .trust-item svg { width: 14px; height: 14px; fill: var(--accent); }
 
-        /* --- SEO BLOCK --- */
-        .seo-box { text-align: left; padding: 10px; }
-        .seo-box h3 { font-size: 12px; color: #fff; text-transform: uppercase; margin-bottom: 10px; letter-spacing: 1px; }
-        .seo-box p { font-size: 10px; color: #888; margin-bottom: 10px; line-height: 1.6; }
-        .seo-box strong { color: var(--accent); }
-
-        /* --- SHARE & FOOTER --- */
+        /* --- FOOTER ACTIONS (NEW) --- */
         .btn-share {
             width: 100%; background: #fff; border: none; color: #000; padding: 15px; border-radius: 8px;
             font-weight: 900; text-transform: uppercase; cursor: pointer;
@@ -320,18 +275,33 @@
         }
         .btn-share:hover { background: var(--accent); color: #fff; box-shadow: 0 0 20px var(--accent); }
         
+        .footer-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 15px; }
+        .btn-mini {
+            padding: 12px; border-radius: 6px; font-size: 9px; font-weight: 800;
+            text-transform: uppercase; cursor: pointer; display: flex; 
+            align-items: center; justify-content: center; gap: 5px; text-decoration: none;
+            transition: 0.2s; background: transparent; text-align: center;
+        }
+        
+        /* Green Coffee Button */
+        .btn-green { border: 1px solid var(--neon-green); color: var(--neon-green); box-shadow: 0 0 5px rgba(57, 255, 20, 0.2); }
+        .btn-green:hover { background: var(--neon-green); color: #000; box-shadow: 0 0 15px var(--neon-green); }
+
+        /* Other Tool Button */
+        .btn-white-link { border: 1px solid #fff; color: #fff; }
+        .btn-white-link:hover { background: #fff; color: #000; box-shadow: 0 0 10px #fff; }
+
         .qr-wrapper {
             background: #fff; padding: 10px; border-radius: 8px; width: 140px; margin: 0 auto 10px auto;
             border: 2px solid var(--accent); box-shadow: 0 0 15px var(--accent-dim);
         }
         .qr-wrapper img { width: 100%; display: block; }
-        
-        .btn-coffee {
-            width: 100%; background: #111; border: 1px solid #333; color: #888; padding: 12px; border-radius: 8px; font-size: 10px;
-            font-weight: 700; text-transform: uppercase; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;
-            transition: 0.2s; margin-top: 10px;
-        }
-        .btn-coffee:hover { border-color: var(--accent); color: #fff; }
+
+        /* --- SEO & ADS --- */
+        .seo-box { text-align: left; padding: 10px; }
+        .seo-box h3 { font-size: 12px; color: #fff; text-transform: uppercase; margin-bottom: 10px; letter-spacing: 1px; }
+        .seo-box p { font-size: 10px; color: #888; margin-bottom: 10px; line-height: 1.6; }
+        .seo-box strong { color: var(--accent); }
 
         .ad-slot {
             width: 100%; height: 100px; background: #050505; border: 1px solid #222; border-radius: 8px; 
@@ -504,10 +474,15 @@
             <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://waterinmyspeaker.com" alt="Scan to fix speaker">
         </div>
 
-        <button class="btn-coffee" onclick="window.open('https://buymeacoffee.com/donshehab')">
-            <svg style="width:14px;height:14px;fill:currentColor" viewBox="0 0 24 24"><path d="M20 3H4v10c0 2.21 1.79 4 4 4h6c2.21 0 4-1.79 4-4v-3h2c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 5h-2V5h2v3zM4 19h16v2H4z"/></svg>
-            Support The Mission
-        </button>
+        <div class="footer-actions">
+            <button class="btn-mini btn-green" onclick="window.open('https://buymeacoffee.com/donshehab')">
+                <svg style="width:12px;height:12px;fill:currentColor" viewBox="0 0 24 24"><path d="M20 3H4v10c0 2.21 1.79 4 4 4h6c2.21 0 4-1.79 4-4v-3h2c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 5h-2V5h2v3zM4 19h16v2H4z"/></svg>
+                Buy Me A Coffee
+            </button>
+            <a href="https://tellmylocation.com" target="_blank" class="btn-mini btn-white-link">
+                Check My Other Tool →
+            </a>
+        </div>
     </div>
 
     <div class="panel">
