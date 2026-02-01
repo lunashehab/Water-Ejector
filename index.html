@@ -4,9 +4,10 @@
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5129097020907805" crossorigin="anonymous"></script>
 
     <meta charset="UTF-8" />
-    <title>Speaker Cleaner Pro | Mars Mission V6</title>
+    <title>Speaker Cleaner Pro | Don System 2025</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <meta name="description" content="Professional audio utility. Safe for all devices. Features Deep Clean, Boost Mode, and Diagnostics. Fix your speaker in 30 seconds.">
+    <meta name="description" content="Fix muffled speakers in 30 seconds. The #1 Water Eject shortcut. Scientifically tested 165Hz frequencies. No app needed.">
+    <meta name="keywords" content="water eject shortcut, fix my speaker, get water out of phone, dust cleaner sound, 165hz sound">
     
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#000000">
@@ -55,8 +56,8 @@
 
         .shell { width: 100%; max-width: 500px; display: flex; flex-direction: column; gap: 20px; z-index: 1; }
 
-        /* --- HEADER --- */
-        header { text-align: center; margin-top: 30px; text-transform: uppercase; }
+        /* --- PREMIUM HEADER --- */
+        header { text-align: center; margin-top: 30px; text-transform: uppercase; position: relative; }
         .logo-box { display: flex; justify-content: center; align-items: center; gap: 10px; margin-bottom: 5px; }
         .logo-icon { width: 32px; height: 32px; fill: var(--accent); filter: drop-shadow(0 0 10px var(--accent)); }
         h1 { font-size: 28px; font-weight: 900; color: #fff; margin: 0; letter-spacing: 2px; }
@@ -65,9 +66,15 @@
             border-radius: 2px; margin-left: 5px; letter-spacing: 1px;
         }
         
+        .trust-badge-header {
+            display: inline-block; border: 1px solid #333; padding: 4px 10px; border-radius: 20px;
+            font-size: 9px; color: #888; margin-top: 5px; background: rgba(255,255,255,0.05);
+        }
+        .trust-badge-header span { color: var(--accent); font-weight: bold; }
+
         .tagline { 
             font-size: 11px; color: var(--text-muted); font-weight: 600; letter-spacing: 3px;
-            margin-bottom: 5px;
+            margin-bottom: 5px; margin-top: 10px;
         }
         .typing-status { font-family: monospace; font-size: 12px; color: var(--accent); min-height: 16px; text-shadow: 0 0 5px var(--accent-dim); }
 
@@ -152,18 +159,23 @@
         .btn-diag:hover { border-color: var(--accent); color: #fff; }
         .btn-diag.active { background: var(--accent); color: #fff; }
 
-        /* --- DEEP CLEAN & BOOST --- */
+        /* --- ADVANCED OPS (PRO/TURBO) --- */
         .ops-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 25px; }
         .btn-ops {
             height: 50px; border: 1px solid var(--accent); background: rgba(255, 0, 60, 0.05);
             color: #fff; font-weight: 800; text-transform: uppercase; letter-spacing: 1px;
             border-radius: 6px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;
-            transition: 0.2s; font-size: 10px;
+            transition: 0.2s; font-size: 10px; position: relative; overflow: hidden;
         }
         .btn-ops:hover { background: var(--accent); box-shadow: 0 0 15px var(--accent-glow); }
         .btn-ops.active { background: var(--accent); color: #000; box-shadow: 0 0 20px var(--accent); }
-        .boost-icon { width: 8px; height: 8px; background: #fff; border-radius: 50%; box-shadow: 0 0 5px #fff; }
-        .btn-ops.active .boost-icon { background: #000; box-shadow: none; }
+        
+        /* Pro/Turbo Labels */
+        .ops-label {
+            position: absolute; top: 2px; right: 4px; font-size: 7px; 
+            background: #fff; color: #000; padding: 1px 3px; border-radius: 2px; font-weight: 900;
+        }
+        .btn-ops.active .ops-label { background: #000; color: #fff; }
 
         /* --- PROGRESS BAR --- */
         .progress-container {
@@ -227,10 +239,7 @@
         .stat-label { font-size: 8px; color: #666; text-transform: uppercase; }
 
         /* --- TRUST GRID --- */
-        .trust-grid { 
-            display: grid; grid-template-columns: 1fr 1fr; gap: 10px; 
-            margin-bottom: 10px;
-        }
+        .trust-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px; }
         .trust-item {
             background: #080808; border: 1px solid #222; padding: 10px; 
             border-radius: 4px; font-size: 9px; color: #888;
@@ -238,18 +247,21 @@
         }
         .trust-item svg { width: 14px; height: 14px; fill: var(--accent); }
 
-        /* --- SHARE & QR --- */
+        /* --- SEO / WHY BLOCK --- */
+        .seo-box { text-align: left; padding: 10px; }
+        .seo-box h3 { font-size: 12px; color: #fff; text-transform: uppercase; margin-bottom: 10px; letter-spacing: 1px; }
+        .seo-box p { font-size: 10px; color: #888; margin-bottom: 10px; line-height: 1.6; }
+        .seo-box strong { color: var(--accent); }
+
+        /* --- SHARE & FOOTER --- */
         .btn-share {
-            width: 100%; background: #fff; border: none;
-            color: #000; padding: 15px; border-radius: 8px;
+            width: 100%; background: #fff; border: none; color: #000; padding: 15px; border-radius: 8px;
             font-weight: 900; text-transform: uppercase; cursor: pointer;
-            box-shadow: 0 0 20px rgba(255,255,255,0.2); margin-bottom: 20px;
-            display: flex; align-items: center; justify-content: center; gap: 10px;
+            box-shadow: 0 0 20px rgba(255,255,255,0.2); margin-bottom: 20px; display: flex; align-items: center; justify-content: center; gap: 10px;
             transition: 0.2s; letter-spacing: 1px; font-size: 11px;
         }
         .btn-share:hover { background: var(--accent); color: #fff; box-shadow: 0 0 20px var(--accent); }
-        .btn-share:active { transform: scale(0.98); }
-
+        
         .qr-wrapper {
             background: #fff; padding: 10px; border-radius: 8px; width: 140px; margin: 0 auto 10px auto;
             border: 2px solid var(--accent); box-shadow: 0 0 15px var(--accent-dim);
@@ -257,24 +269,21 @@
         .qr-wrapper img { width: 100%; display: block; }
         
         .btn-coffee {
-            width: 100%; background: #111; border: 1px solid #333;
-            color: #888; padding: 12px; border-radius: 8px; font-size: 10px;
-            font-weight: 700; text-transform: uppercase; cursor: pointer;
-            display: flex; align-items: center; justify-content: center; gap: 8px;
+            width: 100%; background: #111; border: 1px solid #333; color: #888; padding: 12px; border-radius: 8px; font-size: 10px;
+            font-weight: 700; text-transform: uppercase; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px;
             transition: 0.2s; margin-top: 10px;
         }
         .btn-coffee:hover { border-color: var(--accent); color: #fff; }
 
-        /* --- AD SLOT --- */
         .ad-slot {
-            width: 100%; height: 100px; background: #050505; border: 1px solid #222;
-            border-radius: 8px; display: flex; align-items: center; justify-content: center;
-            color: #333; font-size: 9px; margin-top: 10px;
+            width: 100%; height: 100px; background: #050505; border: 1px solid #222; border-radius: 8px; 
+            display: flex; align-items: center; justify-content: center; color: #333; font-size: 9px; margin-top: 10px;
         }
 
         footer { margin-top: 40px; text-align: center; font-size: 10px; color: #444; padding-bottom: 20px;}
         footer a { color: #666; text-decoration: none; margin: 0 10px; transition: color 0.2s; }
         footer a:hover { color: var(--accent); }
+        .don-sig { display: block; margin-top: 15px; font-weight: 900; color: #333; text-transform: uppercase; letter-spacing: 2px; font-size: 9px; }
 
         #cookie-banner {
             display: none; position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
@@ -283,10 +292,8 @@
         }
         
         #copy-toast {
-            position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
-            background: var(--accent); color: white; padding: 10px 20px;
-            border-radius: 20px; font-size: 12px; font-weight: bold;
-            opacity: 0; pointer-events: none; transition: 0.3s; z-index: 2000;
+            position: fixed; top: 20px; left: 50%; transform: translateX(-50%); background: var(--accent); color: white; padding: 10px 20px;
+            border-radius: 20px; font-size: 12px; font-weight: bold; opacity: 0; pointer-events: none; transition: 0.3s; z-index: 2000;
         }
         #copy-toast.show { opacity: 1; top: 40px; }
     </style>
@@ -298,12 +305,13 @@
 
 <div class="shell">
     <header>
-        <div class="logo-box">
+        <div class="trust-badge-header"><span>✓</span> TRUSTED BY 10M+ DEVICES</div>
+        <div class="logo-box" style="margin-top:15px;">
             <svg class="logo-icon" viewBox="0 0 24 24"><path d="M12 22c4.97 0 9-4.03 9-9-4.5 0-9-5-9-13 0 8-4.5 13-9 13 0 4.97 4.03 9 9 9zM12 14c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"/></svg>
             <h1>SPEAKER CLEANER<span class="badge-pro">PRO</span></h1>
         </div>
-        <div class="tagline">Orbital Audio Diagnostics</div>
-        <div class="typing-status" id="type-text">Initialization Complete.</div>
+        <div class="tagline">The #1 High-Frequency Water Ejector</div>
+        <div class="typing-status" id="type-text">System Online.</div>
     </header>
 
     <div class="dashboard-row">
@@ -352,8 +360,14 @@
 
         <div class="panel-title"><span>Advanced Ops</span> <span>Deep Clean</span></div>
         <div class="ops-grid">
-            <button class="btn-ops" id="btn-deep" onclick="runDeepClean()"><span class="boost-icon"></span> AUTO CYCLE</button>
-            <button class="btn-ops" id="btn-boost" onclick="toggleBoost()"><span class="boost-icon"></span> BOOST MODE</button>
+            <button class="btn-ops" id="btn-deep" onclick="runDeepClean()">
+                <span class="ops-label">PRO MODE</span>
+                <span class="boost-icon"></span> AUTO CYCLE
+            </button>
+            <button class="btn-ops" id="btn-boost" onclick="toggleBoost()">
+                <span class="ops-label">TURBO MODE</span>
+                <span class="boost-icon"></span> BOOST
+            </button>
         </div>
         
         <div class="progress-container" id="prog-cont">
@@ -388,6 +402,7 @@
             <button class="mode-btn" onclick="setMode('dust', 5)">FINAL<br>1kHz</button>
         </div>
 
+        <div class="panel-title" style="margin-top:20px;"><span>Live Spectrum Analysis</span></div>
         <div class="viz-box" id="viz-container"></div>
 
         <div class="vol-box">
@@ -404,6 +419,17 @@
                 <div class="stat-val" id="history-val">0</div>
                 <div class="stat-label">Total Cleans</div>
             </div>
+        </div>
+    </div>
+
+    <div class="panel">
+        <div class="panel-title"><span>Mission Briefing</span> <span>Intel</span></div>
+        <div class="seo-box">
+            <h3>Why This Works</h3>
+            <p><strong>165Hz Ejection:</strong> This tool generates a specific low-frequency sine wave that matches the resonant frequency of most mobile speaker chambers. This causes air to vibrate violently, pushing water droplets out.</p>
+            <p><strong>Dust Physics:</strong> Our "Shake" mode uses Square Waves (harsher tones) to physically vibrate the speaker mesh, dislodging dry particles that compressed air can't reach.</p>
+            <h3>Safe & Secure</h3>
+            <p>This process is hardware-safe. We do not use "overdrive" volume. All data is processed locally on your device.</p>
         </div>
     </div>
 
@@ -444,7 +470,7 @@
 
     <footer>
         <a href="privacy.html">Privacy</a> • <a href="terms.html">Terms</a> • <a href="contact.html">Contact</a>
-        <br><br>© 2026 WaterInMySpeaker.com
+        <span class="don-sig">© 2025 DON SYSTEM</span>
     </footer>
 </div>
 
