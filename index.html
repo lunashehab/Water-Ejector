@@ -26,11 +26,7 @@
       "url": "https://waterinmyspeaker.com",
       "applicationCategory": "Utility",
       "operatingSystem": "Any",
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "USD"
-      },
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
       "featureList": "165Hz Water Ejection, Stereo Testing, Frequency Generator"
     }
     </script>
@@ -77,46 +73,33 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.3);
             text-align: center;
         }
-
         .card-title {
             font-size: 14px; text-transform: uppercase; letter-spacing: 1px;
             color: var(--text-soft); margin-bottom: 20px; font-weight: 700;
         }
 
-        /* --- MAIN BUTTON (EJECT) --- */
+        /* --- MAIN BUTTON --- */
         .eject-btn-container { position: relative; height: 180px; display: flex; align-items: center; justify-content: center; }
         
         .btn-eject {
             width: 140px; height: 140px;
-            border-radius: 50%;
-            border: none;
+            border-radius: 50%; border: none;
             background: radial-gradient(circle, #0ea5e9 0%, #0284c7 100%);
-            color: white;
-            font-weight: 800;
-            font-size: 18px;
-            cursor: pointer;
+            color: white; font-weight: 800; font-size: 18px; cursor: pointer;
             box-shadow: 0 0 0 8px rgba(14, 165, 233, 0.15);
             transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            z-index: 2;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 5px;
+            z-index: 2; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px;
         }
-
         .btn-eject:active { transform: scale(0.95); }
-        
         .btn-eject svg { width: 32px; height: 32px; fill: white; }
 
-        /* Animation State */
         .btn-eject.playing {
             animation: shake 0.5s infinite;
             background: radial-gradient(circle, #ef4444 0%, #b91c1c 100%);
             box-shadow: 0 0 40px var(--danger);
         }
 
-        /* Droplet Ripples */
+        /* Ripples */
         .ripple {
             position: absolute; border-radius: 50%; border: 2px solid var(--accent);
             opacity: 0; pointer-events: none; top: 50%; left: 50%; transform: translate(-50%, -50%);
@@ -127,15 +110,7 @@
 
         @keyframes shake {
             0% { transform: translate(1px, 1px) rotate(0deg); }
-            10% { transform: translate(-1px, -2px) rotate(-1deg); }
-            20% { transform: translate(-3px, 0px) rotate(1deg); }
-            30% { transform: translate(3px, 2px) rotate(0deg); }
-            40% { transform: translate(1px, -1px) rotate(1deg); }
             50% { transform: translate(-1px, 2px) rotate(-1deg); }
-            60% { transform: translate(-3px, 1px) rotate(0deg); }
-            70% { transform: translate(3px, 1px) rotate(-1deg); }
-            80% { transform: translate(-1px, -1px) rotate(1deg); }
-            90% { transform: translate(1px, 2px) rotate(0deg); }
             100% { transform: translate(1px, -2px) rotate(-1deg); }
         }
         @keyframes ripple-anim {
@@ -145,38 +120,32 @@
 
         /* --- STEREO TOOLS --- */
         .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
-        
         .btn-tool {
             background: rgba(255,255,255,0.05); border: 1px solid var(--border);
             color: white; padding: 15px; border-radius: 12px; font-weight: 600; cursor: pointer;
-            transition: background 0.2s; display: flex; align-items: center; justify-content: center; gap: 8px;
+            transition: background 0.2s;
         }
         .btn-tool:hover { background: rgba(255,255,255,0.1); }
         .btn-tool.active { background: var(--accent); border-color: var(--accent); }
 
-        /* --- FREQUENCY SLIDER --- */
-        .slider-container { margin-top: 10px; }
-        input[type=range] {
-            width: 100%; -webkit-appearance: none; background: transparent; margin: 15px 0;
-        }
-        input[type=range]::-webkit-slider-runnable-track {
-            width: 100%; height: 6px; background: rgba(255,255,255,0.1); border-radius: 10px;
-        }
-        input[type=range]::-webkit-slider-thumb {
-            height: 20px; width: 20px; border-radius: 50%; background: var(--accent);
-            -webkit-appearance: none; margin-top: -7px; box-shadow: 0 0 10px var(--accent-glow); cursor: grab;
-        }
-        .freq-display { font-size: 24px; font-weight: 800; color: var(--accent); font-variant-numeric: tabular-nums; }
+        /* --- SLIDER --- */
+        input[type=range] { width: 100%; -webkit-appearance: none; background: transparent; margin: 15px 0; }
+        input[type=range]::-webkit-slider-runnable-track { width: 100%; height: 6px; background: rgba(255,255,255,0.1); border-radius: 10px; }
+        input[type=range]::-webkit-slider-thumb { height: 20px; width: 20px; border-radius: 50%; background: var(--accent); -webkit-appearance: none; margin-top: -7px; box-shadow: 0 0 10px var(--accent-glow); }
+        .freq-display { font-size: 24px; font-weight: 800; color: var(--accent); }
 
-        /* --- FOOTER & TRUST --- */
-        .trust-box {
-            font-size: 12px; color: var(--text-soft); background: rgba(0,0,0,0.2);
-            padding: 15px; border-radius: 12px; margin-top: 20px; border: 1px dashed var(--border);
+        /* --- GUIDE TEXT (SEO) --- */
+        .guide-box {
+            background: rgba(0,0,0,0.2); padding: 20px; border-radius: 16px; 
+            border: 1px solid var(--border); text-align: left;
         }
+        .guide-box h3 { color: var(--accent); font-size: 16px; margin-bottom: 10px; }
+        .guide-box p { color: var(--text-soft); font-size: 14px; margin-bottom: 10px; line-height: 1.5; }
+        .guide-box li { color: var(--text-soft); font-size: 14px; margin-left: 20px; margin-bottom: 5px; }
+
         footer { margin-top: 40px; text-align: center; font-size: 12px; color: var(--text-soft); }
         footer a { color: var(--text-soft); margin: 0 5px; text-decoration: none; }
         
-        /* Volume Warning */
         .warning { color: #f59e0b; font-size: 13px; margin-top: 10px; display: flex; align-items: center; justify-content: center; gap: 6px;}
 
         /* --- COOKIE BANNER --- */
@@ -199,21 +168,14 @@
 
     <main class="card">
         <div class="card-title">💧 Main Ejector (165Hz)</div>
-        
         <div class="eject-btn-container">
             <button id="eject-btn" class="btn-eject">
                 <svg viewBox="0 0 24 24"><path d="M12 22c4.97 0 9-4.03 9-9-4.5 0-9-5-9-13 0 8-4.5 13-9 13 0 4.97 4.03 9 9 9z"/></svg>
                 <span>ACTIVATE</span>
             </button>
-            <div class="ripple-box">
-                <div class="ripple"></div><div class="ripple"></div><div class="ripple"></div>
-            </div>
+            <div class="ripple-box"><div class="ripple"></div><div class="ripple"></div><div class="ripple"></div></div>
         </div>
-
-        <div class="warning">
-            <svg style="width:16px;height:16px" fill="currentColor" viewBox="0 0 20 20"><path d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z"/></svg>
-            Set phone volume to 100% for best results
-        </div>
+        <div class="warning">⚠️ Set Volume to 100%</div>
     </main>
 
     <div class="card">
@@ -225,27 +187,30 @@
     </div>
 
     <div class="card">
-        <div class="card-title">🎚️ Manual Frequency Sweep</div>
+        <div class="card-title">🎚️ Manual Frequency</div>
         <div class="freq-display"><span id="freq-val">165</span> Hz</div>
-        <div class="slider-container">
-            <input type="range" id="freq-slider" min="20" max="20000" value="165" step="5">
-        </div>
-        <button class="btn-tool" id="sweep-btn" style="width:100%; margin-top:15px; background: var(--surface);">▶ Play Continuous Tone</button>
+        <input type="range" id="freq-slider" min="20" max="20000" value="165" step="5">
+        <button class="btn-tool" id="sweep-btn" style="width:100%;">▶ Play Continuous Tone</button>
     </div>
 
-    <div class="trust-box">
-        🔒 <strong>Safe & Secure:</strong> All sound is generated locally in your browser. No files are downloaded. No personal data is collected.
+    <div class="guide-box">
+        <h3>How to use this tool:</h3>
+        <p>1. Disconnect headphones and Bluetooth.</p>
+        <p>2. Set your phone volume to the maximum level (100%).</p>
+        <p>3. Tap the "ACTIVATE" button above.</p>
+        <p>4. Hold your phone upright or face down for 15-30 seconds.</p>
+        <p><em>The specific 165Hz frequency creates air pressure waves that push water droplets out of the speaker mesh.</em></p>
     </div>
 
     <footer>
-        <a href="privacy.html">Privacy Policy</a> • <a href="terms.html">Terms</a> • <a href="contact.html">Contact</a>
+        <a href="privacy.html">Privacy</a> • <a href="terms.html">Terms</a> • <a href="contact.html">Contact</a>
         <br><br>© 2026 WaterInMySpeaker.com
     </footer>
 </div>
 
 <div id="cookie-banner">
     <p style="color: #94a3b8; font-size: 14px; margin-bottom: 15px;">We use cookies to analyze traffic and show personalized ads.</p>
-    <button onclick="acceptCookies()" style="background: #0ea5e9; border: none; color: white; padding: 10px 30px; border-radius: 20px; font-weight: bold; cursor: pointer; font-size: 14px;">I Accept</button>
+    <button onclick="acceptCookies()" style="background: #0ea5e9; border: none; color: white; padding: 10px 30px; border-radius: 20px; font-weight: bold; cursor: pointer;">I Accept</button>
 </div>
 
 <script>
@@ -258,17 +223,21 @@
         document.getElementById('cookie-banner').style.display = 'none';
     }
 
-    // --- AUDIO ENGINE ---
+    // --- AUDIO ENGINE (ANTI-LAG) ---
     let audioCtx;
     let oscillator;
     let gainNode;
     let isPlaying = false;
     let currentMode = null; 
 
-    function initAudio() {
+    // Wake up Audio Context for Mobile
+    async function initAudio() {
         if (!audioCtx) {
             const AudioContext = window.AudioContext || window.webkitAudioContext;
             audioCtx = new AudioContext();
+        }
+        if (audioCtx.state === 'suspended') {
+            await audioCtx.resume();
         }
     }
 
@@ -285,8 +254,8 @@
         updateUI();
     }
 
-    function startTone(freq, type = 'sine', pan = 0) {
-        initAudio();
+    async function startTone(freq, type = 'sine', pan = 0) {
+        await initAudio(); // Wait for wakeup
         stopSound(); 
 
         oscillator = audioCtx.createOscillator();
@@ -301,7 +270,8 @@
         panNode.connect(audioCtx.destination);
         panNode.pan.value = pan; 
 
-        gainNode.gain.setValueAtTime(0.01, audioCtx.currentTime);
+        // Smooth Start (No Clicking)
+        gainNode.gain.setValueAtTime(0.001, audioCtx.currentTime);
         gainNode.gain.exponentialRampToValueAtTime(1, audioCtx.currentTime + 0.1);
 
         oscillator.start();
@@ -324,30 +294,26 @@
             : '<svg viewBox="0 0 24 24"><path d="M12 22c4.97 0 9-4.03 9-9-4.5 0-9-5-9-13 0 8-4.5 13-9 13 0 4.97 4.03 9 9 9z"/></svg><span>ACTIVATE</span>';
         
         sweepBtn.textContent = isPlaying && currentMode === 'sweep' ? "⏹ Stop Tone" : "▶ Play Continuous Tone";
-        sweepBtn.classList.toggle('active', isPlaying && currentMode === 'sweep');
         
         leftBtn.classList.toggle('active', isPlaying && currentMode === 'left');
         rightBtn.classList.toggle('active', isPlaying && currentMode === 'right');
+        sweepBtn.classList.toggle('active', isPlaying && currentMode === 'sweep');
 
-        if (isPlaying && currentMode === 'eject') {
-            ejectBtn.classList.add('playing');
-        }
+        if (isPlaying && currentMode === 'eject') ejectBtn.classList.add('playing');
     }
 
-    // Handlers
+    // Buttons
     ejectBtn.addEventListener('click', () => {
-        if (isPlaying && currentMode === 'eject') {
-            stopSound();
-        } else {
+        if (isPlaying && currentMode === 'eject') stopSound();
+        else {
             currentMode = 'eject';
             startTone(165, 'sawtooth', 0); 
         }
     });
 
     window.playTone = (side) => {
-        if (isPlaying && currentMode === side) {
-            stopSound();
-        } else {
+        if (isPlaying && currentMode === side) stopSound();
+        else {
             currentMode = side;
             const pan = side === 'left' ? -1 : 1;
             startTone(440, 'sine', pan); 
@@ -363,9 +329,8 @@
     });
 
     sweepBtn.addEventListener('click', () => {
-        if (isPlaying && currentMode === 'sweep') {
-            stopSound();
-        } else {
+        if (isPlaying && currentMode === 'sweep') stopSound();
+        else {
             currentMode = 'sweep';
             startTone(slider.value, 'sine', 0);
         }
