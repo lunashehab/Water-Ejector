@@ -77,8 +77,19 @@
 
         .shell { width: 100%; max-width: 500px; display: flex; flex-direction: column; gap: 20px; z-index: 1; }
 
+        /* --- LANGUAGE SELECTOR --- */
+        .lang-box {
+            position: absolute; top: 0; right: 0; z-index: 100;
+        }
+        select.lang-select {
+            background: rgba(0,0,0,0.8); color: #fff; border: 1px solid #333;
+            padding: 5px 10px; border-radius: 4px; font-size: 10px;
+            font-family: 'Exo 2', sans-serif; cursor: pointer; text-transform: uppercase;
+        }
+        select.lang-select:focus { outline: none; border-color: var(--accent); }
+
         /* --- HEADER --- */
-        header { text-align: center; margin-top: 30px; text-transform: uppercase; position: relative; }
+        header { text-align: center; margin-top: 40px; text-transform: uppercase; position: relative; }
         .logo-box { display: flex; justify-content: center; align-items: center; gap: 10px; margin-bottom: 5px; }
         .logo-icon { width: 32px; height: 32px; fill: var(--accent); filter: drop-shadow(0 0 10px var(--accent)); }
         h1 { font-size: 28px; font-weight: 900; color: #fff; margin: 0; letter-spacing: 2px; }
@@ -100,7 +111,6 @@
         /* --- GAUGE ENGINE --- */
         .dashboard-row { display: flex; justify-content: space-between; align-items: flex-end; gap: 10px; margin: 25px 0; }
         .gauge-box { position: relative; width: 32%; text-align: center; }
-        
         .gauge-ring {
             width: 100%; padding-bottom: 100%;
             border-radius: 50%; border: 2px solid #333; position: relative;
@@ -113,7 +123,6 @@
             border-color: var(--accent);
             box-shadow: 0 0 20px var(--accent-dim), inset 0 0 20px #000;
         }
-        
         .ticks-overlay {
             position: absolute; width: 100%; height: 100%; border-radius: 50%;
             background: repeating-conic-gradient(from 210deg, rgba(255, 255, 255, 0.3) 0deg 1deg, transparent 1deg 15deg);
@@ -121,12 +130,10 @@
             -webkit-mask-image: radial-gradient(transparent 60%, black 61%);
             z-index: 1; opacity: 0.5;
         }
-
         .gauge-numbers span { position: absolute; color: #666; font-size: 8px; font-weight: bold; z-index: 2; }
         .n-0 { bottom: 25%; left: 20%; }
         .n-50 { top: 12%; left: 50%; transform: translateX(-50%); }
         .n-100 { bottom: 25%; right: 20%; }
-
         .needle {
             position: absolute; 
             bottom: 50%; left: 50%; width: 2px; height: 45%; margin-left: -1px;
@@ -176,7 +183,7 @@
             color: #fff; box-shadow: 0 0 15px var(--accent-dim);
         }
 
-        /* --- DIAGNOSTICS & TRUST --- */
+        /* --- DIAGNOSTICS & OPS --- */
         .diag-grid { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 10px; margin-bottom: 25px; }
         .btn-diag {
             background: #111; border: 1px solid #333; color: #888; height: 40px;
@@ -186,7 +193,6 @@
         .btn-diag:hover { border-color: var(--accent); color: #fff; }
         .btn-diag.active { background: var(--accent); color: #fff; }
 
-        /* --- ADVANCED OPS --- */
         .ops-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 25px; }
         .btn-ops {
             height: 50px; border: 1px solid var(--accent); background: rgba(255, 0, 60, 0.05);
@@ -196,7 +202,6 @@
         }
         .btn-ops:hover { background: var(--accent); box-shadow: 0 0 15px var(--accent-glow); }
         .btn-ops.active { background: var(--accent); color: #000; box-shadow: 0 0 20px var(--accent); }
-        
         .ops-label {
             position: absolute; top: 2px; right: 4px; font-size: 7px; 
             background: #fff; color: #000; padding: 1px 3px; border-radius: 2px; font-weight: 900;
@@ -239,7 +244,7 @@
             height: 2px; transition: height 0.1s;
         }
 
-        /* --- VOLUME CONTROL --- */
+        /* --- VOLUME & STATS --- */
         .vol-box {
             text-align: center; margin-top: 10px; margin-bottom: 15px;
             background: #050505; padding: 15px; border-radius: 8px; border: 1px solid #222;
@@ -257,7 +262,6 @@
             border: 2px solid #fff;
         }
 
-        /* --- STATS ROW --- */
         .stats-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 25px; }
         .stat-card { background: #080808; border: 1px solid #222; padding: 10px; border-radius: 6px; text-align: center; }
         .stat-val { font-size: 16px; font-weight: 900; color: #fff; margin-bottom: 2px; }
@@ -272,7 +276,7 @@
         }
         .trust-item svg { width: 14px; height: 14px; fill: var(--accent); }
 
-        /* --- FOOTER ACTIONS --- */
+        /* --- FOOTER & SHARE --- */
         .btn-share {
             width: 100%; background: #fff; border: none; color: #000; padding: 15px; border-radius: 8px;
             font-weight: 900; text-transform: uppercase; cursor: pointer;
@@ -297,7 +301,6 @@
         }
         .qr-wrapper img { width: 100%; display: block; }
 
-        /* --- SEO & ADS --- */
         .seo-box { text-align: left; padding: 10px; }
         .seo-box h3 { font-size: 12px; color: #fff; text-transform: uppercase; margin-bottom: 10px; letter-spacing: 1px; }
         .seo-box p { font-size: 10px; color: #888; margin-bottom: 10px; line-height: 1.6; }
@@ -331,35 +334,45 @@
 <div class="space-grid"></div>
 <div id="copy-toast">Link Copied!</div>
 
-<div class="shell">
+<div class="shell" id="app-shell">
     <header>
-        <div class="trust-badge-header"><span>✓</span> TRUSTED BY 10M+ DEVICES</div>
+        <div class="lang-box">
+            <select class="lang-select" onchange="changeLang(this.value)">
+                <option value="en">English</option>
+                <option value="ar">العربية</option>
+                <option value="ru">Русский</option>
+                <option value="es">Español</option>
+                <option value="cn">中文</option>
+                <option value="fr">Français</option>
+            </select>
+        </div>
+        <div class="trust-badge-header"><span id="lbl-trust-icon">✓</span> <span id="lbl-trust">TRUSTED BY 10M+ DEVICES</span></div>
         <div class="logo-box" style="margin-top:15px;">
             <svg class="logo-icon" viewBox="0 0 24 24"><path d="M12 22c4.97 0 9-4.03 9-9-4.5 0-9-5-9-13 0 8-4.5 13-9 13 0 4.97 4.03 9 9 9zM12 14c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"/></svg>
             <h1>SPEAKER CLEANER<span class="badge-pro">PRO</span></h1>
         </div>
-        <div class="tagline">The #1 High-Frequency Water Ejector</div>
+        <div class="tagline" id="lbl-tagline">The #1 High-Frequency Water Ejector</div>
         <div class="typing-status" id="type-text">System Online.</div>
     </header>
 
     <div class="panel">
-        <div class="panel-title"><span>Speaker Test</span> <span>Isolation</span></div>
+        <div class="panel-title"><span id="lbl-panel-test">Speaker Test</span> <span id="lbl-panel-iso">Isolation</span></div>
         <div class="diag-grid">
-            <button class="btn-diag" onclick="runDiagnostic('left')">LEFT</button>
-            <button class="btn-diag" onclick="runDiagnostic('right')">RIGHT</button>
-            <button class="btn-diag" onclick="runDiagnostic('bass')">BASS</button>
-            <button class="btn-diag" onclick="runDiagnostic('treble')">TREBLE</button>
+            <button class="btn-diag" id="btn-left" onclick="runDiagnostic('left')">LEFT</button>
+            <button class="btn-diag" id="btn-right" onclick="runDiagnostic('right')">RIGHT</button>
+            <button class="btn-diag" id="btn-bass" onclick="runDiagnostic('bass')">BASS</button>
+            <button class="btn-diag" id="btn-treble" onclick="runDiagnostic('treble')">TREBLE</button>
         </div>
 
-        <div class="panel-title"><span>Advanced Ops</span> <span>Deep Clean</span></div>
+        <div class="panel-title"><span id="lbl-panel-ops">Advanced Ops</span> <span id="lbl-panel-deep">Deep Clean</span></div>
         <div class="ops-grid">
             <button class="btn-ops" id="btn-deep" onclick="runDeepClean()">
-                <span class="ops-label">PRO MODE</span>
-                <span class="boost-icon"></span> AUTO CYCLE
+                <span class="ops-label" id="lbl-pro">PRO MODE</span>
+                <span class="boost-icon"></span> <span id="lbl-auto">AUTO CYCLE</span>
             </button>
             <button class="btn-ops" id="btn-boost" onclick="toggleBoost()">
-                <span class="ops-label">TURBO MODE</span>
-                <span class="boost-icon"></span> BOOST
+                <span class="ops-label" id="lbl-turbo">TURBO MODE</span>
+                <span class="boost-icon"></span> <span id="lbl-boost">BOOST</span>
             </button>
         </div>
         
@@ -367,12 +380,12 @@
             <div class="progress-fill" id="prog-fill"></div>
         </div>
 
-        <div class="panel-title"><span>Dust Integrity</span> <span>Meter</span></div>
+        <div class="panel-title"><span id="lbl-panel-dust">Dust Integrity</span> <span id="lbl-panel-meter">Meter</span></div>
         <div class="scanner-box" id="dust-box">
             <div class="scanner-overlay"></div>
-            <div class="scan-label"><span>Contamination Level</span> <span id="dust-val">0%</span></div>
+            <div class="scan-label"><span id="lbl-contam">Contamination Level</span> <span id="dust-val">0%</span></div>
             <div class="scan-bar-bg"><div class="scan-bar-fill" id="dust-bar" style="background: #ffaa00; box-shadow: 0 0 10px #ffaa00;"></div></div>
-            <button class="btn-diag" style="width:100%; margin-top:10px; border-color:#ffaa00; color:#ffaa00;" onclick="runScanner('dust')">CHECK LEVEL</button>
+            <button class="btn-diag" id="btn-check" style="width:100%; margin-top:10px; border-color:#ffaa00; color:#ffaa00;" onclick="runScanner('dust')">CHECK LEVEL</button>
         </div>
     </div>
 
@@ -385,9 +398,8 @@
                 <div class="needle" id="needle-load"></div>
                 <div class="gauge-val" id="val-load">0%</div>
             </div>
-            <div class="gauge-label">CPU LOAD</div>
+            <div class="gauge-label" id="lbl-gauge-cpu">CPU LOAD</div>
         </div>
-        
         <div class="gauge-box" style="width: 40%;">
             <div class="gauge-ring active" id="ring-hz">
                 <div class="ticks-overlay"></div>
@@ -396,9 +408,8 @@
                 <div class="needle" id="needle-hz" style="height: 48%; background: #fff; box-shadow: 0 0 10px #fff;"></div>
                 <div class="gauge-val" id="val-hz" style="color: #fff; text-shadow:none;">0 Hz</div>
             </div>
-            <div class="gauge-label" style="color: var(--accent);">FREQUENCY</div>
+            <div class="gauge-label" style="color: var(--accent);" id="lbl-gauge-freq">FREQUENCY</div>
         </div>
-        
         <div class="gauge-box">
             <div class="gauge-ring" id="ring-db">
                 <div class="ticks-overlay"></div>
@@ -407,12 +418,12 @@
                 <div class="needle" id="needle-db"></div>
                 <div class="gauge-val" id="val-db">0</div>
             </div>
-            <div class="gauge-label">GAIN</div>
+            <div class="gauge-label" id="lbl-gauge-gain">GAIN</div>
         </div>
     </div>
 
     <div class="panel">
-        <div class="panel-title"><span>Water-Expulsion</span> <span>Mode</span></div>
+        <div class="panel-title"><span id="lbl-mode-water">Water-Expulsion</span> <span id="lbl-mode-mode1">Mode</span></div>
         <div class="btn-grid">
             <button class="mode-btn" onclick="setMode('water', 1)">APPLE<br>165Hz</button>
             <button class="mode-btn" onclick="setMode('water', 2)">PRESS<br>200Hz</button>
@@ -421,7 +432,7 @@
             <button class="mode-btn" onclick="setMode('water', 5)">AIR<br>440Hz</button>
         </div>
 
-        <div class="panel-title"><span>Dust-Shake</span> <span>Mode</span></div>
+        <div class="panel-title"><span id="lbl-mode-dust">Dust-Shake</span> <span id="lbl-mode-mode2">Mode</span></div>
         <div class="btn-grid">
             <button class="mode-btn" onclick="setMode('dust', 1)">SHAKE<br>60Hz</button>
             <button class="mode-btn" onclick="setMode('dust', 2)">BRKR<br>120Hz</button>
@@ -430,35 +441,34 @@
             <button class="mode-btn" onclick="setMode('dust', 5)">FINAL<br>1kHz</button>
         </div>
 
-        <div class="panel-title" style="margin-top:20px;"><span>Live Spectrum Analysis</span></div>
+        <div class="panel-title" style="margin-top:20px;"><span id="lbl-spec">Live Spectrum Analysis</span></div>
         <div class="viz-box" id="viz-container"></div>
 
         <div class="vol-box">
-            <div class="vol-label">Volume Calibration</div>
+            <div class="vol-label" id="lbl-vol">Volume Calibration</div>
             <input type="range" id="vol-slider" min="0" max="1" step="0.01" value="1" oninput="updateVolume(this.value)">
         </div>
 
         <div class="stats-row">
             <div class="stat-card">
                 <div class="stat-val" id="streak-val">1</div>
-                <div class="stat-label">Day Streak</div>
+                <div class="stat-label" id="lbl-streak">Day Streak</div>
             </div>
             <div class="stat-card">
                 <div class="stat-val" id="history-val">0</div>
-                <div class="stat-label">Total Cleans</div>
+                <div class="stat-label" id="lbl-cleans">Total Cleans</div>
             </div>
         </div>
     </div>
 
     <div class="panel">
-        <div class="panel-title"><span>Transmission</span> <span>Uplink</span></div>
-        
-        <button class="btn-share" onclick="shareSite()">
-            <svg style="width:16px;height:16px;fill:currentColor" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.66 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92s-1.31-2.92-2.92-2.92z"/></svg>
-            SEND TO A FRIEND
+        <div class="panel-title"><span id="lbl-trans">Transmission</span> <span id="lbl-uplink">Uplink</span></div>
+        <button class="btn-share" onclick="shareSite()" id="btn-share">
+            <svg style="width:16px;height:16px;fill:currentColor;margin-right:5px;" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.66 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92s-1.31-2.92-2.92-2.92z"/></svg>
+            <span id="lbl-btn-share">SEND TO A FRIEND</span>
         </button>
 
-        <div style="text-align:center; color:#666; font-size:9px; margin-bottom:10px; text-transform:uppercase;">Mobile Uplink Code</div>
+        <div style="text-align:center; color:#666; font-size:9px; margin-bottom:10px; text-transform:uppercase;" id="lbl-qr">Mobile Uplink Code</div>
         <div class="qr-wrapper">
             <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://waterinmyspeaker.com" alt="Scan to fix speaker">
         </div>
@@ -466,34 +476,33 @@
         <div class="footer-actions">
             <button class="btn-mini btn-green" onclick="window.open('https://buymeacoffee.com/donshehab')">
                 <svg style="width:12px;height:12px;fill:currentColor" viewBox="0 0 24 24"><path d="M20 3H4v10c0 2.21 1.79 4 4 4h6c2.21 0 4-1.79 4-4v-3h2c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 5h-2V5h2v3zM4 19h16v2H4z"/></svg>
-                Buy Me A Coffee
+                <span id="lbl-coffee">Buy Me A Coffee</span>
             </button>
-            <a href="https://tellmylocation.com" target="_blank" class="btn-mini btn-green">
+            <a href="https://tellmylocation.com" target="_blank" class="btn-mini btn-green" id="lbl-tool">
                 Check My Other Tool →
             </a>
         </div>
     </div>
 
     <div class="panel">
-        <div class="panel-title"><span>Mission Briefing</span> <span>Intel</span></div>
+        <div class="panel-title"><span id="lbl-brief">Mission Briefing</span> <span id="lbl-intel">Intel</span></div>
         <div class="seo-box">
-            <h3>Why This Works</h3>
-            <p><strong>165Hz Ejection:</strong> This tool generates a specific low-frequency sine wave that matches the resonant frequency of most mobile speaker chambers. This causes air to vibrate violently, pushing water droplets out.</p>
-            <p><strong>Dust Physics:</strong> Our "Shake" mode uses Square Waves (harsher tones) to physically vibrate the speaker mesh, dislodging dry particles that compressed air can't reach.</p>
-            <h3>Safe & Secure</h3>
-            <p>This process is hardware-safe. We do not use "overdrive" volume. All data is processed locally on your device.</p>
+            <h3 id="lbl-why-title">Why This Works</h3>
+            <p id="lbl-why-text"><strong>165Hz Ejection:</strong> This tool generates a specific low-frequency sine wave that matches the resonant frequency of most mobile speaker chambers.</p>
+            <h3 id="lbl-safe-title">Safe & Secure</h3>
+            <p id="lbl-safe-text">This process is hardware-safe. We do not use "overdrive" volume. All data is processed locally on your device.</p>
         </div>
     </div>
 
     <div class="panel">
-        <div class="panel-title"><span>System Integrity</span> <span>Verified</span></div>
+        <div class="panel-title"><span id="lbl-sys">System Integrity</span> <span id="lbl-ver">Verified</span></div>
         <div class="trust-grid">
-            <div class="trust-item"><svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg> Safe for all Devices</div>
-            <div class="trust-item"><svg viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zM9 6c0-1.66 1.34-3 3-3s3 1.34 3 3v2H9V6z"/></svg> No Data Collected</div>
-            <div class="trust-item"><svg viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z"/></svg> No App Required</div>
-            <div class="trust-item"><svg viewBox="0 0 24 24"><path d="M3.5 18.49l6-6.01 4 4L22 6.92l-1.41-1.41-7.09 7.97-4-4L2 16.99z"/></svg> Scientific Tones</div>
-            <div class="trust-item"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg> Used by 10M+</div>
-            <div class="trust-item"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> Tech Recommended</div>
+            <div class="trust-item"><svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg> <span id="t1">Safe for all Devices</span></div>
+            <div class="trust-item"><svg viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zM9 6c0-1.66 1.34-3 3-3s3 1.34 3 3v2H9V6z"/></svg> <span id="t2">No Data Collected</span></div>
+            <div class="trust-item"><svg viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z"/></svg> <span id="t3">No App Required</span></div>
+            <div class="trust-item"><svg viewBox="0 0 24 24"><path d="M3.5 18.49l6-6.01 4 4L22 6.92l-1.41-1.41-7.09 7.97-4-4L2 16.99z"/></svg> <span id="t4">Scientific Tones</span></div>
+            <div class="trust-item"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg> <span id="t5">Used by 10M+</span></div>
+            <div class="trust-item"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> <span id="t6">Tech Recommended</span></div>
         </div>
     </div>
 
@@ -508,11 +517,221 @@
 </div>
 
 <div id="cookie-banner">
-    <span style="margin-right: 15px;">System uses cookies for telemetry.</span>
-    <button onclick="acceptCookies()" style="background: var(--accent); color: white; border: none; padding: 5px 15px; border-radius: 2px; font-weight: bold; cursor:pointer;">ACKNOWLEDGE</button>
+    <span style="margin-right: 15px;" id="lbl-cookie">System uses cookies for telemetry.</span>
+    <button onclick="acceptCookies()" style="background: var(--accent); color: white; border: none; padding: 5px 15px; border-radius: 2px; font-weight: bold; cursor:pointer;" id="btn-cookie">ACKNOWLEDGE</button>
 </div>
 
 <script>
+    // --- TRANSLATION ENGINE ---
+    const translations = {
+        en: {
+            trust: "TRUSTED BY 10M+ DEVICES", tagline: "The #1 High-Frequency Water Ejector",
+            ptest: "Speaker Test", piso: "Isolation", pops: "Advanced Ops", pdeep: "Deep Clean",
+            left: "LEFT", right: "RIGHT", bass: "BASS", treble: "TREBLE",
+            pro: "PRO MODE", turbo: "TURBO MODE", auto: "AUTO CYCLE", boost: "BOOST",
+            pdust: "Dust Integrity", pmeter: "Meter", contam: "Contamination Level", check: "CHECK LEVEL",
+            gcpu: "CPU LOAD", gfreq: "FREQUENCY", ggain: "GAIN",
+            mwater: "Water-Expulsion", mmode1: "Mode", mdust: "Dust-Shake", mmode2: "Mode",
+            spec: "Live Spectrum Analysis", vol: "Volume Calibration",
+            streak: "Day Streak", cleans: "Total Cleans",
+            trans: "Transmission", uplink: "Uplink", share: "SEND TO A FRIEND", qr: "Mobile Uplink Code",
+            coffee: "Buy Me A Coffee", tool: "Check My Other Tool →",
+            brief: "Mission Briefing", intel: "Intel",
+            whyT: "Why This Works", whyTx: "165Hz Ejection: Matches resonant frequency of mobile speakers to vibrate water out.",
+            safeT: "Safe & Secure", safeTx: "Hardware-safe process. No overdrive volume used.",
+            sys: "System Integrity", ver: "Verified",
+            t1: "Safe for all Devices", t2: "No Data Collected", t3: "No App Required",
+            t4: "Scientific Tones", t5: "Used by 10M+", t6: "Tech Recommended",
+            cookie: "System uses cookies for telemetry.", ack: "ACKNOWLEDGE"
+        },
+        ar: {
+            trust: "موثوق به في 10 ملايين جهاز", tagline: "#1 أداة إخراج المياه عالية التردد",
+            ptest: "اختبار السماعة", piso: "عزل", pops: "عمليات متقدمة", pdeep: "تنظيف عميق",
+            left: "يسار", right: "يمين", bass: "بيس", treble: "تريبل",
+            pro: "وضع المحترفين", turbo: "وضع التيربو", auto: "دورة تلقائية", boost: "تعزيز",
+            pdust: "سلامة الغبار", pmeter: "مقياس", contam: "مستوى التلوث", check: "فحص المستوى",
+            gcpu: "أداء المعالج", gfreq: "التردد", ggain: "الكسب",
+            mwater: "طرد المياه", mmode1: "وضع", mdust: "رج الغبار", mmode2: "وضع",
+            spec: "تحليل الطيف المباشر", vol: "معايرة الصوت",
+            streak: "أيام متتالية", cleans: "إجمالي التنظيف",
+            trans: "الإرسال", uplink: "رابط", share: "أرسل لصديق", qr: "رابط الموبايل",
+            coffee: "اشتر لي قهوة", tool: "تفقد أداتي الأخرى →",
+            brief: "ملخص المهمة", intel: "معلومات",
+            whyT: "لماذا يعمل هذا", whyTx: "165 هرتز: يطابق التردد الرنيني للسماعات لطرد الماء.",
+            safeT: "آمن ومحمي", safeTx: "عملية آمنة للأجهزة. لا نستخدم صوت زائد.",
+            sys: "سلامة النظام", ver: "تم التحقق",
+            t1: "آمن لجميع الأجهزة", t2: "لا يتم جمع بيانات", t3: "لا يحتاج تطبيق",
+            t4: "نغمات علمية", t5: "يستخدمه 10 ملايين+", t6: "ينصح به التقنيون",
+            cookie: "النظام يستخدم ملفات تعريف الارتباط.", ack: "موافق"
+        },
+        ru: {
+            trust: "ДОВЕРЯЮТ 10М+ УСТРОЙСТВ", tagline: "Инструмент №1 для удаления воды",
+            ptest: "Тест Динамика", piso: "Изоляция", pops: "Спец. Опции", pdeep: "Глубокая Чистка",
+            left: "ЛЕВЫЙ", right: "ПРАВЫЙ", bass: "БАС", treble: "ВЧ",
+            pro: "PRO РЕЖИМ", turbo: "ТУРБО", auto: "АВТО ЦИКЛ", boost: "БУСТ",
+            pdust: "Уровень Пыли", pmeter: "Метр", contam: "Уровень Загрязнения", check: "ПРОВЕРИТЬ",
+            gcpu: "CPU", gfreq: "ЧАСТОТА", ggain: "УСИЛЕНИЕ",
+            mwater: "Удаление Воды", mmode1: "Режим", mdust: "Тряска Пыли", mmode2: "Режим",
+            spec: "Спектральный Анализ", vol: "Калибровка Громкости",
+            streak: "Серия Дней", cleans: "Всего Чисток",
+            trans: "Передача", uplink: "Связь", share: "ОТПРАВИТЬ ДРУГУ", qr: "Код для Мобильного",
+            coffee: "Купить мне кофе", tool: "Мой другой инструмент →",
+            brief: "Брифинг", intel: "Инфо",
+            whyT: "Как это работает", whyTx: "165Гц: Резонирует с камерой динамика, выталкивая воду.",
+            safeT: "Безопасно", safeTx: "Безопасно для железа. Без перегрузок.",
+            sys: "Целостность", ver: "Подтверждено",
+            t1: "Безопасно для всех", t2: "Без сбора данных", t3: "Без приложений",
+            t4: "Научные тона", t5: "10М+ Польз.", t6: "Рекомендовано",
+            cookie: "Система использует cookies.", ack: "ПРИНЯТЬ"
+        },
+        es: {
+            trust: "USADO EN 10M+ DISPOSITIVOS", tagline: "El eyector de agua #1 de alta frecuencia",
+            ptest: "Prueba de Altavoz", piso: "Aislamiento", pops: "Ops Avanzadas", pdeep: "Limpieza Profunda",
+            left: "IZQ", right: "DER", bass: "BAJOS", treble: "AGUDOS",
+            pro: "MODO PRO", turbo: "MODO TURBO", auto: "CICLO AUTO", boost: "BOOST",
+            pdust: "Integridad Polvo", pmeter: "Medidor", contam: "Nivel Contaminación", check: "VERIFICAR",
+            gcpu: "CARGA CPU", gfreq: "FRECUENCIA", ggain: "GANANCIA",
+            mwater: "Expulsión Agua", mmode1: "Modo", mdust: "Sacudir Polvo", mmode2: "Modo",
+            spec: "Análisis Espectral", vol: "Calibración Volumen",
+            streak: "Racha Días", cleans: "Limpiezas Totales",
+            trans: "Transmisión", uplink: "Enlace", share: "ENVIAR A UN AMIGO", qr: "Código Móvil",
+            coffee: "Cómprame un café", tool: "Ver mi otra herramienta →",
+            brief: "Informe Misión", intel: "Intel",
+            whyT: "Por qué funciona", whyTx: "165Hz: Iguala la resonancia del altavoz para expulsar agua.",
+            safeT: "Seguro y Protegido", safeTx: "Proceso seguro. No usamos volumen excesivo.",
+            sys: "Integridad Sistema", ver: "Verificado",
+            t1: "Seguro para todos", t2: "Sin recolección de datos", t3: "Sin App",
+            t4: "Tonos Científicos", t5: "Usado por 10M+", t6: "Recomendado",
+            cookie: "El sistema usa cookies.", ack: "ACEPTAR"
+        },
+        fr: {
+            trust: "APPROUVÉ PAR 10M+ D'APPAREILS", tagline: "L'éjecteur d'eau haute fréquence n°1",
+            ptest: "Test Haut-parleur", piso: "Isolation", pops: "Ops Avancées", pdeep: "Nettoyage Profond",
+            left: "GAUCHE", right: "DROITE", bass: "BASSES", treble: "AIGUS",
+            pro: "MODE PRO", turbo: "MODE TURBO", auto: "CYCLE AUTO", boost: "BOOST",
+            pdust: "Intégrité Poussière", pmeter: "Compteur", contam: "Niveau Contamination", check: "VÉRIFIER",
+            gcpu: "CHARGE CPU", gfreq: "FRÉQUENCE", ggain: "GAIN",
+            mwater: "Expulsion Eau", mmode1: "Mode", mdust: "Secouer Poussière", mmode2: "Mode",
+            spec: "Analyse Spectrale", vol: "Calibrage Volume",
+            streak: "Série Jours", cleans: "Nettoyages Totaux",
+            trans: "Transmission", uplink: "Liaison", share: "ENVOYER À UN AMI", qr: "Code Mobile",
+            coffee: "M'offrir un café", tool: "Voir mon autre outil →",
+            brief: "Briefing Mission", intel: "Info",
+            whyT: "Pourquoi ça marche", whyTx: "165Hz : Correspond à la résonance pour expulser l'eau.",
+            safeT: "Sûr et Sécurisé", safeTx: "Processus sûr. Pas de surcharge de volume.",
+            sys: "Intégrité Système", ver: "Vérifié",
+            t1: "Sûr pour tout appareil", t2: "Aucune donnée collectée", t3: "Pas d'app requise",
+            t4: "Tons Scientifiques", t5: "Utilisé par 10M+", t6: "Recommandé par techniciens",
+            cookie: "Le système utilise des cookies.", ack: "ACCEPTER"
+        },
+        cn: {
+            trust: "超过1000万设备信赖", tagline: "排名第一的高频排水工具",
+            ptest: "扬声器测试", piso: "隔离", pops: "高级操作", pdeep: "深度清洁",
+            left: "左声道", right: "右声道", bass: "低音", treble: "高音",
+            pro: "专业模式", turbo: "极速模式", auto: "自动循环", boost: "增强",
+            pdust: "灰尘检测", pmeter: "仪表", contam: "污染程度", check: "检查水平",
+            gcpu: "CPU负载", gfreq: "频率", ggain: "增益",
+            mwater: "排水模式", mmode1: "模式", mdust: "除尘震动", mmode2: "模式",
+            spec: "实时频谱分析", vol: "音量校准",
+            streak: "连续天数", cleans: "清洁总数",
+            trans: "传输", uplink: "上行链路", share: "发送给朋友", qr: "移动端代码",
+            coffee: "请我喝咖啡", tool: "查看我的其他工具 →",
+            brief: "任务简报", intel: "情报",
+            whyT: "工作原理", whyTx: "165Hz：匹配扬声器共振频率以排出水分。",
+            safeT: "安全保障", safeTx: "硬件安全。不使用过载音量。",
+            sys: "系统完整性", ver: "已验证",
+            t1: "适用于所有设备", t2: "不收集数据", t3: "无需App",
+            t4: "科学音调", t5: "1000万+用户", t6: "技术人员推荐",
+            cookie: "系统使用Cookies进行遥测。", ack: "确认"
+        }
+    };
+
+    function changeLang(lang) {
+        // Save pref
+        localStorage.setItem('lang', lang);
+        
+        // RTL Logic for Arabic
+        if (lang === 'ar') {
+            document.body.style.direction = "rtl";
+            document.querySelector('.lang-box').style.left = "0";
+            document.querySelector('.lang-box').style.right = "auto";
+        } else {
+            document.body.style.direction = "ltr";
+            document.querySelector('.lang-box').style.right = "0";
+            document.querySelector('.lang-box').style.left = "auto";
+        }
+
+        const t = translations[lang];
+        if(!t) return;
+
+        // Apply Translations
+        document.getElementById('lbl-trust').innerText = t.trust;
+        document.getElementById('lbl-tagline').innerText = t.tagline;
+        document.getElementById('lbl-panel-test').innerText = t.ptest;
+        document.getElementById('lbl-panel-iso').innerText = t.piso;
+        document.getElementById('btn-left').innerText = t.left;
+        document.getElementById('btn-right').innerText = t.right;
+        document.getElementById('btn-bass').innerText = t.bass;
+        document.getElementById('btn-treble').innerText = t.treble;
+        
+        document.getElementById('lbl-panel-ops').innerText = t.pops;
+        document.getElementById('lbl-panel-deep').innerText = t.pdeep;
+        document.getElementById('lbl-pro').innerText = t.pro;
+        document.getElementById('lbl-auto').innerText = t.auto;
+        document.getElementById('lbl-turbo').innerText = t.turbo;
+        document.getElementById('lbl-boost').innerText = t.boost;
+        
+        document.getElementById('lbl-panel-dust').innerText = t.pdust;
+        document.getElementById('lbl-panel-meter').innerText = t.pmeter;
+        document.getElementById('lbl-contam').innerText = t.contam;
+        document.getElementById('btn-check').innerText = t.check;
+        
+        document.getElementById('lbl-gauge-cpu').innerText = t.gcpu;
+        document.getElementById('lbl-gauge-freq').innerText = t.gfreq;
+        document.getElementById('lbl-gauge-gain').innerText = t.ggain;
+        
+        document.getElementById('lbl-mode-water').innerText = t.mwater;
+        document.getElementById('lbl-mode-mode1').innerText = t.mmode1;
+        document.getElementById('lbl-mode-dust').innerText = t.mdust;
+        document.getElementById('lbl-mode-mode2').innerText = t.mmode2;
+        
+        document.getElementById('lbl-spec').innerText = t.spec;
+        document.getElementById('lbl-vol').innerText = t.vol;
+        document.getElementById('lbl-streak').innerText = t.streak;
+        document.getElementById('lbl-cleans').innerText = t.cleans;
+        
+        document.getElementById('lbl-trans').innerText = t.trans;
+        document.getElementById('lbl-uplink').innerText = t.uplink;
+        document.getElementById('lbl-btn-share').innerText = t.share;
+        document.getElementById('lbl-qr').innerText = t.qr;
+        document.getElementById('lbl-coffee').innerText = t.coffee;
+        document.getElementById('lbl-tool').innerText = t.tool;
+        
+        document.getElementById('lbl-brief').innerText = t.brief;
+        document.getElementById('lbl-intel').innerText = t.intel;
+        document.getElementById('lbl-why-title').innerText = t.whyT;
+        document.getElementById('lbl-why-text').innerHTML = `<strong>${t.whyT}:</strong> ${t.whyTx}`;
+        document.getElementById('lbl-safe-title').innerText = t.safeT;
+        document.getElementById('lbl-safe-text').innerText = t.safeTx;
+        
+        document.getElementById('lbl-sys').innerText = t.sys;
+        document.getElementById('lbl-ver').innerText = t.ver;
+        document.getElementById('t1').innerText = t.t1;
+        document.getElementById('t2').innerText = t.t2;
+        document.getElementById('t3').innerText = t.t3;
+        document.getElementById('t4').innerText = t.t4;
+        document.getElementById('t5').innerText = t.t5;
+        document.getElementById('t6').innerText = t.t6;
+        
+        document.getElementById('lbl-cookie').innerText = t.cookie;
+        document.getElementById('btn-cookie').innerText = t.ack;
+    }
+
+    // INIT LANG
+    const savedLang = localStorage.getItem('lang') || 'en';
+    document.querySelector('.lang-select').value = savedLang;
+    changeLang(savedLang);
+
     // --- SHARE FUNCTION ---
     function shareSite() {
         const shareData = {
@@ -779,7 +998,12 @@
     }
 
     // Init on Load
-    window.onload = resetGauges;
+    window.onload = function() {
+        resetGauges();
+        // Trigger default lang
+        const savedLang = localStorage.getItem('lang') || 'en';
+        changeLang(savedLang);
+    };
 
     // --- MODES ---
     async function setMode(type, id) {
