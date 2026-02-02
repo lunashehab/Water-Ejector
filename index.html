@@ -108,22 +108,8 @@
         }
         .typing-status { font-family: monospace; font-size: 12px; color: var(--accent); min-height: 16px; text-shadow: 0 0 5px var(--accent-glow); }
 
-        /* --- NEW: STOP BUTTON STYLE --- */
-        .btn-stop-master {
-            width: 100%; background: transparent; border: 2px solid var(--accent); color: var(--accent);
-            padding: 12px; border-radius: 8px; font-weight: 900; text-transform: uppercase;
-            cursor: pointer; display: none; margin-bottom: 10px; transition: 0.2s; letter-spacing: 2px;
-            box-shadow: 0 0 10px rgba(255,0,60,0.2);
-        }
-        .btn-stop-master.active { display: block; animation: pulse-stop 1.5s infinite; }
-        @keyframes pulse-stop {
-            0% { box-shadow: 0 0 0 0 rgba(255,0,60,0.4); }
-            70% { box-shadow: 0 0 0 10px rgba(255,0,60,0); }
-            100% { box-shadow: 0 0 0 0 rgba(255,0,60,0); }
-        }
-
         /* --- GAUGE ENGINE --- */
-        .dashboard-row { display: flex; justify-content: space-between; align-items: flex-end; gap: 10px; margin: 25px 0; }
+        .dashboard-row { display: flex; justify-content: space-between; align-items: flex-end; gap: 10px; margin: 25px 0 15px 0; }
         .gauge-box { position: relative; width: 32%; text-align: center; }
         .gauge-ring {
             width: 100%; padding-bottom: 100%;
@@ -171,6 +157,21 @@
             text-shadow: 0 0 5px var(--accent-glow);
         }
 
+        /* --- NEW: STOP BUTTON (UNDER GAUGES) --- */
+        .btn-stop-master {
+            width: 100%; background: transparent; border: 2px solid var(--accent); color: var(--accent);
+            padding: 15px; border-radius: 8px; font-weight: 900; text-transform: uppercase;
+            cursor: pointer; margin-bottom: 20px; transition: 0.2s; letter-spacing: 3px; font-size: 12px;
+            box-shadow: 0 0 10px rgba(255,0,60,0.1);
+        }
+        .btn-stop-master:hover { background: rgba(255,0,60,0.1); }
+        .btn-stop-master.active-glow { animation: pulse-stop 1.5s infinite; background: rgba(255,0,60,0.05); }
+        @keyframes pulse-stop {
+            0% { box-shadow: 0 0 0 0 rgba(255,0,60,0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(255,0,60,0); }
+            100% { box-shadow: 0 0 0 0 rgba(255,0,60,0); }
+        }
+
         /* --- CONTROL PANEL --- */
         .panel {
             background: rgba(10, 10, 10, 0.85); border: 1px solid var(--border);
@@ -184,7 +185,7 @@
         }
         .panel-title span:last-child { color: var(--accent); }
 
-        /* --- NEW: SYSTEM LOG STYLE --- */
+        /* --- NEW: SYSTEM LOG TERMINAL --- */
         #system-log {
             font-family: monospace; font-size: 9px; color: var(--neon-green);
             background: #000; border: 1px solid #222; padding: 8px; height: 45px;
@@ -377,7 +378,40 @@
         <div class="typing-status" id="type-text">System Online.</div>
     </header>
 
-    <button id="master-stop" class="btn-stop-master" onclick="stop()">ABORT MISSION / STOP</button>
+    <div class="dashboard-row">
+        <div class="gauge-box">
+            <div class="gauge-ring" id="ring-load">
+                <div class="ticks-overlay"></div>
+                <div class="gauge-numbers"><span class="n-0">0</span><span class="n-50">50</span><span class="n-100">100</span></div>
+                <div class="gauge-center"></div>
+                <div class="needle" id="needle-load"></div>
+                <div class="gauge-val" id="val-load">0%</div>
+            </div>
+            <div class="gauge-label" id="lbl-gauge-cpu">CPU LOAD</div>
+        </div>
+        <div class="gauge-box" style="width: 40%;">
+            <div class="gauge-ring active" id="ring-hz">
+                <div class="ticks-overlay"></div>
+                <div class="gauge-numbers" style="color: #888;"><span class="n-0">0</span><span class="n-50">10k</span><span class="n-100">20k</span></div>
+                <div class="gauge-center"></div>
+                <div class="needle" id="needle-hz" style="height: 48%; background: #fff; box-shadow: 0 0 10px #fff;"></div>
+                <div class="gauge-val" id="val-hz" style="color: #fff; text-shadow:none;">0 Hz</div>
+            </div>
+            <div class="gauge-label" style="color: var(--accent);" id="lbl-gauge-freq">FREQUENCY</div>
+        </div>
+        <div class="gauge-box">
+            <div class="gauge-ring" id="ring-db">
+                <div class="ticks-overlay"></div>
+                <div class="gauge-numbers"><span class="n-0">0</span><span class="n-50">5</span><span class="n-100">10</span></div>
+                <div class="gauge-center"></div>
+                <div class="needle" id="needle-db"></div>
+                <div class="gauge-val" id="val-db">0</div>
+            </div>
+            <div class="gauge-label" id="lbl-gauge-gain">GAIN</div>
+        </div>
+    </div>
+
+    <button id="master-stop" class="btn-stop-master" onclick="stop()">STOP</button>
 
     <div class="panel">
         <div class="panel-title"><span id="lbl-panel-test">Speaker Test</span> <span id="lbl-panel-iso">Isolation</span></div>
@@ -413,39 +447,6 @@
             <div class="scan-label"><span id="lbl-contam">Contamination Level</span> <span id="dust-val">0%</span></div>
             <div class="scan-bar-bg"><div class="scan-bar-fill" id="dust-bar" style="background: #ffaa00; box-shadow: 0 0 10px #ffaa00;"></div></div>
             <button class="btn-diag" id="btn-check" style="width:100%; margin-top:10px; border-color:#ffaa00; color:#ffaa00;" onclick="runScanner('dust')">CHECK LEVEL</button>
-        </div>
-    </div>
-
-    <div class="dashboard-row">
-        <div class="gauge-box">
-            <div class="gauge-ring" id="ring-load">
-                <div class="ticks-overlay"></div>
-                <div class="gauge-numbers"><span class="n-0">0</span><span class="n-50">50</span><span class="n-100">100</span></div>
-                <div class="gauge-center"></div>
-                <div class="needle" id="needle-load"></div>
-                <div class="gauge-val" id="val-load">0%</div>
-            </div>
-            <div class="gauge-label" id="lbl-gauge-cpu">CPU LOAD</div>
-        </div>
-        <div class="gauge-box" style="width: 40%;">
-            <div class="gauge-ring active" id="ring-hz">
-                <div class="ticks-overlay"></div>
-                <div class="gauge-numbers" style="color: #888;"><span class="n-0">0</span><span class="n-50">10k</span><span class="n-100">20k</span></div>
-                <div class="gauge-center"></div>
-                <div class="needle" id="needle-hz" style="height: 48%; background: #fff; box-shadow: 0 0 10px #fff;"></div>
-                <div class="gauge-val" id="val-hz" style="color: #fff; text-shadow:none;">0 Hz</div>
-            </div>
-            <div class="gauge-label" style="color: var(--accent);" id="lbl-gauge-freq">FREQUENCY</div>
-        </div>
-        <div class="gauge-box">
-            <div class="gauge-ring" id="ring-db">
-                <div class="ticks-overlay"></div>
-                <div class="gauge-numbers"><span class="n-0">0</span><span class="n-50">5</span><span class="n-100">10</span></div>
-                <div class="gauge-center"></div>
-                <div class="needle" id="needle-db"></div>
-                <div class="gauge-val" id="val-db">0</div>
-            </div>
-            <div class="gauge-label" id="lbl-gauge-gain">GAIN</div>
         </div>
     </div>
 
@@ -649,7 +650,7 @@
             sys: "Intégrité Système", ver: "Vérifié",
             t1: "Sûr pour tout appareil", t2: "Aucune donnée collectée", t3: "Pas d'app requise",
             t4: "Tons Scientifiques", t5: "Utilisé par 10M+", t6: "Recommandé par techniciens",
-            cookie: "Le système utilise des cookies.", ack: "ACCEPTER"
+            cookie: "Le sistema utilise des cookies.", ack: "ACCEPTER"
         },
         cn: {
             trust: "超过1000万设备信赖", tagline: "排名第一的高频排水工具",
@@ -674,10 +675,7 @@
     };
 
     function changeLang(lang) {
-        // Save pref
         localStorage.setItem('lang', lang);
-        
-        // RTL Logic for Arabic
         if (lang === 'ar') {
             document.body.style.direction = "rtl";
             document.querySelector('.lang-box').style.left = "0";
@@ -687,11 +685,8 @@
             document.querySelector('.lang-box').style.right = "0";
             document.querySelector('.lang-box').style.left = "auto";
         }
-
         const t = translations[lang];
         if(!t) return;
-
-        // Apply Translations
         document.getElementById('lbl-trust').innerText = t.trust;
         document.getElementById('lbl-tagline').innerText = t.tagline;
         document.getElementById('lbl-panel-test').innerText = t.ptest;
@@ -700,47 +695,39 @@
         document.getElementById('btn-right').innerText = t.right;
         document.getElementById('btn-bass').innerText = t.bass;
         document.getElementById('btn-treble').innerText = t.treble;
-        
         document.getElementById('lbl-panel-ops').innerText = t.pops;
         document.getElementById('lbl-panel-deep').innerText = t.pdeep;
         document.getElementById('lbl-pro').innerText = t.pro;
         document.getElementById('lbl-auto').innerText = t.auto;
         document.getElementById('lbl-turbo').innerText = t.turbo;
         document.getElementById('lbl-boost').innerText = t.boost;
-        
         document.getElementById('lbl-panel-dust').innerText = t.pdust;
         document.getElementById('lbl-panel-meter').innerText = t.pmeter;
         document.getElementById('lbl-contam').innerText = t.contam;
         document.getElementById('btn-check').innerText = t.check;
-        
         document.getElementById('lbl-gauge-cpu').innerText = t.gcpu;
         document.getElementById('lbl-gauge-freq').innerText = t.gfreq;
         document.getElementById('lbl-gauge-gain').innerText = t.ggain;
-        
         document.getElementById('lbl-mode-water').innerText = t.mwater;
         document.getElementById('lbl-mode-mode1').innerText = t.mmode1;
         document.getElementById('lbl-mode-dust').innerText = t.mdust;
         document.getElementById('lbl-mode-mode2').innerText = t.mmode2;
-        
         document.getElementById('lbl-spec').innerText = t.spec;
         document.getElementById('lbl-vol').innerText = t.vol;
         document.getElementById('lbl-streak').innerText = t.streak;
         document.getElementById('lbl-cleans').innerText = t.cleans;
-        
         document.getElementById('lbl-trans').innerText = t.trans;
         document.getElementById('lbl-uplink').innerText = t.uplink;
         document.getElementById('lbl-btn-share').innerText = t.share;
         document.getElementById('lbl-qr').innerText = t.qr;
         document.getElementById('lbl-coffee').innerText = t.coffee;
         document.getElementById('lbl-tool').innerText = t.tool;
-        
         document.getElementById('lbl-brief').innerText = t.brief;
         document.getElementById('lbl-intel').innerText = t.intel;
         document.getElementById('lbl-why-title').innerText = t.whyT;
         document.getElementById('lbl-why-text').innerHTML = `<strong>${t.whyT}:</strong> ${t.whyTx}`;
         document.getElementById('lbl-safe-title').innerText = t.safeT;
         document.getElementById('lbl-safe-text').innerText = t.safeTx;
-        
         document.getElementById('lbl-sys').innerText = t.sys;
         document.getElementById('lbl-ver').innerText = t.ver;
         document.getElementById('t1').innerText = t.t1;
@@ -749,52 +736,29 @@
         document.getElementById('t4').innerText = t.t4;
         document.getElementById('t5').innerText = t.t5;
         document.getElementById('t6').innerText = t.t6;
-        
         document.getElementById('lbl-cookie').innerText = t.cookie;
         document.getElementById('btn-cookie').innerText = t.ack;
     }
 
-    // INIT LANG
     const savedLang = localStorage.getItem('lang') || 'en';
     document.querySelector('.lang-select').value = savedLang;
     changeLang(savedLang);
 
-    // --- SHARE FUNCTION ---
     function shareSite() {
-        const shareData = {
-            title: 'Fix My Speaker',
-            text: 'Fix your speaker in 30 seconds.',
-            url: 'https://waterinmyspeaker.com'
-        };
-
-        if (navigator.share) {
-            navigator.share(shareData).catch(console.error);
-        } else {
-            // Fallback for Desktop
-            navigator.clipboard.writeText("Fix your speaker in 30 seconds: https://waterinmyspeaker.com");
-            const toast = document.getElementById('copy-toast');
-            toast.classList.add('show');
-            setTimeout(() => toast.classList.remove('show'), 2000);
-        }
+        const shareData = { title: 'Fix My Speaker', text: 'Fix your speaker in 30 seconds.', url: 'https://waterinmyspeaker.com' };
+        if (navigator.share) { navigator.share(shareData).catch(console.error); } 
+        else { navigator.clipboard.writeText("Fix your speaker: https://waterinmyspeaker.com"); const toast = document.getElementById('copy-toast'); toast.classList.add('show'); setTimeout(() => toast.classList.remove('show'), 2000); }
     }
 
-    // --- NEW: LOG FUNCTION ---
     function postLog(msg) {
         const log = document.getElementById('system-log');
         log.innerHTML = `> ${msg}<br>` + log.innerHTML.split('<br>').slice(0, 2).join('<br>');
     }
 
-    // --- INIT ---
     const vizContainer = document.getElementById('viz-container');
     const bars = [];
-    for(let i=0; i<20; i++) {
-        const bar = document.createElement('div');
-        bar.className = 'viz-bar';
-        vizContainer.appendChild(bar);
-        bars.push(bar);
-    }
+    for(let i=0; i<20; i++) { const bar = document.createElement('div'); bar.className = 'viz-bar'; vizContainer.appendChild(bar); bars.push(bar); }
 
-    // --- COOKIE & STATS ---
     if (!localStorage.getItem('cookiesAccepted')) document.getElementById('cookie-banner').style.display = 'block';
     function acceptCookies() { localStorage.setItem('cookiesAccepted', 'true'); document.getElementById('cookie-banner').style.display = 'none'; }
 
@@ -802,273 +766,109 @@
     let cleans = parseInt(localStorage.getItem('totalCleans') || 0);
     const lastVisit = localStorage.getItem('lastVisit');
     const today = new Date().toDateString();
-
-    if (lastVisit !== today) {
-        if (lastVisit) streak++;
-        localStorage.setItem('cleanStreak', streak);
-        localStorage.setItem('lastVisit', today);
-    }
+    if (lastVisit !== today) { if (lastVisit) streak++; localStorage.setItem('cleanStreak', streak); localStorage.setItem('lastVisit', today); }
     document.getElementById('streak-val').innerText = streak;
     document.getElementById('history-val').innerText = cleans;
 
-    function incrementClean() {
-        cleans++;
-        localStorage.setItem('totalCleans', cleans);
-        document.getElementById('history-val').innerText = cleans;
-    }
+    function incrementClean() { cleans++; localStorage.setItem('totalCleans', cleans); document.getElementById('history-val').innerText = cleans; }
 
-    // --- TYPING HEADER ---
     const typeText = document.getElementById('type-text');
     const phrases = ["System Ready.", "Select Sequence.", "Hardware Detected."];
     let pIdx = 0;
-    function typeWriter(text, i, cb) {
-        if (i < text.length) {
-            typeText.innerHTML = text.substring(0, i+1);
-            setTimeout(() => typeWriter(text, i+1, cb), 40);
-        } else setTimeout(cb, 2000);
-    }
-    function loopType() {
-        typeWriter(phrases[pIdx], 0, () => {
-            pIdx = (pIdx + 1) % phrases.length;
-            loopType();
-        });
-    }
+    function typeWriter(text, i, cb) { if (i < text.length) { typeText.innerHTML = text.substring(0, i+1); setTimeout(() => typeWriter(text, i+1, cb), 40); } else setTimeout(cb, 2000); }
+    function loopType() { typeWriter(phrases[pIdx], 0, () => { pIdx = (pIdx + 1) % phrases.length; loopType(); }); }
     loopType();
 
-    // --- AUDIO ENGINE ---
     let ctx, osc, gainNode, interval;
     let isPlaying = false;
     let currentVol = 1;
     let isBoost = false;
 
-    async function initAudio() {
-        if (!ctx) ctx = new (window.AudioContext || window.webkitAudioContext)();
-        if (ctx.state === 'suspended') await ctx.resume();
-    }
+    async function initAudio() { if (!ctx) ctx = new (window.AudioContext || window.webkitAudioContext)(); if (ctx.state === 'suspended') await ctx.resume(); }
 
-    function updateVolume(val) {
-        currentVol = val;
-        if(gainNode) gainNode.gain.setTargetAtTime(val, ctx.currentTime, 0.1);
-        updateGauges(0, val, true);
-    }
+    function updateVolume(val) { currentVol = val; if(gainNode) gainNode.gain.setTargetAtTime(val, ctx.currentTime, 0.1); updateGauges(0, val, true); }
 
     function toggleBoost() {
         isBoost = !isBoost;
         const btn = document.getElementById('btn-boost');
-        if (isBoost) {
-            btn.classList.add('active');
-            updateVolume(1); // Force Max
-            document.getElementById('vol-slider').value = 1;
-            postLog("TURBO MODE: OVERDRIVE ENABLED");
-        } else {
-            btn.classList.remove('active');
-            postLog("TURBO MODE: DISENGAGED");
-        }
+        if (isBoost) { btn.classList.add('active'); updateVolume(1); document.getElementById('vol-slider').value = 1; postLog("TURBO MODE: ENABLED"); } 
+        else { btn.classList.remove('active'); postLog("TURBO MODE: DISENGAGED"); }
     }
 
-    // --- NEW: UPDATED STOP FUNCTION ---
     function stop() {
         if (osc) { try{osc.stop(); osc.disconnect();}catch(e){} osc = null; }
         if (interval) clearInterval(interval);
         isPlaying = false;
-        
-        // UI Reset
-        document.getElementById('master-stop').classList.remove('active');
-        document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
-        document.querySelectorAll('.btn-diag').forEach(b => b.classList.remove('active'));
-        document.getElementById('btn-deep').classList.remove('active');
-        
-        document.getElementById('ring-load').classList.remove('active');
-        document.getElementById('ring-db').classList.remove('active');
-        document.getElementById('ring-hz').classList.remove('active');
-        
+        document.getElementById('master-stop').classList.remove('active-glow');
+        document.querySelectorAll('.mode-btn, .btn-diag, .btn-ops').forEach(b => b.classList.remove('active'));
         document.getElementById('prog-cont').classList.remove('active');
         document.getElementById('prog-fill').style.width = "0%";
-        
         resetGauges();
         bars.forEach(b => b.style.height = '2px');
-        postLog("SEQUENCE TERMINATED. SYSTEM IDLE.");
+        postLog("SEQUENCE STOPPED.");
     }
 
     function playTone(freq, type='sine', pan=0) {
-        osc = ctx.createOscillator();
-        gainNode = ctx.createGain();
-        const panner = ctx.createStereoPanner ? ctx.createStereoPanner() : null;
-
-        osc.type = isBoost ? 'square' : type; 
-        osc.frequency.value = freq;
-        
+        osc = ctx.createOscillator(); gainNode = ctx.createGain(); const panner = ctx.createStereoPanner ? ctx.createStereoPanner() : null;
+        osc.type = isBoost ? 'square' : type; osc.frequency.value = freq;
         osc.connect(gainNode);
-        if (panner) {
-            panner.pan.value = pan;
-            gainNode.connect(panner);
-            panner.connect(ctx.destination);
-        } else {
-            gainNode.connect(ctx.destination);
-        }
-
-        gainNode.gain.setValueAtTime(0.01, ctx.currentTime);
-        gainNode.gain.exponentialRampToValueAtTime(currentVol, ctx.currentTime + 0.1);
+        if (panner) { panner.pan.value = pan; gainNode.connect(panner); panner.connect(ctx.destination); } 
+        else { gainNode.connect(ctx.destination); }
+        gainNode.gain.setValueAtTime(0.01, ctx.currentTime); gainNode.gain.exponentialRampToValueAtTime(currentVol, ctx.currentTime + 0.1);
         osc.start();
-        
-        // Show Stop Button
-        document.getElementById('master-stop').classList.add('active');
-        
-        // NEW: HAPTIC TRIGGER (S24 Ultra)
-        if ("vibrate" in navigator) {
-            navigator.vibrate([100, 50, 100]); 
-        }
-
-        document.getElementById('ring-load').classList.add('active');
-        document.getElementById('ring-db').classList.add('active');
-        document.getElementById('ring-hz').classList.add('active');
-        
-        postLog(`ACTIVE: ${freq}Hz (${type.toUpperCase()})`);
-        visualizerLoop(freq);
+        isPlaying = true;
+        document.getElementById('master-stop').classList.add('active-glow');
+        if ("vibrate" in navigator) { navigator.vibrate([100, 50, 100]); }
+        document.getElementById('ring-load').classList.add('active'); document.getElementById('ring-db').classList.add('active'); document.getElementById('ring-hz').classList.add('active');
+        postLog(`ACTIVE: ${freq}Hz`); visualizerLoop(freq);
     }
 
-    // --- DEEP CLEAN (AUTO) ---
     async function runDeepClean() {
-        await initAudio();
-        stop();
-        isPlaying = true;
-        incrementClean();
-        document.getElementById('btn-deep').classList.add('active');
-        postLog("INITIALIZING AUTO-CYCLE...");
-        
+        await initAudio(); stop(); isPlaying = true; incrementClean(); document.getElementById('btn-deep').classList.add('active'); postLog("STARTING AUTO CYCLE...");
         const runSeq = async () => {
-             startProgress(15000); 
-             playTone(165, 'sawtooth'); 
+             startProgress(15000); playTone(165, 'sawtooth'); 
              setTimeout(() => { if(isPlaying) playTone(60, 'square'); }, 5000); 
-             setTimeout(() => { 
-                 if(isPlaying) {
-                     playTone(1000, 'sine');
-                     interval = setInterval(() => { if(osc) osc.frequency.setValueAtTime(1000 + Math.random()*5000, ctx.currentTime); }, 100);
-                 }
-             }, 10000);
+             setTimeout(() => { if(isPlaying) { playTone(1000, 'sine'); interval = setInterval(() => { if(osc) osc.frequency.setValueAtTime(1000 + Math.random()*5000, ctx.currentTime); }, 100); } }, 10000);
              setTimeout(() => { stop(); }, 15000); 
         };
         runSeq();
     }
 
-    function startProgress(duration) {
-        const bar = document.getElementById('prog-fill');
-        const cont = document.getElementById('prog-cont');
-        cont.classList.add('active');
-        bar.style.transition = `width ${duration}ms linear`;
-        setTimeout(() => bar.style.width = "100%", 10);
-    }
+    function startProgress(duration) { const bar = document.getElementById('prog-fill'); const cont = document.getElementById('prog-cont'); cont.classList.add('active'); bar.style.transition = `width ${duration}ms linear`; setTimeout(() => bar.style.width = "100%", 10); }
 
-    // --- DIAGNOSTICS ---
     async function runDiagnostic(type) {
-        await initAudio();
-        stop();
-        isPlaying = true;
-        
+        await initAudio(); stop(); isPlaying = true;
         const btns = document.querySelectorAll('.btn-diag');
-        if(type==='left') btns[0].classList.add('active');
-        if(type==='right') btns[1].classList.add('active');
-        if(type==='bass') btns[2].classList.add('active');
-        if(type==='treble') btns[3].classList.add('active');
-
-        if (type === 'left') playTone(440, 'sine', -1);
-        if (type === 'right') playTone(440, 'sine', 1);
-        if (type === 'bass') playTone(60, 'sine');
-        if (type === 'treble') playTone(12000, 'sine');
+        if(type==='left') btns[0].classList.add('active'); if(type==='right') btns[1].classList.add('active'); if(type==='bass') btns[2].classList.add('active'); if(type==='treble') btns[3].classList.add('active');
+        if (type === 'left') playTone(440, 'sine', -1); if (type === 'right') playTone(440, 'sine', 1); if (type === 'bass') playTone(60, 'sine'); if (type === 'treble') playTone(12000, 'sine');
     }
 
-    // --- SCANNERS ---
     function runScanner(type) {
-        const box = document.getElementById(type + '-box');
-        const bar = document.getElementById(type + '-bar');
-        const val = document.getElementById(type + '-val');
-        
-        box.classList.add('scanning');
-        val.innerText = "Scanning...";
-        bar.style.width = "0%";
-        postLog("SCANNING FOR PARTICLES...");
-        
-        setTimeout(() => {
-            const result = Math.floor(Math.random() * 40) + 10;
-            bar.style.width = result + "%";
-            val.innerText = result + "% DETECTED";
-            box.classList.remove('scanning');
-            postLog(`SCAN COMPLETE: ${result}% CONTAM.`);
-            if(type === 'dust') setTimeout(() => { val.innerText = "REC: RUN CLEANING"; }, 1000);
-        }, 2000);
+        const box = document.getElementById(type + '-box'); const bar = document.getElementById(type + '-bar'); const val = document.getElementById(type + '-val');
+        box.classList.add('scanning'); val.innerText = "Scanning..."; bar.style.width = "0%"; postLog("SCANNING...");
+        setTimeout(() => { const result = Math.floor(Math.random() * 40) + 10; bar.style.width = result + "%"; val.innerText = result + "% DETECTED"; box.classList.remove('scanning'); postLog(`RESULT: ${result}%`); }, 2000);
     }
 
-    // --- GAUGE LOGIC ---
-    function visualizerLoop(baseFreq) {
-        if (!isPlaying) return;
-        let dispFreq = baseFreq + (Math.random() * 5);
-        let load = 40 + Math.random() * 30;
-        updateGauges(dispFreq, currentVol, false, load);
-        
-        bars.forEach(b => {
-            const h = Math.random() * 20 + 2;
-            b.style.height = h + 'px';
-        });
-
-        setTimeout(() => visualizerLoop(baseFreq), 50);
-    }
+    function visualizerLoop(baseFreq) { if (!isPlaying) return; let load = 40 + Math.random() * 30; updateGauges(baseFreq + (Math.random() * 5), currentVol, false, load); bars.forEach(b => { b.style.height = (Math.random() * 20 + 2) + 'px'; }); setTimeout(() => visualizerLoop(baseFreq), 50); }
 
     function updateGauges(hz, vol, volOnly=false, load=0) {
-        const range = 240; 
-        const start = -120;
-
-        const vRot = start + (vol * range);
-        document.getElementById('needle-db').style.transform = `rotate(${vRot}deg)`;
-        document.getElementById('val-db').innerText = Math.round(vol * 10);
+        const range = 240; const start = -120;
+        const vRot = start + (vol * range); document.getElementById('needle-db').style.transform = `rotate(${vRot}deg)`; document.getElementById('val-db').innerText = Math.round(vol * 10);
         if (volOnly && !isPlaying) return;
-
-        let hRot = start + (Math.min(hz, 20000) / 20000 * range);
-        if (hz === 0) hRot = start;
-        document.getElementById('needle-hz').style.transform = `rotate(${hRot}deg)`;
-        if (hz > 0) document.getElementById('val-hz').innerText = Math.round(hz) + " Hz";
-
-        if (isPlaying) {
-            const lRot = start + (load / 100 * range);
-            document.getElementById('needle-load').style.transform = `rotate(${lRot}deg)`;
-            document.getElementById('val-load').innerText = Math.round(load) + "%";
-        }
+        let hRot = start + (Math.min(hz, 20000) / 20000 * range); document.getElementById('needle-hz').style.transform = `rotate(${hRot}deg)`; if (hz > 0) document.getElementById('val-hz').innerText = Math.round(hz) + " Hz";
+        if (isPlaying) { const lRot = start + (load / 100 * range); document.getElementById('needle-load').style.transform = `rotate(${lRot}deg)`; document.getElementById('val-load').innerText = Math.round(load) + "%"; }
     }
 
-    function resetGauges() {
-        const start = -120;
-        document.getElementById('needle-hz').style.transform = `rotate(${start}deg)`;
-        document.getElementById('val-hz').innerText = "0 Hz";
-        document.getElementById('needle-load').style.transform = `rotate(${start}deg)`;
-        document.getElementById('val-load').innerText = "0%";
-        updateGauges(0, currentVol, true);
-    }
+    function resetGauges() { const start = -120; document.getElementById('needle-hz').style.transform = `rotate(${start}deg)`; document.getElementById('val-hz').innerText = "0 Hz"; document.getElementById('needle-load').style.transform = `rotate(${start}deg)`; document.getElementById('val-load').innerText = "0%"; updateGauges(0, currentVol, true); }
 
-    window.onload = function() {
-        resetGauges();
-        const savedLang = localStorage.getItem('lang') || 'en';
-        changeLang(savedLang);
-    };
+    window.onload = function() { resetGauges(); const savedLang = localStorage.getItem('lang') || 'en'; changeLang(savedLang); };
 
-    // --- MODES ---
     async function setMode(type, id) {
-        await initAudio();
-        stop();
-        isPlaying = true;
-        incrementClean();
-        
-        const btnIndex = (type === 'water' ? 0 : 5) + (id - 1);
-        document.querySelectorAll('.mode-btn')[btnIndex].classList.add('active');
+        await initAudio(); stop(); isPlaying = true; incrementClean();
+        const btnIndex = (type === 'water' ? 0 : 5) + (id - 1); document.querySelectorAll('.mode-btn')[btnIndex].classList.add('active');
         startProgress(10000); 
-
-        if (type === 'water') {
-            const freqs = [165, 200, 285, 350, 440];
-            const waves = ['sawtooth', 'square', 'sine', 'sawtooth', 'sine'];
-            playTone(freqs[id-1], waves[id-1]);
-        } else {
-            const freqs = [60, 120, 500, 800, 1000];
-            const waves = ['square', 'sawtooth', 'square', 'sawtooth', 'sine'];
-            playTone(freqs[id-1], waves[id-1]);
-        }
+        if (type === 'water') { const freqs = [165, 200, 285, 350, 440]; const waves = ['sawtooth', 'square', 'sine', 'sawtooth', 'sine']; playTone(freqs[id-1], waves[id-1]); } 
+        else { const freqs = [60, 120, 500, 800, 1000]; const waves = ['square', 'sawtooth', 'square', 'sawtooth', 'sine']; playTone(freqs[id-1], waves[id-1]); }
     }
 </script>
 
