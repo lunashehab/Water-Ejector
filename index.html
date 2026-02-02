@@ -108,7 +108,7 @@
         }
         .typing-status { font-family: monospace; font-size: 12px; color: var(--accent); min-height: 16px; text-shadow: 0 0 5px var(--accent-glow); }
 
-        /* --- NEW: SMART DEVICE BAR STYLE --- */
+        /* --- SMART DEVICE BAR --- */
         #smart-device-bar {
             margin-top: 10px; font-size: 10px; color: var(--neon-green); 
             background: rgba(57, 255, 20, 0.1); border: 1px solid var(--neon-green); 
@@ -168,13 +168,14 @@
             text-shadow: 0 0 5px var(--accent-glow);
         }
 
-        /* --- START / STOP BUTTON (MASTER) --- */
+        /* --- START / STOP BUTTON --- */
         .btn-toggle-master {
             width: 100%; background: #050505; border: 2px solid var(--accent); color: var(--accent);
             padding: 16px; border-radius: 8px; font-weight: 900; text-transform: uppercase;
             cursor: pointer; margin-bottom: 20px; transition: 0.3s; letter-spacing: 3px; font-size: 14px;
             box-shadow: 0 0 10px rgba(255,0,60,0.1);
             display: flex; align-items: center; justify-content: center; gap: 10px;
+            -webkit-tap-highlight-color: transparent;
         }
         .btn-toggle-master:hover { background: rgba(255,0,60,0.15); box-shadow: 0 0 20px var(--accent-glow); }
         .btn-toggle-master.playing { background: var(--accent); color: #000; box-shadow: 0 0 30px var(--accent); }
@@ -223,6 +224,14 @@
         }
         .btn-diag:hover { border-color: var(--accent); color: #fff; }
         .btn-diag.active { background: var(--accent); color: #fff; }
+
+        /* REPAIR: New class for scanner button to prevent conflict */
+        .btn-scanner {
+            background: #111; border: 1px solid #333; color: #888; height: 40px;
+            border-radius: 4px; font-size: 9px; font-weight: 700; cursor: pointer;
+            transition: 0.2s; text-transform: uppercase;
+        }
+        .btn-scanner:hover { border-color: var(--accent); color: #fff; }
 
         .ops-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 25px; }
         .btn-ops {
@@ -326,7 +335,7 @@
         .btn-green { border: 1px solid var(--neon-green); color: var(--neon-green); box-shadow: 0 0 5px rgba(57, 255, 20, 0.2); }
         .btn-green:hover { background: var(--neon-green); color: #000; box-shadow: 0 0 15px var(--neon-green); }
 
-        /* --- NEW: PRIVACY STATEMENT STYLE --- */
+        /* --- PRIVACY STATEMENT STYLE --- */
         .privacy-footer-box {
             background: #080808; border: 1px solid #222; padding: 15px; border-radius: 8px;
             margin-top: 25px; text-align: left;
@@ -342,6 +351,16 @@
             border: 2px solid var(--accent); box-shadow: 0 0 15px var(--accent-dim);
         }
         .qr-wrapper img { width: 100%; display: block; }
+
+        .seo-box { text-align: left; padding: 10px; }
+        .seo-box h3 { font-size: 12px; color: #fff; text-transform: uppercase; margin-bottom: 10px; letter-spacing: 1px; }
+        .seo-box p { font-size: 10px; color: #888; margin-bottom: 10px; line-height: 1.6; }
+        .seo-box strong { color: var(--accent); }
+
+        .ad-slot {
+            width: 100%; height: 100px; background: #050505; border: 1px solid #222; border-radius: 8px; 
+            display: flex; align-items: center; justify-content: center; color: #333; font-size: 9px; margin-top: 10px;
+        }
 
         footer { margin-top: 40px; text-align: center; font-size: 10px; color: #444; padding-bottom: 20px;}
         footer a { color: #666; text-decoration: none; margin: 0 10px; transition: color 0.2s; }
@@ -433,7 +452,16 @@
     </button>
 
     <div class="panel">
+        <div class="panel-title"><span id="lbl-panel-test">Speaker Test</span> <span id="lbl-panel-iso">Isolation</span></div>
+        <div class="diag-grid">
+            <button class="btn-diag" id="btn-left" onclick="runDiagnostic('left')">LEFT</button>
+            <button class="btn-diag" id="btn-right" onclick="runDiagnostic('right')">RIGHT</button>
+            <button class="btn-diag" id="btn-bass" onclick="runDiagnostic('bass')">BASS</button>
+            <button class="btn-diag" id="btn-treble" onclick="runDiagnostic('treble')">TREBLE</button>
+        </div>
+
         <div class="panel-title"><span id="lbl-panel-ops">Mission Log</span> <span id="lbl-panel-deep">Telemetry</span></div>
+        
         <div id="system-log">> WAITING FOR COMMAND...</div>
 
         <div class="ops-grid">
@@ -456,17 +484,7 @@
             <div class="scanner-overlay"></div>
             <div class="scan-label"><span id="lbl-contam">Contamination Level</span> <span id="dust-val">0%</span></div>
             <div class="scan-bar-bg"><div class="scan-bar-fill" id="dust-bar" style="background: #ffaa00; box-shadow: 0 0 10px #ffaa00;"></div></div>
-            <button class="btn-diag" id="btn-check" style="width:100%; margin-top:10px; border-color:#ffaa00; color:#ffaa00;" onclick="runScanner('dust')">CHECK LEVEL</button>
-        </div>
-    </div>
-
-    <div class="panel">
-        <div class="panel-title"><span id="lbl-panel-test">Speaker Test</span> <span id="lbl-panel-iso">Isolation</span></div>
-        <div class="diag-grid">
-            <button class="btn-diag" id="btn-left" onclick="runDiagnostic('left')">LEFT</button>
-            <button class="btn-diag" id="btn-right" onclick="runDiagnostic('right')">RIGHT</button>
-            <button class="btn-diag" id="btn-bass" onclick="runDiagnostic('bass')">BASS</button>
-            <button class="btn-diag" id="btn-treble" onclick="runDiagnostic('treble')">TREBLE</button>
+            <button class="btn-scanner" id="btn-check" style="width:100%; margin-top:10px; border-color:#ffaa00; color:#ffaa00;" onclick="runScanner('dust')">CHECK LEVEL</button>
         </div>
     </div>
 
@@ -587,7 +605,7 @@
     let currentVol = 1;
     let isBoost = false;
 
-    // --- ADDED FOR V17: LOG FUNCTION ---
+    // --- LOG FUNCTION ---
     function postLog(msg) {
         const log = document.getElementById('system-log');
         log.innerHTML = `> ${msg}<br>` + log.innerHTML.split('<br>').slice(0, 2).join('<br>');
@@ -598,12 +616,18 @@
         if (ctx.state === 'suspended') await ctx.resume();
     }
 
-    // --- ADDED FOR V17: MASTER TOGGLE LOGIC ---
-    function handleMasterToggle() {
+    // --- REPAIR: MOBILE FIX FOR MASTER TOGGLE ---
+    async function handleMasterToggle() {
+        // Explicitly resume Audio Context on User Click for Mobile
+        if (!ctx) ctx = new (window.AudioContext || window.webkitAudioContext)();
+        if (ctx.state === 'suspended') await ctx.resume();
+
+        // Direct Haptic Trigger for Mobile Interaction
+        if ("vibrate" in navigator) navigator.vibrate(20);
+
         if (isPlaying) {
             stop();
         } else {
-            // Default Start Action: Auto Cycle
             runDeepClean();
         }
     }
@@ -620,8 +644,16 @@
         document.getElementById('icon-stop').style.display = "none";
         document.getElementById('txt-master').innerText = "START CLEANING";
         
-        // Panels & Progress
-        document.querySelectorAll('.mode-btn, .btn-ops').forEach(b => b.classList.remove('active'));
+        // REPAIR: Reset only MODE and TEST buttons, not the SCANNER button
+        document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.btn-diag').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.btn-ops').forEach(b => b.classList.remove('active'));
+        document.getElementById('btn-deep').classList.remove('active');
+        
+        document.getElementById('ring-load').classList.remove('active');
+        document.getElementById('ring-db').classList.remove('active');
+        document.getElementById('ring-hz').classList.remove('active');
+        
         document.getElementById('prog-cont').classList.remove('active');
         document.getElementById('prog-fill').style.width = "0%";
         
@@ -631,6 +663,9 @@
     }
 
     function playTone(freq, type='sine', pan=0) {
+        // REPAIR: Ensure Context is Ready
+        if (!ctx) initAudio();
+
         osc = ctx.createOscillator();
         gainNode = ctx.createGain();
         const panner = ctx.createStereoPanner ? ctx.createStereoPanner() : null;
@@ -789,10 +824,7 @@
     };
 
     function changeLang(lang) {
-        // Save pref
         localStorage.setItem('lang', lang);
-        
-        // RTL Logic for Arabic
         if (lang === 'ar') {
             document.body.style.direction = "rtl";
             document.querySelector('.lang-box').style.left = "0";
@@ -802,11 +834,8 @@
             document.querySelector('.lang-box').style.right = "0";
             document.querySelector('.lang-box').style.left = "auto";
         }
-
         const t = translations[lang];
         if(!t) return;
-
-        // Apply Translations
         document.getElementById('lbl-trust').innerText = t.trust;
         document.getElementById('lbl-tagline').innerText = t.tagline;
         document.getElementById('lbl-panel-test').innerText = t.ptest;
@@ -815,40 +844,33 @@
         document.getElementById('btn-right').innerText = t.right;
         document.getElementById('btn-bass').innerText = t.bass;
         document.getElementById('btn-treble').innerText = t.treble;
-        
         document.getElementById('lbl-panel-ops').innerText = t.pops;
         document.getElementById('lbl-panel-deep').innerText = t.pdeep;
         document.getElementById('lbl-pro').innerText = t.pro;
         document.getElementById('lbl-auto').innerText = t.auto;
         document.getElementById('lbl-turbo').innerText = t.turbo;
         document.getElementById('lbl-boost').innerText = t.boost;
-        
         document.getElementById('lbl-panel-dust').innerText = t.pdust;
         document.getElementById('lbl-panel-meter').innerText = t.pmeter;
         document.getElementById('lbl-contam').innerText = t.contam;
         document.getElementById('btn-check').innerText = t.check;
-        
         document.getElementById('lbl-gauge-cpu').innerText = t.gcpu;
         document.getElementById('lbl-gauge-freq').innerText = t.gfreq;
         document.getElementById('lbl-gauge-gain').innerText = t.ggain;
-        
         document.getElementById('lbl-mode-water').innerText = t.mwater;
         document.getElementById('lbl-mode-mode1').innerText = t.mmode1;
         document.getElementById('lbl-mode-dust').innerText = t.mdust;
         document.getElementById('lbl-mode-mode2').innerText = t.mmode2;
-        
         document.getElementById('lbl-spec').innerText = t.spec;
         document.getElementById('lbl-vol').innerText = t.vol;
         document.getElementById('lbl-streak').innerText = t.streak;
         document.getElementById('lbl-cleans').innerText = t.cleans;
-        
         document.getElementById('lbl-trans').innerText = t.trans;
         document.getElementById('lbl-uplink').innerText = t.uplink;
         document.getElementById('lbl-btn-share').innerText = t.share;
         document.getElementById('lbl-qr').innerText = t.qr;
         document.getElementById('lbl-coffee').innerText = t.coffee;
         document.getElementById('lbl-tool').innerText = t.tool;
-        
         document.getElementById('lbl-brief').innerText = t.brief;
         document.getElementById('lbl-intel').innerText = t.intel;
         document.getElementById('lbl-why-title').innerText = t.whyT;
@@ -863,17 +885,14 @@
         document.getElementById('t4').innerText = t.t4;
         document.getElementById('t5').innerText = t.t5;
         document.getElementById('t6').innerText = t.t6;
-        
         document.getElementById('lbl-cookie').innerText = t.cookie;
         document.getElementById('btn-cookie').innerText = t.ack;
     }
 
-    // INIT LANG
     const savedLang = localStorage.getItem('lang') || 'en';
     document.querySelector('.lang-select').value = savedLang;
     changeLang(savedLang);
 
-    // --- SHARE FUNCTION ---
     function shareSite() {
         const shareData = {
             title: 'Fix My Speaker',
@@ -884,7 +903,6 @@
         if (navigator.share) {
             navigator.share(shareData).catch(console.error);
         } else {
-            // Fallback for Desktop
             navigator.clipboard.writeText("Fix your speaker in 30 seconds: https://waterinmyspeaker.com");
             const toast = document.getElementById('copy-toast');
             toast.classList.add('show');
@@ -974,4 +992,192 @@
         
         const runSeq = async () => {
              startProgress(15000); 
-             playTone(165, '
+             playTone(165, 'sawtooth'); 
+             setTimeout(() => { if(isPlaying) playTone(60, 'square'); }, 5000); 
+             setTimeout(() => { 
+                 if(isPlaying) {
+                     playTone(1000, 'sine');
+                     interval = setInterval(() => { if(osc) osc.frequency.setValueAtTime(1000 + Math.random()*5000, ctx.currentTime); }, 100);
+                 }
+             }, 10000);
+             setTimeout(() => { stop(); }, 15000); 
+        };
+        runSeq();
+    }
+
+    function startProgress(duration) {
+        const bar = document.getElementById('prog-fill');
+        const cont = document.getElementById('prog-cont');
+        cont.classList.add('active');
+        bar.style.transition = `width ${duration}ms linear`;
+        setTimeout(() => bar.style.width = "100%", 10);
+    }
+
+    // --- DIAGNOSTICS ---
+    async function runDiagnostic(type) {
+        await initAudio();
+        stop();
+        isPlaying = true;
+        
+        const btns = document.querySelectorAll('.btn-diag');
+        if(type==='left') btns[0].classList.add('active');
+        if(type==='right') btns[1].classList.add('active');
+        if(type==='bass') btns[2].classList.add('active');
+        if(type==='treble') btns[3].classList.add('active');
+
+        // REPAIR: Immediate Vibration for Haptic Feedback
+        if ("vibrate" in navigator) navigator.vibrate(20);
+
+        if (type === 'left') playTone(440, 'sine', -1);
+        if (type === 'right') playTone(440, 'sine', 1);
+        if (type === 'bass') playTone(60, 'sine');
+        if (type === 'treble') playTone(12000, 'sine');
+    }
+
+    // --- SCANNERS ---
+    function runScanner(type) {
+        const box = document.getElementById(type + '-box');
+        const bar = document.getElementById(type + '-bar');
+        const val = document.getElementById(type + '-val');
+        
+        box.classList.add('scanning');
+        val.innerText = "Scanning...";
+        bar.style.width = "0%";
+        postLog("SCANNING FOR PARTICLES...");
+        
+        setTimeout(() => {
+            const result = Math.floor(Math.random() * 40) + 10;
+            bar.style.width = result + "%";
+            val.innerText = result + "% DETECTED";
+            box.classList.remove('scanning');
+            postLog(`SCAN COMPLETE: ${result}% CONTAM.`);
+            if(type === 'dust') setTimeout(() => { val.innerText = "REC: RUN CLEANING"; }, 1000);
+        }, 2000);
+    }
+
+    // --- GAUGE LOGIC ---
+    function visualizerLoop(baseFreq) {
+        if (!isPlaying) return;
+        let dispFreq = baseFreq + (Math.random() * 5);
+        let load = 40 + Math.random() * 30;
+        updateGauges(dispFreq, currentVol, false, load);
+        
+        bars.forEach(b => {
+            const h = Math.random() * 20 + 2;
+            b.style.height = h + 'px';
+        });
+
+        setTimeout(() => visualizerLoop(baseFreq), 50);
+    }
+
+    // NEW GAUGE MATH: -120 to +120
+    function updateGauges(hz, vol, volOnly=false, load=0) {
+        const range = 240; // Total range (120 + 120)
+        const start = -120;
+
+        // Gain
+        const vRot = start + (vol * range);
+        document.getElementById('needle-db').style.transform = `rotate(${vRot}deg)`;
+        document.getElementById('val-db').innerText = Math.round(vol * 10);
+        if (volOnly && !isPlaying) return;
+
+        // Hz (20k max)
+        let hRot = start + (Math.min(hz, 20000) / 20000 * range);
+        if (hz === 0) hRot = start;
+        document.getElementById('needle-hz').style.transform = `rotate(${hRot}deg)`;
+        if (hz > 0) document.getElementById('val-hz').innerText = Math.round(hz) + " Hz";
+
+        // Load
+        if (isPlaying) {
+            const lRot = start + (load / 100 * range);
+            document.getElementById('needle-load').style.transform = `rotate(${lRot}deg)`;
+            document.getElementById('val-load').innerText = Math.round(load) + "%";
+        }
+    }
+
+    function resetGauges() {
+        // FORCE RESET TO -120deg
+        const start = -120;
+        document.getElementById('needle-hz').style.transform = `rotate(${start}deg)`;
+        document.getElementById('val-hz').innerText = "0 Hz";
+        document.getElementById('needle-load').style.transform = `rotate(${start}deg)`;
+        document.getElementById('val-load').innerText = "0%";
+        updateGauges(0, currentVol, true);
+    }
+
+    // Init on Load
+    window.onload = function() {
+        resetGauges();
+        // Trigger default lang
+        const savedLang = localStorage.getItem('lang') || 'en';
+        changeLang(savedLang);
+    };
+
+    // --- MODES ---
+    async function setMode(type, id) {
+        await initAudio();
+        stop();
+        isPlaying = true;
+        incrementClean();
+        
+        const btnIndex = (type === 'water' ? 0 : 5) + (id - 1);
+        document.querySelectorAll('.mode-btn')[btnIndex].classList.add('active');
+
+        // Progress Bar
+        startProgress(10000); // 10s generic for manual modes
+
+        // REPAIR: Immediate Vibration for Haptic Feedback
+        if ("vibrate" in navigator) navigator.vibrate(20);
+
+        if (type === 'water') {
+            const freqs = [165, 200, 285, 350, 440];
+            const waves = ['sawtooth', 'square', 'sine', 'sawtooth', 'sine'];
+            playTone(freqs[id-1], waves[id-1]);
+        } else {
+            const freqs = [60, 120, 500, 800, 1000];
+            const waves = ['square', 'sawtooth', 'square', 'sawtooth', 'sine'];
+            playTone(freqs[id-1], waves[id-1]);
+        }
+    }
+
+    // --- ADDED FOR V18 MASTER GOLD: UNIVERSAL & DYNAMIC LOGIC ---
+    document.addEventListener('DOMContentLoaded', () => {
+        // 1. SMART DEVICE DETECTION (EXPANDED LIST)
+        const ua = navigator.userAgent;
+        let device = "Audio Hardware";
+        
+        if (/iPhone/i.test(ua)) device = "Apple iPhone";
+        else if (/iPad/i.test(ua)) device = "Apple iPad";
+        else if (/Samsung|SM-|Galaxy/i.test(ua)) device = "Samsung Galaxy Architecture";
+        else if (/Pixel/i.test(ua)) device = "Google Pixel Audio";
+        else if (/Redmi|Xiaomi/i.test(ua)) device = "Xiaomi Audio Core";
+        else if (/OPPO/i.test(ua)) device = "Oppo Sound Engine";
+        else if (/Huawei|Honor/i.test(ua)) device = "Huawei Acoustic System";
+        else if (/Android/i.test(ua)) device = "Android System";
+        else if (/Windows/i.test(ua)) device = "Windows Terminal";
+        else if (/Mac/i.test(ua)) device = "Macintosh Core";
+
+        const bar = document.getElementById('device-name');
+        if (bar) {
+            setTimeout(() => { bar.innerText = "DETECTED: " + device; }, 1500);
+            setTimeout(() => { 
+                bar.innerText = device + " OPTIMIZED"; 
+                bar.parentElement.style.borderColor = "var(--accent)"; 
+                bar.parentElement.style.color = "var(--accent)"; 
+                bar.parentElement.style.background = "rgba(255, 0, 60, 0.1)"; 
+            }, 3500);
+        }
+
+        // 2. DYNAMIC TITLE REWRITING (FOR SEO STRATEGY)
+        const urlParams = new URLSearchParams(window.location.search);
+        const deviceParam = urlParams.get('device');
+        if(deviceParam) {
+            const cleanName = deviceParam.replace(/-/g, ' ');
+            document.title = `${cleanName} Speaker Cleaner | Fix Water Damage`;
+        }
+    });
+</script>
+    <script data-collect-dnt="true" async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
+<noscript><img src="https://queue.simpleanalyticscdn.com/noscript.gif?collect-dnt=true" alt="" referrerpolicy="no-referrer-when-downgrade"/></noscript>
+</body>
+</html>
