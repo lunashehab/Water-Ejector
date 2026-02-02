@@ -108,6 +108,16 @@
         }
         .typing-status { font-family: monospace; font-size: 12px; color: var(--accent); min-height: 16px; text-shadow: 0 0 5px var(--accent-glow); }
 
+        /* --- NEW: SMART DEVICE BAR STYLE --- */
+        #smart-device-bar {
+            margin-top: 10px; font-size: 10px; color: var(--neon-green); 
+            background: rgba(57, 255, 20, 0.1); border: 1px solid var(--neon-green); 
+            padding: 6px 12px; border-radius: 4px; display: inline-block; 
+            text-transform: uppercase; letter-spacing: 1px; opacity: 0; 
+            animation: fadeIn 2s forwards 1s; transition: 0.5s;
+        }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
+
         /* --- GAUGE ENGINE --- */
         .dashboard-row { display: flex; justify-content: space-between; align-items: flex-end; gap: 10px; margin: 25px 0 10px 0; }
         .gauge-box { position: relative; width: 30%; text-align: center; }
@@ -333,6 +343,16 @@
         }
         .qr-wrapper img { width: 100%; display: block; }
 
+        .seo-box { text-align: left; padding: 10px; }
+        .seo-box h3 { font-size: 12px; color: #fff; text-transform: uppercase; margin-bottom: 10px; letter-spacing: 1px; }
+        .seo-box p { font-size: 10px; color: #888; margin-bottom: 10px; line-height: 1.6; }
+        .seo-box strong { color: var(--accent); }
+
+        .ad-slot {
+            width: 100%; height: 100px; background: #050505; border: 1px solid #222; border-radius: 8px; 
+            display: flex; align-items: center; justify-content: center; color: #333; font-size: 9px; margin-top: 10px;
+        }
+
         footer { margin-top: 40px; text-align: center; font-size: 10px; color: #444; padding-bottom: 20px;}
         footer a { color: #666; text-decoration: none; margin: 0 10px; transition: color 0.2s; }
         footer a:hover { color: var(--accent); }
@@ -375,6 +395,10 @@
         </div>
         <div class="tagline" id="lbl-tagline">The #1 High-Frequency Water Ejector</div>
         <div class="typing-status" id="type-text">System Online.</div>
+        
+        <div id="smart-device-bar">
+            <span id="device-name">SCANNING HARDWARE...</span>
+        </div>
     </header>
 
     <div class="dashboard-row">
@@ -419,8 +443,17 @@
     </button>
 
     <div class="panel">
-        <div class="panel-title"><span id="lbl-panel-ops">Mission Log</span> <span id="lbl-panel-deep">Telemetry</span></div>
-        <div id="system-log">> WAITING FOR COMMAND...</div>
+        <div class="panel-title"><span id="lbl-panel-test">Speaker Test</span> <span id="lbl-panel-iso">Isolation</span></div>
+        <div class="diag-grid">
+            <button class="btn-diag" id="btn-left" onclick="runDiagnostic('left')">LEFT</button>
+            <button class="btn-diag" id="btn-right" onclick="runDiagnostic('right')">RIGHT</button>
+            <button class="btn-diag" id="btn-bass" onclick="runDiagnostic('bass')">BASS</button>
+            <button class="btn-diag" id="btn-treble" onclick="runDiagnostic('treble')">TREBLE</button>
+        </div>
+
+        <div class="panel-title"><span id="lbl-panel-ops">Advanced Ops</span> <span id="lbl-panel-deep">Deep Clean</span></div>
+        
+        <div id="system-log">> WAITING FOR SELECTION...</div>
 
         <div class="ops-grid">
             <button class="btn-ops" id="btn-deep" onclick="runDeepClean()">
@@ -443,16 +476,6 @@
             <div class="scan-label"><span id="lbl-contam">Contamination Level</span> <span id="dust-val">0%</span></div>
             <div class="scan-bar-bg"><div class="scan-bar-fill" id="dust-bar" style="background: #ffaa00; box-shadow: 0 0 10px #ffaa00;"></div></div>
             <button class="btn-diag" id="btn-check" style="width:100%; margin-top:10px; border-color:#ffaa00; color:#ffaa00;" onclick="runScanner('dust')">CHECK LEVEL</button>
-        </div>
-    </div>
-
-    <div class="panel">
-        <div class="panel-title"><span id="lbl-panel-test">Speaker Test</span> <span id="lbl-panel-iso">Isolation</span></div>
-        <div class="diag-grid">
-            <button class="btn-diag" id="btn-left" onclick="runDiagnostic('left')">LEFT</button>
-            <button class="btn-diag" id="btn-right" onclick="runDiagnostic('right')">RIGHT</button>
-            <button class="btn-diag" id="btn-bass" onclick="runDiagnostic('bass')">BASS</button>
-            <button class="btn-diag" id="btn-treble" onclick="runDiagnostic('treble')">TREBLE</button>
         </div>
     </div>
 
@@ -775,7 +798,10 @@
     };
 
     function changeLang(lang) {
+        // Save pref
         localStorage.setItem('lang', lang);
+        
+        // RTL Logic for Arabic
         if (lang === 'ar') {
             document.body.style.direction = "rtl";
             document.querySelector('.lang-box').style.left = "0";
@@ -785,8 +811,11 @@
             document.querySelector('.lang-box').style.right = "0";
             document.querySelector('.lang-box').style.left = "auto";
         }
+
         const t = translations[lang];
         if(!t) return;
+
+        // Apply Translations
         document.getElementById('lbl-trust').innerText = t.trust;
         document.getElementById('lbl-tagline').innerText = t.tagline;
         document.getElementById('lbl-panel-test').innerText = t.ptest;
@@ -795,39 +824,47 @@
         document.getElementById('btn-right').innerText = t.right;
         document.getElementById('btn-bass').innerText = t.bass;
         document.getElementById('btn-treble').innerText = t.treble;
+        
         document.getElementById('lbl-panel-ops').innerText = t.pops;
         document.getElementById('lbl-panel-deep').innerText = t.pdeep;
         document.getElementById('lbl-pro').innerText = t.pro;
         document.getElementById('lbl-auto').innerText = t.auto;
         document.getElementById('lbl-turbo').innerText = t.turbo;
         document.getElementById('lbl-boost').innerText = t.boost;
+        
         document.getElementById('lbl-panel-dust').innerText = t.pdust;
         document.getElementById('lbl-panel-meter').innerText = t.pmeter;
         document.getElementById('lbl-contam').innerText = t.contam;
         document.getElementById('btn-check').innerText = t.check;
+        
         document.getElementById('lbl-gauge-cpu').innerText = t.gcpu;
         document.getElementById('lbl-gauge-freq').innerText = t.gfreq;
         document.getElementById('lbl-gauge-gain').innerText = t.ggain;
+        
         document.getElementById('lbl-mode-water').innerText = t.mwater;
         document.getElementById('lbl-mode-mode1').innerText = t.mmode1;
         document.getElementById('lbl-mode-dust').innerText = t.mdust;
         document.getElementById('lbl-mode-mode2').innerText = t.mmode2;
+        
         document.getElementById('lbl-spec').innerText = t.spec;
         document.getElementById('lbl-vol').innerText = t.vol;
         document.getElementById('lbl-streak').innerText = t.streak;
         document.getElementById('lbl-cleans').innerText = t.cleans;
+        
         document.getElementById('lbl-trans').innerText = t.trans;
         document.getElementById('lbl-uplink').innerText = t.uplink;
         document.getElementById('lbl-btn-share').innerText = t.share;
         document.getElementById('lbl-qr').innerText = t.qr;
         document.getElementById('lbl-coffee').innerText = t.coffee;
         document.getElementById('lbl-tool').innerText = t.tool;
+        
         document.getElementById('lbl-brief').innerText = t.brief;
         document.getElementById('lbl-intel').innerText = t.intel;
         document.getElementById('lbl-why-title').innerText = t.whyT;
         document.getElementById('lbl-why-text').innerHTML = `<strong>${t.whyT}:</strong> ${t.whyTx}`;
         document.getElementById('lbl-safe-title').innerText = t.safeT;
         document.getElementById('lbl-safe-text').innerText = t.safeTx;
+        
         document.getElementById('lbl-sys').innerText = t.sys;
         document.getElementById('lbl-ver').innerText = t.ver;
         document.getElementById('t1').innerText = t.t1;
@@ -836,14 +873,17 @@
         document.getElementById('t4').innerText = t.t4;
         document.getElementById('t5').innerText = t.t5;
         document.getElementById('t6').innerText = t.t6;
+        
         document.getElementById('lbl-cookie').innerText = t.cookie;
         document.getElementById('btn-cookie').innerText = t.ack;
     }
 
+    // INIT LANG
     const savedLang = localStorage.getItem('lang') || 'en';
     document.querySelector('.lang-select').value = savedLang;
     changeLang(savedLang);
 
+    // --- SHARE FUNCTION ---
     function shareSite() {
         const shareData = {
             title: 'Fix My Speaker',
@@ -1085,6 +1125,31 @@
             playTone(freqs[id-1], waves[id-1]);
         }
     }
+
+    // SMART DEVICE DETECTION SCRIPT
+    document.addEventListener('DOMContentLoaded', () => {
+        const ua = navigator.userAgent;
+        let device = "Audio Hardware";
+        
+        if (/iPhone/i.test(ua)) device = "Apple iPhone";
+        else if (/iPad/i.test(ua)) device = "Apple iPad";
+        else if (/Samsung|SM-|Galaxy/i.test(ua)) device = "Samsung Galaxy Architecture";
+        else if (/Pixel/i.test(ua)) device = "Google Pixel Audio";
+        else if (/Android/i.test(ua)) device = "Android System";
+        else if (/Windows/i.test(ua)) device = "Windows Terminal";
+        else if (/Mac/i.test(ua)) device = "Macintosh Core";
+
+        const bar = document.getElementById('device-name');
+        if (bar) {
+            setTimeout(() => { bar.innerText = "DETECTED: " + device; }, 1500);
+            setTimeout(() => { 
+                bar.innerText = device + " OPTIMIZED"; 
+                bar.parentElement.style.borderColor = "var(--accent)"; 
+                bar.parentElement.style.color = "var(--accent)"; 
+                bar.parentElement.style.background = "rgba(255, 0, 60, 0.1)"; 
+            }, 3500);
+        }
+    });
 </script>
     <script data-collect-dnt="true" async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
 <noscript><img src="https://queue.simpleanalyticscdn.com/noscript.gif?collect-dnt=true" alt="" referrerpolicy="no-referrer-when-downgrade"/></noscript>
