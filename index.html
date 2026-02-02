@@ -225,7 +225,6 @@
         .btn-diag:hover { border-color: var(--accent); color: #fff; }
         .btn-diag.active { background: var(--accent); color: #fff; }
 
-        /* REPAIR: New class for scanner button to prevent conflict */
         .btn-scanner {
             background: #111; border: 1px solid #333; color: #888; height: 40px;
             border-radius: 4px; font-size: 9px; font-weight: 700; cursor: pointer;
@@ -601,6 +600,8 @@
 
 <script>
     let ctx, osc, gainNode, interval;
+    // REPAIR: Timers to fix the "Stuck On" bug
+    let tm1, tm2, tm3; 
     let isPlaying = false;
     let currentVol = 1;
     let isBoost = false;
@@ -635,6 +636,10 @@
     function stop() {
         if (osc) { try{osc.stop(); osc.disconnect();}catch(e){} osc = null; }
         if (interval) clearInterval(interval);
+        
+        // REPAIR: Kill all background timers instantly
+        clearTimeout(tm1); clearTimeout(tm2); clearTimeout(tm3);
+        
         isPlaying = false;
         
         // Button Reset
@@ -665,6 +670,9 @@
     function playTone(freq, type='sine', pan=0) {
         // REPAIR: Ensure Context is Ready
         if (!ctx) initAudio();
+        
+        // REPAIR: Stop existing sound before starting new one (Prevents Overlap)
+        if (osc) { try{osc.stop(); osc.disconnect();}catch(e){} osc = null; }
 
         osc = ctx.createOscillator();
         gainNode = ctx.createGain();
@@ -993,14 +1001,14 @@
         const runSeq = async () => {
              startProgress(15000); 
              playTone(165, 'sawtooth'); 
-             setTimeout(() => { if(isPlaying) playTone(60, 'square'); }, 5000); 
-             setTimeout(() => { 
+             tm1 = setTimeout(() => { if(isPlaying) playTone(60, 'square'); }, 5000); 
+             tm2 = setTimeout(() => { 
                  if(isPlaying) {
                      playTone(1000, 'sine');
                      interval = setInterval(() => { if(osc) osc.frequency.setValueAtTime(1000 + Math.random()*5000, ctx.currentTime); }, 100);
                  }
              }, 10000);
-             setTimeout(() => { stop(); }, 15000); 
+             tm3 = setTimeout(() => { stop(); }, 15000); 
         };
         runSeq();
     }
