@@ -168,7 +168,7 @@
             text-shadow: 0 0 5px var(--accent-glow);
         }
 
-        /* --- STOP BUTTON (ROUND & GLOWING) --- */
+        /* --- STRICT STOP BUTTON (ROUND 90PX, RED GLOW, KILL SWITCH) --- */
         .btn-toggle-master {
             width: 90px;
             height: 90px;
@@ -182,16 +182,16 @@
             margin: 0 auto 20px auto; 
             transition: 0.3s; 
             font-size: 14px;
-            box-shadow: 0 0 15px var(--accent); /* RED GLOW */
+            box-shadow: 0 0 20px var(--accent); /* PERMANENT RED GLOW */
             display: flex; align-items: center; justify-content: center;
             -webkit-tap-highlight-color: transparent;
-            animation: pulse-glow 2s infinite;
+            animation: pulse-glow 1.5s infinite; /* PERMANENT PULSE */
         }
         .btn-toggle-master:active { transform: scale(0.95); }
         
         @keyframes pulse-glow {
             0% { box-shadow: 0 0 10px var(--accent); }
-            50% { box-shadow: 0 0 25px var(--accent), inset 0 0 10px rgba(255,0,60,0.3); }
+            50% { box-shadow: 0 0 30px var(--accent), inset 0 0 15px rgba(255,0,60,0.5); }
             100% { box-shadow: 0 0 10px var(--accent); }
         }
 
@@ -633,7 +633,7 @@
         if (osc) { try{osc.stop(); osc.disconnect();}catch(e){} osc = null; }
         if (interval) clearInterval(interval);
         
-        // REPAIR: Kill all background timers instantly
+        // REPAIR: Kill all background timers instantly to prevent auto-restart
         clearTimeout(tm1); clearTimeout(tm2); clearTimeout(tm3);
         
         isPlaying = false;
@@ -1151,11 +1151,11 @@
         const bar = document.getElementById('device-name');
         if (bar) {
             setTimeout(() => { bar.innerText = "DETECTED: " + device; }, 1500);
-            setTimeout(() => { 
-                bar.innerText = device + " OPTIMIZED"; 
-                bar.parentElement.style.borderColor = "var(--accent)"; 
-                bar.parentElement.style.color = "var(--accent)"; 
-                bar.parentElement.style.background = "rgba(255, 0, 60, 0.1)"; 
+            setTimeout(() => { 
+                bar.innerText = device + " OPTIMIZED"; 
+                bar.parentElement.style.borderColor = "var(--accent)"; 
+                bar.parentElement.style.color = "var(--accent)"; 
+                bar.parentElement.style.background = "rgba(255, 0, 60, 0.1)"; 
             }, 3500);
         }
 
@@ -1168,7 +1168,7 @@
         }
     });
 </script>
-    <script data-collect-dnt="true" async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
+    <script data-collect-dnt="true" async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
 <noscript><img src="https://queue.simpleanalyticscdn.com/noscript.gif?collect-dnt=true" alt="" referrerpolicy="no-referrer-when-downgrade"/></noscript>
 </body>
 </html>
