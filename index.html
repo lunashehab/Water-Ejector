@@ -168,18 +168,32 @@
             text-shadow: 0 0 5px var(--accent-glow);
         }
 
-        /* --- START / STOP BUTTON --- */
+        /* --- STOP BUTTON (ROUND & GLOWING) --- */
         .btn-toggle-master {
-            width: 100%; background: #050505; border: 2px solid var(--accent); color: var(--accent);
-            padding: 16px; border-radius: 8px; font-weight: 900; text-transform: uppercase;
-            cursor: pointer; margin-bottom: 20px; transition: 0.3s; letter-spacing: 3px; font-size: 14px;
-            box-shadow: 0 0 10px rgba(255,0,60,0.1);
-            display: flex; align-items: center; justify-content: center; gap: 10px;
+            width: 90px;
+            height: 90px;
+            background: #050505; 
+            border: 2px solid var(--accent); 
+            color: var(--accent);
+            border-radius: 50%; /* CIRCLE ROUND */
+            font-weight: 900; 
+            text-transform: uppercase;
+            cursor: pointer; 
+            margin: 0 auto 20px auto; 
+            transition: 0.3s; 
+            font-size: 14px;
+            box-shadow: 0 0 15px var(--accent); /* RED GLOW */
+            display: flex; align-items: center; justify-content: center;
             -webkit-tap-highlight-color: transparent;
+            animation: pulse-glow 2s infinite;
         }
-        .btn-toggle-master:hover { background: rgba(255,0,60,0.15); box-shadow: 0 0 20px var(--accent-glow); }
-        .btn-toggle-master.playing { background: var(--accent); color: #000; box-shadow: 0 0 30px var(--accent); }
-        .btn-toggle-master .icon-btn { width: 18px; height: 18px; fill: currentColor; }
+        .btn-toggle-master:active { transform: scale(0.95); }
+        
+        @keyframes pulse-glow {
+            0% { box-shadow: 0 0 10px var(--accent); }
+            50% { box-shadow: 0 0 25px var(--accent), inset 0 0 10px rgba(255,0,60,0.3); }
+            100% { box-shadow: 0 0 10px var(--accent); }
+        }
 
         /* --- CONTROL PANEL --- */
         .panel {
@@ -444,10 +458,8 @@
         </div>
     </div>
 
-    <button id="master-toggle" class="btn-toggle-master" onclick="handleMasterToggle()">
-        <svg id="icon-start" class="icon-btn" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-        <svg id="icon-stop" class="icon-btn" style="display:none;" viewBox="0 0 24 24"><path d="M6 6h12v12H6z"/></svg>
-        <span id="txt-master">START CLEANING</span>
+    <button id="master-toggle" class="btn-toggle-master" onclick="stop()">
+        STOP
     </button>
 
     <div class="panel">
@@ -617,22 +629,6 @@
         if (ctx.state === 'suspended') await ctx.resume();
     }
 
-    // --- REPAIR: MOBILE FIX FOR MASTER TOGGLE ---
-    async function handleMasterToggle() {
-        // Explicitly resume Audio Context on User Click for Mobile
-        if (!ctx) ctx = new (window.AudioContext || window.webkitAudioContext)();
-        if (ctx.state === 'suspended') await ctx.resume();
-
-        // Direct Haptic Trigger for Mobile Interaction
-        if ("vibrate" in navigator) navigator.vibrate(20);
-
-        if (isPlaying) {
-            stop();
-        } else {
-            runDeepClean();
-        }
-    }
-
     function stop() {
         if (osc) { try{osc.stop(); osc.disconnect();}catch(e){} osc = null; }
         if (interval) clearInterval(interval);
@@ -641,13 +637,6 @@
         clearTimeout(tm1); clearTimeout(tm2); clearTimeout(tm3);
         
         isPlaying = false;
-        
-        // Button Reset
-        const btn = document.getElementById('master-toggle');
-        btn.classList.remove('playing');
-        document.getElementById('icon-start').style.display = "block";
-        document.getElementById('icon-stop').style.display = "none";
-        document.getElementById('txt-master').innerText = "START CLEANING";
         
         // REPAIR: Reset only MODE and TEST buttons, not the SCANNER button
         document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
@@ -693,13 +682,6 @@
         gainNode.gain.exponentialRampToValueAtTime(currentVol, ctx.currentTime + 0.1);
         osc.start();
         isPlaying = true;
-
-        // Update Master Button to STOP State
-        const btn = document.getElementById('master-toggle');
-        btn.classList.add('playing');
-        document.getElementById('icon-start').style.display = "none";
-        document.getElementById('icon-stop').style.display = "block";
-        document.getElementById('txt-master').innerText = "STOP MISSION";
 
         if ("vibrate" in navigator) navigator.vibrate([100, 50, 100]);
         
@@ -911,6 +893,7 @@
         if (navigator.share) {
             navigator.share(shareData).catch(console.error);
         } else {
+            // Fallback for Desktop
             navigator.clipboard.writeText("Fix your speaker in 30 seconds: https://waterinmyspeaker.com");
             const toast = document.getElementById('copy-toast');
             toast.classList.add('show');
@@ -1185,7 +1168,7 @@
         }
     });
 </script>
-    <script data-collect-dnt="true" async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
+    <script data-collect-dnt="true" async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
 <noscript><img src="https://queue.simpleanalyticscdn.com/noscript.gif?collect-dnt=true" alt="" referrerpolicy="no-referrer-when-downgrade"/></noscript>
 </body>
 </html>
