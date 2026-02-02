@@ -168,30 +168,30 @@
             text-shadow: 0 0 5px var(--accent-glow);
         }
 
-        /* --- NEW: STOP KILL SWITCH (ROUND 90PX, RED GLOW) --- */
-        #master-stop-btn {
+        /* --- STOP BUTTON (ROUND & GLOWING) --- */
+        .btn-toggle-master {
             width: 90px;
             height: 90px;
-            background: #000;
-            border: 2px solid var(--accent);
+            background: #050505; 
+            border: 2px solid var(--accent); 
             color: var(--accent);
-            border-radius: 50%;
-            font-weight: 900;
+            border-radius: 50%; /* CIRCLE ROUND */
+            font-weight: 900; 
             text-transform: uppercase;
-            cursor: pointer;
-            margin: 0 auto 20px auto;
-            transition: 0.3s;
+            cursor: pointer; 
+            margin: 0 auto 20px auto; 
+            transition: 0.3s; 
             font-size: 14px;
-            box-shadow: 0 0 15px var(--accent);
+            box-shadow: 0 0 15px var(--accent); /* RED GLOW */
             display: flex; align-items: center; justify-content: center;
-            animation: pulse-glow 1.5s infinite;
             -webkit-tap-highlight-color: transparent;
+            animation: pulse-glow 2s infinite;
         }
-        #master-stop-btn:active { transform: scale(0.95); background: var(--accent); color: #000; }
+        .btn-toggle-master:active { transform: scale(0.95); }
         
         @keyframes pulse-glow {
             0% { box-shadow: 0 0 10px var(--accent); }
-            50% { box-shadow: 0 0 25px var(--accent), inset 0 0 15px rgba(255,0,60,0.5); }
+            50% { box-shadow: 0 0 25px var(--accent), inset 0 0 10px rgba(255,0,60,0.3); }
             100% { box-shadow: 0 0 10px var(--accent); }
         }
 
@@ -458,7 +458,7 @@
         </div>
     </div>
 
-    <button id="master-stop-btn" onclick="stop()">STOP</button>
+    <button id="master-toggle" class="btn-toggle-master" onclick="stop()">STOP</button>
 
     <div class="panel">
         <div class="panel-title"><span id="lbl-panel-test">Speaker Test</span> <span id="lbl-panel-iso">Isolation</span></div>
@@ -610,7 +610,6 @@
 
 <script>
     let ctx, osc, gainNode, interval;
-    // REPAIR: Timers to fix the "Stuck On" bug
     let tm1, tm2, tm3; 
     let isPlaying = false;
     let currentVol = 1;
@@ -627,20 +626,14 @@
         if (ctx.state === 'suspended') await ctx.resume();
     }
 
-    // STRICT STOP BUTTON LOGIC (NO TOGGLE, JUST KILL)
     function stop() {
-        // 1. Kill Sound
         if (osc) { try{osc.stop(); osc.disconnect();}catch(e){} osc = null; }
-        
-        // 2. Kill Intervals
         if (interval) clearInterval(interval);
         
-        // 3. Kill Background Timers (CRITICAL REPAIR)
         clearTimeout(tm1); clearTimeout(tm2); clearTimeout(tm3);
         
         isPlaying = false;
         
-        // 4. Reset UI Elements
         document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
         document.querySelectorAll('.btn-diag').forEach(b => b.classList.remove('active'));
         document.querySelectorAll('.btn-ops').forEach(b => b.classList.remove('active'));
@@ -659,10 +652,8 @@
     }
 
     function playTone(freq, type='sine', pan=0) {
-        // Ensure Context is Ready
         if (!ctx) initAudio();
         
-        // Stop existing sound before starting new one (Prevents Overlap)
         if (osc) { try{osc.stop(); osc.disconnect();}catch(e){} osc = null; }
 
         osc = ctx.createOscillator();
