@@ -11,13 +11,15 @@
     <meta name="author" content="Don System">
     <link rel="canonical" href="https://waterinmyspeaker.com/" />
     
+    <link rel="icon" type="image/png" href="icon.png">
+    <link rel="apple-touch-icon" href="icon.png">
+
     <meta property="og:title" content="Water In My Speaker — Remove Water & Dust Instantly">
     <meta property="og:description" content="#1 viral phone speaker water and dust cleaner — 10M+ visits">
     <meta property="og:url" content="https://waterinmyspeaker.com">
     <meta property="og:type" content="website">
     <meta property="og:image" content="https://waterinmyspeaker.com/preview.png">
     <meta property="og:site_name" content="Water In My Speaker">
-
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     
@@ -32,17 +34,20 @@
           "@context": "https://schema.org",
           "@type": "SoftwareApplication",
           "name": "Speaker Cleaner Pro",
+          "alternateName": "Water Eject Speaker Cleaner",
           "applicationCategory": "UtilityApplication",
           "operatingSystem": "Any",
+          "url": "https://waterinmyspeaker.com",
+          "description": "A free online tool that removes water from your phone speaker using a high‑frequency 165Hz eject sound.",
           "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
-          "featureList": "Water Ejection, Dust Removal, 165Hz Frequency"
+          "featureList": "Water Ejection, Dust Removal, 165Hz Frequency, Auto-Cycle Cleaning"
         },
         {
           "@context": "https://schema.org",
           "@type": "WebSite",
           "name": "Water In My Speaker",
           "url": "https://waterinmyspeaker.com",
-          "description": "Remove water from your phone speaker instantly using our water eject sound tool. Fix muffled audio fast with a safe, free online speaker cleaning frequency.",
+          "description": "Remove water from your phone speaker instantly using our water eject sound tool.",
           "publisher": {
             "@type": "Organization",
             "name": "Water In My Speaker",
@@ -60,19 +65,7 @@
           "name": "Remove Water From Speaker",
           "url": "https://waterinmyspeaker.com",
           "isPartOf": { "@type": "WebSite", "url": "https://waterinmyspeaker.com" },
-          "about": { "@type": "Thing", "name": "Water Eject Tool" },
-          "description": "Use our water eject sound to remove water from your phone speaker instantly. Fix muffled audio with a high‑frequency cleaning tone.",
           "primaryImageOfPage": { "@type": "ImageObject", "url": "https://waterinmyspeaker.com/preview.png" }
-        },
-        {
-          "@context": "https://schema.org",
-          "@type": "SoftwareApplication",
-          "name": "Water Eject Speaker Cleaner",
-          "operatingSystem": "Any",
-          "applicationCategory": "Utility",
-          "url": "https://waterinmyspeaker.com",
-          "description": "A free online tool that removes water from your phone speaker using a high‑frequency eject sound.",
-          "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
         }
     ]
     </script>
@@ -445,7 +438,7 @@
 <div class="shell" id="app-shell">
     <header>
         <div class="lang-box">
-            <select class="lang-select" onchange="changeLang(this.value)">
+            <select aria-label="Select Language" class="lang-select" onchange="changeLang(this.value)">
                 <option value="en">English</option>
                 <option value="ar">العربية</option>
                 <option value="ru">Русский</option>
@@ -502,16 +495,16 @@
         </div>
     </div>
 
-    <button id="master-toggle" class="btn-toggle-master" onclick="stop()">STOP</button>
+    <button id="master-toggle" class="btn-toggle-master" onclick="stop()" aria-label="Stop Cleaning">STOP</button>
     <div style="text-align: center; margin-bottom: 20px; font-size: 11px; font-weight: 700; color: #fff; text-transform: uppercase; letter-spacing: 1px;">Turn your phone volume to max.</div>
 
     <div class="panel">
         <div class="panel-title"><span id="lbl-panel-test">Speaker Test</span> <span id="lbl-panel-iso">Isolation</span></div>
         <div class="diag-grid">
-            <button class="btn-diag" id="btn-left" onclick="runDiagnostic('left')">LEFT</button>
-            <button class="btn-diag" id="btn-right" onclick="runDiagnostic('right')">RIGHT</button>
-            <button class="btn-diag" id="btn-bass" onclick="runDiagnostic('bass')">BASS</button>
-            <button class="btn-diag" id="btn-treble" onclick="runDiagnostic('treble')">TREBLE</button>
+            <button class="btn-diag" id="btn-left" onclick="runDiagnostic('left')" aria-label="Test Left Speaker">LEFT</button>
+            <button class="btn-diag" id="btn-right" onclick="runDiagnostic('right')" aria-label="Test Right Speaker">RIGHT</button>
+            <button class="btn-diag" id="btn-bass" onclick="runDiagnostic('bass')" aria-label="Test Bass">BASS</button>
+            <button class="btn-diag" id="btn-treble" onclick="runDiagnostic('treble')" aria-label="Test Treble">TREBLE</button>
         </div>
 
         <div class="panel-title"><span id="lbl-panel-ops">Mission Log</span> <span id="lbl-panel-deep">Telemetry</span></div>
@@ -519,11 +512,11 @@
         <div id="system-log">> WAITING FOR COMMAND...</div>
 
         <div class="ops-grid">
-            <button class="btn-ops" id="btn-deep" onclick="runDeepClean()">
+            <button class="btn-ops" id="btn-deep" onclick="runDeepClean()" aria-label="Run Pro Mode Cleaning">
                 <span class="ops-label" id="lbl-pro">PRO MODE</span>
                 <span class="boost-icon"></span> <span id="lbl-auto">AUTO CYCLE</span>
             </button>
-            <button class="btn-ops" id="btn-boost" onclick="toggleBoost()">
+            <button class="btn-ops" id="btn-boost" onclick="toggleBoost()" aria-label="Toggle Turbo Mode">
                 <span class="ops-label" id="lbl-turbo">TURBO MODE</span>
                 <span class="boost-icon"></span> <span id="lbl-boost">BOOST</span>
             </button>
@@ -538,27 +531,27 @@
             <div class="scanner-overlay"></div>
             <div class="scan-label"><span id="lbl-contam">Contamination Level</span> <span id="dust-val">0%</span></div>
             <div class="scan-bar-bg"><div class="scan-bar-fill" id="dust-bar" style="background: #ffaa00; box-shadow: 0 0 10px #ffaa00;"></div></div>
-            <button class="btn-scanner" id="btn-check" style="width:100%; margin-top:10px; border-color:#ffaa00; color:#ffaa00;" onclick="runScanner('dust')">CHECK LEVEL</button>
+            <button class="btn-scanner" id="btn-check" style="width:100%; margin-top:10px; border-color:#ffaa00; color:#ffaa00;" onclick="runScanner('dust')" aria-label="Check Dust Level">CHECK LEVEL</button>
         </div>
     </div>
 
     <div class="panel">
         <div class="panel-title"><span id="lbl-mode-water">Water-Expulsion</span> <span id="lbl-mode-mode1">Mode</span></div>
         <div class="btn-grid">
-            <button class="mode-btn" onclick="setMode('water', 1)">APPLE<br>165Hz</button>
-            <button class="mode-btn" onclick="setMode('water', 2)">PRESS<br>200Hz</button>
-            <button class="mode-btn" onclick="setMode('water', 3)">HYDRO<br>285Hz</button>
-            <button class="mode-btn" onclick="setMode('water', 4)">WAVE<br>350Hz</button>
-            <button class="mode-btn" onclick="setMode('water', 5)">AIR<br>440Hz</button>
+            <button class="mode-btn" onclick="setMode('water', 1)" aria-label="165Hz Apple Mode">APPLE<br>165Hz</button>
+            <button class="mode-btn" onclick="setMode('water', 2)" aria-label="200Hz Press Mode">PRESS<br>200Hz</button>
+            <button class="mode-btn" onclick="setMode('water', 3)" aria-label="285Hz Hydro Mode">HYDRO<br>285Hz</button>
+            <button class="mode-btn" onclick="setMode('water', 4)" aria-label="350Hz Wave Mode">WAVE<br>350Hz</button>
+            <button class="mode-btn" onclick="setMode('water', 5)" aria-label="440Hz Air Mode">AIR<br>440Hz</button>
         </div>
 
         <div class="panel-title"><span id="lbl-mode-dust">Dust-Shake</span> <span id="lbl-mode-mode2">Mode</span></div>
         <div class="btn-grid">
-            <button class="mode-btn" onclick="setMode('dust', 1)">SHAKE<br>60Hz</button>
-            <button class="mode-btn" onclick="setMode('dust', 2)">BRKR<br>120Hz</button>
-            <button class="mode-btn" onclick="setMode('dust', 3)">MESH<br>500Hz</button>
-            <button class="mode-btn" onclick="setMode('dust', 4)">FINE<br>800Hz</button>
-            <button class="mode-btn" onclick="setMode('dust', 5)">FINAL<br>1kHz</button>
+            <button class="mode-btn" onclick="setMode('dust', 1)" aria-label="60Hz Shake Mode">SHAKE<br>60Hz</button>
+            <button class="mode-btn" onclick="setMode('dust', 2)" aria-label="120Hz Breaker Mode">BRKR<br>120Hz</button>
+            <button class="mode-btn" onclick="setMode('dust', 3)" aria-label="500Hz Mesh Mode">MESH<br>500Hz</button>
+            <button class="mode-btn" onclick="setMode('dust', 4)" aria-label="800Hz Fine Mode">FINE<br>800Hz</button>
+            <button class="mode-btn" onclick="setMode('dust', 5)" aria-label="1kHz Final Mode">FINAL<br>1kHz</button>
         </div>
 
         <div class="panel-title" style="margin-top:20px;"><span id="lbl-spec">Live Spectrum Analysis</span></div>
@@ -566,7 +559,7 @@
 
         <div class="vol-box">
             <div class="vol-label" id="lbl-vol">Volume Calibration</div>
-            <input type="range" id="vol-slider" min="0" max="1" step="0.01" value="1" oninput="updateVolume(this.value)">
+            <input type="range" id="vol-slider" min="0" max="1" step="0.01" value="1" oninput="updateVolume(this.value)" aria-label="Volume Slider">
         </div>
 
         <div class="stats-row">
@@ -583,7 +576,7 @@
 
     <div class="panel">
         <div class="panel-title"><span id="lbl-trans">Transmission</span> <span id="lbl-uplink">Uplink</span></div>
-        <button class="btn-share" onclick="shareSite()" id="btn-share">
+        <button class="btn-share" onclick="shareSite()" id="btn-share" aria-label="Share Site">
             <svg style="width:16px;height:16px;fill:currentColor;margin-right:5px;" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.66 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92s-1.31-2.92-2.92-2.92z"/></svg>
             <span id="lbl-btn-share">SEND TO A FRIEND</span>
         </button>
@@ -594,11 +587,11 @@
         </div>
 
         <div class="footer-actions">
-            <button class="btn-mini btn-green" onclick="window.open('https://buymeacoffee.com/donshehab')">
+            <button class="btn-mini btn-green" onclick="window.open('https://buymeacoffee.com/donshehab')" aria-label="Buy Me A Coffee">
                 <svg style="width:12px;height:12px;fill:currentColor" viewBox="0 0 24 24"><path d="M20 3H4v10c0 2.21 1.79 4 4 4h6c2.21 0 4-1.79 4-4v-3h2c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 5h-2V5h2v3zM4 19h16v2H4z"/></svg>
                 <span id="lbl-coffee">Buy Me A Coffee</span>
             </button>
-            <a href="https://tellmylocation.com" target="_blank" class="btn-mini btn-green" id="lbl-tool">
+            <a href="https://tellmylocation.com" target="_blank" class="btn-mini btn-green" id="lbl-tool" aria-label="Check Other Tool">
                 Check My Other Tool →
             </a>
         </div>
@@ -876,60 +869,63 @@
         }
         const t = translations[lang];
         if(!t) return;
-        const ids = ['lbl-trust', 'lbl-tagline', 'lbl-panel-test', 'lbl-panel-iso', 'btn-left', 'btn-right', 'btn-bass', 'btn-treble', 'lbl-panel-ops', 'lbl-panel-deep', 'lbl-pro', 'lbl-auto', 'lbl-turbo', 'lbl-boost', 'lbl-panel-dust', 'lbl-panel-meter', 'lbl-contam', 'btn-check', 'lbl-gauge-cpu', 'lbl-gauge-freq', 'lbl-gauge-gain', 'lbl-mode-water', 'lbl-mode-mode1', 'lbl-mode-dust', 'lbl-mode-mode2', 'lbl-spec', 'lbl-vol', 'lbl-streak', 'lbl-cleans', 'lbl-trans', 'lbl-uplink', 'lbl-btn-share', 'lbl-qr', 'lbl-coffee', 'lbl-tool', 'lbl-brief', 'lbl-intel', 'lbl-why-title', 'lbl-safe-title', 'lbl-safe-text', 'lbl-sys', 'lbl-ver', 't1', 't2', 't3', 't4', 't5', 't6', 'lbl-cookie', 'btn-cookie'];
         
         // Safe binding to avoid crash if ID missing
-        if(document.getElementById('lbl-trust')) document.getElementById('lbl-trust').innerText = t.trust;
-        if(document.getElementById('lbl-tagline')) document.getElementById('lbl-tagline').innerText = t.tagline;
-        if(document.getElementById('lbl-panel-test')) document.getElementById('lbl-panel-test').innerText = t.ptest;
-        if(document.getElementById('lbl-panel-iso')) document.getElementById('lbl-panel-iso').innerText = t.piso;
-        if(document.getElementById('btn-left')) document.getElementById('btn-left').innerText = t.left;
-        if(document.getElementById('btn-right')) document.getElementById('btn-right').innerText = t.right;
-        if(document.getElementById('btn-bass')) document.getElementById('btn-bass').innerText = t.bass;
-        if(document.getElementById('btn-treble')) document.getElementById('btn-treble').innerText = t.treble;
-        if(document.getElementById('lbl-panel-ops')) document.getElementById('lbl-panel-ops').innerText = t.pops;
-        if(document.getElementById('lbl-panel-deep')) document.getElementById('lbl-panel-deep').innerText = t.pdeep;
-        if(document.getElementById('lbl-pro')) document.getElementById('lbl-pro').innerText = t.pro;
-        if(document.getElementById('lbl-auto')) document.getElementById('lbl-auto').innerText = t.auto;
-        if(document.getElementById('lbl-turbo')) document.getElementById('lbl-turbo').innerText = t.turbo;
-        if(document.getElementById('lbl-boost')) document.getElementById('lbl-boost').innerText = t.boost;
-        if(document.getElementById('lbl-panel-dust')) document.getElementById('lbl-panel-dust').innerText = t.pdust;
-        if(document.getElementById('lbl-panel-meter')) document.getElementById('lbl-panel-meter').innerText = t.pmeter;
-        if(document.getElementById('lbl-contam')) document.getElementById('lbl-contam').innerText = t.contam;
-        if(document.getElementById('btn-check')) document.getElementById('btn-check').innerText = t.check;
-        if(document.getElementById('lbl-gauge-cpu')) document.getElementById('lbl-gauge-cpu').innerText = t.gcpu;
-        if(document.getElementById('lbl-gauge-freq')) document.getElementById('lbl-gauge-freq').innerText = t.gfreq;
-        if(document.getElementById('lbl-gauge-gain')) document.getElementById('lbl-gauge-gain').innerText = t.ggain;
-        if(document.getElementById('lbl-mode-water')) document.getElementById('lbl-mode-water').innerText = t.mwater;
-        if(document.getElementById('lbl-mode-mode1')) document.getElementById('lbl-mode-mode1').innerText = t.mmode1;
-        if(document.getElementById('lbl-mode-dust')) document.getElementById('lbl-mode-dust').innerText = t.mdust;
-        if(document.getElementById('lbl-mode-mode2')) document.getElementById('lbl-mode-mode2').innerText = t.mmode2;
-        if(document.getElementById('lbl-spec')) document.getElementById('lbl-spec').innerText = t.spec;
-        if(document.getElementById('lbl-vol')) document.getElementById('lbl-vol').innerText = t.vol;
-        if(document.getElementById('lbl-streak')) document.getElementById('lbl-streak').innerText = t.streak;
-        if(document.getElementById('lbl-cleans')) document.getElementById('lbl-cleans').innerText = t.cleans;
-        if(document.getElementById('lbl-trans')) document.getElementById('lbl-trans').innerText = t.trans;
-        if(document.getElementById('lbl-uplink')) document.getElementById('lbl-uplink').innerText = t.uplink;
-        if(document.getElementById('lbl-btn-share')) document.getElementById('lbl-btn-share').innerText = t.share;
-        if(document.getElementById('lbl-qr')) document.getElementById('lbl-qr').innerText = t.qr;
-        if(document.getElementById('lbl-coffee')) document.getElementById('lbl-coffee').innerText = t.coffee;
-        if(document.getElementById('lbl-tool')) document.getElementById('lbl-tool').innerText = t.tool;
-        if(document.getElementById('lbl-brief')) document.getElementById('lbl-brief').innerText = t.brief;
-        if(document.getElementById('lbl-intel')) document.getElementById('lbl-intel').innerText = t.intel;
-        if(document.getElementById('lbl-why-title')) document.getElementById('lbl-why-title').innerText = t.whyT;
-        if(document.getElementById('lbl-why-text')) document.getElementById('lbl-why-text').innerHTML = `<strong>${t.whyT}:</strong> ${t.whyTx}`;
-        if(document.getElementById('lbl-safe-title')) document.getElementById('lbl-safe-title').innerText = t.safeT;
-        if(document.getElementById('lbl-safe-text')) document.getElementById('lbl-safe-text').innerText = t.safeTx;
-        if(document.getElementById('lbl-sys')) document.getElementById('lbl-sys').innerText = t.sys;
-        if(document.getElementById('lbl-ver')) document.getElementById('lbl-ver').innerText = t.ver;
-        if(document.getElementById('t1')) document.getElementById('t1').innerText = t.t1;
-        if(document.getElementById('t2')) document.getElementById('t2').innerText = t.t2;
-        if(document.getElementById('t3')) document.getElementById('t3').innerText = t.t3;
-        if(document.getElementById('t4')) document.getElementById('t4').innerText = t.t4;
-        if(document.getElementById('t5')) document.getElementById('t5').innerText = t.t5;
-        if(document.getElementById('t6')) document.getElementById('t6').innerText = t.t6;
-        if(document.getElementById('lbl-cookie')) document.getElementById('lbl-cookie').innerText = t.cookie;
-        if(document.getElementById('btn-cookie')) document.getElementById('btn-cookie').innerText = t.ack;
+        const setTxt = (id, txt) => { const el = document.getElementById(id); if(el) el.innerText = txt; };
+        
+        setTxt('lbl-trust', t.trust);
+        setTxt('lbl-tagline', t.tagline);
+        setTxt('lbl-panel-test', t.ptest);
+        setTxt('lbl-panel-iso', t.piso);
+        setTxt('btn-left', t.left);
+        setTxt('btn-right', t.right);
+        setTxt('btn-bass', t.bass);
+        setTxt('btn-treble', t.treble);
+        setTxt('lbl-panel-ops', t.pops);
+        setTxt('lbl-panel-deep', t.pdeep);
+        setTxt('lbl-pro', t.pro);
+        setTxt('lbl-auto', t.auto);
+        setTxt('lbl-turbo', t.turbo);
+        setTxt('lbl-boost', t.boost);
+        setTxt('lbl-panel-dust', t.pdust);
+        setTxt('lbl-panel-meter', t.pmeter);
+        setTxt('lbl-contam', t.contam);
+        setTxt('btn-check', t.check);
+        setTxt('lbl-gauge-cpu', t.gcpu);
+        setTxt('lbl-gauge-freq', t.gfreq);
+        setTxt('lbl-gauge-gain', t.ggain);
+        setTxt('lbl-mode-water', t.mwater);
+        setTxt('lbl-mode-mode1', t.mmode1);
+        setTxt('lbl-mode-dust', t.mdust);
+        setTxt('lbl-mode-mode2', t.mmode2);
+        setTxt('lbl-spec', t.spec);
+        setTxt('lbl-vol', t.vol);
+        setTxt('lbl-streak', t.streak);
+        setTxt('lbl-cleans', t.cleans);
+        setTxt('lbl-trans', t.trans);
+        setTxt('lbl-uplink', t.uplink);
+        setTxt('lbl-btn-share', t.share);
+        setTxt('lbl-qr', t.qr);
+        setTxt('lbl-coffee', t.coffee);
+        setTxt('lbl-tool', t.tool);
+        setTxt('lbl-brief', t.brief);
+        setTxt('lbl-intel', t.intel);
+        setTxt('lbl-why-title', t.whyT);
+        setTxt('lbl-safe-title', t.safeT);
+        setTxt('lbl-safe-text', t.safeTx);
+        setTxt('lbl-sys', t.sys);
+        setTxt('lbl-ver', t.ver);
+        setTxt('t1', t.t1);
+        setTxt('t2', t.t2);
+        setTxt('t3', t.t3);
+        setTxt('t4', t.t4);
+        setTxt('t5', t.t5);
+        setTxt('t6', t.t6);
+        setTxt('lbl-cookie', t.cookie);
+        setTxt('btn-cookie', t.ack);
+        
+        const whyTxt = document.getElementById('lbl-why-text');
+        if(whyTxt) whyTxt.innerHTML = `<strong>${t.whyT}:</strong> ${t.whyTx}`;
     }
 
     let savedLang = 'en';
