@@ -61,11 +61,49 @@
         },
         {
           "@context": "https://schema.org",
-          "@type": "WebPage",
-          "name": "Remove Water From Speaker",
-          "url": "https://waterinmyspeaker.com",
-          "isPartOf": { "@type": "WebSite", "url": "https://waterinmyspeaker.com" },
-          "primaryImageOfPage": { "@type": "ImageObject", "url": "https://waterinmyspeaker.com/preview.png" }
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "Is this sound safe for my speakers?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes. We use specific sine waves (165Hz) designed to vibrate the speaker diaphragm without exceeding safe amplitude limits. It essentially 'shakes' the water off without damaging hardware."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "How long should I run the cleaning cycle?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "We recommend running 'Pro Mode' (Auto Cycle) 2-3 times. If water is still trapped, position your phone upright and run it for 5 minutes."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Does this work for iPhone and Android?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Absolutely. It works on any device with a speaker, including iPhone, Samsung Galaxy, Pixel, Xiaomi, and even smartwatches."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "What should I do if the sound is still muffled?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Wait 10 minutes for evaporation, then try again. Gravity helps—keep the speaker facing down while the sound plays."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Why can't I hear anything?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Your volume might be too low, or water has temporarily shorted the connection. Turn volume to max and run the '165Hz' mode."
+              }
+            }
+          ]
         }
     ]
     </script>
@@ -412,6 +450,23 @@
             display: flex; align-items: center; justify-content: center; color: #333; font-size: 9px; margin-top: 10px;
         }
 
+        /* --- FAQ STYLES --- */
+        .faq-item { margin-bottom: 10px; border-bottom: 1px solid #222; padding-bottom: 5px; }
+        .faq-item:last-child { border-bottom: none; }
+        details > summary {
+            list-style: none; outline: none; cursor: pointer; font-size: 10px; 
+            color: #fff; font-weight: 700; padding: 8px 0; transition: color 0.2s;
+            display: flex; align-items: center; gap: 8px;
+        }
+        details > summary::-webkit-details-marker { display: none; }
+        details > summary:hover { color: var(--accent); }
+        details > summary::before { content: '>'; color: var(--accent); font-weight: 900; transition: transform 0.2s; }
+        details[open] > summary::before { transform: rotate(90deg); }
+        details > p {
+            margin: 0; padding: 5px 0 10px 15px; font-size: 9px; color: #888; line-height: 1.5;
+            border-left: 1px solid #333;
+        }
+
         footer { margin-top: 40px; text-align: center; font-size: 10px; color: #444; padding-bottom: 20px;}
         footer a { color: #666; text-decoration: none; margin: 0 10px; transition: color 0.2s; }
         footer a:hover { color: var(--accent); }
@@ -636,6 +691,32 @@
                 <div style="color: var(--accent); font-weight: bold; font-size: 10px;">5. No app needed — everything runs in your browser</div>
                 <div style="color: #888; font-size: 9px;">Fast, free, and instantly accessible from any device.</div>
             </div>
+        </div>
+    </div>
+
+    <div class="panel">
+        <div class="panel-title"><span>System</span> <span>FAQ</span></div>
+        <div class="faq-container">
+            <details class="faq-item">
+                <summary>Is this sound safe for my speakers?</summary>
+                <p>Yes. We use specific sine waves (165Hz) designed to vibrate the speaker diaphragm without exceeding safe amplitude limits. It essentially "shakes" the water off without damaging hardware.</p>
+            </details>
+            <details class="faq-item">
+                <summary>How long should I run the cleaning cycle?</summary>
+                <p>We recommend running "Pro Mode" (Auto Cycle) 2-3 times. If water is still trapped, position your phone upright and run it for 5 minutes.</p>
+            </details>
+            <details class="faq-item">
+                <summary>Does this work for iPhone and Android?</summary>
+                <p>Absolutely. It works on any device with a speaker, including iPhone, Samsung Galaxy, Pixel, Xiaomi, and even smartwatches.</p>
+            </details>
+            <details class="faq-item">
+                <summary>What should I do if the sound is still muffled?</summary>
+                <p>Wait 10 minutes for evaporation, then try again. Gravity helps—keep the speaker facing down while the sound plays.</p>
+            </details>
+            <details class="faq-item">
+                <summary>Why can't I hear anything?</summary>
+                <p>Your volume might be too low, or water has temporarily shorted the connection. Turn volume to max and run the "165Hz" mode.</p>
+            </details>
         </div>
     </div>
 
