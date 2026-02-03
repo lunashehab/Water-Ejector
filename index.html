@@ -22,77 +22,54 @@
     <meta name="theme-color" content="#000000">
 
     <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "SoftwareApplication",
-      "name": "Speaker Cleaner Pro",
-      "applicationCategory": "UtilityApplication",
-      "operatingSystem": "Any",
-      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
-      "featureList": "Water Ejection, Dust Removal, 165Hz Frequency"
-    }
-    </script>
-
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      "name": "Water In My Speaker",
-      "url": "https://waterinmyspeaker.com",
-      "description": "Remove water from your phone speaker instantly using our water eject sound tool. Fix muffled audio fast with a safe, free online speaker cleaning frequency.",
-      "publisher": {
-        "@type": "Organization",
-        "name": "Water In My Speaker",
-        "logo": {
-          "@type": "ImageObject",
-          "url": "https://waterinmyspeaker.com/logo.png"
+    [
+        {
+          "@context": "https://schema.org",
+          "@type": "SoftwareApplication",
+          "name": "Speaker Cleaner Pro",
+          "applicationCategory": "UtilityApplication",
+          "operatingSystem": "Any",
+          "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+          "featureList": "Water Ejection, Dust Removal, 165Hz Frequency"
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "WebSite",
+          "name": "Water In My Speaker",
+          "url": "https://waterinmyspeaker.com",
+          "description": "Remove water from your phone speaker instantly using our water eject sound tool. Fix muffled audio fast with a safe, free online speaker cleaning frequency.",
+          "publisher": {
+            "@type": "Organization",
+            "name": "Water In My Speaker",
+            "logo": { "@type": "ImageObject", "url": "https://waterinmyspeaker.com/logo.png" }
+          },
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://waterinmyspeaker.com/?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+          }
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "WebPage",
+          "name": "Remove Water From Speaker",
+          "url": "https://waterinmyspeaker.com",
+          "isPartOf": { "@type": "WebSite", "url": "https://waterinmyspeaker.com" },
+          "about": { "@type": "Thing", "name": "Water Eject Tool" },
+          "description": "Use our water eject sound to remove water from your phone speaker instantly. Fix muffled audio with a high‑frequency cleaning tone.",
+          "primaryImageOfPage": { "@type": "ImageObject", "url": "https://waterinmyspeaker.com/preview.png" }
+        },
+        {
+          "@context": "https://schema.org",
+          "@type": "SoftwareApplication",
+          "name": "Water Eject Speaker Cleaner",
+          "operatingSystem": "Any",
+          "applicationCategory": "Utility",
+          "url": "https://waterinmyspeaker.com",
+          "description": "A free online tool that removes water from your phone speaker using a high‑frequency eject sound.",
+          "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
         }
-      },
-      "potentialAction": {
-        "@type": "SearchAction",
-        "target": "https://waterinmyspeaker.com/?q={search_term_string}",
-        "query-input": "required name=search_term_string"
-      }
-    }
-    </script>
-
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebPage",
-      "name": "Remove Water From Speaker",
-      "url": "https://waterinmyspeaker.com",
-      "isPartOf": {
-        "@type": "WebSite",
-        "url": "https://waterinmyspeaker.com"
-      },
-      "about": {
-        "@type": "Thing",
-        "name": "Water Eject Tool"
-      },
-      "description": "Use our water eject sound to remove water from your phone speaker instantly. Fix muffled audio with a high‑frequency cleaning tone.",
-      "primaryImageOfPage": {
-        "@type": "ImageObject",
-        "url": "https://waterinmyspeaker.com/preview.png"
-      }
-    }
-    </script>
-
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "SoftwareApplication",
-      "name": "Water Eject Speaker Cleaner",
-      "operatingSystem": "Any",
-      "applicationCategory": "Utility",
-      "url": "https://waterinmyspeaker.com",
-      "description": "A free online tool that removes water from your phone speaker using a high‑frequency eject sound.",
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "USD"
-      }
-    }
+    ]
     </script>
 
     <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;500;700;900&display=swap" rel="stylesheet">
@@ -666,7 +643,7 @@
     // --- LOG FUNCTION ---
     function postLog(msg) {
         const log = document.getElementById('system-log');
-        log.innerHTML = `> ${msg}<br>` + log.innerHTML.split('<br>').slice(0, 2).join('<br>');
+        if(log) log.innerHTML = `> ${msg}<br>` + log.innerHTML.split('<br>').slice(0, 2).join('<br>');
     }
 
     async function initAudio() {
@@ -685,14 +662,15 @@
         document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
         document.querySelectorAll('.btn-diag').forEach(b => b.classList.remove('active'));
         document.querySelectorAll('.btn-ops').forEach(b => b.classList.remove('active'));
-        document.getElementById('btn-deep').classList.remove('active');
+        const btnDeep = document.getElementById('btn-deep');
+        if(btnDeep) btnDeep.classList.remove('active');
         
-        document.getElementById('ring-load').classList.remove('active');
-        document.getElementById('ring-db').classList.remove('active');
-        document.getElementById('ring-hz').classList.remove('active');
+        const r1 = document.getElementById('ring-load'); if(r1) r1.classList.remove('active');
+        const r2 = document.getElementById('ring-db'); if(r2) r2.classList.remove('active');
+        const r3 = document.getElementById('ring-hz'); if(r3) r3.classList.remove('active');
         
-        document.getElementById('prog-cont').classList.remove('active');
-        document.getElementById('prog-fill').style.width = "0%";
+        const prog = document.getElementById('prog-cont'); if(prog) prog.classList.remove('active');
+        const fill = document.getElementById('prog-fill'); if(fill) fill.style.width = "0%";
         
         resetGauges();
         bars.forEach(b => b.style.height = '2px');
@@ -855,7 +833,7 @@
     };
 
     function changeLang(lang) {
-        localStorage.setItem('lang', lang);
+        try { localStorage.setItem('lang', lang); } catch(e){}
         if (lang === 'ar') {
             document.body.style.direction = "rtl";
             document.querySelector('.lang-box').style.left = "0";
@@ -867,60 +845,64 @@
         }
         const t = translations[lang];
         if(!t) return;
-        document.getElementById('lbl-trust').innerText = t.trust;
-        document.getElementById('lbl-tagline').innerText = t.tagline;
-        document.getElementById('lbl-panel-test').innerText = t.ptest;
-        document.getElementById('lbl-panel-iso').innerText = t.piso;
-        document.getElementById('btn-left').innerText = t.left;
-        document.getElementById('btn-right').innerText = t.right;
-        document.getElementById('btn-bass').innerText = t.bass;
-        document.getElementById('btn-treble').innerText = t.treble;
-        document.getElementById('lbl-panel-ops').innerText = t.pops;
-        document.getElementById('lbl-panel-deep').innerText = t.pdeep;
-        document.getElementById('lbl-pro').innerText = t.pro;
-        document.getElementById('lbl-auto').innerText = t.auto;
-        document.getElementById('lbl-turbo').innerText = t.turbo;
-        document.getElementById('lbl-boost').innerText = t.boost;
-        document.getElementById('lbl-panel-dust').innerText = t.pdust;
-        document.getElementById('lbl-panel-meter').innerText = t.pmeter;
-        document.getElementById('lbl-contam').innerText = t.contam;
-        document.getElementById('btn-check').innerText = t.check;
-        document.getElementById('lbl-gauge-cpu').innerText = t.gcpu;
-        document.getElementById('lbl-gauge-freq').innerText = t.gfreq;
-        document.getElementById('lbl-gauge-gain').innerText = t.ggain;
-        document.getElementById('lbl-mode-water').innerText = t.mwater;
-        document.getElementById('lbl-mode-mode1').innerText = t.mmode1;
-        document.getElementById('lbl-mode-dust').innerText = t.mdust;
-        document.getElementById('lbl-mode-mode2').innerText = t.mmode2;
-        document.getElementById('lbl-spec').innerText = t.spec;
-        document.getElementById('lbl-vol').innerText = t.vol;
-        document.getElementById('lbl-streak').innerText = t.streak;
-        document.getElementById('lbl-cleans').innerText = t.cleans;
-        document.getElementById('lbl-trans').innerText = t.trans;
-        document.getElementById('lbl-uplink').innerText = t.uplink;
-        document.getElementById('lbl-btn-share').innerText = t.share;
-        document.getElementById('lbl-qr').innerText = t.qr;
-        document.getElementById('lbl-coffee').innerText = t.coffee;
-        document.getElementById('lbl-tool').innerText = t.tool;
-        document.getElementById('lbl-brief').innerText = t.brief;
-        document.getElementById('lbl-intel').innerText = t.intel;
-        document.getElementById('lbl-why-title').innerText = t.whyT;
-        document.getElementById('lbl-why-text').innerHTML = `<strong>${t.whyT}:</strong> ${t.whyTx}`;
-        document.getElementById('lbl-safe-title').innerText = t.safeT;
-        document.getElementById('lbl-safe-text').innerText = t.safeTx;
-        document.getElementById('lbl-sys').innerText = t.sys;
-        document.getElementById('lbl-ver').innerText = t.ver;
-        document.getElementById('t1').innerText = t.t1;
-        document.getElementById('t2').innerText = t.t2;
-        document.getElementById('t3').innerText = t.t3;
-        document.getElementById('t4').innerText = t.t4;
-        document.getElementById('t5').innerText = t.t5;
-        document.getElementById('t6').innerText = t.t6;
-        document.getElementById('lbl-cookie').innerText = t.cookie;
-        document.getElementById('btn-cookie').innerText = t.ack;
+        const ids = ['lbl-trust', 'lbl-tagline', 'lbl-panel-test', 'lbl-panel-iso', 'btn-left', 'btn-right', 'btn-bass', 'btn-treble', 'lbl-panel-ops', 'lbl-panel-deep', 'lbl-pro', 'lbl-auto', 'lbl-turbo', 'lbl-boost', 'lbl-panel-dust', 'lbl-panel-meter', 'lbl-contam', 'btn-check', 'lbl-gauge-cpu', 'lbl-gauge-freq', 'lbl-gauge-gain', 'lbl-mode-water', 'lbl-mode-mode1', 'lbl-mode-dust', 'lbl-mode-mode2', 'lbl-spec', 'lbl-vol', 'lbl-streak', 'lbl-cleans', 'lbl-trans', 'lbl-uplink', 'lbl-btn-share', 'lbl-qr', 'lbl-coffee', 'lbl-tool', 'lbl-brief', 'lbl-intel', 'lbl-why-title', 'lbl-safe-title', 'lbl-safe-text', 'lbl-sys', 'lbl-ver', 't1', 't2', 't3', 't4', 't5', 't6', 'lbl-cookie', 'btn-cookie'];
+        
+        // Safe binding to avoid crash if ID missing
+        if(document.getElementById('lbl-trust')) document.getElementById('lbl-trust').innerText = t.trust;
+        if(document.getElementById('lbl-tagline')) document.getElementById('lbl-tagline').innerText = t.tagline;
+        if(document.getElementById('lbl-panel-test')) document.getElementById('lbl-panel-test').innerText = t.ptest;
+        if(document.getElementById('lbl-panel-iso')) document.getElementById('lbl-panel-iso').innerText = t.piso;
+        if(document.getElementById('btn-left')) document.getElementById('btn-left').innerText = t.left;
+        if(document.getElementById('btn-right')) document.getElementById('btn-right').innerText = t.right;
+        if(document.getElementById('btn-bass')) document.getElementById('btn-bass').innerText = t.bass;
+        if(document.getElementById('btn-treble')) document.getElementById('btn-treble').innerText = t.treble;
+        if(document.getElementById('lbl-panel-ops')) document.getElementById('lbl-panel-ops').innerText = t.pops;
+        if(document.getElementById('lbl-panel-deep')) document.getElementById('lbl-panel-deep').innerText = t.pdeep;
+        if(document.getElementById('lbl-pro')) document.getElementById('lbl-pro').innerText = t.pro;
+        if(document.getElementById('lbl-auto')) document.getElementById('lbl-auto').innerText = t.auto;
+        if(document.getElementById('lbl-turbo')) document.getElementById('lbl-turbo').innerText = t.turbo;
+        if(document.getElementById('lbl-boost')) document.getElementById('lbl-boost').innerText = t.boost;
+        if(document.getElementById('lbl-panel-dust')) document.getElementById('lbl-panel-dust').innerText = t.pdust;
+        if(document.getElementById('lbl-panel-meter')) document.getElementById('lbl-panel-meter').innerText = t.pmeter;
+        if(document.getElementById('lbl-contam')) document.getElementById('lbl-contam').innerText = t.contam;
+        if(document.getElementById('btn-check')) document.getElementById('btn-check').innerText = t.check;
+        if(document.getElementById('lbl-gauge-cpu')) document.getElementById('lbl-gauge-cpu').innerText = t.gcpu;
+        if(document.getElementById('lbl-gauge-freq')) document.getElementById('lbl-gauge-freq').innerText = t.gfreq;
+        if(document.getElementById('lbl-gauge-gain')) document.getElementById('lbl-gauge-gain').innerText = t.ggain;
+        if(document.getElementById('lbl-mode-water')) document.getElementById('lbl-mode-water').innerText = t.mwater;
+        if(document.getElementById('lbl-mode-mode1')) document.getElementById('lbl-mode-mode1').innerText = t.mmode1;
+        if(document.getElementById('lbl-mode-dust')) document.getElementById('lbl-mode-dust').innerText = t.mdust;
+        if(document.getElementById('lbl-mode-mode2')) document.getElementById('lbl-mode-mode2').innerText = t.mmode2;
+        if(document.getElementById('lbl-spec')) document.getElementById('lbl-spec').innerText = t.spec;
+        if(document.getElementById('lbl-vol')) document.getElementById('lbl-vol').innerText = t.vol;
+        if(document.getElementById('lbl-streak')) document.getElementById('lbl-streak').innerText = t.streak;
+        if(document.getElementById('lbl-cleans')) document.getElementById('lbl-cleans').innerText = t.cleans;
+        if(document.getElementById('lbl-trans')) document.getElementById('lbl-trans').innerText = t.trans;
+        if(document.getElementById('lbl-uplink')) document.getElementById('lbl-uplink').innerText = t.uplink;
+        if(document.getElementById('lbl-btn-share')) document.getElementById('lbl-btn-share').innerText = t.share;
+        if(document.getElementById('lbl-qr')) document.getElementById('lbl-qr').innerText = t.qr;
+        if(document.getElementById('lbl-coffee')) document.getElementById('lbl-coffee').innerText = t.coffee;
+        if(document.getElementById('lbl-tool')) document.getElementById('lbl-tool').innerText = t.tool;
+        if(document.getElementById('lbl-brief')) document.getElementById('lbl-brief').innerText = t.brief;
+        if(document.getElementById('lbl-intel')) document.getElementById('lbl-intel').innerText = t.intel;
+        if(document.getElementById('lbl-why-title')) document.getElementById('lbl-why-title').innerText = t.whyT;
+        if(document.getElementById('lbl-why-text')) document.getElementById('lbl-why-text').innerHTML = `<strong>${t.whyT}:</strong> ${t.whyTx}`;
+        if(document.getElementById('lbl-safe-title')) document.getElementById('lbl-safe-title').innerText = t.safeT;
+        if(document.getElementById('lbl-safe-text')) document.getElementById('lbl-safe-text').innerText = t.safeTx;
+        if(document.getElementById('lbl-sys')) document.getElementById('lbl-sys').innerText = t.sys;
+        if(document.getElementById('lbl-ver')) document.getElementById('lbl-ver').innerText = t.ver;
+        if(document.getElementById('t1')) document.getElementById('t1').innerText = t.t1;
+        if(document.getElementById('t2')) document.getElementById('t2').innerText = t.t2;
+        if(document.getElementById('t3')) document.getElementById('t3').innerText = t.t3;
+        if(document.getElementById('t4')) document.getElementById('t4').innerText = t.t4;
+        if(document.getElementById('t5')) document.getElementById('t5').innerText = t.t5;
+        if(document.getElementById('t6')) document.getElementById('t6').innerText = t.t6;
+        if(document.getElementById('lbl-cookie')) document.getElementById('lbl-cookie').innerText = t.cookie;
+        if(document.getElementById('btn-cookie')) document.getElementById('btn-cookie').innerText = t.ack;
     }
 
-    const savedLang = localStorage.getItem('lang') || 'en';
+    let savedLang = 'en';
+    try { savedLang = localStorage.getItem('lang') || 'en'; } catch(e){}
     document.querySelector('.lang-select').value = savedLang;
     changeLang(savedLang);
 
@@ -953,25 +935,33 @@
     }
 
     // --- COOKIE & STATS ---
-    if (!localStorage.getItem('cookiesAccepted')) document.getElementById('cookie-banner').style.display = 'block';
-    function acceptCookies() { localStorage.setItem('cookiesAccepted', 'true'); document.getElementById('cookie-banner').style.display = 'none'; }
+    try {
+        if (!localStorage.getItem('cookiesAccepted')) document.getElementById('cookie-banner').style.display = 'block';
+    } catch(e) {}
+    
+    function acceptCookies() { try{ localStorage.setItem('cookiesAccepted', 'true'); }catch(e){} document.getElementById('cookie-banner').style.display = 'none'; }
 
-    let streak = parseInt(localStorage.getItem('cleanStreak') || 1);
-    let cleans = parseInt(localStorage.getItem('totalCleans') || 0);
-    const lastVisit = localStorage.getItem('lastVisit');
+    let streak = 1; 
+    try { streak = parseInt(localStorage.getItem('cleanStreak') || 1); } catch(e){}
+    let cleans = 0; 
+    try { cleans = parseInt(localStorage.getItem('totalCleans') || 0); } catch(e){}
+    
     const today = new Date().toDateString();
-
-    if (lastVisit !== today) {
-        if (lastVisit) streak++;
-        localStorage.setItem('cleanStreak', streak);
-        localStorage.setItem('lastVisit', today);
-    }
+    try {
+        const lastVisit = localStorage.getItem('lastVisit');
+        if (lastVisit !== today) {
+            if (lastVisit) streak++;
+            localStorage.setItem('cleanStreak', streak);
+            localStorage.setItem('lastVisit', today);
+        }
+    } catch(e){}
+    
     document.getElementById('streak-val').innerText = streak;
     document.getElementById('history-val').innerText = cleans;
 
     function incrementClean() {
         cleans++;
-        localStorage.setItem('totalCleans', cleans);
+        try { localStorage.setItem('totalCleans', cleans); } catch(e){}
         document.getElementById('history-val').innerText = cleans;
     }
 
@@ -1109,31 +1099,31 @@
 
         // Gain
         const vRot = start + (vol * range);
-        document.getElementById('needle-db').style.transform = `rotate(${vRot}deg)`;
-        document.getElementById('val-db').innerText = Math.round(vol * 10);
+        const ndb = document.getElementById('needle-db'); if(ndb) ndb.style.transform = `rotate(${vRot}deg)`;
+        const vdb = document.getElementById('val-db'); if(vdb) vdb.innerText = Math.round(vol * 10);
         if (volOnly && !isPlaying) return;
 
         // Hz (20k max)
         let hRot = start + (Math.min(hz, 20000) / 20000 * range);
         if (hz === 0) hRot = start;
-        document.getElementById('needle-hz').style.transform = `rotate(${hRot}deg)`;
-        if (hz > 0) document.getElementById('val-hz').innerText = Math.round(hz) + " Hz";
+        const nhz = document.getElementById('needle-hz'); if(nhz) nhz.style.transform = `rotate(${hRot}deg)`;
+        const vhz = document.getElementById('val-hz'); if(vhz && hz > 0) vhz.innerText = Math.round(hz) + " Hz";
 
         // Load
         if (isPlaying) {
             const lRot = start + (load / 100 * range);
-            document.getElementById('needle-load').style.transform = `rotate(${lRot}deg)`;
-            document.getElementById('val-load').innerText = Math.round(load) + "%";
+            const nl = document.getElementById('needle-load'); if(nl) nl.style.transform = `rotate(${lRot}deg)`;
+            const vl = document.getElementById('val-load'); if(vl) vl.innerText = Math.round(load) + "%";
         }
     }
 
     function resetGauges() {
         // FORCE RESET TO -120deg
         const start = -120;
-        document.getElementById('needle-hz').style.transform = `rotate(${start}deg)`;
-        document.getElementById('val-hz').innerText = "0 Hz";
-        document.getElementById('needle-load').style.transform = `rotate(${start}deg)`;
-        document.getElementById('val-load').innerText = "0%";
+        const nhz = document.getElementById('needle-hz'); if(nhz) nhz.style.transform = `rotate(${start}deg)`;
+        const vhz = document.getElementById('val-hz'); if(vhz) vhz.innerText = "0 Hz";
+        const nl = document.getElementById('needle-load'); if(nl) nl.style.transform = `rotate(${start}deg)`;
+        const vl = document.getElementById('val-load'); if(vl) vl.innerText = "0%";
         updateGauges(0, currentVol, true);
     }
 
@@ -1141,7 +1131,8 @@
     window.onload = function() {
         resetGauges();
         // Trigger default lang
-        const savedLang = localStorage.getItem('lang') || 'en';
+        let savedLang = 'en';
+        try { savedLang = localStorage.getItem('lang') || 'en'; } catch(e){}
         changeLang(savedLang);
     };
 
