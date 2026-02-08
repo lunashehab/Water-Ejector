@@ -6,6 +6,8 @@
     <meta charset="UTF-8" />
     <link rel="icon" href="favicon.ico" />
     
+    <link rel="canonical" href="https://tellmylocation.com/" />
+    
     <title>Tell My Location | Global GPS & Safety Tool</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     
@@ -20,8 +22,6 @@
     <meta name="theme-color" content="#0f172a">
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     
     <script type="application/ld+json">
     {
@@ -136,9 +136,10 @@
             border-radius: 16px;
             text-align: left;
         }
-        .label { font-size: 10px; color: var(--text-soft); text-transform: uppercase; margin-bottom: 6px; letter-spacing: 0.5px; }
+        /* Fix: Increased font size for legibility */
+        .label { font-size: 11px; color: var(--text-soft); text-transform: uppercase; margin-bottom: 6px; letter-spacing: 0.5px; }
         .value { font-size: 16px; font-weight: 700; color: #fff; }
-        .sub-value { font-size: 11px; color: var(--neon-blue); margin-top: 4px; }
+        .sub-value { font-size: 12px; color: var(--neon-blue); margin-top: 4px; }
 
         .nearby-header { font-size: 12px; text-transform: uppercase; color: var(--text-soft); margin-bottom: 10px; letter-spacing: 0.5px; display: flex; align-items: center; gap: 6px; }
         .nearby-list { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
@@ -353,7 +354,7 @@
                 <div id="full-address">...</div>
                 <div style="font-size:10px; color:rgba(255,255,255,0.5); margin-top:5px;">(Tap copy icon to save)</div>
                 
-                <button class="icon-btn copy-abs" id="copy-addr" title="Copy Address">
+                <button class="icon-btn copy-abs" id="copy-addr" title="Copy Address" aria-label="Copy Address">
                     <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
                 </button>
             </div>
@@ -490,315 +491,16 @@
                 </div>
             </div>
             <div class="btn-stack">
-                <button class="btn btn-sos" id="sos-btn">
+                <button class="btn btn-sos" id="sos-btn" aria-label="SOS Button">
                     <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
                     <span data-i18n="btn_sos">ONE-TAP SOS SHARE</span>
                 </button>
                 <div class="btn-row">
-                    <button class="btn btn-primary" id="refresh-btn">
+                    <button class="btn btn-primary" id="refresh-btn" aria-label="Refresh">
                         <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
                         <span data-i18n="btn_refresh">Refresh</span>
                     </button>
-                    <button class="btn btn-ghost" id="copy-coords-btn">
-                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-                        <span data-i18n="btn_copy">Copy Lat/Long</span>
-                    </button>
-                </div>
-                
-                <div class="btn-row" style="margin-top:10px;">
-                    <button class="btn" onclick="toggleModule('driver-mod')" style="background:rgba(56, 189, 248, 0.15); color:#38bdf8; border:1px solid rgba(56, 189, 248, 0.3);">
-                        <span>🚗 Driver Mode</span>
-                    </button>
-                    <button class="btn" onclick="toggleModule('hiker-mod')" style="background:rgba(16, 185, 129, 0.15); color:#10b981; border:1px solid rgba(16, 185, 129, 0.3);">
-                        <span>🌲 Hiker Mode</span>
-                    </button>
-                </div>
-                <div class="btn-row" style="margin-top:0px;">
-                    <button class="btn" onclick="toggleModule('friend-mod')" style="background:rgba(255, 204, 0, 0.15); color:#fbbf24; border:1px solid rgba(255, 204, 0, 0.3);">
-                        <span>🤝 Meet Friend</span>
-                    </button>
-                    <button class="btn" onclick="toggleModule('share-mod')" style="background:rgba(255, 255, 255, 0.1); color:white; border:1px solid rgba(255, 255, 255, 0.3);">
-                        <span>🔗 Share Link</span>
-                    </button>
-                </div>
-                <div class="btn-row">
-                    <button class="btn" style="background:#10b981; color:white; padding:10px; font-size:12px; box-shadow:0 0 10px rgba(16,185,129,0.4);" onclick="window.open('https://buymeacoffee.com/donshehab')">
-                        <svg class="icon" style="width:14px; height:14px;" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"></path><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path></svg>
-                        <span>Coffee</span>
-                    </button>
-                    <button class="btn" style="background:#ffcc00; color:black; font-weight:800; padding:10px; font-size:11px; box-shadow:0 0 15px rgba(255,204,0,0.6);" onclick="window.open('https://waterinmyspeaker.com')">
-                        <span>CHECK OTHER TOOL</span>
-                    </button>
-                </div>
-            </div>
-
-            <div class="qr-section">
-                <div class="qr-label">Scan to Share Location</div>
-                <div id="qrcode"></div>
-            </div>
-
-            <div id="new-modules-container">
-                
-                <div id="driver-mod" class="new-module-container">
-                    <div class="mod-header">
-                        <span class="mod-title">Driver Dashboard</span>
-                        <button class="mod-close" onclick="toggleModule('driver-mod')">✕</button>
-                    </div>
-                    <div class="driver-hud">
-                        <div class="hud-item"><span class="hud-val" id="drv-speed">0</span><span class="hud-lbl">MPH</span></div>
-                        <div class="hud-item"><span class="hud-val" id="drv-dir">--</span><span class="hud-lbl">Heading</span></div>
-                    </div>
-                    <div class="mod-grid-buttons">
-                        <button class="mod-btn" onclick="openMapSearch('gas_station')">⛽ Gas Stations</button>
-                        <button class="mod-btn" onclick="openMapSearch('parking')">🅿️ Rest Stops</button>
-                        <button class="mod-btn" onclick="shareETA()">⏱️ Send ETA</button>
-                        <button class="mod-btn" onclick="shareLocationSimple()">📍 Share Location</button>
-                    </div>
-                </div>
-
-                <div id="hiker-mod" class="new-module-container">
-                    <div class="mod-header">
-                        <span class="mod-title">Hiker Tools</span>
-                        <button class="mod-close" onclick="toggleModule('hiker-mod')">✕</button>
-                    </div>
-                    <div style="font-size:12px; color:#94a3b8; margin-bottom:10px;">Offline caching enabled. Pins saved locally.</div>
-                    <div class="mod-grid-buttons">
-                        <button class="mod-btn mod-btn-primary" onclick="dropPin()">📍 Drop Pin</button>
-                        <button class="mod-btn" onclick="clearPins()">🗑️ Clear Pins</button>
-                    </div>
-                    <div id="pin-list" class="pin-list"></div>
-                </div>
-
-                <div id="friend-mod" class="new-module-container">
-                    <div class="mod-header">
-                        <span class="mod-title">Meet a Friend</span>
-                        <button class="mod-close" onclick="toggleModule('friend-mod')">✕</button>
-                    </div>
-                    <input type="text" id="friend-input" class="mod-input" placeholder="Paste friend's coords (lat,lng) or link...">
-                    <button class="mod-btn mod-btn-primary" style="width:100%" onclick="calcFriendDist()">Calculate Distance & Midpoint</button>
-                    <div id="friend-res" style="margin-top:10px; font-size:14px; color:white;"></div>
-                </div>
-
-                <div id="share-mod" class="new-module-container">
-                    <div class="mod-header">
-                        <span class="mod-title">Share Location</span>
-                        <button class="mod-close" onclick="toggleModule('share-mod')">✕</button>
-                    </div>
-                    <input type="text" id="share-url-input" class="mod-input" readonly>
-                    <div class="mod-grid-buttons">
-                        <button class="mod-btn mod-btn-primary" onclick="copyShareLink()">📋 Copy Link</button>
-                        <button class="mod-btn" onclick="startLiveTrack()" id="live-trk-btn">📡 Start Live (15m)</button>
-                    </div>
-                    <div style="margin-top:15px; display:flex; gap:10px; flex-wrap:wrap; justify-content:center;">
-                        <button class="mod-btn" onclick="shareSocial('wa')">WhatsApp</button>
-                        <button class="mod-btn" onclick="shareSocial('sms')">SMS</button>
-                        <button class="mod-btn" onclick="shareSocial('tg')">Telegram</button>
-                    </div>
-                </div>
-            </div>
-            <section class="why-section">
-                <h2>Why This Interface Matters</h2>
-                <p>TellMyLocation utilizes high-frequency satellite pings combined with low-latency network triangulation to deliver hyper-accurate data in milliseconds. We prioritize privacy by ensuring zero data persistence on our backend—your location is your business.</p>
-            </section>
-
-            <div class="use-case-grid">
-                <div class="use-case-card"><span>🚚</span><h3>Delivery Drivers</h3></div>
-                <div class="use-case-card"><span>🚨</span><h3>Emergency SOS</h3></div>
-                <div class="use-case-card"><span>🏔️</span><h3>Hikers/Travelers</h3></div>
-                <div class="use-case-card"><span>🤝</span><h3>Meeting Friends</h3></div>
-            </div>
-
-            <div class="content-expansion">
-                <h2>Understanding Geolocation Technology</h2>
-                <p>In the digital age, the question "Where am I?" is answered by a complex web of technologies working in unison. The most precise method is the <strong>Global Positioning System (GPS)</strong>, which uses a network of over 30 satellites orbiting the Earth. When your device connects to at least four of these satellites, it calculates your exact position through trilateration, often achieving accuracy within a few meters.</p>
-                <p>However, when GPS signals are blocked—such as when you are indoors or in a dense urban canyon—your device falls back on <strong>IP Geolocation</strong>. Every device connected to the internet has an Internet Protocol (IP) address. Services map these addresses to physical locations based on data from Internet Service Providers (ISPs). While faster, IP location is generally less precise, often pointing to a city center or an ISP hub rather than your specific building.</p>
-
-                <h3>Maximizing Safety in a Connected World</h3>
-                <ul>
-                    <li><strong>Context Aware Sharing:</strong> Only share your live location for specific purposes, such as meeting a friend or during an emergency. Avoid posting live coordinates on public social media feeds.</li>
-                    <li><strong>Browser Permissions:</strong> Modern browsers require your explicit permission to access GPS data. TellMyLocation.com operates strictly within these boundaries—once you close the tab, your location session ends.</li>
-                    <li><strong>Emergency Preparedness:</strong> In critical situations where voice calls are impossible, sending a silent GPS text message (like our SOS feature) can be a lifeline for first responders.</li>
-                </ul>
-
-                <h3>Real-World Utility</h3>
-                <p>Beyond emergencies, precise coordinates are vital for professionals and hobbyists alike. <strong>Delivery drivers</strong> use them to pinpoint unmapped entrances. <strong>Landscape photographers</strong> log specific spots to return when the lighting is perfect. <strong>Drone pilots</strong> need exact latitude and longitude to respect no-fly zones and plan flight paths. By providing raw, unadulterated data, this tool serves as a Swiss Army knife for location-based tasks.</p>
-            </div>
-
-            <div class="content-expansion" style="border-top: 1px solid var(--border); margin-top: 30px; padding-top: 30px;">
-                
-                <h3>🚨 Emergency & Safety Layer</h3>
-                <p>When every second counts, knowing your exact coordinates can be the difference between life and death. Emergency dispatchers often struggle to locate callers from mobile signals alone. By reading your Latitude and Longitude directly from this tool, you provide first responders with pinpoint accuracy.</p>
-                <ul>
-                    <li><strong>Silent SOS:</strong> Our One-Tap SOS feature generates a pre-filled text message with your coordinates, allowing you to signal for help without speaking.</li>
-                    <li><strong>Drift Correction:</strong> We monitor signal drift to ensure the coordinates you see are stabilized before you share them.</li>
-                </ul>
-
-                <h3>🛠️ Global Utility Tools</h3>
-                <p>We support universal standards for location data. Whether you are a pilot, a surveyor, or a developer, we provide raw data access.</p>
-                <ul>
-                    <li><strong>Formats:</strong> We display Decimal Degrees (DD) by default, the standard for digital mapping.</li>
-                    <li><strong>Altitude:</strong> Using barometric sensors (where available) and GPS triangulation to estimate height above sea level.</li>
-                    <li><strong>ISP Data:</strong> We cross-reference your IP address to identify your network provider, helping diagnose connectivity issues.</li>
-                </ul>
-
-                <h3>✈️ Travel & Navigation</h3>
-                <p>Modern travel requires more than just a destination; it requires orientation. This tool is designed for the "Last Mile" of navigation.</p>
-                <ul>
-                    <li><strong>Boating & Marine:</strong> Use our bearing and compass tools to verify heading when visual landmarks are obscured by fog.</li>
-                    <li><strong>Urban Exploration:</strong> Navigate dense city streets where skyscraper interference often confuses standard map apps.</li>
-                </ul>
-
-                <h3>📡 Live Tracking (Privacy First)</h3>
-                <p>Most tracking apps require accounts, logins, and permanent history. We reject that model. Our "Live Tracking" is ephemeral.</p>
-                <ul>
-                    <li><strong>Session Based:</strong> Tracking exists only as long as you keep the tab open.</li>
-                    <li><strong>No Database:</strong> We do not write your movement history to a disk. It flows from your device to your recipient directly via signed URLs.</li>
-                </ul>
-
-                <h3>🌲 Offline Survival Mode</h3>
-                <p>This tool is PWA-ready (Progressive Web App). Once loaded, the core GPS functionality works without a data connection.</p>
-                <ul>
-                    <li><strong>Cached Resources:</strong> The interface remains functional even in "Airplane Mode".</li>
-                    <li><strong>Hardware Access:</strong> Your phone's GPS chip does not require cellular data to receive satellite signals, meaning you can still find your coordinates in the middle of a desert.</li>
-                </ul>
-
-                <h3>📊 Data & Analytics</h3>
-                <p>We provide transparency on signal quality. The "Accuracy" reading (e.g., ±5m) tells you exactly how much trust to place in the current reading.</p>
-                
-                <h3>🔗 Share & Export</h3>
-                <p>Seamlessly move data from our tool to your favorite apps. We support deep-linking to Google Maps, Apple Maps, Waze, and OpenStreetMap.</p>
-
-                <h3>🤖 AI & Smart Positioning</h3>
-                <p>We use lightweight heuristic algorithms to filter out "noise" from GPS jumps, providing a smoother location experience than raw sensor data alone.</p>
-
-                <h3>🔌 API Access (Coming Soon)</h3>
-                <p>Developers will soon be able to integrate our lightweight geolocation engine into their own apps via a simple REST API. Stay tuned.</p>
-
-                <h3>🔍 Search & Discovery</h3>
-                <p>Common queries solved by this tool: <em>"What is my zip code?"</em>, <em>"What city am I in right now?"</em>, <em>"My elevation"</em>, and <em>"Current GPS coordinates"</em>. We answer these instantly without clutter.</p>
-
-                <h3>❓ Frequently Asked Questions</h3>
-                
-                <details class="faq-item">
-                    <summary class="faq-q">Is this tool free to use?</summary>
-                    <div class="faq-a">Yes, TellMyLocation is 100% free. We are supported by minimal, non-intrusive ads.</div>
-                </details>
-                
-                <details class="faq-item">
-                    <summary class="faq-q">Do you save my location history?</summary>
-                    <div class="faq-a">Absolutely not. Your location data is processed locally on your device and is never stored on our servers.</div>
-                </details>
-
-                <details class="faq-item">
-                    <summary class="faq-q">Why is the location slightly off?</summary>
-                    <div class="faq-a">GPS accuracy depends on your view of the sky. Indoors, your device uses Wi-Fi triangulation which is less precise (±30m) than satellite GPS (±5m).</div>
-                </details>
-
-                <details class="faq-item">
-                    <summary class="faq-q">Does this work without internet?</summary>
-                    <div class="faq-a">Yes! If you have already loaded the page, the GPS coordinates will continue to update offline using your device's sensors. Map tiles, however, require internet.</div>
-                </details>
-
-                <details class="faq-item">
-                    <summary class="faq-q">How do I share my location?</summary>
-                    <div class="faq-a">Click the "Share Link" button to copy a URL, or use the "One-Tap SOS" to draft a text message with your coordinates.</div>
-                </details>
-
-                <details class="faq-item">
-                    <summary class="faq-q">Does this drain my battery?</summary>
-                    <div class="faq-a">GPS is battery-intensive. We optimize this by only querying high-accuracy location while the tab is active. Closing the tab stops the battery drain.</div>
-                </details>
-
-                <details class="faq-item">
-                    <summary class="faq-q">Can I use this on a desktop computer?</summary>
-                    <div class="faq-a">Yes, but desktop accuracy is lower as it relies on IP address and Wi-Fi networks rather than a dedicated GPS chip.</div>
-                </details>
-
-                <details class="faq-item">
-                    <summary class="faq-q">What is "Hiker Mode"?</summary>
-                    <div class="faq-a">Hiker Mode enables a simplified interface that allows you to drop temporary pins to mark your path, which is useful for backtracking.</div>
-                </details>
-
-                <details class="faq-item">
-                    <summary class="faq-q">What is "Driver Mode"?</summary>
-                    <div class="faq-a">Driver Mode enlarges the text for speed and heading, making it safer to glance at while mounting your phone in a vehicle.</div>
-                </details>
-
-                <details class="faq-item">
-                    <summary class="faq-q">How does the SOS feature work?</summary>
-                    <div class="faq-a">It creates a pre-filled SMS or WhatsApp message with your coordinates and a "Help me" text. You must still press "Send" on your device.</div>
-                </details>
-
-                <details class="faq-item">
-                    <summary class="faq-q">Why does it ask for permission?</summary>
-                    <div class="faq-a">Browser security requires your explicit consent to access the GPS hardware. We cannot see your location without this permission.</div>
-                </details>
-
-                <details class="faq-item">
-                    <summary class="faq-q">Can I find someone else's location?</summary>
-                    <div class="faq-a">No. This tool is for finding *your* location. You cannot track others unless they voluntarily send you their link.</div>
-                </details>
-
-                <details class="faq-item">
-                    <summary class="faq-q">What is the "Coffee" button?</summary>
-                    <div class="faq-a">It links to a donation page to help support the developers who maintain this free tool.</div>
-                </details>
-
-                <details class="faq-item">
-                    <summary class="faq-q">Is the weather accurate?</summary>
-                    <div class="faq-a">We use the Open-Meteo API which aggregates data from national weather services for high local accuracy.</div>
-                </details>
-
-                <details class="faq-item">
-                    <summary class="faq-q">What datum format is used?</summary>
-                    <div class="faq-a">We use WGS84, the standard coordinate system for GPS, ensuring compatibility with Google Maps and Apple Maps.</div>
-                </details>
-
-                <details class="faq-item">
-                    <summary class="faq-q">Can I measure distance?</summary>
-                    <div class="faq-a">Yes, use the "Meet Friend" module to calculate the distance and midpoint between you and another set of coordinates.</div>
-                </details>
-
-                <details class="faq-item">
-                    <summary class="faq-q">Does VPN affect accuracy?</summary>
-                    <div class="faq-a">If you are on a desktop without GPS, a VPN will mask your location. On mobile, GPS data overrides the VPN IP location.</div>
-                </details>
-
-                <details class="faq-item">
-                    <summary class="faq-q">How do I copy my address?</summary>
-                    <div class="faq-a">Click the small "Copy" icon next to the address display box at the top of the card.</div>
-                </details>
-
-                <details class="faq-item">
-                    <summary class="faq-q">Is there a dark mode?</summary>
-                    <div class="faq-a">The site is built in Dark Mode by default to save battery on OLED screens and reduce eye strain at night.</div>
-                </details>
-
-                <details class="faq-item">
-                    <summary class="faq-q">How do I report a bug?</summary>
-                    <div class="faq-a">Please use the "Contact Us" link in the footer to send us an email.</div>
-                </details>
-            </div>
-            
-            <div class="card" style="margin-top: 20px; padding: 15px; border: 1px solid var(--border);">
-                <h3 style="color:white; font-size:14px; margin-bottom:10px;">🗺️ Location Preview</h3>
-                <div id="mini-map" style="height:150px; border-radius:12px; margin-bottom:10px; z-index:0;"></div>
-                <div style="display:flex; gap:10px;">
-                    <button class="mod-btn" style="flex:1; font-size:11px;" onclick="if(window.mapPreview && window.lastLat){ window.mapPreview.setView([window.lastLat, window.lastLng], 15); }">⬇ Recenter Map</button>
-                    <button class="mod-btn" style="flex:1; font-size:11px;" onclick="if(window.lastLat){ window.open('https://www.google.com/maps?q=' + window.lastLat + ',' + window.lastLng, '_blank'); }">Open Full Map</button>
-                </div>
-            </div>
-            <div class="btn-stack">
-                <button class="btn btn-sos" id="sos-btn">
-                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
-                    <span data-i18n="btn_sos">ONE-TAP SOS SHARE</span>
-                </button>
-                <div class="btn-row">
-                    <button class="btn btn-primary" id="refresh-btn">
-                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
-                        <span data-i18n="btn_refresh">Refresh</span>
-                    </button>
-                    <button class="btn btn-ghost" id="copy-coords-btn">
+                    <button class="btn btn-ghost" id="copy-coords-btn" aria-label="Copy Coordinates">
                         <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
                         <span data-i18n="btn_copy">Copy Lat/Long</span>
                     </button>
@@ -1126,64 +828,7 @@
         <div style="margin-top:20px; color:white;">Sharing location...</div>
     </div>
 
-    <main id="about-page" class="card hidden-page">
-        <div class="content-expansion" style="margin-top:0; border-top:none;">
-            <h2>About TellMyLocation</h2>
-            <p>We are a team of privacy-focused developers and outdoor enthusiasts who realized that most location tools are either too complex, riddled with invasive tracking, or slow to load. Our mission was simple: build the fastest, cleanest, and most secure "Where Am I" utility on the web.</p>
-            <h3>Our Philosophy</h3>
-            <p>Data should serve the user, not the corporation. That is why TellMyLocation is built as a client-side application. We do not store your history. We do not build profiles. We simply give you the data you need—Coordinates, Address, Weather—and then we get out of your way.</p>
-        </div>
-    </main>
-
-    <main id="privacy-page" class="card hidden-page">
-        <div class="content-expansion" style="margin-top:0; border-top:none;">
-            <h2>Privacy Policy</h2>
-            <p><strong>Last Updated: February 2026</strong></p>
-            <p>Your privacy is non-negotiable. This policy outlines exactly how TellMyLocation.com handles your data.</p>
-            
-            <h3>1. Location Data</h3>
-            <p>We do not store, record, or transmit your GPS coordinates to any private server. Your location data is retrieved by your browser directly from your device's GPS hardware and is processed locally to display on your screen. The only time coordinates leave your device is when you explicitly use the "Share" or "SOS" features.</p>
-
-            <h3>2. Third-Party Services</h3>
-            <p>We utilize trusted third-party APIs to provide functionality: OpenStreetMap (for map tiles) and Open-Meteo (for weather data). These services receive coordinate requests to generate maps/weather but do not receive your personal identity.</p>
-
-            <h3>3. Cookies & Advertising</h3>
-            <p>We use Google AdSense to serve advertisements. Google uses cookies to serve ads based on your prior visits to this website or other websites. You may opt-out of personalized advertising by visiting Google's Ads Settings.</p>
-        </div>
-    </main>
-
-    <main id="contact-page" class="card hidden-page">
-        <div class="content-expansion" style="margin-top:0; border-top:none;">
-            <h2>Contact Us</h2>
-            <p>Have a suggestion, found a bug, or want to share how this tool helped you? We'd love to hear from you.</p>
-            <h3>Get in Touch</h3>
-            <p><strong>Email:</strong> support@tellmylocation.com</p>
-            <p><strong>Business Hours:</strong> Mon-Fri, 9am - 5pm CST</p>
-            <p>For technical support regarding the API integrations or map rendering, please include your device model and browser version in your email.</p>
-        </div>
-    </main>
-
-    <footer>
-        <div style="margin-bottom: 12px;">
-            <a href="#" onclick="showPage('privacy'); return false;" data-i18n="link_privacy">Privacy Policy</a> • 
-            <a href="#" onclick="showPage('about'); return false;" data-i18n="link_terms">Terms of Use</a> • 
-            <a href="#" onclick="showPage('contact'); return false;" data-i18n="link_contact">Contact Us</a>
-        </div>
-        © 2026 TellMyLocation.com
-    </footer>
-
-    <div style="margin-top:40px; padding:20px; border-top:1px solid var(--border); color:rgba(255,255,255,0.2); font-size:10px; text-align:left; line-height:1.4;">
-        <strong>Search Keywords People Use to Find This Tool:</strong><br>
-        where am i, my location, current gps coordinates, location finder, weather near me, emergency sos, map near me, coordinates finder, share my location, open in maps, what is my zip code, my elevation, gps tracker, live location, satellite map, latitude longitude finder, my address, current position, find me, geolocate me, ip location, network ip, altitude finder, bearing compass, hiking gps, driver location tool, offline gps, no data map, privacy map, secure location sharing, find my coordinates, google maps coordinates, apple maps location, waze location, exact address, street view, city finder, country finder, postal code finder, time zone finder, sunrise sunset time, wind speed near me, uv index now, rain radar, storm alert, weather warning, tornado siren, earthquake tracker, police station near me, hospital near me, gas station finder, parking finder, rest stop locator, truck stop finder, marine gps, boating navigation, aviation coordinates, pilot tools, surveyor gps, land survey tool, geocaching tool, pokemon go coordinates, ingress intel, drone fly zone, no fly zone map, photography location scouter, golden hour map, blue hour map, milky way finder, star gazing map, light pollution map, hiking trails near me, camping spots, rv parking, van life parking, digital nomad tools, wifi finder, internet speed test location, isp finder, vpn detector, proxy checker, browser geolocation API, html5 geolocation, javascript gps, pwa map, progressive web app gps, mobile gps tool, desktop location finder, macbook location, windows location, android gps, ios gps, iphone location, samsung location, pixel location, accurate gps, precise location, high accuracy mode, battery saver gps, fast location loader, instant address, copy paste coordinates, send location sms, whatsapp location share, telegram location bot, messenger location, signal app location, privacy focused map, no tracking map, anonymous location, secret map, hidden location, safety check in, i am safe, help me, emergency beacon, sos button, panic button, personal safety app, lone worker safety, senior safety tool, child tracker, pet tracker, lost phone finder, find my device equivalent, browser based gps, no install map app, free gps tool, ad supported map, donationware map, open source map alternative, openstreetmap viewer, leaflet map example, mapbox alternative, google maps api alternative, bing maps alternative, here maps alternative, yandex maps alternative, baidu maps alternative, what3words alternative, plus codes, open location code, geohash, mgrs coordinates, utm coordinates, degrees minutes seconds, decimal degrees converter.
-    </div>
-    </div>
-
-<div id="cookie-banner">
-    <div id="cookie-text" data-i18n="cookie_text">We use cookies to analyze traffic and show personalized ads to support this free tool.</div>
-    <button id="cookie-btn" onclick="acceptCookies()" data-i18n="btn_accept">I Accept</button>
-</div>
-
-<script>
+    <script>
     /* ADDED PAGE TOGGLE LOGIC (Clean & Safe) */
     function showPage(pageId) {
         // Hide all views
