@@ -1,148 +1,156 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
     <title>Terms of Service | Speaker Cleaner Pro</title>
-    <meta name="robots" content="noindex">
-    
-    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;500;700&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <meta name="robots" content="noindex" />
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;500;700;900&display=swap" rel="stylesheet">
 
     <style>
         :root {
             --bg: #000000;
             --panel: #0a0a0a;
             --accent: #ff003c; /* MARS RED */
+            --accent-dim: rgba(255, 0, 60, 0.1);
             --text-main: #ffffff;
             --text-muted: #888888;
             --border: #333333;
         }
 
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
         body {
-            background-color: var(--bg);
-            color: var(--text-muted);
             font-family: 'Exo 2', sans-serif;
-            line-height: 1.6;
-            margin: 0;
+            background: var(--bg);
+            color: var(--text-main);
             padding: 20px;
-            display: flex;
-            justify-content: center;
+            line-height: 1.6;
         }
 
         .container {
             max-width: 800px;
-            width: 100%;
+            margin: 0 auto;
             background: var(--panel);
-            padding: 40px;
             border: 1px solid var(--border);
             border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 0 30px rgba(0,0,0,0.5);
         }
 
-        h1 {
-            color: var(--text-main);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            border-bottom: 2px solid var(--accent);
-            padding-bottom: 10px;
-            margin-bottom: 30px;
-            font-size: 24px;
-        }
+        /* HEADER */
+        header { border-bottom: 1px solid var(--border); padding-bottom: 20px; margin-bottom: 30px; }
+        h1 { color: var(--accent); text-transform: uppercase; font-weight: 900; letter-spacing: 1px; font-size: 24px; margin-bottom: 5px; }
+        .subtitle { color: var(--text-muted); font-size: 12px; text-transform: uppercase; letter-spacing: 2px; }
 
-        h2 {
-            color: var(--text-main);
-            font-size: 18px;
-            margin-top: 30px;
-            margin-bottom: 15px;
-        }
+        /* CONTENT */
+        h2 { color: #fff; border-left: 3px solid var(--accent); padding-left: 10px; margin-top: 30px; margin-bottom: 15px; font-size: 18px; text-transform: uppercase; }
+        h3 { color: #ccc; font-size: 14px; margin-top: 20px; margin-bottom: 10px; font-weight: 700; }
+        p { color: #bbb; font-size: 13px; margin-bottom: 15px; text-align: justify; }
+        ul { margin-bottom: 15px; padding-left: 20px; }
+        li { color: #bbb; font-size: 13px; margin-bottom: 8px; }
 
-        p {
-            margin-bottom: 15px;
-            font-size: 14px;
-        }
-
-        ul {
-            margin-bottom: 15px;
-            padding-left: 20px;
-        }
-
-        li {
-            margin-bottom: 5px;
-            font-size: 14px;
-        }
-
-        a {
-            color: var(--accent);
-            text-decoration: none;
-            transition: 0.2s;
-        }
-
-        a:hover {
-            color: #fff;
-            text-decoration: underline;
-        }
-
-        .btn-back {
-            display: inline-block;
-            margin-top: 30px;
-            padding: 10px 20px;
+        /* WARNING BOX */
+        .warning-box {
             border: 1px solid var(--accent);
-            color: var(--text-main);
-            border-radius: 4px;
-            font-weight: bold;
+            background: var(--accent-dim);
+            padding: 15px;
+            border-radius: 6px;
+            margin: 20px 0;
+            color: #fff;
             font-size: 12px;
-            text-transform: uppercase;
+            font-weight: 700;
         }
 
-        .btn-back:hover {
-            background: var(--accent);
-            text-decoration: none;
+        /* BACK BUTTON */
+        .nav-bar { margin-bottom: 20px; }
+        .btn-back {
+            display: inline-flex; align-items: center; gap: 8px;
+            text-decoration: none; color: var(--text-muted); font-size: 12px; font-weight: 700;
+            text-transform: uppercase; transition: 0.2s;
+            border: 1px solid var(--border); padding: 8px 16px; border-radius: 4px;
         }
-        
-        .update-date {
-            font-size: 10px;
-            opacity: 0.5;
-            margin-bottom: 20px;
-            display: block;
-        }
+        .btn-back:hover { color: var(--accent); border-color: var(--accent); background: var(--accent-dim); }
+
+        /* FOOTER */
+        .legal-footer { margin-top: 40px; border-top: 1px solid var(--border); padding-top: 20px; color: #444; font-size: 10px; text-align: center; }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <h1>Terms of Service</h1>
-        <span class="update-date">Effective Date: February 1, 2026</span>
+<div class="container">
+    <div class="nav-bar">
+        <a href="index.html" class="btn-back">← Return to Diagnostics Tool</a>
+    </div>
 
-        <p>Welcome to <strong>Speaker Cleaner Pro</strong>. By accessing or using our website (<a href="https://waterinmyspeaker.com">https://waterinmyspeaker.com</a>), you agree to be bound by these Terms of Service. If you do not agree with any part of these terms, you must discontinue use of the site immediately.</p>
+    <header>
+        <h1>Terms of Service & Usage Agreement</h1>
+        <div class="subtitle">Effective Date: February 12, 2026 | Protocol Version 2.4</div>
+    </header>
 
-        <h2>1. Use at Your Own Risk</h2>
-        <p><strong>IMPORTANT:</strong> This tool generates high-frequency sine waves and square waves designed to vibrate speaker hardware. While these frequencies are generally considered safe for standard mobile hardware:</p>
+    <div class="content">
+        <p>Please read these Terms of Service ("Terms", "Terms of Service") carefully before using the <strong>https://waterinmyspeaker.com</strong> website (the "Service") operated by <strong>DON SYSTEMS</strong> ("us", "we", or "our").</p>
+        
+        <p>Your access to and use of the Service is conditioned on your acceptance of and compliance with these Terms. These Terms apply to all visitors, users, and others who access or use the Service.</p>
+
+        <div class="warning-box">
+            WARNING: AUDIO HARDWARE SAFETY DISCLAIMER. BY ACCESSING THIS TOOL, YOU ACKNOWLEDGE THAT THIS SERVICE GENERATES HIGH-FREQUENCY AUDIO WAVES INTENDED FOR DIAGNOSTIC AND CLEANING PURPOSES ONLY.
+        </div>
+
+        <h2>1. Limitation of Liability (Hardware Safety)</h2>
+        <p>In no event shall DON SYSTEMS, nor its directors, employees, partners, agents, suppliers, or affiliates, be liable for any indirect, incidental, special, consequential or punitive damages, including without limitation:</p>
         <ul>
-            <li>We are <strong>not responsible</strong> for any damage to your device's speakers, hardware components, or software that may occur during or after using this tool.</li>
-            <li>You use this service entirely at your own risk.</li>
-            <li>We do not guarantee that this tool will successfully remove water or dust from your specific device.</li>
+            <li><strong>Hardware Damage:</strong> Damage to speakers, microphones, haptic engines, or internal components of your device resulting from the use of our high-frequency tones (165Hz - 12,000Hz).</li>
+            <li><strong>Data Loss:</strong> Loss of data, use, goodwill, or other intangible losses.</li>
+            <li><strong>Hearing Damage:</strong> Any impact on hearing resulting from exposure to high-volume frequencies.</li>
+        </ul>
+        <p>You acknowledge that you are using this tool <strong>AT YOUR OWN RISK</strong>. The "Water Eject" and "Dust Cleaning" modes push hardware to its maximum safe amplitude. While we have engineered these tones to stay within standard manufacturer safety limits, we cannot account for pre-existing hardware defects, water damage corrosion, or third-party modifications to your device.</p>
+
+        <h2>2. Intellectual Property</h2>
+        <p>The Service and its original content, features, and functionality are and will remain the exclusive property of DON SYSTEMS and its licensors. The Service is protected by copyright, trademark, and other laws of both the United States and foreign countries.</p>
+        <ul>
+            <li><strong>The "165Hz Algorithm":</strong> The specific sine-wave sequence, pause intervals, and frequency ramp-up logic used in our "Auto Cycle" are proprietary to DON SYSTEMS.</li>
+            <li><strong>Visual Interface:</strong> The "Mars Red" dashboard design, gauge animations, and UI layout are protected trade dress.</li>
+        </ul>
+        <p>Our trademarks and trade dress may not be used in connection with any product or service without the prior written consent of DON SYSTEMS.</p>
+
+        <h2>3. Acceptable Use</h2>
+        <p>You are granted a limited, non-exclusive, non-transferable license to use the Service for personal, non-commercial purposes. You agree not to:</p>
+        <ul>
+            <li>Use the Service to harass, abuse, or harm another person (e.g., using high-frequency sounds to disturb others).</li>
+            <li>Attempt to reverse engineer the audio generation script.</li>
+            <li>Use automated bots to scrape the site or generate false ad impressions.</li>
+            <li>Frame or mirror the Service on any other website without our express permission.</li>
         </ul>
 
-        <h2>2. Medical Disclaimer</h2>
-        <p>The sounds generated by this website can be loud and high-pitched. Please do not hold your device close to your ears while the sound is playing. Prolonged exposure to high-volume, high-frequency sounds may cause hearing discomfort or damage.</p>
-
-        <h2>3. Intellectual Property</h2>
-        <p>The content, design, graphics, and code (including the "Mars Mission" interface and "Don System" branding) on this website are the property of Speaker Cleaner Pro and are protected by copyright laws.</p>
-
-        <h2>4. Third-Party Links</h2>
-        <p>Our website may contain links to third-party websites or services that are not owned or controlled by us (e.g., Google AdSense, Partner Tools). We have no control over, and assume no responsibility for, the content, privacy policies, or practices of any third-party websites.</p>
+        <h2>4. Disclaimer of Warranties</h2>
+        <p>Your use of the Service is at your sole risk. The Service is provided on an "AS IS" and "AS AVAILABLE" basis. The Service is provided without warranties of any kind, whether express or implied, including, but not limited to, implied warranties of merchantability, fitness for a particular purpose, non-infringement or course of performance.</p>
+        <p>DON SYSTEMS does not warrant that a) the Service will function uninterrupted, secure or available at any particular time or location; b) any errors or defects will be corrected; c) the Service is free of viruses or other harmful components; or d) the results of using the Service will meet your requirements.</p>
 
         <h2>5. Termination</h2>
-        <p>We reserve the right to terminate or suspend access to our service immediately, without prior notice or liability, for any reason whatsoever, including without limitation if you breach the Terms.</p>
+        <p>We may terminate or suspend access to our Service immediately, without prior notice or liability, for any reason whatsoever, including without limitation if you breach the Terms.</p>
+        <p>All provisions of the Terms which by their nature should survive termination shall survive termination, including, without limitation, ownership provisions, warranty disclaimers, indemnity and limitations of liability.</p>
 
-        <h2>6. Changes to Terms</h2>
-        <p>We reserve the right, at our sole discretion, to modify or replace these Terms at any time. By continuing to access or use our Service after those revisions become effective, you agree to be bound by the revised terms.</p>
+        <h2>6. Governing Law</h2>
+        <p>These Terms shall be governed and construed in accordance with the laws of the United States, without regard to its conflict of law provisions.</p>
+        <p>Our failure to enforce any right or provision of these Terms will not be considered a waiver of those rights. If any provision of these Terms is held to be invalid or unenforceable by a court, the remaining provisions of these Terms will remain in effect.</p>
 
-        <h2>7. Contact Us</h2>
-        <p>If you have any questions about these Terms, please contact us at:</p>
-        <p>Email: <strong>support@waterinmyspeaker.com</strong></p>
+        <h2>7. Changes to Terms</h2>
+        <p>We reserve the right, at our sole discretion, to modify or replace these Terms at any time. If a revision is material we will try to provide at least 30 days notice prior to any new terms taking effect. What constitutes a material change will be determined at our sole discretion.</p>
+        <p>By continuing to access or use our Service after those revisions become effective, you agree to be bound by the revised terms. If you do not agree to the new terms, please stop using the Service.</p>
 
-        <a href="index.html" class="btn-back">← Return to Mission Control</a>
+        <h2>8. Contact Us</h2>
+        <p>If you have any questions about these Terms, please contact us:</p>
+        <ul>
+            <li>By visiting this page on our website: https://waterinmyspeaker.com/contact.html</li>
+        </ul>
     </div>
+
+    <div class="legal-footer">
+        © 2025 DON SYSTEMS. All rights reserved. <br>
+        Unauthorized duplication of the 165Hz Sine Wave algorithm is prohibited.
+    </div>
+</div>
 
 </body>
 </html>
