@@ -182,11 +182,18 @@
             background: var(--accent); color: #fff; font-size: 10px; padding: 2px 6px; 
             border-radius: 2px; margin-left: 5px; letter-spacing: 1px;
         }
-        .trust-badge-header {
-            display: inline-block; border: 1px solid #333; padding: 4px 10px; border-radius: 20px;
-            font-size: 9px; color: #888; margin-top: 5px; background: rgba(255,255,255,0.05);
+        
+        /* --- NEW: TRUST BADGE STYLE --- */
+        .trust-badge-container {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: rgba(57, 255, 20, 0.05); border: 1px solid rgba(57, 255, 20, 0.3);
+            padding: 6px 12px; border-radius: 20px; margin-top: 10px;
+            box-shadow: 0 0 15px rgba(57, 255, 20, 0.1);
         }
-        .trust-badge-header span { color: var(--accent); font-weight: bold; }
+        .trust-icon { width: 12px; height: 12px; fill: var(--neon-green); }
+        .trust-text { color: #fff; font-size: 10px; font-weight: 700; letter-spacing: 1px; }
+        .trust-sub { color: #888; font-size: 9px; font-weight: 400; margin-left: 5px; }
+
         .tagline { 
             font-size: 11px; color: var(--text-muted); font-weight: 600; letter-spacing: 3px;
             margin-bottom: 5px; margin-top: 10px;
@@ -455,10 +462,15 @@
         .seo-box p { font-size: 10px; color: #888; margin-bottom: 10px; line-height: 1.6; }
         .seo-box strong { color: var(--accent); }
 
+        /* --- NEW: AD SLOT STYLES --- */
         .ad-slot {
-            width: 100%; height: 100px; background: #050505; border: 1px solid #222; border-radius: 8px; 
-            display: flex; align-items: center; justify-content: center; color: #333; font-size: 9px; margin-top: 10px;
+            width: 100%; min-height: 100px; background: #050505; border: 1px solid #222; border-radius: 8px; 
+            display: flex; align-items: center; justify-content: center; color: #333; font-size: 9px; 
+            margin-bottom: 20px; overflow: hidden;
         }
+        .ad-top { margin-top: 10px; }
+        .ad-mid { margin: 30px 0; border-color: var(--accent-glow); }
+        .ad-bot { height: 250px; }
 
         /* --- FAQ STYLES --- */
         .faq-item { margin-bottom: 10px; border-bottom: 1px solid #222; padding-bottom: 5px; }
@@ -551,6 +563,13 @@
             <svg class="logo-icon" viewBox="0 0 24 24"><path d="M12 22c4.97 0 9-4.03 9-9-4.5 0-9-5-9-13 0 8-4.5 13-9 13 0 4.97 4.03 9 9 9zM12 14c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"/></svg>
             <h1>SPEAKER CLEANER<span class="badge-pro">PRO</span></h1>
         </div>
+        
+        <div class="trust-badge-container">
+            <svg class="trust-icon" viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>
+            <span class="trust-text">VERIFIED</span>
+            <span class="trust-sub">Trusted by 10M+ Devices</span>
+        </div>
+
         <div class="tagline" id="lbl-tagline">The #1 High-Frequency Water Ejector</div>
         <div class="typing-status" id="type-text">System Online.</div>
         
@@ -558,6 +577,10 @@
             <span id="device-name">SCANNING HARDWARE...</span>
         </div>
     </header>
+
+    <div class="ad-slot ad-top">
+        <span style="opacity: 0.3;">ADVERTISEMENT (TOP SLOT)</span>
+        </div>
 
     <div class="dashboard-row">
         <div class="gauge-box">
@@ -634,6 +657,10 @@
         </div>
     </div>
 
+    <div class="ad-slot ad-mid">
+        <span style="opacity: 0.3;">ADVERTISEMENT (MIDDLE SLOT)</span>
+        </div>
+
     <div class="panel">
         <div class="panel-title"><span id="lbl-mode-water">Water-Expulsion</span> <span id="lbl-mode-mode1">Mode</span></div>
         <div class="btn-grid">
@@ -706,10 +733,6 @@
             </ul>
             <p style="font-size: 8px; opacity: 0.5;">* By using this tool, you acknowledge that while we use scientifically safe tones, we are not liable for existing hardware defects.</p>
         </div>
-    </div>
-
-    <div class="ad-slot">
-        <span style="opacity: 0.5;">ADVERTISEMENT</span>
     </div>
 
     <div class="panel">
@@ -836,6 +859,10 @@
         </div>
 
     </div>
+
+    <div class="ad-slot ad-bot">
+        <span style="opacity: 0.3;">ADVERTISEMENT (BOTTOM SLOT)</span>
+        </div>
 
     <div class="panel">
         <div class="panel-title"><span>Topic</span> <span>Index</span></div>
