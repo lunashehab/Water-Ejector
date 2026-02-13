@@ -5,7 +5,9 @@
 
     <meta charset="UTF-8" />
     <title>Speaker Cleaner Pro | Fix Water & Dust Damage</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
     <meta name="description" content="Fix muffled speakers in 30 seconds. The #1 Water Eject shortcut. Scientifically tested 165Hz frequencies. Safe, free, and no app required.">
     <meta name="keywords" content="water eject shortcut, fix my speaker, get water out of phone, speaker cleaner, 165hz sound, remove water from speaker, clean speaker dust">
     <meta name="author" content="Don System">
@@ -162,7 +164,7 @@
         }
         select.lang-select:focus { outline: none; border-color: var(--accent); }
 
-        /* --- NEW: TOP NAVIGATION BAR --- */
+        /* --- NAVIGATION BAR --- */
         .app-nav {
             display: flex; justify-content: center; gap: 15px; margin-bottom: 10px; 
             background: rgba(10,10,10,0.8); padding: 8px; border-radius: 20px; border: 1px solid #222;
@@ -183,7 +185,7 @@
             border-radius: 2px; margin-left: 5px; letter-spacing: 1px;
         }
         
-        /* --- NEW: TRUST BADGE STYLE --- */
+        /* --- TRUST BADGE STYLE --- */
         .trust-badge-container {
             display: inline-flex; align-items: center; gap: 8px;
             background: rgba(57, 255, 20, 0.05); border: 1px solid rgba(57, 255, 20, 0.3);
@@ -462,15 +464,21 @@
         .seo-box p { font-size: 10px; color: #888; margin-bottom: 10px; line-height: 1.6; }
         .seo-box strong { color: var(--accent); }
 
-        /* --- NEW: AD SLOT STYLES --- */
+        /* --- AD SLOT STYLES (UPDATED FOR SAFETY) --- */
         .ad-slot {
             width: 100%; min-height: 100px; background: #050505; border: 1px solid #222; border-radius: 8px; 
             display: flex; align-items: center; justify-content: center; color: #333; font-size: 9px; 
             margin-bottom: 20px; overflow: hidden;
+            /* SAFETY MARGINS TO PREVENT INVALID CLICKS */
+            margin-top: 20px;
         }
-        .ad-top { margin-top: 10px; }
-        .ad-mid { margin: 30px 0; border-color: var(--accent-glow); }
-        .ad-bot { height: 250px; }
+        .ad-top { margin-top: 10px; margin-bottom: 30px; }
+        .ad-mid { 
+            margin: 35px 0; /* EXTRA SPACE FOR SAFETY */
+            border-top: 2px solid #222; 
+            border-bottom: 2px solid #222;
+        }
+        .ad-bot { height: 250px; margin-top: 40px; }
 
         /* --- FAQ STYLES --- */
         .faq-item { margin-bottom: 10px; border-bottom: 1px solid #222; padding-bottom: 5px; }
@@ -1490,6 +1498,25 @@
             const cleanName = deviceParam.replace(/-/g, ' ');
             document.title = `${cleanName} Speaker Cleaner | Fix Water Damage`;
         }
+    });
+
+    // 3. DEAD LINK PREVENTION (FOR ADSENSE SAFETY)
+    document.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', (e) => {
+            const href = link.getAttribute('href');
+            if (href && (href.includes('.html') && href !== 'index.html')) {
+                // Warning logic: If files don't exist, this prevents 404
+                // But you MUST create these pages for approval.
+                fetch(href, { method: 'HEAD' }).then(res => {
+                    if (!res.ok) {
+                        e.preventDefault();
+                        alert("NOTE: You must create " + href + " before applying to AdSense!");
+                    }
+                }).catch(() => {
+                    // Ignore errors on local
+                });
+            }
+        });
     });
 </script>
     <script data-collect-dnt="true" async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
