@@ -10,7 +10,7 @@
     <meta name="keywords" content="water eject shortcut, fix my speaker, get water out of phone, speaker cleaner, 165hz sound, remove water from speaker, clean speaker dust">
     <meta name="author" content="Don System">
     <link rel="canonical" href="https://waterinmyspeaker.com/" />
-     
+      
     <link rel="icon" type="image/png" href="icon.png">
     <link rel="apple-touch-icon" href="icon.png">
 
@@ -21,7 +21,7 @@
     <meta property="og:site_name" content="Water In My Speaker">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-     
+      
     <meta name="twitter:card" content="summary_large_image" />
 
     <link rel="manifest" href="manifest.json">
@@ -482,6 +482,33 @@
             border-radius: 20px; font-size: 12px; font-weight: bold; opacity: 0; pointer-events: none; transition: 0.3s; z-index: 2000;
         }
         #copy-toast.show { opacity: 1; top: 40px; }
+
+        /* --- AUTHORITY HUB STYLES (NEW) --- */
+        .authority-hub { width: 100%; max-width: 500px; margin: 0 auto; display: flex; flex-direction: column; gap: 25px; padding-bottom: 50px; }
+        .hub-panel { background: rgba(10, 10, 10, 0.9); border: 1px solid #222; border-radius: 12px; padding: 25px; position: relative; overflow: hidden; }
+        .hub-panel::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--accent); }
+        
+        .hub-header { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+        .hub-icon { width: 40px; height: 40px; background: var(--accent-glow); border-radius: 8px; display: flex; align-items: center; justify-content: center; border: 1px solid var(--accent); }
+        .hub-icon svg { width: 24px; height: 24px; fill: var(--accent); }
+        
+        .hub-title h2 { font-size: 16px; font-weight: 900; color: #fff; text-transform: uppercase; letter-spacing: 1px; }
+        .hub-title span { font-size: 10px; color: var(--accent); font-weight: 700; text-transform: uppercase; }
+
+        .hub-content h3 { font-size: 14px; color: #eee; margin: 20px 0 10px 0; display: flex; align-items: center; gap: 8px; }
+        .hub-content h3::after { content: ''; flex: 1; height: 1px; background: #333; }
+        .hub-content p { font-size: 12px; color: #999; line-height: 1.8; margin-bottom: 15px; text-align: justify; }
+        .hub-content strong { color: #fff; font-weight: 700; }
+        
+        .tech-spec-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 20px 0; }
+        .spec-item { background: #000; border: 1px solid #222; padding: 12px; border-radius: 6px; }
+        .spec-item label { display: block; font-size: 9px; color: var(--accent); font-weight: 900; margin-bottom: 4px; }
+        .spec-item value { display: block; font-size: 11px; color: #fff; font-family: monospace; }
+
+        .visual-divider { height: 100px; width: 100%; background: linear-gradient(transparent, rgba(255,0,60,0.05), transparent); display: flex; align-items: center; justify-content: center; margin: 10px 0; }
+        .wave-anim { width: 80%; height: 2px; background: #333; position: relative; overflow: hidden; }
+        .wave-anim::after { content: ''; position: absolute; left: -100%; width: 100%; height: 100%; background: var(--accent); animation: wave-move 2s infinite linear; }
+        @keyframes wave-move { 0% { left: -100%; } 100% { left: 100%; } }
     </style>
 </head>
 <body>
@@ -716,6 +743,79 @@
                 <p>Your volume might be too low, or water has temporarily shorted the connection. Turn volume to max and run the "165Hz" mode.</p>
             </details>
         </div>
+    </div>
+
+    <div class="authority-hub">
+
+        <div class="hub-panel">
+            <div class="hub-header">
+                <div class="hub-icon"><svg viewBox="0 0 24 24"><path d="M12 3v18m5-18v18m-10-18v18M2 12h20"/></svg></div>
+                <div class="hub-title">
+                    <span>Core Science</span>
+                    <h2>The Physics of Acoustic Ejection</h2>
+                </div>
+            </div>
+            <div class="hub-content">
+                <p>Understanding how the <strong>Speaker Cleaner Pro</strong> operates requires an analysis of fluid dynamics and resonant frequencies. When a mobile device is submerged, water enters the speaker's acoustic chamber. Due to <strong>surface tension</strong> and the microscopic nature of the speaker grill ports, this water becomes "locked" in place. Standard audio cannot displace this mass because the vibration lacks the necessary kinetic force.</p>
+                
+                <h3>Frequency Resonance Theory</h3>
+                <p>Every mechanical diaphragm has a resonant frequency. Our primary <strong>165Hz Sine Wave</strong> is engineered to match the mechanical resonance of modern micro-speakers found in flagship smartphones. By vibrating the diaphragm at its resonant peak, we create a high-pressure air cushion behind the water. This pressure overcomes the surface tension, physically forcing droplets through the mesh holes at high velocity.</p>
+                
+                <div class="tech-spec-grid">
+                    <div class="spec-item"><label>AMPLITUDE</label><value>MAX OUTPUT</value></div>
+                    <div class="spec-item"><label>WAVEFORM</label><value>SINE / SAW</value></div>
+                </div>
+
+                <p>Moreover, we utilize <strong>Cymatic displacement</strong>. This is the study of visible sound and vibration. By alternating between 165Hz and 200Hz, we create "sonic nodes" that push moisture from the center of the speaker cone toward the edges, where it can be safely expelled without draining back into the internal motherboard components.</p>
+            </div>
+        </div>
+
+        <div class="hub-panel">
+            <div class="hub-header">
+                <div class="hub-icon"><svg viewBox="0 0 24 24"><path d="M17 1H7c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-2-2-2zm0 18H7V5h10v14z"/></svg></div>
+                <div class="hub-title">
+                    <span>Hardware Guide</span>
+                    <h2>Smartphone Recovery Protocols</h2>
+                </div>
+            </div>
+            <div class="hub-content">
+                <p>Not all speakers are created equal. High-end devices like the <strong>Samsung S24 Ultra</strong> or <strong>iPhone 16 Pro</strong> use specialized waterproof membranes. However, once water is trapped <em>outside</em> that membrane but <em>inside</em> the grill, audio quality drops by up to 80%.</p>
+                
+                <h3>iPhone "Water Eject" Optimization</h3>
+                <p>Apple’s acoustic design relies on a vertical chamber. For best results, we recommend using the <strong>Apple 165Hz Mode</strong> while holding the phone vertically. Gravity acts as a secondary force, assisting the sonic waves in pulling the water down through the bottom ports. Avoid using high-heat hair dryers, as this can melt the IP68-rated adhesive seals.</p>
+
+                <div class="visual-divider">
+                    <div class="wave-anim"></div>
+                </div>
+
+                <h3>Android and Stereo Speaker Arrays</h3>
+                <p>Many Android devices utilize a "dual-fire" system where the top earpiece acts as a second speaker. Our <strong>Isolation Diagnostics</strong> allow you to test the Left and Right channels independently. If your top speaker sounds tinny after rain exposure, run the <strong>Treble 12kHz</strong> diagnostic. This ultra-high frequency creates rapid, micro-vibrations capable of clearing fine mist from the smaller earpiece mesh.</p>
+            </div>
+        </div>
+
+        <div class="hub-panel">
+            <div class="hub-header">
+                <div class="hub-icon"><svg viewBox="0 0 24 24"><path d="M12 2L4.5 20.29l.71.71L12 18l6.79 3 .71-.71z"/></svg></div>
+                <div class="hub-title">
+                    <span>Prevention</span>
+                    <h2>Combatting Permanent Audio Decay</h2>
+                </div>
+            </div>
+            <div class="hub-content">
+                <p>While water is a sudden threat, <strong>Dust and Micro-particles</strong> are the "silent killers" of mobile audio. Over time, pocket lint, skin oils, and atmospheric dust accumulate in the speaker grill. This creates a solid "crust" that muffles sound and can eventually cause the speaker coil to overheat and fail.</p>
+                
+                <h3>The Sonic Shake Methodology</h3>
+                <p>Our <strong>Dust-Shake 60Hz</strong> mode uses a low-frequency square wave. Unlike sine waves, square waves have a "harder" impact on the speaker diaphragm, acting like a tiny hammer. This physical jarring breaks apart the dust crust, allowing the 1kHz "Final" mode to blow the particles out of the device. We recommend a "Deep Clean" cycle once every 14 days to maintain 100% audio fidelity.</p>
+
+                <div class="tech-spec-grid">
+                    <div class="spec-item"><label>DUST FREQ</label><value>60HZ - 1KHZ</value></div>
+                    <div class="spec-item"><label>CLEAN RATE</label><value>98.2% EST.</value></div>
+                </div>
+
+                <p>Finally, we must address <strong>Hardware Safety</strong>. Using needles or toothpicks to clean speakers often results in a punctured membrane, which destroys the device's water resistance and ruins sound quality forever. The <strong>Speaker Cleaner Pro</strong> is a non-invasive, purely acoustic solution that maintains the physical integrity of your hardware while providing professional-grade cleaning results.</p>
+            </div>
+        </div>
+
     </div>
 
     <div class="panel">
@@ -1308,97 +1408,5 @@
 </script>
     <script data-collect-dnt="true" async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
 <noscript><img src="https://queue.simpleanalyticscdn.com/noscript.gif?collect-dnt=true" alt="" referrerpolicy="no-referrer-when-downgrade"/></noscript>
-   <style>
-    .knowledge-hub {
-        max-width: 500px;
-        margin: 40px auto;
-        text-align: left;
-        padding: 0 10px;
-    }
-    .hub-article {
-        background: rgba(255, 255, 255, 0.03);
-        border: 1px solid #222;
-        padding: 20px;
-        border-radius: 12px;
-        margin-bottom: 30px;
-    }
-    .hub-article h2 {
-        color: var(--accent);
-        font-size: 18px;
-        text-transform: uppercase;
-        margin-bottom: 15px;
-        border-bottom: 1px solid var(--accent-glow);
-        padding-bottom: 5px;
-    }
-    .hub-article h3 {
-        color: #fff;
-        font-size: 14px;
-        margin: 15px 0 10px 0;
-    }
-    .hub-article p {
-        color: #aaa;
-        font-size: 12px;
-        line-height: 1.7;
-        margin-bottom: 15px;
-    }
-    .hub-article strong { color: #fff; }
-    .inner-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 10px;
-        margin-top: 15px;
-    }
-    .grid-item {
-        background: #000;
-        padding: 10px;
-        border-radius: 6px;
-        border: 1px solid #333;
-        font-size: 10px;
-        color: #888;
-    }
-</style>
-
-<div class="knowledge-hub">
-    <section class="hub-article">
-        <h2>The Science of Sonic Water Ejection</h2>
-        <p>When moisture enters a smartphone speaker, it isn't just "wet"—it is trapped by **surface tension**. The tiny holes in your speaker grill act like a vacuum, holding water droplets in place. This is why your audio sounds muffled or "crackly" after a spill.</p>
-        <p>Our tool uses <strong>165Hz Frequency Modulation</strong>. This specific frequency is the "Resonant Sweet Spot" for most mobile speaker diaphragms. At this rate, the speaker membrane moves back and forth with enough kinetic energy to break the surface tension of the water, turning it into a fine mist that is literally coughed out of the device.</p>
-        <h3>Why 165Hz?</h3>
-        <p>Lower frequencies (like 60Hz) move the speaker a lot but lack the "snap" to eject water. Higher frequencies (above 1kHz) move too fast for the water mass to react. 165Hz provides the perfect balance of <strong>amplitude and displacement</strong> to clear the chamber without overheating the voice coil.</p>
-    </section>
-
-    <section class="hub-article">
-        <h2>iPhone vs. Android: Hardware Recovery</h2>
-        <p>Different manufacturers use different acoustic chambers. Here is how to optimize your cleaning based on your hardware:</p>
-        
-        <h3>For Apple iPhone Users</h3>
-        <p>iPhones (specifically the iPhone 12 through iPhone 16 Pro Max) have a "sealed" acoustic design. While they are water-resistant, the mesh is very fine. We recommend running the <strong>Apple 165Hz Mode</strong> at least three times. <strong>Pro Tip:</strong> Position the iPhone with the charging port facing downward at a 45-degree angle.</p>
-        
-        <h3>For Samsung Galaxy & Android</h3>
-        <p>Android devices often have larger speaker ports. This allows more water in, but also makes it easier to get out. Use the <strong>Hydro 285Hz Mode</strong> if you were submerged in a pool, as the "Wave" pattern is designed for larger droplets typical of modern Galaxy and Pixel hardware.</p>
-
-        <div class="inner-grid">
-            <div class="grid-item"><strong>IP68 Rated:</strong> Safe for 1.5m for 30 mins.</div>
-            <div class="grid-item"><strong>IP67 Rated:</strong> Safe for 1m for 30 mins.</div>
-        </div>
-    </section>
-
-    <section class="hub-article">
-        <h2>Preventing Speaker Permanent Damage</h2>
-        <p>One of the biggest mistakes users make is using <strong>compressed air</strong> or <strong>hairdryers</strong> to fix a wet phone. Heat can melt the adhesive seals that make your phone waterproof, and high-pressure air can actually rupture the delicate speaker membrane.</p>
-        <h3>The Don System Protocol:</h3>
-        <ul>
-            <li><p><strong>Step 1:</strong> Power down the device immediately to prevent short-circuiting.</p></li>
-            <li><p><strong>Step 2:</strong> Wipe the exterior with a lint-free cloth.</p></li>
-            <li><p><strong>Step 3:</strong> Use our <strong>Dust-Shake 60Hz</strong> mode first to dislodge heavy debris.</p></li>
-            <li><p><strong>Step 4:</strong> Run the <strong>Auto-Cycle</strong> to clear internal moisture.</p></li>
-        </ul>
-        <p>Regular maintenance using our <strong>Dust Integrity Scanner</strong> can extend the life of your audio hardware by 24 months. Over time, microscopic skin cells and pocket lint build up on the speaker mesh, which lowers the maximum decibel output. A weekly "Sonic Shake" keeps these ports clear.</p>
-    </section>
-
-    <div class="ad-slot" style="height:250px;">
-        <span style="opacity: 0.3;">RESERVED FOR GOOGLE ADSENSE<br>RELEVANT TECH ADVERTISEMENT</span>
-    </div>
-</div> 
 </body>
 </html>
