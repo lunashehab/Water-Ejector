@@ -1,43 +1,38 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Contact Support | Speaker Cleaner Pro</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="robots" content="index, follow">
-    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;500;700;900&display=swap" rel="stylesheet">
-    <style>
-        :root { --bg: #000000; --panel: #0a0a0a; --accent: #ff003c; --neon-green: #39ff14; --text-main: #ffffff; --border: #333333; }
-        body { font-family: 'Exo 2', sans-serif; background: var(--bg); color: var(--text-main); display: flex; flex-direction: column; align-items: center; padding: 20px; }
-        .shell { width: 100%; max-width: 600px; }
-        h1 { color: var(--accent); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 20px; }
-        .back-link { display: inline-block; margin-bottom: 20px; color: #888; text-decoration: none; font-weight: bold; text-transform: uppercase; font-size: 12px; }
-        .back-link:hover { color: var(--accent); }
-        .panel { background: var(--panel); border: 1px solid var(--border); padding: 30px; border-radius: 8px; text-align: center; }
-        .btn-email { 
-            background: var(--accent); color: #fff; padding: 15px 30px; border-radius: 50px; 
-            text-decoration: none; font-weight: 900; text-transform: uppercase; display: inline-block;
-            margin: 20px 0; box-shadow: 0 0 20px rgba(255, 0, 60, 0.3); transition: 0.3s;
-        }
-        .btn-email:hover { transform: scale(1.05); box-shadow: 0 0 30px rgba(255, 0, 60, 0.6); }
-        .info-row { margin-top: 20px; color: #888; font-size: 14px; border-top: 1px solid #222; padding-top: 20px; }
-    </style>
-</head>
-<body>
-    <div class="shell">
-        <a href="index.html" class="back-link">← Return to Tool</a>
-        
-        <div class="panel">
-            <h1>Contact Support</h1>
-            <p>Have a question about the tool or a business inquiry?</p>
-            
-            <a href="mailto:don.odibat@gmail.com" class="btn-email">Email Don Systems</a>
-            
-            <div class="info-row">
-                <p><strong>Business Inquiries:</strong><br>don.odibat@gmail.com</p>
-                <p><strong>Location:</strong><br>Jackson St, Tupelo, MS 38801<br>United States</p>
-            </div>
-        </div>
-    </div>
-</body>
-</html>
+diff --git a/contact.html b/contact.html
+index 88348345d4ab28706ea5f45b4d0a8b58da526d0a..c8bf4aee46ecdbe582334afc4e9949c63c812a4c 100644
+--- a/contact.html
++++ b/contact.html
+@@ -1,32 +1,32 @@
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+     <meta charset="UTF-8" />
+     <title>Contact Support | Speaker Cleaner Pro</title>
+     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+-    <meta name="robots" content="noindex" />
++    <meta name="robots" content="index, follow" />
+     <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;500;700;900&display=swap" rel="stylesheet">
+ 
+     <style>
+         :root {
+             --bg: #000000;
+             --panel: #0a0a0a;
+             --accent: #ff003c; /* MARS RED */
+             --accent-dim: rgba(255, 0, 60, 0.1);
+             --neon-green: #39ff14;
+             --text-main: #ffffff;
+             --text-muted: #888888;
+             --border: #333333;
+         }
+ 
+         * { box-sizing: border-box; margin: 0; padding: 0; }
+ 
+         body {
+             font-family: 'Exo 2', sans-serif;
+             background: var(--bg);
+             color: var(--text-main);
+             padding: 20px;
+             line-height: 1.6;
+         }
+ 
+         .container {
