@@ -1,43 +1,38 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Terms of Service | Speaker Cleaner Pro</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="robots" content="index, follow">
-    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;500;700;900&display=swap" rel="stylesheet">
-    <style>
-        :root { --bg: #000000; --panel: #0a0a0a; --accent: #ff003c; --text-main: #ffffff; --border: #333333; }
-        body { font-family: 'Exo 2', sans-serif; background: var(--bg); color: var(--text-main); display: flex; flex-direction: column; align-items: center; padding: 20px; }
-        .shell { width: 100%; max-width: 700px; }
-        h1 { color: var(--accent); margin-bottom: 20px; }
-        h2 { font-size: 16px; color: #fff; margin-top: 20px; text-transform: uppercase; border-left: 3px solid var(--accent); padding-left: 10px; }
-        p { color: #aaa; font-size: 13px; line-height: 1.6; margin-bottom: 10px; }
-        .back-link { display: inline-block; margin-bottom: 20px; color: #888; text-decoration: none; font-weight: bold; text-transform: uppercase; font-size: 12px; }
-        .panel { background: var(--panel); border: 1px solid var(--border); padding: 30px; border-radius: 8px; }
-    </style>
-</head>
-<body>
-    <div class="shell">
-        <a href="index.html" class="back-link">← Return to Tool</a>
-        
-        <div class="panel">
-            <h1>Terms of Service</h1>
-            <p><strong>Effective Date:</strong> February 13, 2026</p>
-            <p>By using Speaker Cleaner Pro (the "Service"), you agree to the following terms:</p>
-
-            <h2>1. Use at Your Own Risk</h2>
-            <p>This tool generates high-frequency sounds intended to displace water. While we use standard audio frequencies (60Hz - 12kHz) that are generally safe for consumer electronics, <strong>Don Systems is not responsible for any hardware damage</strong> that may occur during use. You acknowledge that your device may already be damaged by water exposure before using this tool.</p>
-
-            <h2>2. Medical Warning</h2>
-            <p>This tool generates loud, high-pitched sounds. Do not use this tool with headphones in your ears. Prolonged exposure to high frequencies at max volume may damage hearing.</p>
-
-            <h2>3. Disclaimer of Warranties</h2>
-            <p>The Service is provided "AS IS". We do not guarantee that this tool will successfully remove all water or fix your device. If your device was submerged in salt water or has severe corrosion, software-based cleaning will not work.</p>
-
-            <h2>4. Changes</h2>
-            <p>We reserve the right to modify these terms at any time. Continued use of the Service constitutes agreement to the new terms.</p>
-        </div>
-    </div>
-</body>
-</html>
+diff --git a/terms.html b/terms.html
+index b3628b2e65f7f40ec4a30e1e149e234bdc31b027..54f3b28897037313cfe0f0bab2f7d41c9d1a252b 100644
+--- a/terms.html
++++ b/terms.html
+@@ -1,32 +1,32 @@
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+     <meta charset="UTF-8" />
+     <title>Terms of Service | Speaker Cleaner Pro</title>
+     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+-    <meta name="robots" content="noindex" />
++    <meta name="robots" content="index, follow" />
+     <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;500;700;900&display=swap" rel="stylesheet">
+ 
+     <style>
+         :root {
+             --bg: #000000;
+             --panel: #0a0a0a;
+             --accent: #ff003c; /* MARS RED */
+             --accent-dim: rgba(255, 0, 60, 0.1);
+             --text-main: #ffffff;
+             --text-muted: #888888;
+             --border: #333333;
+         }
+ 
+         * { box-sizing: border-box; margin: 0; padding: 0; }
+ 
+         body {
+             font-family: 'Exo 2', sans-serif;
+             background: var(--bg);
+             color: var(--text-main);
+             padding: 20px;
+             line-height: 1.6;
+         }
+ 
+         .container {
+             max-width: 800px;
