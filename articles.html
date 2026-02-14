@@ -1,197 +1,99 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5129097020907805" crossorigin="anonymous"></script>
-
-    <meta charset="UTF-8" />
-    <title>Audio Repair Guides & Technical Library | Speaker Cleaner Pro</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <meta name="description" content="Expert guides on fixing water-damaged speakers, cleaning AirPods, and understanding IP68 waterproof ratings. The ultimate audio maintenance library.">
-    <meta name="robots" content="index, follow" />
-    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;500;700;900&display=swap" rel="stylesheet">
-
-    <style>
-        :root {
-            --bg: #000000;
-            --panel: #0a0a0a;
-            --accent: #ff003c; /* MARS RED */
-            --accent-glow: rgba(255, 0, 60, 0.5);
-            --neon-green: #39ff14;
-            --text-main: #ffffff;
-            --text-muted: #888888;
-            --border: #333333;
-        }
-
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-
-        body {
-            font-family: 'Exo 2', sans-serif;
-            background: var(--bg);
-            color: var(--text-main);
-            padding: 10px;
-            line-height: 1.6;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .shell { width: 100%; max-width: 800px; display: flex; flex-direction: column; gap: 20px; }
-
-        /* --- NAV BAR (MATCHING INDEX) --- */
-        .app-nav {
-            display: flex; justify-content: center; gap: 15px; margin-bottom: 20px; margin-top: 10px;
-            background: rgba(10,10,10,0.8); padding: 10px; border-radius: 20px; border: 1px solid #222;
-        }
-        .app-nav a {
-            color: #888; text-decoration: none; font-size: 11px; font-weight: 700; text-transform: uppercase;
-            transition: 0.2s; padding: 5px 10px; border-radius: 4px;
-        }
-        .app-nav a:hover, .app-nav a.active { color: var(--accent); background: rgba(255,0,60,0.1); }
-
-        /* --- HERO HEADER --- */
-        .library-hero {
-            text-align: center; padding: 40px 20px;
-            border-bottom: 1px solid var(--border); margin-bottom: 30px;
-            background: radial-gradient(circle at center, rgba(255,0,60,0.1) 0%, transparent 70%);
-        }
-        .library-hero h1 { font-size: 28px; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; color: #fff; margin-bottom: 10px; }
-        .library-hero p { font-size: 12px; color: var(--text-muted); max-width: 500px; margin: 0 auto; }
-
-        /* --- ARTICLE CARD DESIGN --- */
-        .article-card {
-            background: var(--panel); border: 1px solid var(--border);
-            border-radius: 12px; padding: 30px; margin-bottom: 30px;
-            position: relative; overflow: hidden;
-        }
-        .article-card::before { content: ''; position: absolute; left: 0; top: 0; height: 100%; width: 4px; background: var(--accent); }
-        
-        .article-meta { font-size: 9px; color: var(--accent); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; display: block;}
-        
-        .article-card h2 { font-size: 22px; color: #fff; margin-bottom: 15px; font-weight: 800; }
-        .article-card h3 { font-size: 16px; color: #ddd; margin: 25px 0 10px 0; border-left: 2px solid var(--neon-green); padding-left: 10px; }
-        .article-card p { font-size: 14px; color: #aaa; margin-bottom: 15px; text-align: justify; }
-        .article-card ul { margin-left: 20px; margin-bottom: 20px; }
-        .article-card li { font-size: 14px; color: #aaa; margin-bottom: 8px; }
-        .article-card strong { color: #fff; }
-
-        /* --- CALL TO ACTION BUTTON --- */
-        .btn-cta {
-            display: inline-block; width: 100%; text-align: center;
-            background: var(--accent); color: #fff; font-weight: 900; text-transform: uppercase;
-            padding: 15px; border-radius: 6px; text-decoration: none; margin-top: 20px;
-            box-shadow: 0 0 15px var(--accent-glow); transition: 0.2s;
-        }
-        .btn-cta:hover { transform: scale(1.02); }
-
-        /* --- AD SLOTS --- */
-        .ad-slot {
-            width: 100%; height: 150px; background: #080808; border: 1px solid #222; border-radius: 8px; 
-            display: flex; align-items: center; justify-content: center; color: #333; font-size: 10px; margin: 30px 0;
-        }
-
-        /* --- FOOTER --- */
-        footer { margin-top: 50px; text-align: center; font-size: 10px; color: #444; border-top: 1px solid #222; padding-top: 20px; width: 100%; }
-        footer a { color: #666; margin: 0 10px; text-decoration: none; }
-        footer a:hover { color: var(--accent); }
-
-    </style>
-</head>
-<body>
-
-<div class="shell">
-    <nav class="app-nav">
-        <a href="index.html">Tool</a>
-        <a href="articles.html" class="active">Guides</a>
-        <a href="about.html">About</a>
-        <a href="contact.html">Contact</a>
-    </nav>
-
-    <div class="library-hero">
-        <h1>Technical Audio Library</h1>
-        <p>Expert engineering guides on hardware recovery, IP68 ratings, and acoustic maintenance protocols.</p>
-    </div>
-
-    <div class="ad-slot">
-        <span style="opacity: 0.3;">ADVERTISEMENT AREA</span>
-        </div>
-
-    <article class="article-card" id="guide-rice">
-        <span class="article-meta">Hardware Safety Protocol // 01</span>
-        <h2>Why You Should NEVER Put a Wet Phone in Rice</h2>
-        <p>For decades, the "bag of rice" trick has been the go-to advice for water-damaged electronics. However, in 2024, Apple and Samsung officially updated their support guidelines to warn <strong>against</strong> this practice. Why? Because it does more harm than good.</p>
-        
-        <h3>The Starch Dust Problem</h3>
-        <p>Uncooked rice is covered in microscopic starch dust. When you place a wet phone into a bag of rice, this dust mixes with the moisture to create a thick, glue-like paste. This paste can lodge itself into:</p>
-        <ul>
-            <li>The charging port (preventing cable connection).</li>
-            <li>The speaker grill (permanently muffling audio).</li>
-            <li>The microphone array (ruining call quality).</li>
-        </ul>
-
-        <h3>The Better Alternative: Airflow & Frequency</h3>
-        <p>Instead of absorbents, modern smartphones need <strong>airflow</strong> and <strong>ejection</strong>. Gravity is your best friend. Place the phone upright with the ports facing down. Then, use a <strong>165Hz Ejection Tone</strong>. This frequency vibrates the water molecules violently enough to break their surface tension, allowing them to drip out naturally without introducing foreign contaminants like rice dust.</p>
-        
-        <a href="index.html" class="btn-cta">RUN 165HZ EJECTION MODE NOW</a>
-    </article>
-
-    <article class="article-card" id="guide-airpods">
-        <span class="article-meta">Wireless Audio // 02</span>
-        <h2>How to Eject Water from AirPods and Galaxy Buds</h2>
-        <p>Wireless earbuds are notoriously difficult to clean because they lack large batteries to drive powerful bass vibrations. However, they are highly susceptible to sweat and rain damage during workouts.</p>
-
-        <h3>The "Centrifugal" Method</h3>
-        <p>Since AirPods have small drivers, acoustic ejection needs physical help. We recommend a hybrid approach:</p>
-        <ol style="margin-left:20px; color:#aaa; font-size:14px; margin-bottom:15px;">
-            <li><strong>Step 1:</strong> Connect your earbuds to this device via Bluetooth.</li>
-            <li><strong>Step 2:</strong> Set our tool to <strong>"High Pitch / 1200Hz"</strong> (available in the Dust Mode). High frequencies travel better through the smaller mesh of earbuds.</li>
-            <li><strong>Step 3:</strong> While the sound plays, hold the earbud by the stem and gently shake it downward. The vibration loosens the water, and the centrifugal force of the shake expels it.</li>
-        </ol>
-
-        <h3>Warning: Charging Cases</h3>
-        <p>Never put wet earbuds back into their charging case. The case usually has <strong>zero water resistance</strong>. Even a drop of sweat on the charging contacts can corrode the copper pins, destroying the case's ability to charge.</p>
-    </article>
-
-    <div class="ad-slot">
-        <span style="opacity: 0.3;">ADVERTISEMENT AREA</span>
-        </div>
-
-    <article class="article-card" id="guide-ip68">
-        <span class="article-meta">Technical Specs // 03</span>
-        <h2>Understanding IP67 vs. IP68: Is Your Phone Actually Waterproof?</h2>
-        <p>Marketing terms like "Waterproof" are misleading. In the engineering world, we use the <strong>Ingress Protection (IP)</strong> scale. Knowing your rating is critical to knowing if your device can survive a swim.</p>
-
-        <h3>The First Digit: Dust</h3>
-        <p>Almost all modern flagships are "IP6x". The '6' means they are dust-tight. However, as we discuss in our "Dust Integrity" section, this seal degrades over time as the adhesive ages.</p>
-
-        <h3>The Second Digit: Water</h3>
-        <ul>
-            <li><strong>IPx7 (iPhone XR, Older Pixels):</strong> Submersion up to 1 meter for 30 minutes. Good for a toilet drop or rain, but bad for swimming pools (pressure).</li>
-            <li><strong>IPx8 (iPhone 15, S24 Ultra):</strong> Submersion beyond 1 meter (usually 1.5m to 6m) for 30 minutes. These can survive a shallow dive.</li>
-        </ul>
-
-        <h3>The "Speaker Trap"</h3>
-        <p>Even with IP68, the speaker <strong>must</strong> have a hole to let sound out. Water can enter this hole but is stopped by a mesh barrier. While the water won't fry the motherboard, it sits on top of the mesh, blocking sound waves. This is why a waterproof phone still sounds broken after a swim—it's not broken, it's just blocked. Our tool clears this blockage.</p>
-        
-        <a href="index.html" class="btn-cta">UNCLOG SPEAKER MESH</a>
-    </article>
-
-    <article class="article-card" id="guide-corrosion">
-        <span class="article-meta">Long Term Damage // 04</span>
-        <h2>The Silent Killer: Salt Water & Chlorinated Pools</h2>
-        <p>If you dropped your phone in the ocean or a swimming pool, simple drying is not enough. <strong>Salt and Chlorine are corrosive.</strong></p>
-        
-        <p>When salt water dries, it leaves behind salt crystals. These crystals are highly conductive and abrasive. If they form on your speaker diaphragm, they will eventually puncture it or short-circuit the voice coil. </p>
-
-        <h3>The Fresh Water Flush</h3>
-        <p>It sounds counter-intuitive, but if your phone falls in the ocean, you should immediately rinse it gently with <strong>fresh tap water</strong>. You need to wash away the salt before it dries. Once rinsed, run our <strong>"Deep Clean"</strong> cycle immediately to eject the fresh water. Do not let salt water dry inside the speaker grill.</p>
-    </article>
-
-    <footer>
-        <a href="index.html">Home</a> • <a href="privacy.html">Privacy</a> • <a href="terms.html">Terms</a>
-        <br><br>
-        © 2025 DON SYSTEMS. <br>Technical content for educational purposes only.
-    </footer>
-</div>
-
-</body>
-</html>
+diff --git a/articles.html b/articles.html
+index 913a1aff6a9af7025b80825fd8403f8d33eb6d2c..8d83141a3837bbc42bc3e6d4a04acb6d68730554 100644
+--- a/articles.html
++++ b/articles.html
+@@ -89,94 +89,86 @@
+             display: flex; align-items: center; justify-content: center; color: #333; font-size: 10px; margin: 30px 0;
+         }
+ 
+         /* --- FOOTER --- */
+         footer { margin-top: 50px; text-align: center; font-size: 10px; color: #444; border-top: 1px solid #222; padding-top: 20px; width: 100%; }
+         footer a { color: #666; margin: 0 10px; text-decoration: none; }
+         footer a:hover { color: var(--accent); }
+ 
+     </style>
+ </head>
+ <body>
+ 
+ <div class="shell">
+     <nav class="app-nav">
+         <a href="index.html">Tool</a>
+         <a href="articles.html" class="active">Guides</a>
+         <a href="about.html">About</a>
+         <a href="contact.html">Contact</a>
+     </nav>
+ 
+     <div class="library-hero">
+         <h1>Technical Audio Library</h1>
+         <p>Expert engineering guides on hardware recovery, IP68 ratings, and acoustic maintenance protocols.</p>
+     </div>
+ 
+-    <div class="ad-slot">
+-        <span style="opacity: 0.3;">ADVERTISEMENT AREA</span>
+-        </div>
+-
+     <article class="article-card" id="guide-rice">
+         <span class="article-meta">Hardware Safety Protocol // 01</span>
+         <h2>Why You Should NEVER Put a Wet Phone in Rice</h2>
+         <p>For decades, the "bag of rice" trick has been the go-to advice for water-damaged electronics. However, in 2024, Apple and Samsung officially updated their support guidelines to warn <strong>against</strong> this practice. Why? Because it does more harm than good.</p>
+         
+         <h3>The Starch Dust Problem</h3>
+         <p>Uncooked rice is covered in microscopic starch dust. When you place a wet phone into a bag of rice, this dust mixes with the moisture to create a thick, glue-like paste. This paste can lodge itself into:</p>
+         <ul>
+             <li>The charging port (preventing cable connection).</li>
+             <li>The speaker grill (permanently muffling audio).</li>
+             <li>The microphone array (ruining call quality).</li>
+         </ul>
+ 
+         <h3>The Better Alternative: Airflow & Frequency</h3>
+         <p>Instead of absorbents, modern smartphones need <strong>airflow</strong> and <strong>ejection</strong>. Gravity is your best friend. Place the phone upright with the ports facing down. Then, use a <strong>165Hz Ejection Tone</strong>. This frequency vibrates the water molecules violently enough to break their surface tension, allowing them to drip out naturally without introducing foreign contaminants like rice dust.</p>
+         
+         <a href="index.html" class="btn-cta">RUN 165HZ EJECTION MODE NOW</a>
+     </article>
+ 
+     <article class="article-card" id="guide-airpods">
+         <span class="article-meta">Wireless Audio // 02</span>
+         <h2>How to Eject Water from AirPods and Galaxy Buds</h2>
+         <p>Wireless earbuds are notoriously difficult to clean because they lack large batteries to drive powerful bass vibrations. However, they are highly susceptible to sweat and rain damage during workouts.</p>
+ 
+         <h3>The "Centrifugal" Method</h3>
+         <p>Since AirPods have small drivers, acoustic ejection needs physical help. We recommend a hybrid approach:</p>
+         <ol style="margin-left:20px; color:#aaa; font-size:14px; margin-bottom:15px;">
+             <li><strong>Step 1:</strong> Connect your earbuds to this device via Bluetooth.</li>
+             <li><strong>Step 2:</strong> Set our tool to <strong>"High Pitch / 1200Hz"</strong> (available in the Dust Mode). High frequencies travel better through the smaller mesh of earbuds.</li>
+             <li><strong>Step 3:</strong> While the sound plays, hold the earbud by the stem and gently shake it downward. The vibration loosens the water, and the centrifugal force of the shake expels it.</li>
+         </ol>
+ 
+         <h3>Warning: Charging Cases</h3>
+         <p>Never put wet earbuds back into their charging case. The case usually has <strong>zero water resistance</strong>. Even a drop of sweat on the charging contacts can corrode the copper pins, destroying the case's ability to charge.</p>
+     </article>
+ 
+-    <div class="ad-slot">
+-        <span style="opacity: 0.3;">ADVERTISEMENT AREA</span>
+-        </div>
+-
+     <article class="article-card" id="guide-ip68">
+         <span class="article-meta">Technical Specs // 03</span>
+         <h2>Understanding IP67 vs. IP68: Is Your Phone Actually Waterproof?</h2>
+         <p>Marketing terms like "Waterproof" are misleading. In the engineering world, we use the <strong>Ingress Protection (IP)</strong> scale. Knowing your rating is critical to knowing if your device can survive a swim.</p>
+ 
+         <h3>The First Digit: Dust</h3>
+         <p>Almost all modern flagships are "IP6x". The '6' means they are dust-tight. However, as we discuss in our "Dust Integrity" section, this seal degrades over time as the adhesive ages.</p>
+ 
+         <h3>The Second Digit: Water</h3>
+         <ul>
+             <li><strong>IPx7 (iPhone XR, Older Pixels):</strong> Submersion up to 1 meter for 30 minutes. Good for a toilet drop or rain, but bad for swimming pools (pressure).</li>
+             <li><strong>IPx8 (iPhone 15, S24 Ultra):</strong> Submersion beyond 1 meter (usually 1.5m to 6m) for 30 minutes. These can survive a shallow dive.</li>
+         </ul>
+ 
+         <h3>The "Speaker Trap"</h3>
+         <p>Even with IP68, the speaker <strong>must</strong> have a hole to let sound out. Water can enter this hole but is stopped by a mesh barrier. While the water won't fry the motherboard, it sits on top of the mesh, blocking sound waves. This is why a waterproof phone still sounds broken after a swim—it's not broken, it's just blocked. Our tool clears this blockage.</p>
+         
+         <a href="index.html" class="btn-cta">UNCLOG SPEAKER MESH</a>
+     </article>
+ 
+     <article class="article-card" id="guide-corrosion">
+         <span class="article-meta">Long Term Damage // 04</span>
+         <h2>The Silent Killer: Salt Water & Chlorinated Pools</h2>
+         <p>If you dropped your phone in the ocean or a swimming pool, simple drying is not enough. <strong>Salt and Chlorine are corrosive.</strong></p>
+         
