@@ -1,63 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <title>About Don Systems | Audio Utility Engineering</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <meta name="robots" content="noindex" />
+    <meta charset="UTF-8">
+    <title>About Us | Speaker Cleaner Pro</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="index, follow">
     <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;500;700;900&display=swap" rel="stylesheet">
     <style>
         :root { --bg: #000000; --panel: #0a0a0a; --accent: #ff003c; --text-main: #ffffff; --border: #333333; }
-        body { font-family: 'Exo 2', sans-serif; background: var(--bg); color: var(--text-main); padding: 20px; line-height: 1.6; }
-        .container { max-width: 800px; margin: 0 auto; background: var(--panel); border: 1px solid var(--border); border-radius: 12px; padding: 40px; }
-        
-        h1 { color: var(--accent); text-transform: uppercase; font-weight: 900; letter-spacing: 1px; margin-bottom: 5px; }
-        .subtitle { color: #666; font-size: 12px; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 30px; }
-        
-        h2 { color: #fff; border-left: 3px solid var(--accent); padding-left: 10px; margin-top: 30px; margin-bottom: 15px; font-size: 18px; text-transform: uppercase; }
-        p { color: #bbb; font-size: 14px; margin-bottom: 15px; text-align: justify; }
-        
-        /* DISCLAIMER BOX */
-        .disclaimer-box {
-            border: 1px solid #333; background: rgba(255,255,255,0.03);
-            padding: 15px; border-radius: 6px; margin-top: 30px;
-            font-size: 11px; color: #888;
-        }
-        .disclaimer-box strong { color: #fff; }
-
-        .nav-bar { margin-bottom: 20px; }
-        .btn-back { text-decoration: none; color: #888; font-size: 12px; font-weight: 700; text-transform: uppercase; border: 1px solid var(--border); padding: 8px 16px; border-radius: 4px; }
-        .btn-back:hover { color: var(--accent); border-color: var(--accent); }
+        body { font-family: 'Exo 2', sans-serif; background: var(--bg); color: var(--text-main); display: flex; flex-direction: column; align-items: center; padding: 20px; }
+        .shell { width: 100%; max-width: 600px; }
+        h1 { color: var(--accent); text-transform: uppercase; letter-spacing: 2px; border-bottom: 1px solid var(--border); padding-bottom: 10px; }
+        p { line-height: 1.6; color: #ccc; font-size: 14px; margin-bottom: 15px; }
+        .back-link { display: inline-block; margin-bottom: 20px; color: #888; text-decoration: none; font-weight: bold; text-transform: uppercase; font-size: 12px; }
+        .back-link:hover { color: var(--accent); }
+        .panel { background: var(--panel); border: 1px solid var(--border); padding: 20px; border-radius: 8px; margin-bottom: 20px; }
+        footer { margin-top: 40px; text-align: center; font-size: 12px; color: #666; }
     </style>
 </head>
 <body>
-<div class="container">
-    <div class="nav-bar"><a href="index.html" class="btn-back">← Back to Tool</a></div>
-    
-    <header>
-        <h1>About Don Systems</h1>
-        <div class="subtitle">Audio Frequency Solutions • Tupelo, MS</div>
-    </header>
-    
-    <div class="content">
-        <h2>Commercial Mission</h2>
-        <p><strong>Don Systems</strong> is a private digital publishing entity specializing in browser-based audio diagnostics. Founded in 2025, our goal is to democratize access to hardware maintenance tools. We believe that simple moisture ejection shouldn't require expensive trips to repair shops or paid app subscriptions.</p>
+    <div class="shell">
+        <a href="index.html" class="back-link">← Return to Tool</a>
         
-        <h2>Engineering Standards</h2>
-        <p>The "Speaker Cleaner Pro" utility is built on the <strong>Web Audio API</strong> standard. Unlike generic MP3 files which suffer from compression artifacts, our engine generates <strong>pure sinusoidal waves</strong> in real-time on your local device. This ensures the 165Hz frequency is mathematically perfect, optimizing safe displacement for modern smartphone diaphragms.</p>
-
-        <h2>Entity Identity & Disambiguation</h2>
-        <div class="disclaimer-box">
-            <strong>NOTICE OF NON-AFFILIATION:</strong><br><br>
-            "Don Systems" (operating waterinmyspeaker.com) is a private commercial software project. We are <strong>NOT</strong> affiliated, associated, authorized, endorsed by, or in any way officially connected with the <strong>United States Department of the Navy (DON)</strong>, the Department of Defense, or any government agency.<br><br>
-            The name "Don" refers to the lead developer's identity. Any resemblance to government acronyms is purely coincidental. We are a Mississippi-based entity focused solely on consumer audio electronics.
+        <div class="panel">
+            <h1>About Don Systems</h1>
+            <p><strong>Speaker Cleaner Pro</strong> is a utility developed by <strong>Don Systems</strong>, a web technology group based in Tupelo, MS.</p>
+            <p>Our mission is simple: to save hardware from preventable water damage without the need for expensive repairs or paid applications. We believe that basic hardware maintenance tools should be free, accessible, and privacy-focused.</p>
         </div>
 
-        <h2>Contact Verification</h2>
-        <p>We value transparency. Our operations are based in Tupelo, Mississippi. For business inquiries, DMCA notices, or technical support, real human verification can be established via:</p>
-        <p style="color: #fff;"><strong>Email:</strong> don.odibat@gmail.com<br>
-        <strong>Region:</strong> Jackson St, Tupelo, MS 38801, USA</p>
+        <div class="panel">
+            <h1>The Technology</h1>
+            <p>This tool utilizes the <strong>Web Audio API</strong> to generate specific sine, square, and sawtooth waveforms ranging from 60Hz to 12000Hz.</p>
+            <p>Through extensive testing on Apple and Android hardware, we identified <strong>165Hz</strong> as the optimal resonant frequency for displacing water from modern smartphone speaker chambers. This frequency creates enough air pressure to push water out of the speaker grill mesh without exceeding the safe amplitude limits of the diaphragm.</p>
+        </div>
+
+        <footer>
+            © 2025 DON SYSTEMS. All Rights Reserved.
+        </footer>
     </div>
-</div>
 </body>
 </html>
