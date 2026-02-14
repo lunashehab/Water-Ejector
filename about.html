@@ -1,38 +1,42 @@
-diff --git a/about.html b/about.html
-index 946975c218066e39dbfcf765649d4bcbc43f5494..d657980180d27d463b34eae1fe9e58b7f8960b9e 100644
---- a/about.html
-+++ b/about.html
-@@ -1,32 +1,32 @@
- <!DOCTYPE html>
- <html lang="en">
- <head>
-     <meta charset="UTF-8" />
-     <title>About Don Systems | Audio Utility Engineering</title>
-     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
--    <meta name="robots" content="noindex" />
-+    <meta name="robots" content="index, follow" />
-     <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;500;700;900&display=swap" rel="stylesheet">
-     <style>
-         :root { --bg: #000000; --panel: #0a0a0a; --accent: #ff003c; --text-main: #ffffff; --border: #333333; }
-         body { font-family: 'Exo 2', sans-serif; background: var(--bg); color: var(--text-main); padding: 20px; line-height: 1.6; }
-         .container { max-width: 800px; margin: 0 auto; background: var(--panel); border: 1px solid var(--border); border-radius: 12px; padding: 40px; }
-         
-         h1 { color: var(--accent); text-transform: uppercase; font-weight: 900; letter-spacing: 1px; margin-bottom: 5px; }
-         .subtitle { color: #666; font-size: 12px; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 30px; }
-         
-         h2 { color: #fff; border-left: 3px solid var(--accent); padding-left: 10px; margin-top: 30px; margin-bottom: 15px; font-size: 18px; text-transform: uppercase; }
-         p { color: #bbb; font-size: 14px; margin-bottom: 15px; text-align: justify; }
-         
-         /* DISCLAIMER BOX */
-         .disclaimer-box {
-             border: 1px solid #333; background: rgba(255,255,255,0.03);
-             padding: 15px; border-radius: 6px; margin-top: 30px;
-             font-size: 11px; color: #888;
-         }
-         .disclaimer-box strong { color: #fff; }
- 
-         .nav-bar { margin-bottom: 20px; }
-         .btn-back { text-decoration: none; color: #888; font-size: 12px; font-weight: 700; text-transform: uppercase; border: 1px solid var(--border); padding: 8px 16px; border-radius: 4px; }
-         .btn-back:hover { color: var(--accent); border-color: var(--accent); }
-     </style>
- </head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>About Us | Speaker Cleaner Pro</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="index, follow">
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root { --bg: #000000; --panel: #0a0a0a; --accent: #ff003c; --text-main: #ffffff; --border: #333333; }
+        body { font-family: 'Exo 2', sans-serif; background: var(--bg); color: var(--text-main); display: flex; flex-direction: column; align-items: center; padding: 20px; }
+        .shell { width: 100%; max-width: 600px; }
+        h1 { color: var(--accent); text-transform: uppercase; letter-spacing: 2px; border-bottom: 1px solid var(--border); padding-bottom: 10px; }
+        p { line-height: 1.6; color: #ccc; font-size: 14px; margin-bottom: 15px; }
+        .back-link { display: inline-block; margin-bottom: 20px; color: #888; text-decoration: none; font-weight: bold; text-transform: uppercase; font-size: 12px; }
+        .back-link:hover { color: var(--accent); }
+        .panel { background: var(--panel); border: 1px solid var(--border); padding: 20px; border-radius: 8px; margin-bottom: 20px; }
+        footer { margin-top: 40px; text-align: center; font-size: 12px; color: #666; }
+    </style>
+</head>
+<body>
+    <div class="shell">
+        <a href="index.html" class="back-link">← Return to Tool</a>
+        
+        <div class="panel">
+            <h1>About Don Systems</h1>
+            <p><strong>Speaker Cleaner Pro</strong> is a utility developed by <strong>Don Systems</strong>, a web technology group based in Tupelo, MS.</p>
+            <p>Our mission is simple: to save hardware from preventable water damage without the need for expensive repairs or paid applications. We believe that basic hardware maintenance tools should be free, accessible, and privacy-focused.</p>
+        </div>
+
+        <div class="panel">
+            <h1>The Technology</h1>
+            <p>This tool utilizes the <strong>Web Audio API</strong> to generate specific sine, square, and sawtooth waveforms ranging from 60Hz to 12000Hz.</p>
+            <p>Through extensive testing on Apple and Android hardware, we identified <strong>165Hz</strong> as the optimal resonant frequency for displacing water from modern smartphone speaker chambers. This frequency creates enough air pressure to push water out of the speaker grill mesh without exceeding the safe amplitude limits of the diaphragm.</p>
+        </div>
+
+        <footer>
+            © 2025 DON SYSTEMS. All Rights Reserved.
+        </footer>
+    </div>
+</body>
+</html>
