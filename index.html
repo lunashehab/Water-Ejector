@@ -447,6 +447,16 @@
         .stat-val { font-size: 16px; font-weight: 900; color: #fff; margin-bottom: 2px; }
         .stat-label { font-size: 8px; color: #666; text-transform: uppercase; }
 
+        /* --- DIRECTORY BOX (RESTORED & FIXED) --- */
+        .directory-box { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 10px; }
+        .dir-tag { 
+            background: #111; border: 1px solid #333; color: #666; 
+            font-size: 9px; padding: 4px 8px; border-radius: 4px; 
+            text-decoration: none; transition: 0.2s; cursor: pointer;
+        }
+        .dir-tag:hover { border-color: var(--accent); color: #fff; background: rgba(255, 0, 60, 0.1); }
+        .dir-category { width: 100%; text-align: left; font-size: 10px; color: #fff; font-weight: 700; margin: 15px 0 5px 0; border-bottom: 1px solid #222; padding-bottom: 5px; }
+
         /* --- TRUST GRID --- */
         .trust-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px; }
         .trust-item {
@@ -912,6 +922,27 @@
         </div>
 
     </div>
+
+    <div class="panel">
+        <div class="panel-title"><span>Topic</span> <span>Index</span></div>
+        <div class="directory-box">
+            <div class="dir-category">REPAIR TOOLS</div>
+            <a href="#app-shell" class="dir-tag">Water Eject</a>
+            <a href="#app-shell" class="dir-tag">Speaker Cleaner</a>
+            <a href="#app-shell" class="dir-tag">Fix My Speaker</a>
+            <a href="#app-shell" class="dir-tag">Clear Wave</a>
+            
+            <div class="dir-category">DEVICE GUIDES</div>
+            <a href="#how-it-works" class="dir-tag">iPhone Water Eject</a>
+            <a href="#how-it-works" class="dir-tag">Android Cleaner</a>
+            <a href="#how-it-works" class="dir-tag">Dust Removal</a>
+
+            <div class="dir-category">TROUBLESHOOTING</div>
+            <a href="#faq-container" class="dir-tag">Fix Muffled Sound</a>
+            <a href="#faq-container" class="dir-tag">Phone Fell in Water</a>
+            <a href="#faq-container" class="dir-tag">Crackling Audio Fix</a>
+        </div>
+   </div>
 
     <div class="ad-slot ad-bot">
         <span style="opacity: 0.3;">ADVERTISEMENT (BOTTOM SLOT)</span>
