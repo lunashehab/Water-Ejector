@@ -1,38 +1,47 @@
-diff --git a/privacy.html b/privacy.html
-index 1539657429745234b5b7860d2fed8646a797dac7..b90606d684c448562999e7c0bc256b49a371edd3 100644
---- a/privacy.html
-+++ b/privacy.html
-@@ -1,32 +1,32 @@
- <!DOCTYPE html>
- <html lang="en">
- <head>
-     <meta charset="UTF-8" />
-     <title>Privacy Policy | Speaker Cleaner Pro</title>
-     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
--    <meta name="robots" content="noindex" /> <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;500;700;900&display=swap" rel="stylesheet">
-+    <meta name="robots" content="index, follow" /> <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;500;700;900&display=swap" rel="stylesheet">
- 
-     <style>
-         :root {
-             --bg: #000000;
-             --panel: #0a0a0a;
-             --accent: #ff003c; /* MARS RED */
-             --accent-dim: rgba(255, 0, 60, 0.1);
-             --text-main: #ffffff;
-             --text-muted: #888888;
-             --border: #333333;
-         }
- 
-         * { box-sizing: border-box; margin: 0; padding: 0; }
- 
-         body {
-             font-family: 'Exo 2', sans-serif;
-             background: var(--bg);
-             color: var(--text-main);
-             padding: 20px;
-             line-height: 1.6;
-         }
- 
-         .container {
-             max-width: 800px;
-             margin: 0 auto;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Privacy Policy | Speaker Cleaner Pro</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="index, follow">
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root { --bg: #000000; --panel: #0a0a0a; --accent: #ff003c; --text-main: #ffffff; --border: #333333; }
+        body { font-family: 'Exo 2', sans-serif; background: var(--bg); color: var(--text-main); display: flex; flex-direction: column; align-items: center; padding: 20px; }
+        .shell { width: 100%; max-width: 700px; }
+        h1 { color: var(--accent); margin-bottom: 20px; }
+        h2 { font-size: 16px; color: #fff; margin-top: 20px; text-transform: uppercase; border-left: 3px solid var(--accent); padding-left: 10px; }
+        p, li { color: #aaa; font-size: 13px; line-height: 1.6; margin-bottom: 10px; }
+        .back-link { display: inline-block; margin-bottom: 20px; color: #888; text-decoration: none; font-weight: bold; text-transform: uppercase; font-size: 12px; }
+        .panel { background: var(--panel); border: 1px solid var(--border); padding: 30px; border-radius: 8px; }
+    </style>
+</head>
+<body>
+    <div class="shell">
+        <a href="index.html" class="back-link">← Return to Tool</a>
+        
+        <div class="panel">
+            <h1>Privacy Policy</h1>
+            <p><strong>Effective Date:</strong> February 13, 2026</p>
+            <p>At Don Systems ("we", "us"), your privacy is our priority. This document outlines how Speaker Cleaner Pro handles data.</p>
+
+            <h2>1. No Personal Audio Collection</h2>
+            <p>This tool runs locally in your browser. We DO NOT record your microphone, store your files, or transmit audio data to any server. The sound frequencies are generated client-side using the Web Audio API.</p>
+
+            <h2>2. Cookies & Advertising</h2>
+            <p>We use <strong>Google AdSense</strong> to serve advertisements. Google uses cookies to serve ads based on your prior visits to our website or other websites.</p>
+            <ul>
+                <li>Google's use of advertising cookies enables it and its partners to serve ads to you based on your visit to your sites and/or other sites on the Internet.</li>
+                <li>You may opt out of personalized advertising by visiting <a href="https://www.google.com/settings/ads" style="color:var(--accent)">Google Ad Settings</a>.</li>
+            </ul>
+
+            <h2>3. Analytics</h2>
+            <p>We use <strong>Simple Analytics</strong> to monitor traffic trends (page views, device types). This service is privacy-first and does not track your IP address or use intrusive fingerprinting.</p>
+
+            <h2>4. Contact</h2>
+            <p>For privacy concerns, contact: don.odibat@gmail.com</p>
+        </div>
+    </div>
+</body>
+</html>
