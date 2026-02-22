@@ -136,6 +136,7 @@
         .site-card {
             background: rgba(255, 255, 255, 0.05); border: 1px solid var(--accent); padding: 20px;
             border-radius: 12px; text-align: left; transition: 0.3s; position: relative; overflow: hidden;
+            display: block; text-decoration: none; cursor: pointer;
         }
         .site-card::before {
             content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
@@ -150,7 +151,7 @@
             font-size: 10px; font-weight: 900; text-transform: uppercase; border-radius: 4px;
             text-decoration: none; transition: 0.2s;
         }
-        .btn-site:hover { background: #fff; color: var(--accent); box-shadow: 0 0 10px var(--accent); }
+        .site-card:hover .btn-site { background: #fff; color: var(--accent); box-shadow: 0 0 10px var(--accent); }
 
         footer { margin-top: 50px; text-align: center; font-size: 10px; color: #444; padding-bottom: 30px; border-top: 1px solid #222; padding-top: 20px; width: 100%; }
         footer a { color: #666; text-decoration: none; margin: 0 10px; transition: color 0.2s; }
@@ -211,16 +212,16 @@
             <p>Speaker Cleaner Pro is part of a larger vision. Under the <strong>Don Systems</strong> umbrella, we are building a suite of targeted, high-quality web utilities that adhere to the same principles of simplicity, efficacy, and privacy. We invite you to explore our other tools designed to solve specific digital problems.</p>
 
             <div class="site-showcase">
-                <div class="site-card">
+                <a href="https://checkthisphone.com" target="_blank" class="site-card">
                     <h4>CheckThisPhone.com</h4>
                     <p>A powerful, privacy-first tool for verifying phone numbers and carrier information. Essential for identifying spam, validating contacts, and performing due diligence without compromising anyone's data. It provides instant, accurate lookups with a focus on user anonymity.</p>
-                    <a href="https://checkthisphone.com" target="_blank" class="btn-site">Vist Website</a>
-                </div>
-                <div class="site-card">
+                    <span class="btn-site">Visit Website</span>
+                </a>
+                <a href="https://tellmylocation.com" target="_blank" class="site-card">
                     <h4>TellMyLocation.com</h4>
                     <p>The fastest and most private way to share your precise location. No account needed, no tracking history. Just generate a secure, temporary link to send to friends, family, or emergency services. It utilizes your device's GPS directly in the browser for maximum accuracy and privacy.</p>
-                    <a href="https://tellmylocation.com" target="_blank" class="btn-site">Vist Website</a>
-                </div>
+                    <span class="btn-site">Visit Website</span>
+                </a>
             </div>
         </div>
 
