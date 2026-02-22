@@ -22,7 +22,8 @@
         'analytics_storage': 'granted'
       });
     </script>
-<script async src="https://fundingchoicesmessages.google.com/i/pub-5129097020907805?ers=1"></script>
+
+    <script async src="https://fundingchoicesmessages.google.com/i/pub-5129097020907805?ers=1"></script>
     <script>
       (function() {
         function signalGooglefcPresent() {
@@ -41,44 +42,36 @@
         signalGooglefcPresent();
       })();
     </script>
+
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5129097020907805" crossorigin="anonymous"></script>
 
     <meta charset="UTF-8" />
-    <title>Repair Guides & Articles | Speaker Cleaner Pro</title>
+    <title>Acoustic Repair Guides & Tutorials | Speaker Cleaner Pro</title>
     
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="robots" content="index, follow" />
-    <meta name="description" content="Explore our complete directory of smartphone audio repair guides. Learn how to fix water damage, remove dust, and restore muffled speakers safely.">
-    <meta name="author" content="Don System">
+    <meta name="description" content="Browse our comprehensive directory of smartphone audio repair guides. Learn how to fix muffled speakers, remove water, and clear dust safely.">
+    <meta name="author" content="Don Odibat">
     <link rel="canonical" href="https://waterinmyspeaker.com/articles.html" />
       
     <link rel="icon" type="image/png" href="icon.png">
     <link rel="apple-touch-icon" href="icon.png">
 
+    <meta property="og:title" content="Device Repair & Acoustic Guides | Speaker Cleaner Pro">
+    <meta property="og:url" content="https://waterinmyspeaker.com/articles.html">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://waterinmyspeaker.com/preview.png">
+    <meta property="og:site_name" content="Water In My Speaker">
+      
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#000000">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;500;700;900&display=swap" rel="stylesheet">
 
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "CollectionPage",
-      "mainEntityOfPage": {
-        "@type": "WebPage",
-        "@id": "https://waterinmyspeaker.com/articles.html"
-      },
-      "headline": "Repair Guides & Articles | Speaker Cleaner Pro",
-      "description": "Directory of smartphone audio repair guides.",
-      "publisher": {
-        "@type": "Organization",
-        "name": "Speaker Cleaner Pro",
-        "logo": {
-          "@type": "ImageObject",
-          "url": "https://waterinmyspeaker.com/icon.png"
-        }
-      }
-    }
-    </script>
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -94,6 +87,26 @@
         "name": "Guides",
         "item": "https://waterinmyspeaker.com/articles.html"
       }]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      "name": "Audio Repair Guides",
+      "description": "Comprehensive guides on how to repair phone speakers, eject water, and clean dust.",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "url": "https://waterinmyspeaker.com/water-eject.html" },
+        { "@type": "ListItem", "position": 2, "url": "https://waterinmyspeaker.com/speaker-cleaner.html" },
+        { "@type": "ListItem", "position": 3, "url": "https://waterinmyspeaker.com/fix-my-speaker.html" },
+        { "@type": "ListItem", "position": 4, "url": "https://waterinmyspeaker.com/clear-wave.html" },
+        { "@type": "ListItem", "position": 5, "url": "https://waterinmyspeaker.com/iphone-water-eject.html" },
+        { "@type": "ListItem", "position": 6, "url": "https://waterinmyspeaker.com/android-cleaner.html" },
+        { "@type": "ListItem", "position": 7, "url": "https://waterinmyspeaker.com/dust-removal.html" },
+        { "@type": "ListItem", "position": 8, "url": "https://waterinmyspeaker.com/fix-muffled-sound.html" },
+        { "@type": "ListItem", "position": 9, "url": "https://waterinmyspeaker.com/phone-fell-in-water.html" },
+        { "@type": "ListItem", "position": 10, "url": "https://waterinmyspeaker.com/crackling-audio-fix.html" }
+      ]
     }
     </script>
 
@@ -137,7 +150,7 @@
             -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 40%);
         }
 
-        .shell { width: 100%; max-width: 800px; display: flex; flex-direction: column; gap: 25px; z-index: 1; }
+        .shell { width: 100%; max-width: 900px; display: flex; flex-direction: column; gap: 25px; z-index: 1; }
 
         .top-nav {
             display: flex; justify-content: center; flex-wrap: wrap; gap: 15px; margin-top: 15px; margin-bottom: 20px;
@@ -154,36 +167,58 @@
         .page-title { font-size: 20px; font-weight: 900; color: var(--accent); letter-spacing: 1px; margin-bottom: 10px; }
         .page-desc { font-size: 13px; color: #888; max-width: 650px; margin: 0 auto; text-transform: none; font-weight: 500;}
 
-        .article-panel {
-            background: rgba(10, 10, 10, 0.9); border: 1px solid var(--border);
-            border-radius: 12px; padding: 35px; backdrop-filter: blur(10px);
-            position: relative; overflow: hidden; margin-bottom: 20px;
+        /* --- GRID LAYOUT FOR ARTICLES --- */
+        .guide-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
         }
-        .article-panel::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--accent); }
-        
-        .dir-category { width: 100%; text-align: left; font-size: 16px; color: #fff; font-weight: 900; margin: 25px 0 15px 0; border-bottom: 1px solid #222; padding-bottom: 5px; text-transform: uppercase; letter-spacing: 1px;}
-        .dir-category:first-child { margin-top: 0; }
-        
-        .article-card {
-            display: block; background: #050505; border: 1px solid #222; border-radius: 8px;
-            padding: 20px; margin-bottom: 15px; text-decoration: none; transition: 0.2s;
+
+        .guide-card {
+            background: rgba(10, 10, 10, 0.9);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 25px;
+            backdrop-filter: blur(10px);
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.3s ease;
             position: relative;
+            overflow: hidden;
         }
-        .article-card:hover { border-color: var(--accent); background: rgba(255,0,60,0.05); transform: translateY(-2px); }
-        .article-card h3 { color: var(--accent); font-size: 16px; margin-bottom: 5px; font-weight: 800; }
-        .article-card p { color: #888; font-size: 13px; margin: 0; line-height: 1.5; }
-        .article-card::after { content: '→'; position: absolute; right: 20px; top: 50%; transform: translateY(-50%); color: var(--accent); font-weight: bold; font-size: 18px; opacity: 0; transition: 0.2s; }
-        .article-card:hover::after { opacity: 1; right: 15px; }
 
-        .btn-launch {
-            display: inline-block; background: var(--accent); color: #fff; text-decoration: none;
-            padding: 15px 30px; font-size: 14px; font-weight: 900; text-transform: uppercase;
-            border-radius: 6px; letter-spacing: 1px; transition: 0.3s; box-shadow: 0 0 15px var(--accent-glow);
-            margin-top: 20px;
+        .guide-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 3px; background: #333; transition: 0.3s; }
+        .guide-card:hover::before { background: var(--accent); }
+        .guide-card:hover { border-color: var(--accent); transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.5); }
+
+        .guide-tag {
+            font-size: 9px; font-weight: 900; text-transform: uppercase; letter-spacing: 1px;
+            color: var(--accent); margin-bottom: 10px;
         }
-        .btn-launch:hover { background: #fff; color: var(--accent); box-shadow: 0 0 25px var(--accent); transform: translateY(-2px); }
+        .guide-title {
+            font-size: 18px; font-weight: 800; color: #fff; margin-bottom: 10px; line-height: 1.3;
+        }
+        .guide-desc {
+            font-size: 13px; color: #aaa; line-height: 1.6; margin-bottom: 20px; flex-grow: 1;
+        }
+        .guide-read {
+            font-size: 11px; font-weight: 800; text-transform: uppercase; color: #666;
+            display: flex; align-items: center; gap: 5px; transition: 0.3s;
+        }
+        .guide-card:hover .guide-read { color: #fff; }
+        .guide-card:hover .guide-read span { color: var(--accent); transform: translateX(5px); }
 
-        footer { margin-top: 40px; text-align: center; font-size: 10px; color: #444; padding-bottom: 30px; border-top: 1px solid #222; padding-top: 20px; width: 100%; }
+        /* --- AUTHOR BLURB --- */
+        .hub-author {
+            background: linear-gradient(135deg, #050505, #111); border: 1px solid #222;
+            padding: 30px; border-radius: 12px; text-align: center; margin-bottom: 20px;
+        }
+        .hub-author h3 { font-size: 16px; color: #fff; text-transform: uppercase; margin-bottom: 10px; letter-spacing: 1px;}
+        .hub-author p { font-size: 13px; color: #888; max-width: 700px; margin: 0 auto; line-height: 1.6;}
+
+        footer { margin-top: 20px; text-align: center; font-size: 10px; color: #444; padding-bottom: 30px; border-top: 1px solid #222; padding-top: 20px; width: 100%; }
         footer a { color: #666; text-decoration: none; margin: 0 10px; transition: color 0.2s; }
         footer a:hover { color: var(--accent); }
         .don-sig { display: block; margin-top: 15px; font-weight: 900; color: #333; text-transform: uppercase; letter-spacing: 2px; font-size: 9px; }
@@ -207,80 +242,94 @@
             <svg class="logo-icon" viewBox="0 0 24 24"><path d="M12 22c4.97 0 9-4.03 9-9-4.5 0-9-5-9-13 0 8-4.5 13-9 13 0 4.97 4.03 9 9 9zM12 14c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"/></svg>
             <h1>SPEAKER CLEANER<span class="badge-pro">PRO</span></h1>
         </div>
-        <div class="page-title">DEVICE GUIDES & INTEL</div>
-        <div class="page-desc">Access our complete database of hardware diagnostic guides, repair protocols, and acoustic science breakdowns.</div>
+        <div class="page-title">DEVICE REPAIR DIRECTORY</div>
+        <div class="page-desc">Access our complete library of acoustic repair protocols, hardware troubleshooting guides, and scientific deep-dives into mobile device recovery.</div>
     </header>
 
-    <div class="article-panel">
+    <div class="guide-grid">
         
-        <div class="dir-category">Acoustic Repair Tools</div>
-        
-        <a href="water-eject.html" class="article-card">
-            <h3>The Water Eject Protocol</h3>
-            <p>The definitive guide to ejecting water using scientifically tested 165Hz sine waves.</p>
-        </a>
-        <a href="speaker-cleaner.html" class="article-card">
-            <h3>Speaker Cleaner Master Guide</h3>
-            <p>Learn how our digital tool safely replaces dangerous physical cleaning methods.</p>
-        </a>
-        <a href="fix-my-speaker.html" class="article-card">
-            <h3>Fix My Speaker: Complete Walkthrough</h3>
-            <p>Identify the root cause of your audio degradation and apply the correct fix.</p>
-        </a>
-        <a href="clear-wave.html" class="article-card">
-            <h3>The Science of the Clear Wave</h3>
-            <p>Understand the mathematics of fluid dynamics and why pure waveforms work.</p>
+        <a href="water-eject.html" class="guide-card">
+            <div class="guide-tag">Core Concept</div>
+            <div class="guide-title">Water Eject Protocol</div>
+            <div class="guide-desc">The ultimate guide to the Water Eject tool. Understand how controlled 165Hz acoustic frequencies save smartphones from permanent liquid damage.</div>
+            <div class="guide-read">Read Guide <span style="transition:0.3s;">→</span></div>
         </a>
 
-        <div class="dir-category">Specific Device Guides</div>
-        
-        <a href="iphone-water-eject.html" class="article-card">
-            <h3>iPhone Water Eject</h3>
-            <p>Navigate iOS liquid warnings and properly clear the asymmetrical Apple stereo system.</p>
-        </a>
-        <a href="android-cleaner.html" class="article-card">
-            <h3>Android Speaker Cleaner</h3>
-            <p>Adapt acoustic ejection for Samsung Galaxy, Google Pixel, and Xiaomi hardware.</p>
-        </a>
-        <a href="dust-removal.html" class="article-card">
-            <h3>Dust Removal Protocol</h3>
-            <p>Use intense Square Wave frequencies to shatter hardened audio crust and pocket lint.</p>
+        <a href="speaker-cleaner.html" class="guide-card">
+            <div class="guide-tag">Maintenance</div>
+            <div class="guide-title">The Speaker Cleaner Guide</div>
+            <div class="guide-desc">Explore the invisible enemies of your audio system, and learn how to safely restore sound quality without risking physical hardware damage via toothpicks.</div>
+            <div class="guide-read">Read Guide <span style="transition:0.3s;">→</span></div>
         </a>
 
-        <div class="dir-category">Troubleshooting Symptoms</div>
-        
-        <a href="fix-muffled-sound.html" class="article-card">
-            <h3>Fix Muffled Sound</h3>
-            <p>Diagnose acoustic dampening and restore high-frequency treble clarity.</p>
-        </a>
-        <a href="phone-fell-in-water.html" class="article-card">
-            <h3>Emergency: Phone Fell in Water</h3>
-            <p>Immediate triage steps to prevent a fatal short circuit and safely dry your device.</p>
-        </a>
-        <a href="crackling-audio-fix.html" class="article-card">
-            <h3>Crackling Audio Repair</h3>
-            <p>Determine if your rattling speaker is caused by temporary micro-debris or permanent damage.</p>
+        <a href="fix-my-speaker.html" class="guide-card">
+            <div class="guide-tag">Troubleshooting</div>
+            <div class="guide-title">"Fix My Speaker" Master Guide</div>
+            <div class="guide-desc">Type "fix my speaker" in a panic? Diagnose and repair muffled audio, crackling sounds, water damage, and dust buildup instantly.</div>
+            <div class="guide-read">Read Guide <span style="transition:0.3s;">→</span></div>
         </a>
 
-        <div style="text-align: center; margin-top: 30px;">
-            <a href="index.html#app-shell" class="btn-launch" style="background: transparent; border: 2px solid var(--accent); color: var(--accent); box-shadow: none;">Access the Repair Dashboard</a>
-        </div>
+        <a href="clear-wave.html" class="guide-card">
+            <div class="guide-tag">Acoustic Science</div>
+            <div class="guide-title">The Science of the Clear Wave</div>
+            <div class="guide-desc">What exactly is a "Clear Wave"? Delve into the complex physics of acoustic ejection, surface tension, and resonant frequencies.</div>
+            <div class="guide-read">Read Guide <span style="transition:0.3s;">→</span></div>
+        </a>
+
+        <a href="iphone-water-eject.html" class="guide-card">
+            <div class="guide-tag">Apple Device Specific</div>
+            <div class="guide-title">iPhone Water Eject Guide</div>
+            <div class="guide-desc">Learn how to safely bypass the "Liquid Detected" warning and eject water from Apple's dual-speaker hardware using targeted sine waves.</div>
+            <div class="guide-read">Read Guide <span style="transition:0.3s;">→</span></div>
+        </a>
+
+        <a href="android-cleaner.html" class="guide-card">
+            <div class="guide-tag">Android Device Specific</div>
+            <div class="guide-title">Android Speaker Cleaner</div>
+            <div class="guide-desc">Navigate the diverse acoustic landscape of Samsung Galaxy, Google Pixel, and Xiaomi devices to safely eject water and dust without sketchy APKs.</div>
+            <div class="guide-read">Read Guide <span style="transition:0.3s;">→</span></div>
+        </a>
+
+        <a href="dust-removal.html" class="guide-card">
+            <div class="guide-tag">Maintenance</div>
+            <div class="guide-title">The Dust Removal Protocol</div>
+            <div class="guide-desc">Dust is the silent killer of smartphone audio. Discover how to identify, shatter, and safely eject micro-debris and hardened lint crusts.</div>
+            <div class="guide-read">Read Guide <span style="transition:0.3s;">→</span></div>
+        </a>
+
+        <a href="fix-muffled-sound.html" class="guide-card">
+            <div class="guide-tag">Troubleshooting</div>
+            <div class="guide-title">Fixing Muffled Sound</div>
+            <div class="guide-desc">Is your device sounding distant or trapped underwater? Understand the physics of acoustic dampening and restore crystal-clear audio.</div>
+            <div class="guide-read">Read Guide <span style="transition:0.3s;">→</span></div>
+        </a>
+
+        <a href="phone-fell-in-water.html" class="guide-card">
+            <div class="guide-tag">Emergency Triage</div>
+            <div class="guide-title">Phone Fell in Water?</div>
+            <div class="guide-desc">Every second counts. Learn the immediate triage steps to prevent a fatal short-circuit, protect your motherboard, and survive a drop in the pool.</div>
+            <div class="guide-read">Read Guide <span style="transition:0.3s;">→</span></div>
+        </a>
+
+        <a href="crackling-audio-fix.html" class="guide-card">
+            <div class="guide-tag">Troubleshooting</div>
+            <div class="guide-title">Crackling Audio Repair</div>
+            <div class="guide-desc">Is your speaker popping, buzzing, or rattling? Learn how to distinguish between temporary obstructions, EMI, and permanently blown hardware.</div>
+            <div class="guide-read">Read Guide <span style="transition:0.3s;">→</span></div>
+        </a>
+
     </div>
 
-   <footer>
-        <a href="index.html">Home</a> • 
-        <a href="about.html">About</a> • 
-        <a href="articles.html">Guides</a> • 
-        <a href="faq.html">FAQ</a> • 
-        <a href="privacy.html">Privacy</a> • 
-        <a href="terms.html">Terms</a> • 
-        <a href="contact.html">Contact</a> •
-        <a href="javascript:googlefc.callbackQueue.push(googlefc.showRevocationMessage)">Privacy & Cookie Settings</a>
+    <div class="hub-author">
+        <h3>About These Guides</h3>
+        <p>This directory is maintained by <strong>Don Odibat</strong>, lead developer of the Don Systems network. These guides are written based on years of real-world experience troubleshooting, maintaining, and repairing mobile hardware while working remotely around the world. The methods detailed here prioritize device safety, utilizing native Web Audio APIs over risky third-party downloads.</p>
+    </div>
+
+    <footer>
+        <a href="index.html">Home</a> • <a href="about.html">About</a> • <a href="articles.html">Guides</a> • <a href="faq.html">FAQ</a> • <a href="privacy.html">Privacy</a> • <a href="terms.html">Terms</a> • <a href="contact.html">Contact</a> • <a href="javascript:googlefc.callbackQueue.push(googlefc.showRevocationMessage)">Privacy & Cookie Settings</a>
         <span class="don-sig">© 2026 DON SYSTEMS</span>
     </footer>
 </div>
 
-<script data-collect-dnt="true" async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
-<noscript><img src="https://queue.simpleanalyticscdn.com/noscript.gif?collect-dnt=true" alt="" referrerpolicy="no-referrer-when-downgrade"/></noscript>
 </body>
 </html>
