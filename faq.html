@@ -24,34 +24,88 @@
     </script>
 
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5129097020907805" crossorigin="anonymous"></script>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5129097020907805" crossorigin="anonymous"></script>
 
     <meta charset="UTF-8" />
     <title>Frequently Asked Questions | Speaker Cleaner Pro</title>
     
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="robots" content="index, follow" />
-    <meta name="description" content="Comprehensive troubleshooting and FAQ for Speaker Cleaner Pro. Learn how to fix water damage, remove dust, and safely restore your device's audio.">
+    <meta name="description" content="Got questions about Speaker Cleaner Pro? Find answers about water ejection, dust removal, device safety, and fixing muffled audio.">
     <meta name="author" content="Don System">
     <link rel="canonical" href="https://waterinmyspeaker.com/faq.html" />
       
     <link rel="icon" type="image/png" href="icon.png">
     <link rel="apple-touch-icon" href="icon.png">
 
-    <meta property="og:title" content="Speaker Cleaner Pro FAQ & Troubleshooting">
-    <meta property="og:url" content="https://waterinmyspeaker.com/faq.html">
-    <meta property="og:type" content="website">
-    <meta property="og:image" content="https://waterinmyspeaker.com/preview.png">
-    <meta property="og:site_name" content="Water In My Speaker">
-      
-    <meta name="twitter:card" content="summary_large_image" />
-
-    <link rel="manifest" href="manifest.json">
-    <meta name="theme-color" content="#000000">
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;500;700;900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;500;700;900&display=swap" rel="stylesheet">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Is this sound safe for my speakers?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. We use specific sine waves (165Hz) designed to vibrate the speaker diaphragm without exceeding safe amplitude limits. It essentially 'shakes' the water off without damaging hardware."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How long should I run the cleaning cycle?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "We recommend running 'Pro Mode' (Auto Cycle) 2-3 times. If water is still trapped, position your phone upright and run it for 5 minutes."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does this work for iPhone and Android?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Absolutely. It works on any device with a speaker, including iPhone, Samsung Galaxy, Pixel, Xiaomi, and even smartwatches."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What should I do if the sound is still muffled?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Wait 10 minutes for evaporation, then try again. Gravity helps—keep the speaker facing down while the sound plays."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "My phone fell in Salt Water (Ocean/Sea). What now?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Critical: Salt creates corrosion instantly. Rinse your phone gently with fresh tap water first to remove the salt, THEN use this tool. Do not charge the phone until it is 100% dry."
+          }
+        }
+      ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://waterinmyspeaker.com"
+      },{
+        "@type": "ListItem",
+        "position": 2,
+        "name": "FAQ",
+        "item": "https://waterinmyspeaker.com/faq.html"
+      }]
+    }
+    </script>
 
     <style>
         :root {
@@ -108,33 +162,37 @@
         h1 { font-size: 28px; font-weight: 900; color: #fff; margin: 0; letter-spacing: 2px; }
         .badge-pro { background: var(--accent); color: #fff; font-size: 10px; padding: 2px 6px; border-radius: 2px; margin-left: 5px; letter-spacing: 1px; }
         .page-title { font-size: 20px; font-weight: 900; color: var(--accent); letter-spacing: 1px; margin-bottom: 10px; }
-        .page-desc { font-size: 13px; color: #888; max-width: 650px; margin: 0 auto; text-transform: none; font-weight: 500;}
 
-        /* --- FAQ STYLES --- */
-        .faq-panel {
+        .article-panel {
             background: rgba(10, 10, 10, 0.9); border: 1px solid var(--border);
             border-radius: 12px; padding: 35px; backdrop-filter: blur(10px);
-            margin-bottom: 20px; position: relative; overflow: hidden;
+            position: relative; overflow: hidden; margin-bottom: 20px;
         }
-        .faq-panel::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--accent); }
+        .article-panel::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--accent); }
+        
+        .faq-item { margin-bottom: 15px; border-bottom: 1px solid #222; padding-bottom: 10px; }
+        .faq-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+        details > summary {
+            list-style: none; outline: none; cursor: pointer; font-size: 16px; 
+            color: #fff; font-weight: 700; padding: 12px 0; transition: color 0.2s;
+            display: flex; align-items: center; gap: 12px;
+        }
+        details > summary::-webkit-details-marker { display: none; }
+        details > summary:hover { color: var(--accent); }
+        details > summary::before { content: '>'; color: var(--accent); font-weight: 900; transition: transform 0.2s; font-size: 14px;}
+        details[open] > summary::before { transform: rotate(90deg); }
+        details > p {
+            margin: 0; padding: 5px 0 15px 25px; font-size: 14px; color: #aaa; line-height: 1.6;
+            border-left: 2px solid #333; margin-left: 5px; text-align: justify;
+        }
 
-        .faq-category { font-size: 11px; color: var(--accent); font-weight: 900; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 25px; display: block; border-bottom: 1px solid #222; padding-bottom: 10px;}
-        
-        .qa-block { margin-bottom: 35px; }
-        .qa-block:last-child { margin-bottom: 0; }
-        
-        .qa-block h3 { font-size: 18px; font-weight: 800; color: #fff; margin: 0 0 12px 0; line-height: 1.4; display: flex; align-items: flex-start; gap: 10px;}
-        .qa-block h3::before { content: 'Q.'; color: var(--accent); font-weight: 900; font-size: 18px; }
-        
-        .qa-answer { padding-left: 30px; }
-        .qa-answer p { font-size: 14.5px; color: #aaa; margin-bottom: 15px; text-align: justify; line-height: 1.7; }
-        .qa-answer p:last-child { margin-bottom: 0; }
-        .qa-answer strong { color: #ddd; }
-        .qa-answer ul { margin: 10px 0 15px 20px; color: #aaa; font-size: 14.5px; }
-        .qa-answer li { margin-bottom: 8px; }
-        
-        .callout { background: rgba(57, 255, 20, 0.05); border-left: 2px solid var(--neon-green); padding: 12px 15px; border-radius: 0 4px 4px 0; margin-top: 15px; font-size: 13.5px; color: #ccc;}
-        .warning { background: rgba(255, 0, 60, 0.05); border-left: 2px solid var(--accent); padding: 12px 15px; border-radius: 0 4px 4px 0; margin-top: 15px; font-size: 13.5px; color: #ccc;}
+        .btn-launch {
+            display: inline-block; background: var(--accent); color: #fff; text-decoration: none;
+            padding: 15px 30px; font-size: 14px; font-weight: 900; text-transform: uppercase;
+            border-radius: 6px; letter-spacing: 1px; transition: 0.3s; box-shadow: 0 0 15px var(--accent-glow);
+            margin-top: 30px;
+        }
+        .btn-launch:hover { background: #fff; color: var(--accent); box-shadow: 0 0 25px var(--accent); transform: translateY(-2px); }
 
         footer { margin-top: 40px; text-align: center; font-size: 10px; color: #444; padding-bottom: 30px; border-top: 1px solid #222; padding-top: 20px; width: 100%; }
         footer a { color: #666; text-decoration: none; margin: 0 10px; transition: color 0.2s; }
@@ -152,8 +210,6 @@
         <a href="about.html">About</a>
         <a href="articles.html">Guides</a>
         <a href="faq.html" class="active">FAQ</a>
-        <a href="privacy.html">Privacy</a>
-        <a href="terms.html">Terms</a>
         <a href="contact.html">Contact</a>
     </nav>
 
@@ -162,115 +218,62 @@
             <svg class="logo-icon" viewBox="0 0 24 24"><path d="M12 22c4.97 0 9-4.03 9-9-4.5 0-9-5-9-13 0 8-4.5 13-9 13 0 4.97 4.03 9 9 9zM12 14c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"/></svg>
             <h1>SPEAKER CLEANER<span class="badge-pro">PRO</span></h1>
         </div>
-        <div class="page-title">MASTER TROUBLESHOOTING HUB</div>
-        <div class="page-desc">Explore our massive database of frequently asked questions. Learn how to safely execute acoustic ejection, resolve complex hardware issues, and maintain your device's audio fidelity.</div>
+        <div class="page-title">SYSTEM FAQ</div>
     </header>
 
-    <div class="faq-panel">
-        <span class="faq-category">Safety & Core Operation</span>
-
-        <div class="qa-block">
-            <h3>Is Speaker Cleaner Pro completely safe for my device's hardware?</h3>
-            <div class="qa-answer">
-                <p><strong>Yes, it is fundamentally safe.</strong> Our web application utilizes the standard Web Audio API built into your browser. This means the sound generated is processed exactly the same way as if you were streaming a song on Spotify or watching a YouTube video. We do not "overclock" or bypass your device's native operating system limiters.</p>
-                <p>The tones we use—specifically the 165Hz sine wave—are scientifically calibrated to maximize the vibration of the speaker diaphragm without exceeding its physical excursion limits. It essentially shakes the hardware rapidly but smoothly. Your device is designed to handle maximum volume playback; this tool simply uses a specific frequency that is highly effective at displacing mass (water) rather than conveying musical data.</p>
-            </div>
-        </div>
-
-        <div class="qa-block">
-            <h3>Will using this web application void my Apple or Samsung warranty?</h3>
-            <div class="qa-answer">
-                <p><strong>No.</strong> Using Speaker Cleaner Pro will not void your warranty. Warranty voids typically occur due to unauthorized software modifications (like jailbreaking or rooting) or physical tampering (like opening the chassis). Playing an audio file from a website does neither of these things. However, please note that the initial act of dropping your phone in water <em>can</em> void your warranty if liquid trips the internal LCI (Liquid Contact Indicator) sensors, regardless of what tool you use to clean it.</p>
-            </div>
-        </div>
-
-        <div class="qa-block">
-            <h3>How long should I run the cleaning cycles for maximum effect?</h3>
-            <div class="qa-answer">
-                <p>For a standard drop in a puddle or sink, we recommend running the <strong>"Pro Mode" (Auto Cycle) 2 to 3 times consecutively</strong>. Each cycle runs a calculated array of frequencies. If your speaker still sounds muffled after these cycles, stop the playback.</p>
-                <p>Sound waves push the immediate water out, but moisture can coat the interior plastic. You must allow 15 to 30 minutes for natural evaporation to occur, and then run the cycle one more time. Leaving the sound running continuously for hours is unnecessary and wastes your battery.</p>
-            </div>
-        </div>
-    </div>
-
-    <div class="faq-panel">
-        <span class="faq-category">Liquid Damage Protocols</span>
-
-        <div class="qa-block">
-            <h3>How exactly does sound remove water from a speaker?</h3>
-            <div class="qa-answer">
-                <p>It comes down to <strong>kinetic energy and surface tension</strong>. The tiny holes in your smartphone's speaker grill are designed to be water-resistant, meaning water forms a high-surface-tension "bubble" across them rather than flowing freely inside. However, this bubble traps the sound.</p>
-                <p>When you play our 165Hz tone, the speaker cone inside the phone pushes air forcefully and rapidly against this water barrier. The pressure builds up until it overcomes the surface tension of the water, violently ejecting the droplets outward. It is the acoustic equivalent of hitting the back of a ketchup bottle to force the contents out.</p>
-            </div>
-        </div>
-
-        <div class="qa-block">
-            <h3>I dropped my phone in saltwater or the ocean. What do I do right now?</h3>
-            <div class="qa-answer">
-                <p><strong>This is a hardware emergency.</strong> Saltwater is highly conductive and intensely corrosive. As soon as it dries, it leaves behind salt crystals that will eat through your charging port pins and speaker coils within hours.</p>
-                <div class="warning">
-                    <strong>CRITICAL ACTION:</strong> Before using our audio tool, you must gently rinse the affected areas of the phone with clean, fresh tap water. You must wash the salt away first. Once rinsed, gently tap the phone against a towel, keep it powered off or unplugged, and <em>then</em> utilize the Speaker Cleaner Pro to eject the fresh water. Do not plug a charger into the device for at least 24 hours.
-                </div>
-            </div>
-        </div>
-
-        <div class="qa-block">
-            <h3>Does soapy water or pool chlorine affect my phone differently than tap water?</h3>
-            <div class="qa-answer">
-                <p>Yes, significantly. The IP68 water resistance rating of your smartphone is tested exclusively with pure, static fresh water. Soapy water (like dishwater or shampoo) contains <strong>surfactants</strong>. These chemicals purposefully lower the surface tension of water, which makes it much easier for the liquid to bypass the rubber gaskets and mesh grills protecting your phone's internals.</p>
-                <p>Similarly, pool chlorine can chemically degrade the adhesive seals over time. If your phone falls into a soapy bath or a chlorinated pool, treat it similarly to saltwater: rinse it quickly with clean, fresh water before beginning the acoustic ejection process.</p>
-            </div>
-        </div>
+    <div class="article-panel">
+        <details class="faq-item" open>
+            <summary>Is this sound safe for my speakers?</summary>
+            <p>Yes. We use specific sine waves (165Hz) designed to vibrate the speaker diaphragm without exceeding safe amplitude limits. It essentially "shakes" the water off without damaging hardware. It is no different than playing music at maximum volume.</p>
+        </details>
         
-        <div class="qa-block">
-            <h3>Does the "Rice Trick" actually work for drying out speakers?</h3>
-            <div class="qa-answer">
-                <p><strong>No. The rice trick is a dangerous myth.</strong> While dry rice is slightly hygroscopic (absorbs moisture), it works far too slowly to save delicate electronics. More importantly, uncooked rice is covered in fine starch dust. When you bury a wet phone in rice, that starch enters the wet speaker grill, mixes with the water, and creates a thick paste.</p>
-                <p>When this paste dries, it hardens like cement, permanently blocking the speaker mesh and often ruining the charging port. Never put your phone in rice. Rely on open-air evaporation, a fan (without heat), and our acoustic ejection tool.</p>
-            </div>
-        </div>
-    </div>
+        <details class="faq-item">
+            <summary>How long should I run the cleaning cycle?</summary>
+            <p>We recommend running "Pro Mode" (Auto Cycle) 2-3 times consecutively. If water is still trapped, position your phone upright in a dry, well-ventilated area and wait 15-30 minutes for the remaining micro-film to evaporate.</p>
+        </details>
+        
+        <details class="faq-item">
+            <summary>Does this work for iPhone and Android?</summary>
+            <p>Absolutely. Because Speaker Cleaner Pro operates via the browser, it works on any device with an internal speaker and a web browser. This includes all modern Apple iPhones, Samsung Galaxy devices, Google Pixels, Xiaomi phones, and even laptops.</p>
+        </details>
+        
+        <details class="faq-item">
+            <summary>What should I do if the sound is still muffled?</summary>
+            <p>Wait 10 minutes for evaporation, then try the cycle again. Gravity is your most important tool here—ensure you keep the speaker grill facing straight down toward the floor while the high-frequency sound plays.</p>
+        </details>
 
-    <div class="faq-panel">
-        <span class="faq-category">Dust, Debris & Device Specifics</span>
+        <details class="faq-item">
+            <summary>Why can't I hear anything?</summary>
+            <p>Your media volume might be set too low, or your phone might be trying to route audio to a disconnected Bluetooth device. Turn your media volume to maximum using your hardware buttons, and ensure Bluetooth is completely disabled in your settings.</p>
+        </details>
 
-        <div class="qa-block">
-            <h3>My phone hasn't been near water, but the speaker is muffled. Why?</h3>
-            <div class="qa-answer">
-                <p>If water isn't the culprit, you are likely dealing with <strong>micro-debris buildup</strong>. Over months of use, your speaker grill accumulates pocket lint, dead skin cells, makeup, and atmospheric dust. Furthermore, the voice coil inside your speaker is highly magnetic, which inadvertently pulls microscopic metallic dust from the environment straight into the grill.</p>
-                <p>Over time, the humidity in the air or the sweat from your face turns this dust into a solid crust. To fix this, use our <strong>"Dust-Shake" mode (60Hz to 1kHz)</strong>. The harsh impact of the low-frequency square wave shatters the crust, while the high frequencies blow the resulting particles out.</p>
-            </div>
-        </div>
+        <details class="faq-item">
+            <summary>My phone fell in Salt Water (Ocean/Sea). What now?</summary>
+            <p><strong style="color: #ffaa00;">CRITICAL:</strong> Salt creates corrosion instantly. Rinse your phone gently with fresh tap water first to remove the salt, THEN use this tool to eject the fresh water. Do not charge the phone until it is 100% dry (wait at least 5-6 hours).</p>
+        </details>
 
-        <div class="qa-block">
-            <h3>Why does the top speaker (earpiece) sound lower than the bottom speaker?</h3>
-            <div class="qa-answer">
-                <p>Most modern smartphones utilize an asymmetrical stereo setup. The bottom speaker is usually a dedicated, larger acoustic chamber designed for bass and high volume. The top earpiece speaker is much smaller, wedged tightly near the camera array, and has a much finer mesh grill to protect it from face oils.</p>
-                <p>Because the top mesh is finer, it traps water and dust much more easily than the bottom speaker. Furthermore, deep bass frequencies (like 165Hz) do not resonate as well in the small top chamber. If your top earpiece is muffled, we recommend using the <strong>Treble (12kHz) or Air (440Hz) mode</strong>, as these higher frequencies penetrate and vibrate smaller meshes far more effectively.</p>
-                <div class="callout">
-                    <strong>PRO TIP:</strong> When cleaning the top earpiece, hold your phone upside down so gravity pulls the moisture out of the tiny slit while the sound plays.
-                </div>
-            </div>
-        </div>
+        <details class="faq-item">
+            <summary>Can I use this on AirPods, Headphones, or Laptops?</summary>
+            <p>Yes. For <strong>AirPods/Earbuds</strong>: Hold them with the mesh facing down and run the "Apple 165Hz" mode. For <strong>Laptops</strong>: Place the laptop open on its side (speaker facing down) and run "Pro Mode."</p>
+        </details>
 
-        <div class="qa-block">
-            <h3>Can I use this tool for Apple AirPods, Galaxy Buds, or Laptops?</h3>
-            <div class="qa-answer">
-                <p><strong>Yes, the physics remain the same across all acoustic hardware.</strong></p>
-                <ul>
-                    <li><strong>For Earbuds (AirPods, etc.):</strong> Connect them to your device, ensure they are not in your ears, turn the volume to maximum, and hold them with the primary speaker mesh facing down toward the floor. Run the Apple 165Hz mode.</li>
-                    <li><strong>For Laptops/MacBooks:</strong> Laptops have complex internal acoustic chambers. Stand the laptop on its side like a tent (so the speakers are aiming downward) and run the Pro Mode Auto-Cycle.</li>
-                    <li><strong>For Smartwatches (Apple Watch, Galaxy Watch):</strong> Take the watch off your wrist, turn the volume up, and rest it on its side with the speaker slit pointing down.</li>
-                </ul>
-            </div>
-        </div>
+        <details class="faq-item">
+            <summary>Will using this tool void my warranty?</summary>
+            <p>No. This tool simply plays standard audio files. It is an acoustic utility that does not modify your operating system, require root access, or alter system files. It is entirely safe and warranty-compliant.</p>
+        </details>
 
-        <div class="qa-block">
-            <h3>What should I do if I hear a permanent crackling or static noise after drying?</h3>
-            <div class="qa-answer">
-                <p>If you have run the Speaker Cleaner Pro, allowed the device 24 to 48 hours to completely dry in a well-ventilated area, and you still hear severe crackling, static, or popping, <strong>you likely have permanent hardware damage</strong>.</p>
-                <p>This usually means one of two things: the water short-circuited the audio IC chip on the motherboard, or the physical paper/polymer membrane of the speaker cone was torn or warped by the liquid pressure. In these scenarios, software and audio tools can no longer help. You will need to take the device to an authorized repair center to have the physical speaker module replaced.</p>
-            </div>
+        <details class="faq-item">
+            <summary>My top speaker (earpiece) is quiet but the bottom is fine?</summary>
+            <p>The top earpiece has a much smaller, finer mesh that traps water easily. Use our <strong>"Mode 5 (Air 440Hz)"</strong> or the <strong>Treble Diagnostic</strong> specifically for the top speaker, as higher frequencies penetrate smaller holes better than deep bass.</p>
+        </details>
+
+        <details class="faq-item">
+            <summary>I hear a "crackling" noise. Is my speaker broken?</summary>
+            <p>Not necessarily. Crackling usually means water or hardened dust is physically vibrating against the membrane. Keep running the sound until the crackling stops. If it persists violently after 24-48 hours of drying, you may have permanent hardware damage (a torn cone) requiring a technician.</p>
+        </details>
+
+        <div style="text-align: center;">
+            <a href="index.html#app-shell" class="btn-launch">Return to the Repair Tool</a>
         </div>
     </div>
 
@@ -280,5 +283,7 @@
     </footer>
 </div>
 
+<script data-collect-dnt="true" async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
+<noscript><img src="https://queue.simpleanalyticscdn.com/noscript.gif?collect-dnt=true" alt="" referrerpolicy="no-referrer-when-downgrade"/></noscript>
 </body>
 </html>
