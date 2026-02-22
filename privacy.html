@@ -1,47 +1,183 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5129097020907805" crossorigin="anonymous"></script>
+
+    <meta charset="UTF-8" />
     <title>Privacy Policy | Speaker Cleaner Pro</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="robots" content="index, follow">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="index, follow" />
+    <meta name="description" content="Read the privacy policy for Speaker Cleaner Pro. Learn how our zero-knowledge architecture protects your data while providing hardware repair tools.">
+    <meta name="author" content="Don System">
+    <link rel="canonical" href="https://waterinmyspeaker.com/privacy.html" />
+      
+    <link rel="icon" type="image/png" href="icon.png">
+    <link rel="apple-touch-icon" href="icon.png">
+
+    <meta property="og:title" content="Privacy Policy | Speaker Cleaner Pro">
+    <meta property="og:url" content="https://waterinmyspeaker.com/privacy.html">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://waterinmyspeaker.com/preview.png">
+    <meta property="og:site_name" content="Water In My Speaker">
+      
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#000000">
+
     <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@300;500;700;900&display=swap" rel="stylesheet">
+
     <style>
-        :root { --bg: #000000; --panel: #0a0a0a; --accent: #ff003c; --text-main: #ffffff; --border: #333333; }
-        body { font-family: 'Exo 2', sans-serif; background: var(--bg); color: var(--text-main); display: flex; flex-direction: column; align-items: center; padding: 20px; }
-        .shell { width: 100%; max-width: 700px; }
-        h1 { color: var(--accent); margin-bottom: 20px; }
-        h2 { font-size: 16px; color: #fff; margin-top: 20px; text-transform: uppercase; border-left: 3px solid var(--accent); padding-left: 10px; }
-        p, li { color: #aaa; font-size: 13px; line-height: 1.6; margin-bottom: 10px; }
-        .back-link { display: inline-block; margin-bottom: 20px; color: #888; text-decoration: none; font-weight: bold; text-transform: uppercase; font-size: 12px; }
-        .panel { background: var(--panel); border: 1px solid var(--border); padding: 30px; border-radius: 8px; }
+        :root {
+            --bg: #000000;
+            --panel: #0a0a0a;
+            --accent: #ff003c;
+            --accent-glow: rgba(255, 0, 60, 0.5);
+            --neon-green: #39ff14;
+            --text-main: #ffffff;
+            --text-muted: #666666;
+            --border: #333333;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+        body {
+            font-family: 'Exo 2', sans-serif;
+            background: var(--bg);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 10px;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        .space-grid {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: 
+                linear-gradient(rgba(255, 0, 60, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 0, 60, 0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            background-position: center top;
+            transform: perspective(500px) rotateX(20deg) scale(1.5);
+            opacity: 0.2; z-index: -1; pointer-events: none;
+            mask-image: linear-gradient(to bottom, transparent 0%, black 40%);
+            -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 40%);
+        }
+
+        .shell { width: 100%; max-width: 800px; display: flex; flex-direction: column; gap: 25px; z-index: 1; }
+
+        .top-nav {
+            display: flex; justify-content: center; gap: 15px; margin-top: 15px; margin-bottom: 20px;
+            font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; z-index: 10; position: relative;
+        }
+        .top-nav a { color: #888; text-decoration: none; transition: 0.2s; padding-bottom: 2px; border-bottom: 2px solid transparent; }
+        .top-nav a:hover, .top-nav a.active { color: var(--accent); border-bottom-color: var(--accent); }
+
+        header { text-align: center; margin-bottom: 30px; text-transform: uppercase; }
+        .logo-box { display: flex; justify-content: center; align-items: center; gap: 10px; margin-bottom: 10px; }
+        .logo-icon { width: 32px; height: 32px; fill: var(--accent); filter: drop-shadow(0 0 10px var(--accent)); }
+        h1 { font-size: 28px; font-weight: 900; color: #fff; margin: 0; letter-spacing: 2px; }
+        .badge-pro { background: var(--accent); color: #fff; font-size: 10px; padding: 2px 6px; border-radius: 2px; margin-left: 5px; letter-spacing: 1px; }
+        .page-title { font-size: 20px; font-weight: 900; color: var(--accent); letter-spacing: 1px; margin-bottom: 10px; }
+
+        .legal-panel {
+            background: rgba(10, 10, 10, 0.9); border: 1px solid var(--border);
+            border-radius: 12px; padding: 35px; backdrop-filter: blur(10px);
+        }
+        .legal-panel h2 { font-size: 18px; font-weight: 800; color: #fff; margin: 30px 0 15px 0; border-bottom: 1px solid #222; padding-bottom: 8px; }
+        .legal-panel h2:first-child { margin-top: 0; }
+        .legal-panel p { font-size: 14px; color: #aaa; margin-bottom: 15px; text-align: justify; line-height: 1.7; }
+        .legal-panel ul { margin: 0 0 20px 20px; color: #aaa; font-size: 14px; }
+        .legal-panel li { margin-bottom: 10px; line-height: 1.6; }
+        .legal-panel strong { color: #fff; }
+        .legal-panel .highlight { color: var(--accent); font-weight: 700; }
+
+        .last-updated { font-size: 11px; color: #666; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 25px; display: block; border-bottom: 1px dashed #333; padding-bottom: 10px;}
+
+        footer { margin-top: 50px; text-align: center; font-size: 10px; color: #444; padding-bottom: 30px; border-top: 1px solid #222; padding-top: 20px; width: 100%; }
+        footer a { color: #666; text-decoration: none; margin: 0 10px; transition: color 0.2s; }
+        footer a:hover { color: var(--accent); }
+        .don-sig { display: block; margin-top: 15px; font-weight: 900; color: #333; text-transform: uppercase; letter-spacing: 2px; font-size: 9px; }
     </style>
 </head>
 <body>
-    <div class="shell">
-        <a href="index.html" class="back-link">← Return to Tool</a>
-        
-        <div class="panel">
-            <h1>Privacy Policy</h1>
-            <p><strong>Effective Date:</strong> February 13, 2026</p>
-            <p>At Don Systems ("we", "us"), your privacy is our priority. This document outlines how Speaker Cleaner Pro handles data.</p>
 
-            <h2>1. No Personal Audio Collection</h2>
-            <p>This tool runs locally in your browser. We DO NOT record your microphone, store your files, or transmit audio data to any server. The sound frequencies are generated client-side using the Web Audio API.</p>
+<div class="space-grid"></div>
 
-            <h2>2. Cookies & Advertising</h2>
-            <p>We use <strong>Google AdSense</strong> to serve advertisements. Google uses cookies to serve ads based on your prior visits to our website or other websites.</p>
-            <ul>
-                <li>Google's use of advertising cookies enables it and its partners to serve ads to you based on your visit to your sites and/or other sites on the Internet.</li>
-                <li>You may opt out of personalized advertising by visiting <a href="https://www.google.com/settings/ads" style="color:var(--accent)">Google Ad Settings</a>.</li>
-            </ul>
+<div class="shell">
+    <nav class="top-nav">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="articles.html">Guides</a>
+        <a href="privacy.html" class="active">Privacy</a>
+        <a href="terms.html">Terms</a>
+        <a href="contact.html">Contact</a>
+    </nav>
 
-            <h2>3. Analytics</h2>
-            <p>We use <strong>Simple Analytics</strong> to monitor traffic trends (page views, device types). This service is privacy-first and does not track your IP address or use intrusive fingerprinting.</p>
-
-            <h2>4. Contact</h2>
-            <p>For privacy concerns, contact: don.odibat@gmail.com</p>
+    <header>
+        <div class="logo-box">
+            <svg class="logo-icon" viewBox="0 0 24 24"><path d="M12 22c4.97 0 9-4.03 9-9-4.5 0-9-5-9-13 0 8-4.5 13-9 13 0 4.97 4.03 9 9 9zM12 14c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"/></svg>
+            <h1>SPEAKER CLEANER<span class="badge-pro">PRO</span></h1>
         </div>
+        <div class="page-title">PRIVACY & DATA POLICY</div>
+    </header>
+
+    <div class="legal-panel">
+        <span class="last-updated">Last Updated: January 2025</span>
+
+        <h2>1. Introduction and Core Philosophy</h2>
+        <p>At <strong>Don Systems</strong> (operating as Speaker Cleaner Pro via waterinmyspeaker.com), your privacy is our foundational priority. We built this tool to solve a hardware problem, not to harvest user data. Our platform operates on a <span class="highlight">Zero-Knowledge Architecture</span>. This Privacy Policy outlines what limited data we process, how we comply with global privacy regulations, and how third-party vendors interact with our website.</p>
+
+        <h2>2. Microphone and Hardware Privacy</h2>
+        <p>Because our application deals with your device's acoustic hardware, we want to be completely transparent about how we interact with it:</p>
+        <ul>
+            <li><strong>No Microphone Access:</strong> Our application strictly outputs audio (sine and square waves) using the Web Audio API. We do not request, require, or possess the capability to access your device's microphone. We cannot hear or record you.</li>
+            <li><strong>Client-Side Execution:</strong> All audio frequencies are generated locally within your internet browser. No files, audio samples, or diagnostic data regarding your speakers are transmitted back to our servers.</li>
+        </ul>
+
+        <h2>3. Data We Do Not Collect</h2>
+        <p>To ensure maximum privacy, we actively choose <em>not</em> to collect the following information:</p>
+        <ul>
+            <li>Personally Identifiable Information (PII) such as names, email addresses, or phone numbers (unless voluntarily provided via our Contact page).</li>
+            <li>Precise GPS location data.</li>
+            <li>Files, photos, or documents stored on your device.</li>
+        </ul>
+
+        <h2>4. Local Storage and Cookies</h2>
+        <p>To provide a seamless user experience and to monetize our free tool, we utilize standard browser technologies, including Local Storage and Cookies.</p>
+        <ul>
+            <li><strong>Local Storage:</strong> We use your browser's Local Storage to save your "Cleaning Streaks," "Total Cleans," and language preferences. This data lives exclusively on your device and is never sent to our servers. You can clear this data at any time by clearing your browser's cache.</li>
+            <li><strong>Telemetry and Analytics:</strong> We use privacy-first, cookie-less analytics (such as SimpleAnalytics) to measure aggregate website traffic. This helps us understand how many users visit our site and which countries they are from, without tracking individual user sessions.</li>
+        </ul>
+
+        <h2>5. Third-Party Advertising and Google AdSense</h2>
+        <p>To keep Speaker Cleaner Pro free for all users worldwide, we use third-party advertising companies, specifically <strong>Google AdSense</strong>, to serve ads when you visit our website.</p>
+        <ul>
+            <li>Third-party vendors, including Google, use cookies to serve ads based on a user's prior visits to your website or other websites.</li>
+            <li>Google's use of advertising cookies enables it and its partners to serve ads to your users based on their visit to your sites and/or other sites on the Internet.</li>
+            <li>Users may opt-out of personalized advertising by visiting <a href="https://myadcenter.google.com/" target="_blank" rel="nofollow" style="color:var(--accent);">Google Ads Settings</a>. Alternatively, you can opt out of a third-party vendor's use of cookies for personalized advertising by visiting <a href="https://optout.aboutads.info" target="_blank" rel="nofollow" style="color:var(--accent);">www.aboutads.info</a>.</li>
+        </ul>
+
+        <h2>6. GDPR, CCPA, and Global Compliance</h2>
+        <p>Depending on your location, you may have specific rights regarding your data under regulations like the General Data Protection Regulation (GDPR) in Europe or the California Consumer Privacy Act (CCPA). Because we operate a zero-knowledge, serverless architecture, we do not hold personal databases of user information. However, regarding the data processed by our third-party advertising partners:</p>
+        <p>We present a cookie consent banner to users in applicable regions, allowing you to acknowledge or manage the use of telemetry and advertising cookies before utilizing the site.</p>
+
+        <h2>7. Changes to This Privacy Policy</h2>
+        <p>We may update our Privacy Policy from time to time to reflect changes in legal requirements or operational protocols. We will notify you of any changes by posting the new Privacy Policy on this page and updating the "Last Updated" date at the top of this document. We advise you to review this Privacy Policy periodically for any changes.</p>
+
+        <h2>8. Contact Us</h2>
+        <p>If you have any questions, concerns, or requests regarding this Privacy Policy or how your data is handled, please reach out to us. You can contact the developer and lead architect, Don Odibat, directly via our <a href="contact.html" style="color:var(--accent);">Contact Page</a>.</p>
     </div>
+
+    <footer>
+        <a href="index.html">Home</a> • <a href="about.html">About</a> • <a href="articles.html">Guides</a> • <a href="privacy.html">Privacy</a> • <a href="terms.html">Terms</a> • <a href="contact.html">Contact</a>
+        <span class="don-sig">© 2025 DON SYSTEMS</span>
+    </footer>
+</div>
+
 </body>
 </html>
