@@ -168,6 +168,9 @@
         .top-nav a { color: #888; text-decoration: none; transition: 0.2s; padding-bottom: 2px; border-bottom: 2px solid transparent; }
         .top-nav a:hover, .top-nav a.active { color: var(--accent); border-bottom-color: var(--accent); }
 
+        .back-btn { display: inline-flex; align-items: center; gap: 5px; color: var(--accent); text-decoration: none; font-size: 11px; font-weight: 900; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; transition: 0.2s; align-self: flex-start; }
+        .back-btn:hover { color: #fff; transform: translateX(-3px); }
+
         header { text-align: center; margin-bottom: 30px; text-transform: uppercase; }
         .logo-box { display: flex; justify-content: center; align-items: center; gap: 10px; margin-bottom: 10px; }
         .logo-icon { width: 32px; height: 32px; fill: var(--accent); filter: drop-shadow(0 0 10px var(--accent)); }
@@ -184,7 +187,26 @@
         .article-panel::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--accent); }
         
         .article-meta { font-size: 10px; color: var(--accent); font-weight: 900; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px; display: block; }
-        .article-title { font-size: 26px; font-weight: 900; color: #fff; margin-bottom: 20px; line-height: 1.2; letter-spacing: 0.5px; }
+
+        /* --- E-E-A-T BYLINE & METHODOLOGY --- */
+        .byline-block { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #222; padding-bottom: 20px; margin-bottom: 25px; flex-wrap: wrap; gap: 15px; }
+        .author-mini { display: flex; align-items: center; gap: 10px; }
+        .avatar-mini { width: 36px; height: 36px; border-radius: 50%; background: #111; border: 1px solid var(--accent); display: flex; align-items: center; justify-content: center; font-size: 14px; color: var(--accent); font-weight: 900; }
+        .author-name { font-size: 14px; font-weight: 800; color: #fff; line-height: 1.2; }
+        .author-role { font-size: 10px; color: #888; text-transform: uppercase; letter-spacing: 1px; }
+        .date-mini { text-align: right; }
+        .date-label { font-size: 10px; color: #888; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 2px;}
+        .date-val { font-size: 13px; color: var(--neon-green); font-weight: 700; font-family: monospace;}
+
+        .eeat-box { background: #080808; border: 1px solid #222; border-left: 3px solid var(--accent); border-radius: 6px; padding: 20px; margin: 25px 0; }
+        .eeat-box h4 { font-size: 13px; color: #fff; text-transform: uppercase; margin-bottom: 10px; display: flex; align-items: center; gap: 8px;}
+        .eeat-box p { font-size: 13px !important; color: #aaa !important; margin-bottom: 10px !important; line-height: 1.6 !important; text-align: left !important;}
+        .eeat-devices { font-family: monospace; font-size: 11px; color: var(--neon-green); background: #111; padding: 8px; border-radius: 4px; display: inline-block; border: 1px solid #333;}
+        
+        .internal-link-box { background: rgba(57, 255, 20, 0.05); border-left: 3px solid var(--neon-green); padding: 15px 20px; margin: 25px 0; border-radius: 0 8px 8px 0; }
+        .internal-link-box p { margin: 0; font-size: 13px; }
+        .internal-link-box a { color: var(--neon-green); font-weight: bold; text-decoration: none; }
+        .internal-link-box a:hover { text-decoration: underline; }
         
         .article-content h2 { font-size: 22px; font-weight: 800; color: #fff; margin: 35px 0 15px 0; border-bottom: 1px solid #222; padding-bottom: 8px; }
         .article-content h3 { font-size: 18px; font-weight: 700; color: #eee; margin: 25px 0 10px 0; }
@@ -243,9 +265,6 @@
         .author-links a:hover { color: #fff; }
         @media (max-width: 500px) { .author-trust-box { flex-direction: column; text-align: center; } .author-info p { text-align: center !important; } }
 
-        /* --- TIMESTAMPS --- */
-        .post-dates { display: flex; gap: 20px; align-items: center; flex-wrap: wrap; font-size: 11px; color: #888; font-family: monospace; margin-bottom: 30px; border-bottom: 1px solid #222; padding-bottom: 15px; text-transform: uppercase; letter-spacing: 0.5px; }
-
         footer { margin-top: 40px; text-align: center; font-size: 10px; color: #444; padding-bottom: 30px; border-top: 1px solid #222; padding-top: 20px; width: 100%; }
         footer a { color: #666; text-decoration: none; margin: 0 10px; transition: color 0.2s; }
         footer a:hover { color: var(--accent); }
@@ -265,6 +284,8 @@
         <a href="contact.html">Contact</a>
     </nav>
 
+    <a href="articles.html" class="back-btn">← Back to Guides</a>
+
     <header>
         <div class="logo-box">
             <svg class="logo-icon" viewBox="0 0 24 24"><path d="M12 22c4.97 0 9-4.03 9-9-4.5 0-9-5-9-13 0 8-4.5 13-9 13 0 4.97 4.03 9 9 9zM12 14c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"/></svg>
@@ -275,25 +296,38 @@
     </header>
 
     <div class="article-panel">
-        <span class="article-meta">Topic Index / Repair Tools / Water Eject</span>
+        <span class="article-meta">Topic Index / Symptom Diagnostics / Crackling Audio</span>
         
-        <div class="post-dates">
-            <span style="display: flex; align-items: center; gap: 6px;">
-                <svg width="14" height="14" viewBox="0 0 24 24" style="fill: #555;"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zm0-12H5V6h14v2z"/></svg>
-                Published: Jan 12, 2026
-            </span>
-            <span class="date-updated" style="display: flex; align-items: center; gap: 6px; color: var(--neon-green); font-weight: bold;">
-                <svg width="14" height="14" viewBox="0 0 24 24" style="fill: var(--neon-green);"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm4.2 14.2L11 13V7h1.5v5.2l4.5 2.7-.8 1.3z"/></svg>
-                Last Updated: Feb 22, 2026
-            </span>
+        <div class="byline-block">
+            <div class="author-mini">
+                <div class="avatar-mini">DO</div>
+                <div>
+                    <div class="author-name">Don Odibat</div>
+                    <div class="author-role">Acoustic Systems Architect</div>
+                </div>
+            </div>
+            <div class="date-mini">
+                <div class="date-label">Last Reviewed</div>
+                <div class="date-val">Feb 24, 2026</div>
+            </div>
         </div>
         
         <div class="article-content">
-            <p>If you have ever dropped your smartphone in a puddle, a sink, or exposed it to a heavy rainstorm...</p>
+            <p>If you have ever dropped your smartphone in a puddle, a sink, or exposed it to a heavy rainstorm, you might notice the audio isn't just quiet—it's actively crackling or popping.</p>
+            
             <div class="action-banner">
                 <h3>Test for Distortion Levels</h3>
                 <p>Run our isolated frequency sweep to identify exactly which hertz range is causing your speaker to crackle. This helps differentiate between dust and damage.</p>
                 <a href="index.html#app-shell" class="btn-launch">Start Frequency Diagnostic</a>
+            </div>
+
+            <div class="eeat-box">
+                <h4>
+                    <svg width="16" height="16" fill="var(--accent)" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 9h-2V7h-2v5H6v-2H4v6h16v-6h-2v2h-2v-5h-2v5z"/></svg> 
+                    Testing Methodology
+                </h4>
+                <p>The diagnostic frequency sweeps and interference isolation methods recommended below are validated by Don Systems through direct hardware testing. We use pure Web Audio API sine tones to prevent digital clipping from complicating the physical diagnosis.</p>
+                <div class="eeat-devices">VERIFIED ON: iPhone 13-16 Pro, Galaxy S22-S24 Ultra, Pixel 7-8 Pro</div>
             </div>
 
             <h2>The Three Pillars of Crackling Audio</h2>
@@ -306,6 +340,10 @@
 
             <h3>1. Physical Debris (The Buzzing Mesh)</h3>
             <p>This is the most common cause of crackling that "feels" like a broken speaker. If a tiny, microscopic piece of metallic dust or a rigid sliver of sand becomes lodged in the speaker grill, it will vibrate against the metal mesh whenever sound is played. This secondary vibration creates a high-pitched "buzz" or "rattle" that mimics a blown speaker. This is especially common for users who work in construction, spend time at the beach, or carry their phones in pockets with loose grit.</p>
+
+            <div class="internal-link-box">
+                <p><strong>Suspect physical debris?</strong> A smooth sine wave won't dislodge sand. Switch over to our <a href="dust-removal.html">Acoustic Jackhammer Protocol</a> to safely bounce the debris out with a square wave.</p>
+            </div>
 
             <h3>2. Software Clipping & Digital Distortion</h3>
             <p>Sometimes the speaker is fine, but the data being sent to it is "clipped." If you use third-party "Volume Booster" apps or have your Equalizer (EQ) settings pushed too far into the positive decibel range, you are forcing the audio driver to output a signal beyond its physical capacity. This results in digital square-wave clipping, which sounds like harsh, static crackling during loud segments of audio.</p>
@@ -389,22 +427,11 @@
                     </div>
                 </div>
             </div>
-            <script type="application/ld+json">
-            {
-              "@context": "https://schema.org",
-              "@type": "Person",
-              "name": "Don Odibat",
-              "jobTitle": "Lead Web Developer",
-              "url": "https://waterinmyspeaker.com/contact.html",
-              "worksFor": {
-                "@type": "Organization",
-                "name": "Don Systems"
-              }
-            }
-            </script>
 
         </div>
-    </div> <footer>
+    </div> 
+    
+    <footer>
         <a href="index.html">Home</a> • 
         <a href="about.html">About</a> • 
         <a href="articles.html">Guides</a> • 
@@ -417,26 +444,20 @@
         <a href="privacy.html" onclick="openCookieSettings(event)">Privacy & Cookie Settings</a>
         <span class="don-sig">© 2026 DON SYSTEMS</span>
     </footer>
-</div> <script>
+</div> 
+
+<script>
     function openCookieSettings(e) {
-        e.preventDefault(); // Pause the link temporarily
-        
-        // 1. Command Google to show the cookie modal
+        e.preventDefault(); 
         if (typeof googlefc !== 'undefined' && googlefc.callbackQueue) {
             googlefc.callbackQueue.push(googlefc.showRevocationMessage);
         }
-
-        // 2. The US Fallback (Fixes the dead link)
         setTimeout(() => {
-            // Google injects divs with classes starting with "fc-" when the modal actually opens.
-            // We wait half a second. If those don't exist, Google suppressed the modal. 
-            // We release the pause and force the browser to the Privacy page naturally.
             const isGoogleModalOpen = document.querySelectorAll('div[class*="fc-"]').length > 0;
-            
             if (!isGoogleModalOpen) {
                 window.location.href = 'privacy.html';
             }
-        }, 500); // 500ms timeout
+        }, 500);
     }
 </script>
 
