@@ -159,6 +159,9 @@
         .top-nav a { color: #888; text-decoration: none; transition: 0.2s; padding-bottom: 2px; border-bottom: 2px solid transparent; }
         .top-nav a:hover, .top-nav a.active { color: var(--accent); border-bottom-color: var(--accent); }
 
+        .back-btn { display: inline-flex; align-items: center; gap: 5px; color: var(--accent); text-decoration: none; font-size: 11px; font-weight: 900; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; transition: 0.2s; align-self: flex-start; }
+        .back-btn:hover { color: #fff; transform: translateX(-3px); }
+
         header { text-align: center; margin-bottom: 30px; text-transform: uppercase; }
         .logo-box { display: flex; justify-content: center; align-items: center; gap: 10px; margin-bottom: 10px; }
         .logo-icon { width: 32px; height: 32px; fill: var(--accent); filter: drop-shadow(0 0 10px var(--accent)); }
@@ -166,6 +169,16 @@
         .badge-pro { background: var(--accent); color: #fff; font-size: 10px; padding: 2px 6px; border-radius: 2px; margin-left: 5px; letter-spacing: 1px; }
         .page-title { font-size: 20px; font-weight: 900; color: var(--accent); letter-spacing: 1px; margin-bottom: 10px; }
         .page-desc { font-size: 13px; color: #888; max-width: 700px; margin: 0 auto; text-transform: none; font-weight: 500;}
+
+        /* --- E-E-A-T BYLINE --- */
+        .byline-block { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #222; padding-bottom: 20px; margin-bottom: 25px; flex-wrap: wrap; gap: 15px; }
+        .author-mini { display: flex; align-items: center; gap: 10px; }
+        .avatar-mini { width: 36px; height: 36px; border-radius: 50%; background: #111; border: 1px solid var(--accent); display: flex; align-items: center; justify-content: center; font-size: 14px; color: var(--accent); font-weight: 900; }
+        .author-name { font-size: 14px; font-weight: 800; color: #fff; line-height: 1.2; }
+        .author-role { font-size: 10px; color: #888; text-transform: uppercase; letter-spacing: 1px; }
+        .date-mini { text-align: right; }
+        .date-label { font-size: 10px; color: #888; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 2px;}
+        .date-val { font-size: 13px; color: var(--neon-green); font-weight: 700; font-family: monospace;}
 
         /* --- EDITORIAL INTRO --- */
         .editorial-intro {
@@ -275,6 +288,8 @@
         <a href="faq.html">FAQ</a>
         <a href="contact.html">Contact</a>
     </nav>
+    
+    <a href="index.html" class="back-btn">← Back to Dashboard</a>
 
     <header>
         <div class="logo-box">
@@ -285,8 +300,24 @@
     </header>
 
     <div class="editorial-intro">
+        <div class="byline-block">
+            <div class="author-mini">
+                <div class="avatar-mini">DO</div>
+                <div>
+                    <div class="author-name">Don Odibat</div>
+                    <div class="author-role">Lead Editor & Architect</div>
+                </div>
+            </div>
+            <div class="date-mini">
+                <div class="date-label">Directory Updated</div>
+                <div class="date-val">Feb 24, 2026</div>
+            </div>
+        </div>
+        
         <h2>The Fight Against Hardware Degradation</h2>
         <p>Smartphones are subjected to incredibly hostile environments. From high-humidity bathrooms and sudden drops in swimming pools to the silent, daily accumulation of metallic pocket lint, your device's acoustic hardware is constantly under attack. When audio quality degrades, the tech industry's default response is to charge you $150 for a "blown speaker" replacement.</p>
+        
+        
         
         <p>As a web developer working remotely from cafes, beaches, and co-working spaces, I realized that <strong>80% of perceived hardware failures are actually reversible physical blockages</strong>. The guides in this directory are the culmination of years spent testing acoustic displacement theories, reverse-engineering mobile hardware arrays, and writing clean, native Web Audio API code. This is not a list of generic tips; this is a highly technical, actively maintained knowledge base designed to help you bypass predatory repair shops and fix your own hardware safely.</p>
 
@@ -342,6 +373,8 @@
     <div class="category-block">
         <div class="cat-header"><span class="cat-icon">🛠️</span> Diagnostics & Troubleshooting</div>
         <p class="cat-editorial">Not all audio issues are caused by water. Sometimes, a speaker crackles due to digital clipping, and sometimes it sounds muffled due to software ghosts. Before you assume the physical voice coil is torn, utilize these diagnostic routines to isolate the exact cause of your audio degradation.</p>
+        
+        
         
         <div class="guide-grid">
             <a href="fix-my-speaker.html" class="guide-card">
@@ -421,7 +454,7 @@
     <footer>
         <a href="index.html">Home</a> • 
         <a href="about.html">About</a> • 
-        <a href="articles.html">Guides</a> • 
+        <a href="articles.html" class="active">Guides</a> • 
         <a href="faq.html">FAQ</a> • 
         <a href="privacy.html">Privacy</a> • 
         <a href="terms.html">Terms</a> • 
@@ -431,26 +464,23 @@
         <a href="privacy.html" onclick="openCookieSettings(event)">Privacy & Cookie Settings</a>
         <span class="don-sig">© 2026 DON SYSTEMS</span>
     </footer>
-</div> <script>
+</div> 
+
+<script>
     function openCookieSettings(e) {
-        e.preventDefault(); // Pause the link temporarily
+        e.preventDefault(); 
         
-        // 1. Command Google to show the cookie modal
         if (typeof googlefc !== 'undefined' && googlefc.callbackQueue) {
             googlefc.callbackQueue.push(googlefc.showRevocationMessage);
         }
 
-        // 2. The US Fallback (Fixes the dead link)
         setTimeout(() => {
-            // Google injects divs with classes starting with "fc-" when the modal actually opens.
-            // We wait half a second. If those don't exist, Google suppressed the modal. 
-            // We release the pause and force the browser to the Privacy page naturally.
             const isGoogleModalOpen = document.querySelectorAll('div[class*="fc-"]').length > 0;
             
             if (!isGoogleModalOpen) {
                 window.location.href = 'privacy.html';
             }
-        }, 500); // 500ms timeout
+        }, 500); 
     }
 </script>
 
