@@ -243,6 +243,9 @@
         .author-links a:hover { color: #fff; }
         @media (max-width: 500px) { .author-trust-box { flex-direction: column; text-align: center; } .author-info p { text-align: center !important; } }
 
+        /* --- TIMESTAMPS --- */
+        .post-dates { display: flex; gap: 20px; align-items: center; flex-wrap: wrap; font-size: 11px; color: #888; font-family: monospace; margin-bottom: 30px; border-bottom: 1px solid #222; padding-bottom: 15px; text-transform: uppercase; letter-spacing: 0.5px; }
+
         footer { margin-top: 40px; text-align: center; font-size: 10px; color: #444; padding-bottom: 30px; border-top: 1px solid #222; padding-top: 20px; width: 100%; }
         footer a { color: #666; text-decoration: none; margin: 0 10px; transition: color 0.2s; }
         footer a:hover { color: var(--accent); }
@@ -286,7 +289,7 @@
         </div>
         
         <div class="article-content">
-            <p>If you have ever dropped your smartphone in a puddle, a sink, or exposed it to a heavy rainstorm...
+            <p>If you have ever dropped your smartphone in a puddle, a sink, or exposed it to a heavy rainstorm...</p>
             <div class="action-banner">
                 <h3>Clear Your Audio Instantly</h3>
                 <p>If your speaker is currently muffled, run our diagnostic acoustic sweep to physically dislodge the blockage.</p>
@@ -304,6 +307,8 @@
             <p>Low frequencies (bass notes) have long, powerful waveforms that can easily pass through solid objects—which is exactly why you can hear the bass of your neighbor's stereo thumping through an apartment wall, but you cannot hear the lyrics. High frequencies (treble, vocals, and cymbals) have short, delicate waveforms. These high frequencies are what give audio its crispness, clarity, and definition.</p>
 
             <p>When a physical obstruction covers your phone's speaker grill, it acts as an <strong>acoustic dampener</strong>. This obstruction absorbs the delicate high-frequency waves, preventing them from escaping the phone's chassis. Meanwhile, the powerful low-frequency bass waves still manage to push their way through the blockage. Because your ear is only receiving the muddy, muffled bass and none of the crisp treble, your brain interprets the sound as "distant" or "underwater."</p>
+
+            [Image illustrating acoustic dampening showing high frequency waves blocked by a barrier while low frequency waves pass through]
 
             <h2>The Four Causes of Muffled Audio</h2>
             <p>If your phone sounds muffled, it is almost certainly suffering from one of the following four conditions. Accurately diagnosing the root cause is the critical first step to executing the correct fix.</p>
@@ -389,7 +394,7 @@
             </script>
 
         </div>
-   <footer>
+    </div> <footer>
         <a href="index.html">Home</a> • 
         <a href="about.html">About</a> • 
         <a href="articles.html">Guides</a> • 
@@ -400,8 +405,7 @@
         <a href="privacy.html" onclick="openCookieSettings(event)">Privacy & Cookie Settings</a>
         <span class="don-sig">© 2026 DON SYSTEMS</span>
     </footer>
-</script>
-<script>
+</div> <script>
     function openCookieSettings(e) {
         // Check if the Google CMP is loaded and available
         if (typeof googlefc !== 'undefined' && googlefc.callbackQueue) {
