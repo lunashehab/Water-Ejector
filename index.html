@@ -46,11 +46,11 @@
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5129097020907805" crossorigin="anonymous"></script>
 
     <meta charset="UTF-8" />
-    <title>Speaker Cleaner Pro | Fix Water & Dust Damage</title>
+    <title>Speaker Cleaner Pro | Fix Water & Dust Damage Instantly</title>
     
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="robots" content="index, follow" />
-    <meta name="description" content="Fix muffled speakers in 30 seconds. The #1 Water Eject shortcut. Scientifically tested 165Hz frequencies. Safe, free, and no app required.">
+    <meta name="description" content="Fix muffled speakers in 30 seconds. Advanced physics-based water eject shortcut. Hardware-safe 165Hz frequencies. Free, and no app required.">
     <meta name="keywords" content="speaker cleaner, water eject sound, 165hz frequency, fix muffled audio">
     <meta name="author" content="Don System">
     <link rel="canonical" href="https://waterinmyspeaker.com/" />
@@ -311,7 +311,7 @@
         }
         .ticks-overlay {
             position: absolute; width: 100%; height: 100%; border-radius: 50%;
-            background: repeating-conic-gradient(from 210deg, rgba(255, 255, 255, 0.3) 0deg 1deg, transparent 1deg 15deg);
+            background: repeating-conic-gradient(from 210deg, rgba(255, 255, 255, 0.3) 0deg 1px, transparent 1px 15deg);
             mask-image: radial-gradient(transparent 60%, black 61%);
             -webkit-mask-image: radial-gradient(transparent 60%, black 61%);
             z-index: 1; opacity: 0.5;
@@ -370,6 +370,19 @@
             100% { box-shadow: 0 0 10px var(--accent); }
         }
 
+        /* --- ADVANCED GRID (NEW INTEGRATION) --- */
+        .advanced-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 25px; }
+        @media (max-width: 400px) { .advanced-grid { grid-template-columns: 1fr; } }
+        .tool-btn { 
+            background: #050505; border: 1px solid #333; border-radius: 8px; padding: 12px; 
+            text-decoration: none; color: #fff; display: flex; flex-direction: column; 
+            align-items: center; justify-content: center; transition: 0.3s; gap: 3px;
+        }
+        .tool-btn:hover { border-color: var(--accent); transform: translateY(-3px); box-shadow: 0 5px 15px rgba(255, 0, 60, 0.1); }
+        .tool-icon { font-size: 18px; margin-bottom: 2px; }
+        .tool-title { font-size: 11px; font-weight: 900; text-transform: uppercase; letter-spacing: 1px; }
+        .tool-sub { font-size: 9px; color: #888; }
+
         /* --- CONTROL PANEL --- */
         .panel {
             background: rgba(10, 10, 10, 0.85); border: 1px solid var(--border);
@@ -382,6 +395,14 @@
             display: flex; justify-content: space-between; font-weight: 700;
         }
         .panel-title span:last-child { color: var(--accent); }
+
+        /* --- HOW IT WORKS / STEPS --- */
+        .steps-container { display: flex; flex-direction: column; gap: 15px; margin-bottom: 15px; }
+        .step-box { background: #050505; border: 1px solid #222; padding: 15px; border-radius: 8px; text-align: left; display: flex; align-items: flex-start; gap: 15px;}
+        .step-icon { width: 24px; height: 24px; fill: var(--neon-green); flex-shrink: 0;}
+        .step-content { display: flex; flex-direction: column; }
+        .step-title { font-size: 11px; font-weight: 800; color: #fff; margin-bottom: 4px; text-transform: uppercase;}
+        .step-desc { font-size: 10px; color: #888; line-height: 1.5; }
 
         /* --- SYSTEM LOG --- */
         #system-log {
@@ -542,19 +563,19 @@
         .qr-wrapper img { width: 100%; display: block; }
 
         /* --- FAQ STYLES --- */
-        .faq-item { margin-bottom: 10px; border-bottom: 1px solid #222; padding-bottom: 5px; }
+        .faq-item { margin-bottom: 10px; border-bottom: 1px solid #222; padding-bottom: 5px; text-align: left; }
         .faq-item:last-child { border-bottom: none; }
         details > summary {
             list-style: none; outline: none; cursor: pointer; font-size: 10px; 
             color: #fff; font-weight: 700; padding: 8px 0; transition: color 0.2s;
-            display: flex; align-items: center; gap: 8px;
+            display: flex; align-items: center; gap: 8px; text-transform: uppercase;
         }
         details > summary::-webkit-details-marker { display: none; }
         details > summary:hover { color: var(--accent); }
         details > summary::before { content: '>'; color: var(--accent); font-weight: 900; transition: transform 0.2s; }
         details[open] > summary::before { transform: rotate(90deg); }
         details > p {
-            margin: 0; padding: 5px 0 10px 15px; font-size: 9px; color: #888; line-height: 1.5;
+            margin: 0; padding: 5px 0 10px 15px; font-size: 10px; color: #aaa; line-height: 1.6;
             border-left: 1px solid #333;
         }
 
@@ -578,7 +599,7 @@
         .hub-icon { width: 40px; height: 40px; background: var(--accent-glow); border-radius: 8px; display: flex; align-items: center; justify-content: center; border: 1px solid var(--accent); }
         .hub-icon svg { width: 24px; height: 24px; fill: var(--accent); }
         
-        .hub-title h2 { font-size: 16px; font-weight: 900; color: #fff; text-transform: uppercase; letter-spacing: 1px; }
+        .hub-title h2 { font-size: 16px; font-weight: 900; color: #fff; text-transform: uppercase; letter-spacing: 1px; margin:0;}
         .hub-title span { font-size: 10px; color: var(--accent); font-weight: 700; text-transform: uppercase; }
 
         .hub-content h3 { font-size: 14px; color: #eee; margin: 20px 0 10px 0; display: flex; align-items: center; gap: 8px; }
@@ -633,7 +654,7 @@
             <span class="trust-sub">Trusted by 10M+ Devices</span>
         </div>
 
-        <div class="tagline" id="lbl-tagline">The #1 High-Frequency Water Ejector</div>
+        <div class="tagline" id="lbl-tagline">Advanced High-Frequency Water Ejector</div>
         <div class="typing-status" id="type-text">System Online.</div>
         
         <div id="smart-device-bar">
@@ -678,6 +699,29 @@
 
     <button id="master-toggle" class="btn-toggle-master" onclick="stop()" aria-label="Stop Cleaning">STOP</button>
     <div style="text-align: center; margin-bottom: 20px; font-size: 11px; font-weight: 700; color: #fff; text-transform: uppercase; letter-spacing: 1px;">Turn your phone volume to max.</div>
+
+    <div class="advanced-grid">
+        <a href="water-eject.html" class="tool-btn">
+            <span class="tool-icon">🌊</span>
+            <span class="tool-title">Water Eject</span>
+            <span class="tool-sub">Advanced 3-Stage</span>
+        </a>
+        <a href="iphone-water-eject.html" class="tool-btn">
+            <span class="tool-icon">🍎</span>
+            <span class="tool-title">Apple Ejector</span>
+            <span class="tool-sub">Stereo Array</span>
+        </a>
+        <a href="android-cleaner.html" class="tool-btn">
+            <span class="tool-icon">🤖</span>
+            <span class="tool-title">Android Tool</span>
+            <span class="tool-sub">Hardware Tuning</span>
+        </a>
+        <a href="dust-removal.html" class="tool-btn">
+            <span class="tool-icon">🔨</span>
+            <span class="tool-title">Dust Removal</span>
+            <span class="tool-sub">Pulse Modulator</span>
+        </a>
+    </div>
 
     <div class="panel">
         <div class="panel-title"><span id="lbl-panel-test">Speaker Test</span> <span id="lbl-panel-iso">Isolation</span></div>
@@ -756,6 +800,82 @@
     </div>
 
     <div class="panel">
+        <div class="panel-title"><span>How It</span> <span>Works</span></div>
+        <div class="steps-container">
+            <div class="step-box">
+                <svg class="step-icon" viewBox="0 0 24 24"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg>
+                <div class="step-content">
+                    <div class="step-title">1. Excursion</div>
+                    <div class="step-desc">A low-frequency sine wave causes the internal speaker diaphragm to physically push outward, generating air pressure.</div>
+                </div>
+            </div>
+            <div class="step-box">
+                <svg class="step-icon" viewBox="0 0 24 24"><path d="M21 3H3v18h18V3zM8 17H6v-6h2v6zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/></svg>
+                <div class="step-content">
+                    <div class="step-title">2. Cavitation</div>
+                    <div class="step-desc">The air pressure combats surface tension, forcing trapped water droplets out of the microscopic holes in the hardware grill.</div>
+                </div>
+            </div>
+            <div class="step-box">
+                <svg class="step-icon" viewBox="0 0 24 24"><path d="M12 2.02c-5.51 0-9.98 4.47-9.98 9.98s4.47 9.98 9.98 9.98 9.98-4.47 9.98-9.98S17.51 2.02 12 2.02zM11.48 20v-6.26H8L13 4v6.26h3.35L11.48 20z"/></svg>
+                <div class="step-content">
+                    <div class="step-title">3. Clearance</div>
+                    <div class="step-desc">Switching to higher frequencies helps clear residual moisture by vibrating the mesh rapidly, preventing rust or corrosion.</div>
+                </div>
+            </div>
+        </div>
+        <p style="font-size: 11px; color: #aaa; margin-top: 15px; line-height: 1.6; text-align: justify;">Speaker Cleaner Pro utilizes your browser's native HTML5 Web Audio API. This means the soundwaves are generated locally on your device's processor in real-time. We do not use highly-compressed, pre-recorded MP3 files that can cause digital clipping and harm your voice coil.</p>
+        
+        <p style="font-size: 11px; color: #aaa; margin-top: 15px; line-height: 1.6; text-align: justify;">By relying on pure mathematical waveforms, the tool stays within the safe amplitude limits defined by your operating system's audio drivers.</p>
+    </div>
+
+    <div class="panel">
+        <div class="panel-title"><span>System</span> <span>FAQ</span></div>
+        <div class="faq-container">
+            <details class="faq-item">
+                <summary>Is this sound safe for my speakers?</summary>
+                <p>Yes. We use specific sine waves (165Hz) designed to vibrate the speaker diaphragm without exceeding safe amplitude limits. It essentially 'shakes' the water off without damaging hardware.</p>
+            </details>
+            <details class="faq-item">
+                <summary>How long should I run the cleaning cycle?</summary>
+                <p>We recommend running "Pro Mode" (Auto Cycle) 2-3 times. If water is still trapped, position your phone upright and run it for 5 minutes.</p>
+            </details>
+            <details class="faq-item">
+                <summary>Does this work for iPhone and Android?</summary>
+                <p>Absolutely. It works on any device with a speaker, including iPhone, Samsung Galaxy, Pixel, Xiaomi, and even smartwatches.</p>
+            </details>
+            <details class="faq-item">
+                <summary>What should I do if the sound is still muffled?</summary>
+                <p>Wait 10 minutes for evaporation, then try again. Gravity helps—keep the speaker facing down while the sound plays.</p>
+            </details>
+            <details class="faq-item">
+                <summary>Why can't I hear anything?</summary>
+                <p>Your volume might be too low, or water has temporarily shorted the connection. Turn volume to max and run the 165Hz mode.</p>
+            </details>
+            <details class="faq-item">
+                <summary>My phone fell in Salt Water (Ocean). What now?</summary>
+                <p style="color: #ffaa00;"><strong>CRITICAL:</strong> Salt creates corrosion instantly. Rinse your phone gently with fresh tap water first to remove the salt, THEN use this tool. Do not charge the phone until it is 100% dry.</p>
+            </details>
+            <details class="faq-item">
+                <summary>Can I use this on AirPods, Headphones, or Laptops?</summary>
+                <p>Yes. For AirPods/Earbuds: Hold them with the mesh facing down and run the 'High Pitch' (Apple 165Hz) mode. For Laptops: Place the laptop open on its side (speaker facing down) and run 'Pro Mode'.</p>
+            </details>
+            <details class="faq-item">
+                <summary>Will using this tool void my warranty?</summary>
+                <p>No. This tool plays standard audio files at standard frequencies. It is no different than playing music at max volume, which your phone is designed to handle. It does not modify software or root your device.</p>
+            </details>
+            <details class="faq-item">
+                <summary>My top speaker is quiet but the bottom is fine?</summary>
+                <p>The top earpiece has a smaller mesh that traps water easily. Use our 'Mode 5 (Air 440Hz)' specifically for the top speaker, as higher frequencies penetrate smaller holes better than deep bass.</p>
+            </details>
+            <details class="faq-item">
+                <summary>I hear a 'crackling' noise. Is my speaker broken?</summary>
+                <p>Not necessarily. Crackling usually means water is vibrating against the membrane. Keep running the sound until the crackling stops. If it persists after 24 hours of drying, you may have permanent hardware damage unrelated to water.</p>
+            </details>
+        </div>
+    </div>
+
+    <div class="panel">
         <div class="panel-title"><span id="lbl-trans">Transmission</span> <span id="lbl-uplink">Uplink</span></div>
         <button class="btn-share" onclick="shareSite()" id="btn-share" aria-label="Share Site">
             <svg style="width:16px;height:16px;fill:currentColor;margin-right:5px;" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.66 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92s-1.31-2.92-2.92-2.92z"/></svg>
@@ -787,79 +907,6 @@
                 <li><span>WE DO:</span> Use privacy-first analytics to monitor system traffic.</li>
             </ul>
             <p style="font-size: 8px; opacity: 0.5;">* By using this tool, you acknowledge that while we use scientifically safe tones, we are not liable for existing hardware defects.</p>
-        </div>
-    </div>
-
-    <div class="panel">
-        <div class="panel-title"><span id="lbl-how-title">How It</span> <span id="lbl-how-works">Works</span></div>
-        <div style="text-align: left;">
-            <div style="margin-bottom: 10px;">
-                <div style="color: var(--accent); font-weight: bold; font-size: 10px;">1. Your phone plays a high‑frequency sound</div>
-                <div style="color: #888; font-size: 9px;">This special tone creates rapid vibrations inside your speaker.</div>
-            </div>
-            <div style="margin-bottom: 10px;">
-                <div style="color: var(--accent); font-weight: bold; font-size: 10px;">2. The vibrations push out trapped water and dust</div>
-                <div style="color: #888; font-size: 9px;">Moisture and debris get forced out through the speaker grill.</div>
-            </div>
-            <div style="margin-bottom: 10px;">
-                <div style="color: var(--accent); font-weight: bold; font-size: 10px;">3. Your audio becomes clear again</div>
-                <div style="color: #888; font-size: 9px;">Muffled, low, or crackling sound returns to normal within seconds.</div>
-            </div>
-            <div style="margin-bottom: 10px;">
-                <div style="color: var(--accent); font-weight: bold; font-size: 10px;">4. Safe for all devices</div>
-                <div style="color: #888; font-size: 9px;">Works on iPhone, Samsung, Pixel, and any phone with a built‑in speaker.</div>
-            </div>
-            <div>
-                <div style="color: var(--accent); font-weight: bold; font-size: 10px;">5. No app needed — everything runs in your browser</div>
-                <div style="color: #888; font-size: 9px;">Fast, free, and instantly accessible from any device.</div>
-            </div>
-        </div>
-    </div>
-
-    <div class="panel">
-        <div class="panel-title"><span>System</span> <span>FAQ</span></div>
-        <div class="faq-container">
-            <details class="faq-item">
-                <summary>Is this sound safe for my speakers?</summary>
-                <p>Yes. We use specific sine waves (165Hz) designed to vibrate the speaker diaphragm without exceeding safe amplitude limits. It essentially "shakes" the water off without damaging hardware.</p>
-            </details>
-            <details class="faq-item">
-                <summary>How long should I run the cleaning cycle?</summary>
-                <p>We recommend running "Pro Mode" (Auto Cycle) 2-3 times. If water is still trapped, position your phone upright and run it for 5 minutes.</p>
-            </details>
-            <details class="faq-item">
-                <summary>Does this work for iPhone and Android?</summary>
-                <p>Absolutely. It works on any device with a speaker, including iPhone, Samsung Galaxy, Pixel, Xiaomi, and even smartwatches.</p>
-            </details>
-            <details class="faq-item">
-                <summary>What should I do if the sound is still muffled?</summary>
-                <p>Wait 10 minutes for evaporation, then try again. Gravity helps—keep the speaker facing down while the sound plays.</p>
-            </details>
-            <details class="faq-item">
-                <summary>Why can't I hear anything?</summary>
-                <p>Your volume might be too low, or water has temporarily shorted the connection. Turn volume to max and run the "165Hz" mode.</p>
-            </details>
-
-            <details class="faq-item">
-                <summary>My phone fell in Salt Water (Ocean/Sea). What now?</summary>
-                <p style="color: #ffaa00; border-left: 2px solid #ffaa00;"><strong>CRITICAL:</strong> Salt creates corrosion instantly. Rinse your phone gently with fresh tap water first to remove the salt, THEN use this tool. Do not charge the phone until it is 100% dry.</p>
-            </details>
-            <details class="faq-item">
-                <summary>Can I use this on AirPods, Headphones, or Laptops?</summary>
-                <p>Yes. For <strong>AirPods/Earbuds</strong>: Hold them with the mesh facing down and run the "High Pitch" (Apple 165Hz) mode. For <strong>Laptops</strong>: Place the laptop open on its side (speaker facing down) and run "Pro Mode."</p>
-            </details>
-            <details class="faq-item">
-                <summary>Will using this tool void my warranty?</summary>
-                <p>No. This tool plays standard audio files at standard frequencies. It is no different than playing music at max volume, which your phone is designed to handle. It does not modify software or root your device.</p>
-            </details>
-            <details class="faq-item">
-                <summary>My top speaker (earpiece) is quiet but the bottom is fine?</summary>
-                <p>The top earpiece has a smaller mesh that traps water easily. Use our <strong>"Mode 5 (Air 440Hz)"</strong> specifically for the top speaker, as higher frequencies penetrate smaller holes better than deep bass.</p>
-            </details>
-            <details class="faq-item">
-                <summary>I hear a "crackling" noise. Is my speaker broken?</summary>
-                <p>Not necessarily. Crackling usually means water is vibrating against the membrane. Keep running the sound until the crackling stops. If it persists after 24 hours of drying, you may have permanent hardware damage unrelated to water.</p>
-            </details>
         </div>
     </div>
 
@@ -964,6 +1011,8 @@
         <a href="faq.html">FAQ</a> • 
         <a href="privacy.html">Privacy</a> • 
         <a href="terms.html">Terms</a> • 
+        <a href="editorial-policy.html">Editorial Policy</a> • 
+        <a href="advertising-disclosure.html">Ad Disclosure</a> • 
         <a href="contact.html">Contact</a> •
         <a href="javascript:googlefc.callbackQueue.push(googlefc.showRevocationMessage)">Privacy & Cookie Settings</a>
         <span class="don-sig">© 2026 DON SYSTEMS</span>
@@ -1048,7 +1097,7 @@
     // --- TRANSLATION ENGINE ---
     const translations = {
         en: {
-            trust: "TRUSTED BY 10M+ DEVICES", tagline: "The #1 High-Frequency Water Ejector",
+            trust: "TRUSTED BY 10M+ DEVICES", tagline: "Advanced High-Frequency Water Ejector",
             ptest: "Speaker Test", piso: "Isolation", pops: "Advanced Ops", pdeep: "Deep Clean",
             left: "LEFT", right: "RIGHT", bass: "BASS", treble: "TREBLE",
             pro: "PRO MODE", turbo: "TURBO MODE", auto: "AUTO CYCLE", boost: "BOOST",
@@ -1064,10 +1113,10 @@
             safeT: "Safe & Secure", safeTx: "Hardware-safe process. No overdrive volume used.",
             sys: "System Integrity", ver: "Verified",
             t1: "Safe for all Devices", t2: "No Data Collected", t3: "No App Required",
-            t4: "Scientific Tones", t5: "Used by 10M+", t6: "Tech Recommended"
+            t4: "Precision Tones", t5: "Used by 10M+", t6: "Tech Recommended"
         },
         ar: {
-            trust: "موثوق به في 10 ملايين جهاز", tagline: "#1 أداة إخراج المياه عالية التردد",
+            trust: "موثوق به في 10 ملايين جهاز", tagline: "أداة إخراج المياه عالية التردد المتقدمة",
             ptest: "اختبار السماعة", piso: "عزل", pops: "عمليات متقدمة", pdeep: "تنظيف عميق",
             left: "يسار", right: "يمين", bass: "بيس", treble: "تريبل",
             pro: "وضع المحترفين", turbo: "وضع التيربو", auto: "دورة تلقائية", boost: "تعزيز",
@@ -1083,10 +1132,10 @@
             safeT: "آمن ومحمي", safeTx: "عملية آمنة للأجهزة. لا نستخدم صوت زائد.",
             sys: "سلامة النظام", ver: "تم التحقق",
             t1: "آمن لجميع الأجهزة", t2: "لا يتم جمع بيانات", t3: "لا يحتاج تطبيق",
-            t4: "نغمات علمية", t5: "يستخدمه 10 ملايين+", t6: "ينصح به التقنيون"
+            t4: "نغمات دقيقة", t5: "يستخدمه 10 ملايين+", t6: "ينصح به التقنيون"
         },
         ru: {
-            trust: "ДОВЕРЯЮТ 10М+ УСТРОЙСТВ", tagline: "Инструмент №1 для удаления воды",
+            trust: "ДОВЕРЯЮТ 10М+ УСТРОЙСТВ", tagline: "Продвинутый Инструмент для удаления воды",
             ptest: "Тест Динамика", piso: "Изоляция", pops: "Спец. Опции", pdeep: "Глубокая Чистка",
             left: "ЛЕВЫЙ", right: "ПРАВЫЙ", bass: "БАС", treble: "ВЧ",
             pro: "PRO РЕЖИМ", turbo: "ТУРБО", auto: "АВТО ЦИКЛ", boost: "БУСТ",
@@ -1102,10 +1151,10 @@
             safeT: "Безопасно", safeTx: "Безопасно для железа. Без перегрузок.",
             sys: "Целостность", ver: "Подтверждено",
             t1: "Безопасно для всех", t2: "Без сбора данных", t3: "Без приложений",
-            t4: "Научные тона", t5: "10М+ Польз.", t6: "Рекомендовано"
+            t4: "Точные тона", t5: "10М+ Польз.", t6: "Рекомендовано"
         },
         es: {
-            trust: "USADO EN 10M+ DISPOSITIVOS", tagline: "El eyector de agua #1 de alta frecuencia",
+            trust: "USADO EN 10M+ DISPOSITIVOS", tagline: "El eyector de agua avanzado de alta frecuencia",
             ptest: "Prueba de Altavoz", piso: "Aislamiento", pops: "Ops Avanzadas", pdeep: "Limpieza Profunda",
             left: "IZQ", right: "DER", bass: "BAJOS", treble: "AGUDOS",
             pro: "MODO PRO", turbo: "MODO TURBO", auto: "CICLO AUTO", boost: "BOOST",
@@ -1121,10 +1170,10 @@
             safeT: "Seguro y Protegido", safeTx: "Proceso seguro. No usamos volumen excesivo.",
             sys: "Integridad Sistema", ver: "Verificado",
             t1: "Seguro para todos", t2: "Sin recolección de datos", t3: "Sin App",
-            t4: "Tonos Científicos", t5: "Usado por 10M+", t6: "Recomendado"
+            t4: "Tonos de Precisión", t5: "Usado por 10M+", t6: "Recomendado"
         },
         fr: {
-            trust: "APPROUVÉ PAR 10M+ D'APPAREILS", tagline: "L'éjecteur d'eau haute fréquence n°1",
+            trust: "APPROUVÉ PAR 10M+ D'APPAREILS", tagline: "L'éjecteur d'eau avancé haute fréquence",
             ptest: "Test Haut-parleur", piso: "Isolation", pops: "Ops Avancées", pdeep: "Nettoyage Profond",
             left: "GAUCHE", right: "DROITE", bass: "BASSES", treble: "AIGUS",
             pro: "MODE PRO", turbo: "MODE TURBO", auto: "CYCLE AUTO", boost: "BOOST",
@@ -1140,10 +1189,10 @@
             safeT: "Sûr et Sécurisé", safeTx: "Processus sûr. Pas de surcharge de volume.",
             sys: "Intégrité Système", ver: "Vérifié",
             t1: "Sûr pour tout appareil", t2: "Aucune donnée collectée", t3: "Pas d'app requise",
-            t4: "Tons Scientifiques", t5: "Utilisé par 10M+", t6: "Recommandé par techniciens"
+            t4: "Tons de Précision", t5: "Utilisé par 10M+", t6: "Recommandé par techniciens"
         },
         cn: {
-            trust: "超过1000万设备信赖", tagline: "排名第一的高频排水工具",
+            trust: "超过1000万设备信赖", tagline: "高级高频排水工具",
             ptest: "扬声器测试", piso: "隔离", pops: "高级操作", pdeep: "深度清洁",
             left: "左声道", right: "右声道", bass: "低音", treble: "高音",
             pro: "专业模式", turbo: "极速模式", auto: "自动循环", boost: "增强",
@@ -1159,7 +1208,7 @@
             safeT: "安全保障", safeTx: "硬件安全。不使用过载音量。",
             sys: "系统完整性", ver: "已验证",
             t1: "适用于所有设备", t2: "不收集数据", t3: "无需App",
-            t4: "科学音调", t5: "1000万+用户", t6: "技术人员推荐"
+            t4: "精准音调", t5: "1000万+用户", t6: "技术人员推荐"
         }
     };
 
