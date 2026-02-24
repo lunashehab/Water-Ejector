@@ -243,6 +243,9 @@
         .author-links a:hover { color: #fff; }
         @media (max-width: 500px) { .author-trust-box { flex-direction: column; text-align: center; } .author-info p { text-align: center !important; } }
 
+        /* --- TIMESTAMPS --- */
+        .post-dates { display: flex; gap: 20px; align-items: center; flex-wrap: wrap; font-size: 11px; color: #888; font-family: monospace; margin-bottom: 30px; border-bottom: 1px solid #222; padding-bottom: 15px; text-transform: uppercase; letter-spacing: 0.5px; }
+
         footer { margin-top: 40px; text-align: center; font-size: 10px; color: #444; padding-bottom: 30px; border-top: 1px solid #222; padding-top: 20px; width: 100%; }
         footer a { color: #666; text-decoration: none; margin: 0 10px; transition: color 0.2s; }
         footer a:hover { color: var(--accent); }
@@ -286,7 +289,8 @@
         </div>
         
         <div class="article-content">
-            <p>If you have ever dropped your smartphone in a puddle, a sink, or exposed it to a heavy rainstorm...
+            
+            <p>If you have ever dropped your smartphone in a puddle, a sink, or exposed it to a heavy rainstorm...</p>
             <div class="action-banner">
                 <h3>Is Your Phone Out of the Water?</h3>
                 <p>If the device is already wiped down on the outside and you are ready to clear the speakers, initiate the acoustic ejection cycle immediately to push the water out of the hardware.</p>
@@ -301,6 +305,7 @@
                 <p>"While working remotely from a coastal town in Southeast Asia, I watched a fellow nomad drop their flagship phone directly into the ocean. Their first instinct was to panic, wipe it on a sandy towel, and ask for a bowl of rice. Saltwater is a death sentence for exposed charging pins and voice coils due to immediate galvanic corrosion. I stopped them, rinsed the ports with fresh bottled water, and immediately ran the 165Hz 'Pro Mode' cycle from this very web app to blast the liquid out before the salt could crystallize. That real-world emergency is why I stress the 'Immediate Triage' steps below. What you do in the first 60 seconds dictates whether your hardware lives or dies." <br><br><strong>— Don Odibat, Lead Developer</strong></p>
             </div>
 
+            
             <div class="warning-box">
                 <p><strong>CRITICAL RULE 1: Do NOT plug the phone in.</strong> If you insert a charging cable into a wet port, you will instantly send electrical current across wet metallic pins. This causes immediate microscopic arcing and corrosion, and can permanently fry the power management IC (PMIC) chip on your motherboard. If your phone was plugged into the wall when it fell, unplug it from the wall outlet <em>first</em> before touching the phone, if safe to do so.</p>
             </div>
@@ -381,7 +386,7 @@
             </script>
 
         </div>
-   <footer>
+    </div> <footer>
         <a href="index.html">Home</a> • 
         <a href="about.html">About</a> • 
         <a href="articles.html">Guides</a> • 
@@ -392,8 +397,7 @@
         <a href="privacy.html" onclick="openCookieSettings(event)">Privacy & Cookie Settings</a>
         <span class="don-sig">© 2026 DON SYSTEMS</span>
     </footer>
-
-<script>
+</div> <script>
     function openCookieSettings(e) {
         // Check if the Google CMP is loaded and available
         if (typeof googlefc !== 'undefined' && googlefc.callbackQueue) {
