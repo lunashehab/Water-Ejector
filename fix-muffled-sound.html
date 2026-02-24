@@ -396,20 +396,24 @@
         <a href="faq.html">FAQ</a> • 
         <a href="privacy.html">Privacy</a> • 
         <a href="terms.html">Terms</a> • 
-        <a href="editorial-policy.html">Editorial Policy</a> • 
-        <a href="advertising-disclosure.html">Ad Disclosure</a> • 
-        <a href="contact.html">Contact</a> • 
+        <a href="contact.html">Contact</a> •
         <a href="privacy.html" onclick="openCookieSettings(event)">Privacy & Cookie Settings</a>
         <span class="don-sig">© 2026 DON SYSTEMS</span>
     </footer>
-</div>
-
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        console.log("Fix Muffled Sound Guide Loaded Successfully.");
-    });
 </script>
+<script>
+    function openCookieSettings(e) {
+        // Check if the Google CMP is loaded and available
+        if (typeof googlefc !== 'undefined' && googlefc.callbackQueue) {
+            e.preventDefault(); // Stops the browser from loading privacy.html
+            googlefc.callbackQueue.push(googlefc.showRevocationMessage); // Opens the modal instead
+        }
+        // If googlefc is missing, it automatically falls back to naturally opening privacy.html!
+    }
+</script>
+
 <script data-collect-dnt="true" async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
 <noscript><img src="https://queue.simpleanalyticscdn.com/noscript.gif?collect-dnt=true" alt="" referrerpolicy="no-referrer-when-downgrade"/></noscript>
+
 </body>
 </html>
