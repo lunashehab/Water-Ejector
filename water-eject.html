@@ -124,7 +124,7 @@
         .author-info p { font-size: 13px !important; color: #888 !important; margin: 0 !important; line-height: 1.6 !important; text-align: left !important; }
 
         footer { margin-top: 40px; text-align: center; font-size: 10px; color: #444; padding-bottom: 30px; border-top: 1px solid #222; padding-top: 20px; width: 100%; }
-        footer a { color: #666; text-decoration: none; margin: 0 10px; transition: color 0.2s; }
+        footer a { color: #666; text-decoration: margin: 0 10px; transition: color 0.2s; }
         footer a:hover { color: var(--accent); }
         .don-sig { display: block; margin-top: 15px; font-weight: 900; color: #333; text-transform: uppercase; letter-spacing: 2px; font-size: 9px; }
     </style>
@@ -161,7 +161,7 @@
             </span>
             <span class="date-updated" style="display: flex; align-items: center; gap: 6px; color: var(--neon-green); font-weight: bold;">
                 <svg width="14" height="14" viewBox="0 0 24 24" style="fill: var(--neon-green);"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm4.2 14.2L11 13V7h1.5v5.2l4.5 2.7-.8 1.3z"/></svg>
-                Last Updated: Feb 22, 2026
+                Last Updated: Feb 23, 2026
             </span>
         </div>
 
@@ -211,6 +211,7 @@
             <details class="faq-item">
                 <summary>What is surface tension, and why does it trap the water?</summary>
                 <p>Water molecules are highly cohesive; they like to stick together. When water enters the tiny, confined space of a speaker grill, this cohesion creates "surface tension." It forms a physical, microscopic 'skin' across the mesh that acts like a solid wall, preventing sound from escaping. The 165Hz sine wave is explicitly designed to break this tension.</p>
+                
             </details>
 
             <details class="faq-item">
@@ -250,7 +251,9 @@
         <a href="privacy.html" onclick="openCookieSettings(event)">Privacy & Cookie Settings</a>
         <span class="don-sig">© 2026 DON SYSTEMS</span>
     </footer>
-</div> <script>
+</div> 
+
+<script>
     function openCookieSettings(e) {
         // Check if the Google CMP is loaded and available
         if (typeof googlefc !== 'undefined' && googlefc.callbackQueue) {
