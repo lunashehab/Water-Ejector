@@ -159,13 +159,14 @@
         .top-nav a { color: #888; text-decoration: none; transition: 0.2s; padding-bottom: 2px; border-bottom: 2px solid transparent; }
         .top-nav a:hover, .top-nav a.active { color: var(--accent); border-bottom-color: var(--accent); }
 
-        header { text-align: center; margin-bottom: 20px; text-transform: uppercase; }
+        header { text-align: center; margin-bottom: 30px; text-transform: uppercase; }
         .logo-box { display: flex; justify-content: center; align-items: center; gap: 10px; margin-bottom: 10px; }
         .logo-icon { width: 32px; height: 32px; fill: var(--accent); filter: drop-shadow(0 0 10px var(--accent)); }
         h1 { font-size: 28px; font-weight: 900; color: #fff; margin: 0; letter-spacing: 2px; }
         .badge-pro { background: var(--accent); color: #fff; font-size: 10px; padding: 2px 6px; border-radius: 2px; margin-left: 5px; letter-spacing: 1px; }
         .page-title { font-size: 20px; font-weight: 900; color: var(--accent); letter-spacing: 1px; margin-bottom: 10px; }
-        
+        .page-desc { font-size: 13px; color: #888; max-width: 700px; margin: 0 auto; text-transform: none; font-weight: 500;}
+
         /* --- EDITORIAL INTRO --- */
         .editorial-intro {
             background: rgba(10, 10, 10, 0.9); border: 1px solid var(--border);
@@ -430,7 +431,19 @@
         <a href="privacy.html" onclick="openCookieSettings(event)">Privacy & Cookie Settings</a>
         <span class="don-sig">© 2026 DON SYSTEMS</span>
     </footer>
-</div>
+</div> <script>
+    function openCookieSettings(e) {
+        // Check if the Google CMP is loaded and available
+        if (typeof googlefc !== 'undefined' && googlefc.callbackQueue) {
+            e.preventDefault(); // Stops the browser from loading privacy.html
+            googlefc.callbackQueue.push(googlefc.showRevocationMessage); // Opens the modal instead
+        }
+        // If googlefc is missing, it automatically falls back to naturally opening privacy.html!
+    }
+</script>
+
+<script data-collect-dnt="true" async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
+<noscript><img src="https://queue.simpleanalyticscdn.com/noscript.gif?collect-dnt=true" alt="" referrerpolicy="no-referrer-when-downgrade"/></noscript>
 
 </body>
 </html>
