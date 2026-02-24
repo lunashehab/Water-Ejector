@@ -269,7 +269,37 @@
 
             <h2>Phase 1: Diagnosing the Problem</h2>
             <p>To properly fix your speaker, you must first identify the root cause of the audio degradation. Different causes require entirely different solutions. Listen closely to your device and identify which of the following four categories matches your situation.</p>
+<style>
+    .decision-tree { display: flex; flex-direction: column; gap: 10px; margin: 25px 0; padding: 20px; background: rgba(57, 255, 20, 0.05); border: 1px solid var(--neon-green); border-radius: 8px; }
+    .tree-step { display: flex; align-items: flex-start; gap: 15px; }
+    .tree-node { font-family: monospace; font-size: 11px; font-weight: 900; background: #111; color: var(--neon-green); padding: 5px 10px; border-radius: 4px; border: 1px solid var(--neon-green); white-space: nowrap; }
+    .tree-logic { font-size: 13px; color: #ddd; line-height: 1.6; }
+    .tree-logic a { color: var(--neon-green); text-decoration: none; font-weight: bold; }
+    .tree-logic a:hover { text-decoration: underline; }
+    .tree-arrow { color: #666; font-size: 18px; margin-left: 20px; line-height: 1; }
+</style>
 
+<div class="decision-tree">
+    <div class="tree-step">
+        <div class="tree-node">IF: Muffled + Wet</div>
+        <div class="tree-logic">Surface tension is trapping liquid. <br><strong>THEN:</strong> Run the <a href="water-eject.html">Water Eject Protocol (165Hz)</a>.</div>
+    </div>
+    <div class="tree-arrow">↓</div>
+    <div class="tree-step">
+        <div class="tree-node">IF: Muffled + Dry</div>
+        <div class="tree-logic">Pocket lint and skin oils have formed a hardened audio crust. <br><strong>THEN:</strong> Run the <a href="dust-removal.html">Dust Removal Protocol (60Hz Square Wave)</a>.</div>
+    </div>
+    <div class="tree-arrow">↓</div>
+    <div class="tree-step">
+        <div class="tree-node">IF: Crackling + High Vol</div>
+        <div class="tree-logic">Digital clipping or metallic dust vibrating against the mesh. <br><strong>THEN:</strong> Reset EQ and run the <a href="crackling-audio-fix.html">Distortion Diagnostic</a>.</div>
+    </div>
+    <div class="tree-arrow">↓</div>
+    <div class="tree-step">
+        <div class="tree-node">IF: Complete Silence</div>
+        <div class="tree-logic">Software routing error or Bluetooth hijack. <br><strong>THEN:</strong> Disable Bluetooth, clean charging port with toothpick, Hard Reboot.</div>
+    </div>
+</div>
             <div class="field-note">
                 <h4>Developer's Field Note: The Hardware Panic</h4>
                 <p>"As the 'tech guy' in my family and a developer working constantly from remote locations, I am handed phones with 'broken' speakers all the time. Nine times out of ten, the person is panicked, assuming they need a $150 motherboard replacement. In reality, it's almost always a combination of microscopic pocket lint and moisture. Instead of paying an Apple Genius to tell you it's dirty, I engineered the Speaker Cleaner Pro dashboard so you can run a professional-grade acoustic diagnostic sweep right from your browser, for free, in seconds." <br><br><strong>— Don Odibat, Lead Developer</strong></p>
