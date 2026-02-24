@@ -322,7 +322,19 @@
         <a href="privacy.html" onclick="openCookieSettings(event)">Privacy & Cookie Settings</a>
         <span class="don-sig">© 2026 DON SYSTEMS</span>
     </footer>
-</div>
+</div> <script>
+    function openCookieSettings(e) {
+        // Check if the Google CMP is loaded and available
+        if (typeof googlefc !== 'undefined' && googlefc.callbackQueue) {
+            e.preventDefault(); // Stops the browser from loading privacy.html
+            googlefc.callbackQueue.push(googlefc.showRevocationMessage); // Opens the modal instead
+        }
+        // If googlefc is missing, it automatically falls back to naturally opening privacy.html!
+    }
+</script>
+
+<script data-collect-dnt="true" async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
+<noscript><img src="https://queue.simpleanalyticscdn.com/noscript.gif?collect-dnt=true" alt="" referrerpolicy="no-referrer-when-downgrade"/></noscript>
 
 </body>
 </html>
