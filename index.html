@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-   <script>
+    <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       
@@ -52,7 +52,7 @@
     <meta name="robots" content="index, follow" />
     <meta name="description" content="Fix muffled speakers in 30 seconds. Advanced physics-based water eject shortcut. Hardware-safe 165Hz frequencies. Free, and no app required.">
     <meta name="keywords" content="speaker cleaner, water eject sound, 165hz frequency, fix muffled audio">
-    <meta name="author" content="Don System">
+    <meta name="author" content="Don Odibat">
     <link rel="canonical" href="https://waterinmyspeaker.com/" />
       
     <link rel="icon" type="image/png" href="icon.png">
@@ -97,8 +97,8 @@
           "description": "Remove water from your phone speaker instantly using our water eject sound tool.",
           "publisher": {
             "@type": "Organization",
-            "name": "Water In My Speaker",
-            "logo": { "@type": "ImageObject", "url": "https://waterinmyspeaker.com/logo.png" }
+            "name": "Don System's Holding",
+            "logo": { "@type": "ImageObject", "url": "https://waterinmyspeaker.com/icon.png" }
           },
           "potentialAction": {
             "@type": "SearchAction",
@@ -199,9 +199,9 @@
         :root {
             --bg: #000000;
             --panel: #0a0a0a;
-            --accent: #ff003c; /* MARS RED */
+            --accent: #ff003c; 
             --accent-glow: rgba(255, 0, 60, 0.5);
-            --neon-green: #39ff14; /* COFFEE GREEN */
+            --neon-green: #39ff14; 
             --text-main: #ffffff;
             --text-muted: #666666;
             --border: #333333;
@@ -350,14 +350,14 @@
             background: #050505; 
             border: 2px solid var(--accent); 
             color: var(--accent);
-            border-radius: 50%; /* CIRCLE ROUND */
+            border-radius: 50%; 
             font-weight: 900; 
             text-transform: uppercase;
             cursor: pointer; 
             margin: 0 auto 20px auto; 
             transition: 0.3s; 
             font-size: 14px;
-            box-shadow: 0 0 15px var(--accent); /* RED GLOW */
+            box-shadow: 0 0 15px var(--accent);
             display: flex; align-items: center; justify-content: center;
             -webkit-tap-highlight-color: transparent;
             animation: pulse-glow 2s infinite;
@@ -370,7 +370,7 @@
             100% { box-shadow: 0 0 10px var(--accent); }
         }
 
-        /* --- ADVANCED GRID (NEW INTEGRATION) --- */
+        /* --- ADVANCED GRID --- */
         .advanced-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 25px; }
         @media (max-width: 400px) { .advanced-grid { grid-template-columns: 1fr; } }
         .tool-btn { 
@@ -558,7 +558,7 @@
 
         .qr-wrapper {
             background: #fff; padding: 10px; border-radius: 8px; width: 140px; margin: 0 auto 10px auto;
-            border: 2px solid var(--accent); box-shadow: 0 0 15px var(--accent-dim);
+            border: 2px solid var(--accent); box-shadow: 0 0 15px var(--accent-glow);
         }
         .qr-wrapper img { width: 100%; display: block; }
 
@@ -923,6 +923,8 @@
             <div class="hub-content">
                 <p>Understanding how the <strong>Speaker Cleaner Pro</strong> operates requires an analysis of fluid dynamics and resonant frequencies. When a mobile device is submerged, water enters the speaker's acoustic chamber. Due to <strong>surface tension</strong> and the microscopic nature of the speaker grill ports, this water becomes "locked" in place. Standard audio cannot displace this mass because the vibration lacks the necessary kinetic force.</p>
                 
+                
+                
                 <h3>Frequency Resonance Theory</h3>
                 <p>Every mechanical diaphragm has a resonant frequency. Our primary <strong>165Hz Sine Wave</strong> is engineered to match the mechanical resonance of modern micro-speakers found in flagship smartphones. By vibrating the diaphragm at its resonant peak, we create a high-pressure air cushion behind the water. This pressure overcomes the surface tension, physically forcing droplets through the mesh holes at high velocity.</p>
                 
@@ -1017,26 +1019,23 @@
         <a href="privacy.html" onclick="openCookieSettings(event)">Privacy & Cookie Settings</a>
         <span class="don-sig">© 2026 DON SYSTEMS</span>
     </footer>
-</div> <script>
+</div> 
+
+<script>
     function openCookieSettings(e) {
-        e.preventDefault(); // Pause the link temporarily
+        e.preventDefault(); 
         
-        // 1. Command Google to show the cookie modal
         if (typeof googlefc !== 'undefined' && googlefc.callbackQueue) {
             googlefc.callbackQueue.push(googlefc.showRevocationMessage);
         }
 
-        // 2. The US Fallback (Fixes the dead link)
         setTimeout(() => {
-            // Google injects divs with classes starting with "fc-" when the modal actually opens.
-            // We wait half a second. If those don't exist, Google suppressed the modal. 
-            // We release the pause and force the browser to the Privacy page naturally.
             const isGoogleModalOpen = document.querySelectorAll('div[class*="fc-"]').length > 0;
             
             if (!isGoogleModalOpen) {
                 window.location.href = 'privacy.html';
             }
-        }, 500); // 500ms timeout
+        }, 500); 
     }
 </script>
 
@@ -1547,6 +1546,7 @@
         }
     }
 
+    // --- SMART DEVICE DETECTION BUG FIX ---
     document.addEventListener('DOMContentLoaded', () => {
         const ua = navigator.userAgent;
         let device = "Audio Hardware";
@@ -1563,13 +1563,15 @@
         else if (/Mac/i.test(ua)) device = "Macintosh Core";
 
         const bar = document.getElementById('device-name');
-        if (bar) {
+        const container = document.getElementById('smart-device-bar'); // Target the container for styling
+        
+        if (bar && container) {
             setTimeout(() => { bar.innerText = "DETECTED: " + device; }, 1500);
             setTimeout(() => { 
                 bar.innerText = device + " OPTIMIZED"; 
-                bar.parentElement.style.borderColor = "var(--accent)"; 
-                bar.parentElement.style.color = "var(--accent)"; 
-                bar.parentElement.style.background = "rgba(255, 0, 60, 0.1)"; 
+                container.style.borderColor = "var(--accent)"; 
+                container.style.color = "var(--accent)"; 
+                container.style.background = "rgba(255, 0, 60, 0.1)"; 
             }, 3500);
         }
 
