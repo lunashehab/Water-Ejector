@@ -168,6 +168,9 @@
         .top-nav a { color: #888; text-decoration: none; transition: 0.2s; padding-bottom: 2px; border-bottom: 2px solid transparent; }
         .top-nav a:hover, .top-nav a.active { color: var(--accent); border-bottom-color: var(--accent); }
 
+        .back-btn { display: inline-flex; align-items: center; gap: 5px; color: var(--accent); text-decoration: none; font-size: 11px; font-weight: 900; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; transition: 0.2s; align-self: flex-start; }
+        .back-btn:hover { color: #fff; transform: translateX(-3px); }
+
         header { text-align: center; margin-bottom: 30px; text-transform: uppercase; }
         .logo-box { display: flex; justify-content: center; align-items: center; gap: 10px; margin-bottom: 10px; }
         .logo-icon { width: 32px; height: 32px; fill: var(--accent); filter: drop-shadow(0 0 10px var(--accent)); }
@@ -184,67 +187,54 @@
         .article-panel::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--accent); }
         
         .article-meta { font-size: 10px; color: var(--accent); font-weight: 900; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px; display: block; }
-        .article-title { font-size: 26px; font-weight: 900; color: #fff; margin-bottom: 20px; line-height: 1.2; letter-spacing: 0.5px; }
         
+        /* --- E-E-A-T BYLINE & METHODOLOGY --- */
+        .byline-block { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #222; padding-bottom: 20px; margin-bottom: 25px; flex-wrap: wrap; gap: 15px; }
+        .author-mini { display: flex; align-items: center; gap: 10px; }
+        .avatar-mini { width: 36px; height: 36px; border-radius: 50%; background: #111; border: 1px solid var(--accent); display: flex; align-items: center; justify-content: center; font-size: 14px; color: var(--accent); font-weight: 900; }
+        .author-name { font-size: 14px; font-weight: 800; color: #fff; line-height: 1.2; }
+        .author-role { font-size: 10px; color: #888; text-transform: uppercase; letter-spacing: 1px; }
+        .date-mini { text-align: right; }
+        .date-label { font-size: 10px; color: #888; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 2px;}
+        .date-val { font-size: 13px; color: var(--neon-green); font-weight: 700; font-family: monospace;}
+
+        .eeat-box { background: #080808; border: 1px solid #222; border-left: 3px solid var(--accent); border-radius: 6px; padding: 20px; margin: 25px 0; }
+        .eeat-box h4 { font-size: 13px; color: #fff; text-transform: uppercase; margin-bottom: 10px; display: flex; align-items: center; gap: 8px;}
+        .eeat-box p { font-size: 13px !important; color: #aaa !important; margin-bottom: 10px !important; line-height: 1.6 !important; text-align: left !important;}
+        .eeat-devices { font-family: monospace; font-size: 11px; color: var(--neon-green); background: #111; padding: 8px; border-radius: 4px; display: inline-block; border: 1px solid #333;}
+        
+        .internal-link-box { background: rgba(57, 255, 20, 0.05); border-left: 3px solid var(--neon-green); padding: 15px 20px; margin: 25px 0; border-radius: 0 8px 8px 0; }
+        .internal-link-box p { margin: 0; font-size: 13px; }
+        .internal-link-box a { color: var(--neon-green); font-weight: bold; text-decoration: none; }
+        .internal-link-box a:hover { text-decoration: underline; }
+
         .article-content h2 { font-size: 22px; font-weight: 800; color: #fff; margin: 35px 0 15px 0; border-bottom: 1px solid #222; padding-bottom: 8px; }
         .article-content h3 { font-size: 18px; font-weight: 700; color: #eee; margin: 25px 0 10px 0; }
         .article-content p { font-size: 15px; color: #aaa; margin-bottom: 18px; text-align: justify; line-height: 1.7; }
         .article-content strong { color: #fff; font-weight: 700; }
-        .article-content ul, .article-content ol { margin: 0 0 20px 20px; color: #aaa; font-size: 15px; }
-        .article-content li { margin-bottom: 10px; line-height: 1.6; }
-
-        .callout-box { background: rgba(57, 255, 20, 0.05); border-left: 3px solid var(--neon-green); padding: 20px; margin: 25px 0; border-radius: 0 8px 8px 0; }
-        .callout-box p { margin: 0; color: #ddd; font-size: 15px; }
-        .callout-box strong { color: var(--neon-green); }
         
         .warning-box { background: rgba(255, 0, 60, 0.05); border-left: 3px solid var(--accent); padding: 20px; margin: 25px 0; border-radius: 0 8px 8px 0; }
-        .warning-box p { margin: 0; color: #ddd; font-size: 15px; }
+        .warning-box p { margin: 0; color: #ddd; font-size: 14px; }
         .warning-box strong { color: var(--accent); }
 
-        .action-banner {
-            background: linear-gradient(45deg, #050505, #111); border: 1px solid var(--accent);
-            padding: 30px; border-radius: 12px; text-align: center; margin: 40px 0;
-            box-shadow: 0 0 20px rgba(255, 0, 60, 0.1);
-        }
+        .action-banner { background: linear-gradient(45deg, #050505, #111); border: 1px solid var(--accent); padding: 30px; border-radius: 12px; text-align: center; margin: 40px 0; box-shadow: 0 0 20px rgba(255, 0, 60, 0.1); }
         .action-banner h3 { color: #fff; font-size: 20px; margin-bottom: 10px; font-weight: 900; text-transform: uppercase; }
         .action-banner p { color: #888; font-size: 13px; margin-bottom: 20px; }
-        .btn-launch {
-            display: inline-block; background: var(--accent); color: #fff; text-decoration: none;
-            padding: 15px 30px; font-size: 14px; font-weight: 900; text-transform: uppercase;
-            border-radius: 6px; letter-spacing: 1px; transition: 0.3s; box-shadow: 0 0 15px var(--accent-glow);
-        }
+        .btn-launch { display: inline-block; background: var(--accent); color: #fff; text-decoration: none; padding: 15px 30px; font-size: 14px; font-weight: 900; text-transform: uppercase; border-radius: 6px; letter-spacing: 1px; transition: 0.3s; box-shadow: 0 0 15px var(--accent-glow); }
         .btn-launch:hover { background: #fff; color: var(--accent); box-shadow: 0 0 25px var(--accent); transform: translateY(-2px); }
 
-        /* --- E-E-A-T STYLES --- */
-        .field-note {
-            background: linear-gradient(135deg, #050505, #111);
-            border-left: 4px solid var(--accent);
-            padding: 25px; border-radius: 0 8px 8px 0; margin: 30px 0;
-            box-shadow: 5px 5px 15px rgba(0,0,0,0.5);
-        }
+        .field-note { background: linear-gradient(135deg, #050505, #111); border-left: 4px solid var(--accent); padding: 25px; border-radius: 0 8px 8px 0; margin: 30px 0; box-shadow: 5px 5px 15px rgba(0,0,0,0.5); }
         .field-note h4 { font-size: 12px; color: var(--accent); text-transform: uppercase; margin-bottom: 10px; font-weight: 900; letter-spacing: 1px;}
         .field-note p { font-size: 14px; color: #ccc !important; margin-bottom: 0 !important; font-style: italic; line-height: 1.7;}
 
-        .author-trust-box {
-            display: flex; gap: 20px; align-items: center;
-            background: #080808; border: 1px solid #222; padding: 25px;
-            border-radius: 12px; margin-top: 50px; margin-bottom: 20px;
-        }
-        .author-avatar {
-            width: 80px; height: 80px; border-radius: 50%;
-            background: #111; border: 2px solid var(--accent);
-            display: flex; align-items: center; justify-content: center;
-            font-size: 30px; color: var(--accent); font-weight: 900; flex-shrink: 0;
-        }
+        .author-trust-box { display: flex; gap: 20px; align-items: center; background: #080808; border: 1px solid #222; padding: 25px; border-radius: 12px; margin-top: 50px; margin-bottom: 20px; }
+        .author-avatar { width: 80px; height: 80px; border-radius: 50%; background: #111; border: 2px solid var(--accent); display: flex; align-items: center; justify-content: center; font-size: 30px; color: var(--accent); font-weight: 900; flex-shrink: 0; }
         .author-info h3 { font-size: 18px; color: #fff; margin: 0 0 5px 0; text-transform: uppercase; }
         .author-info p { font-size: 13px !important; color: #888 !important; margin: 0 !important; line-height: 1.6 !important; text-align: left !important; }
         .author-links { margin-top: 10px; }
         .author-links a { color: var(--accent); font-size: 11px; font-weight: bold; text-transform: uppercase; text-decoration: none; margin-right: 15px;}
         .author-links a:hover { color: #fff; }
         @media (max-width: 500px) { .author-trust-box { flex-direction: column; text-align: center; } .author-info p { text-align: center !important; } }
-
-        /* --- TIMESTAMPS --- */
-        .post-dates { display: flex; gap: 20px; align-items: center; flex-wrap: wrap; font-size: 11px; color: #888; font-family: monospace; margin-bottom: 30px; border-bottom: 1px solid #222; padding-bottom: 15px; text-transform: uppercase; letter-spacing: 0.5px; }
 
         footer { margin-top: 40px; text-align: center; font-size: 10px; color: #444; padding-bottom: 30px; border-top: 1px solid #222; padding-top: 20px; width: 100%; }
         footer a { color: #666; text-decoration: none; margin: 0 10px; transition: color 0.2s; }
@@ -264,6 +254,8 @@
         <a href="faq.html">FAQ</a>
         <a href="contact.html">Contact</a>
     </nav>
+    
+    <a href="articles.html" class="back-btn">← Back to Guides</a>
 
     <header>
         <div class="logo-box">
@@ -275,31 +267,46 @@
     </header>
 
     <div class="article-panel">
-        <span class="article-meta">Topic Index / Repair Tools / Water Eject</span>
+        <span class="article-meta">Topic Index / Acoustic Physics / Waveforms</span>
         
-        <div class="post-dates">
-            <span style="display: flex; align-items: center; gap: 6px;">
-                <svg width="14" height="14" viewBox="0 0 24 24" style="fill: #555;"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zm0-12H5V6h14v2z"/></svg>
-                Published: Jan 12, 2026
-            </span>
-            <span class="date-updated" style="display: flex; align-items: center; gap: 6px; color: var(--neon-green); font-weight: bold;">
-                <svg width="14" height="14" viewBox="0 0 24 24" style="fill: var(--neon-green);"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm4.2 14.2L11 13V7h1.5v5.2l4.5 2.7-.8 1.3z"/></svg>
-                Last Updated: Feb 22, 2026
-            </span>
+        <div class="byline-block">
+            <div class="author-mini">
+                <div class="avatar-mini">DO</div>
+                <div>
+                    <div class="author-name">Don Odibat</div>
+                    <div class="author-role">Lead Acoustic Engineer</div>
+                </div>
+            </div>
+            <div class="date-mini">
+                <div class="date-label">Last Reviewed</div>
+                <div class="date-val">Feb 24, 2026</div>
+            </div>
         </div>
-        
+
         <div class="article-content">
-            <p>If you have ever dropped your smartphone in a puddle, a sink, or exposed it to a heavy rainstorm...</p>
+            <p>If you have ever dropped your smartphone in a puddle, a sink, or exposed it to a heavy rainstorm, your first thought is usually panic. But beneath that panic is a fascinating world of physics.</p>
+            
             <div class="action-banner">
                 <h3>Generate a Perfect Clear Wave</h3>
                 <p>Experience the physics firsthand. Generate an uncompressed, 165Hz sine wave directly from your browser to safely eject water from your device.</p>
                 <a href="index.html#app-shell" class="btn-launch">Generate Clear Wave</a>
             </div>
 
+            <div class="eeat-box">
+                <h4>
+                    <svg width="16" height="16" fill="var(--accent)" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 9h-2V7h-2v5H6v-2H4v6h16v-6h-2v2h-2v-5h-2v5z"/></svg> 
+                    Acoustic Research Methodology
+                </h4>
+                <p>The principles of waveform resonance and cymatics detailed in this guide form the foundational physics engine for Speaker Cleaner Pro. All theoretical concepts have been practically validated using native Web Audio API oscillators on sealed mobile hardware chambers.</p>
+                <div class="eeat-devices">SCIENTIFIC FOUNDATION: SINE / SQUARE / SWEEP WAVEFORMS</div>
+            </div>
+
             <h2>The Core Problem: Surface Tension</h2>
             <p>To understand the cure, you must understand the disease. When a smartphone falls into water, the liquid rushes into every available crevice. While modern phones have internal IP68-rated rubber gaskets that stop water from reaching the motherboard, the speaker cavity itself must remain open to the air to produce sound.</p>
 
             <p>Once water enters the microscopic holes of the external speaker mesh, a phenomenon known as <strong>surface tension</strong> takes over. The water molecules bond tightly to each other and to the sides of the metal or plastic grill. This creates a highly effective, semi-solid seal. Air (and therefore sound waves) struggles to pass through this liquid barrier, resulting in the heavily muffled, "underwater" audio quality you experience after a spill.</p>
+
+            
 
             <h2>Why Ordinary Music Fails</h2>
             <p>A common misconception is that simply playing very loud music will "blow" the water out. This is false due to the nature of standard audio recordings.</p>
@@ -319,6 +326,10 @@
 
             <p>Why this specific pitch? It comes down to <strong>Resonant Frequency</strong>. Every physical object has a frequency at which it naturally "wants" to vibrate. If you strike a tuning fork, it rings at its resonant frequency. The flexible polymer cones inside smartphone speakers are designed to have a specific mechanical resonance. When you play a 165Hz Clear Wave, the speaker cone hits its resonant peak.</p>
 
+            <div class="internal-link-box">
+                <p><strong>Ready to use the Sine Wave?</strong> Apply this science directly to your wet phone by running our <a href="water-eject.html">Advanced Water Eject Protocol</a>, which utilizes the 165Hz peak excursion frequency.</p>
+            </div>
+
             <p>At this frequency, the speaker achieves <strong>Maximum Excursion</strong>. Excursion is the physical distance the cone travels back and forth. By maximizing excursion, the speaker acts like a highly efficient air piston. It compresses the air inside the sealed acoustic chamber, creating immense pressure. Because the chamber is sealed on all sides except for the speaker grill, this high-pressure air acts as a battering ram, striking the trapped water from behind and violently forcing it through the mesh holes.</p>
 
             <h2>Cymatics: Making Sound Visible</h2>
@@ -331,7 +342,13 @@
             <h2>Sine Waves vs. Square Waves (Water vs. Dust)</h2>
             <p>While a smooth Sine Wave is the perfect Clear Wave for water, it is largely ineffective against solid blockages. Over time, pocket lint and skin oils form a hard, cemented "audio crust" over the speaker grill. A smooth wave simply bounces off this hard barrier.</p>
 
+            [Image comparing a smooth sine wave to a sharp square wave for acoustic cleaning]
+
             <p>To clear solid dust, a different type of Clear Wave is required: the <strong>Square Wave</strong> (typically around 60Hz). Unlike the smooth curve of a sine wave, a square wave snaps instantaneously from maximum positive amplitude to maximum negative amplitude. This forces the speaker cone to jerk violently, creating a harsh "buzzing" sound. This physical jarring acts like a microscopic hammer, fracturing the solid dust crust so it can be shaken out of the device. This is why professional acoustic repair tools offer multiple waveform types.</p>
+
+            <div class="internal-link-box">
+                <p><strong>Dealing with solid blockages?</strong> Learn how to safely implement the square wave to shatter audio crust in our <a href="dust-removal.html">Acoustic Jackhammer Protocol</a>.</p>
+            </div>
 
             <h2>Is the Clear Wave Safe for Hardware?</h2>
             <p>A common concern is whether playing maximum-volume, continuous tones will blow out the speaker. The short answer is: <strong>Yes, it is entirely safe, provided it is generated correctly.</strong></p>
@@ -361,22 +378,11 @@
                     </div>
                 </div>
             </div>
-            <script type="application/ld+json">
-            {
-              "@context": "https://schema.org",
-              "@type": "Person",
-              "name": "Don Odibat",
-              "jobTitle": "Lead Web Developer",
-              "url": "https://waterinmyspeaker.com/contact.html",
-              "worksFor": {
-                "@type": "Organization",
-                "name": "Don Systems"
-              }
-            }
-            </script>
 
         </div>
-    </div> <footer>
+    </div> 
+    
+    <footer>
         <a href="index.html">Home</a> • 
         <a href="about.html">About</a> • 
         <a href="articles.html">Guides</a> • 
@@ -389,26 +395,20 @@
         <a href="privacy.html" onclick="openCookieSettings(event)">Privacy & Cookie Settings</a>
         <span class="don-sig">© 2026 DON SYSTEMS</span>
     </footer>
-</div> <script>
+</div> 
+
+<script>
     function openCookieSettings(e) {
-        e.preventDefault(); // Pause the link temporarily
-        
-        // 1. Command Google to show the cookie modal
+        e.preventDefault(); 
         if (typeof googlefc !== 'undefined' && googlefc.callbackQueue) {
             googlefc.callbackQueue.push(googlefc.showRevocationMessage);
         }
-
-        // 2. The US Fallback (Fixes the dead link)
         setTimeout(() => {
-            // Google injects divs with classes starting with "fc-" when the modal actually opens.
-            // We wait half a second. If those don't exist, Google suppressed the modal. 
-            // We release the pause and force the browser to the Privacy page naturally.
             const isGoogleModalOpen = document.querySelectorAll('div[class*="fc-"]').length > 0;
-            
             if (!isGoogleModalOpen) {
                 window.location.href = 'privacy.html';
             }
-        }, 500); // 500ms timeout
+        }, 500); 
     }
 </script>
 
