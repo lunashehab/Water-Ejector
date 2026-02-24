@@ -4,16 +4,45 @@
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
+      
+      // Default DENY for EEA, UK, and Switzerland
       gtag('consent', 'default', {
-        'ad_storage': 'denied', 'ad_user_data': 'denied', 'ad_personalization': 'denied', 'analytics_storage': 'denied',
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied',
+        'analytics_storage': 'denied',
         'region': ['AT', 'BE', 'BG', 'HR', 'CY', 'CZ', 'DK', 'EE', 'FI', 'FR', 'DE', 'GR', 'HU', 'IS', 'IE', 'IT', 'LV', 'LI', 'LT', 'LU', 'MT', 'NL', 'NO', 'PL', 'PT', 'RO', 'SK', 'SI', 'ES', 'SE', 'GB', 'CH']
       });
+
+      // Default GRANT for the rest of the world
       gtag('consent', 'default', {
-        'ad_storage': 'granted', 'ad_user_data': 'granted', 'ad_personalization': 'granted', 'analytics_storage': 'granted'
+        'ad_storage': 'granted',
+        'ad_user_data': 'granted',
+        'ad_personalization': 'granted',
+        'analytics_storage': 'granted'
       });
     </script>
+
     <script async src="https://fundingchoicesmessages.google.com/i/pub-5129097020907805?ers=1"></script>
-    <script>(function() { function signalGooglefcPresent() { if (!window.frames['googlefcPresent']) { if (document.body) { const iframe = document.createElement('iframe'); iframe.style = 'width: 0; height: 0; border: none; z-index: -1000; left: -1000px; top: -1000px;'; iframe.style.display = 'none'; iframe.name = 'googlefcPresent'; document.body.appendChild(iframe); } else { setTimeout(signalGooglefcPresent, 0); } } } signalGooglefcPresent(); })();</script>
+    <script>
+      (function() {
+        function signalGooglefcPresent() {
+          if (!window.frames['googlefcPresent']) {
+            if (document.body) {
+              const iframe = document.createElement('iframe');
+              iframe.style = 'width: 0; height: 0; border: none; z-index: -1000; left: -1000px; top: -1000px;';
+              iframe.style.display = 'none';
+              iframe.name = 'googlefcPresent';
+              document.body.appendChild(iframe);
+            } else {
+              setTimeout(signalGooglefcPresent, 0);
+            }
+          }
+        }
+        signalGooglefcPresent();
+      })();
+    </script>
+
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5129097020907805" crossorigin="anonymous"></script>
 
     <meta charset="UTF-8" />
@@ -242,9 +271,7 @@
             </div>
 
         </div>
-    </div>
-
-    <footer>
+    </div> <footer>
         <a href="index.html">Home</a> • 
         <a href="about.html">About</a> • 
         <a href="articles.html">Guides</a> • 
@@ -257,7 +284,16 @@
         <a href="privacy.html" onclick="openCookieSettings(event)">Privacy & Cookie Settings</a>
         <span class="don-sig">© 2026 DON SYSTEMS</span>
     </footer>
-</div>
+</div> <script>
+    function openCookieSettings(e) {
+        // Check if the Google CMP is loaded and available
+        if (typeof googlefc !== 'undefined' && googlefc.callbackQueue) {
+            e.preventDefault(); // Stops the browser from loading privacy.html
+            googlefc.callbackQueue.push(googlefc.showRevocationMessage); // Opens the modal instead
+        }
+        // If googlefc is missing, it automatically falls back to naturally opening privacy.html!
+    }
+</script>
 
 <script>
     let audioCtxAndroid;
@@ -348,6 +384,9 @@
         }, 15000); // 15 second cycle
     });
 </script>
+
+<script data-collect-dnt="true" async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
+<noscript><img src="https://queue.simpleanalyticscdn.com/noscript.gif?collect-dnt=true" alt="" referrerpolicy="no-referrer-when-downgrade"/></noscript>
 
 </body>
 </html>
