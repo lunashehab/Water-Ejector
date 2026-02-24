@@ -287,12 +287,24 @@
     </footer>
 </div> <script>
     function openCookieSettings(e) {
-        // Check if the Google CMP is loaded and available
+        e.preventDefault(); // Pause the link temporarily
+        
+        // 1. Command Google to show the cookie modal
         if (typeof googlefc !== 'undefined' && googlefc.callbackQueue) {
-            e.preventDefault(); // Stops the browser from loading privacy.html
-            googlefc.callbackQueue.push(googlefc.showRevocationMessage); // Opens the modal instead
+            googlefc.callbackQueue.push(googlefc.showRevocationMessage);
         }
-        // If googlefc is missing, it automatically falls back to naturally opening privacy.html!
+
+        // 2. The US Fallback (Fixes the dead link)
+        setTimeout(() => {
+            // Google injects divs with classes starting with "fc-" when the modal actually opens.
+            // We wait half a second. If those don't exist, Google suppressed the modal. 
+            // We release the pause and force the browser to the Privacy page naturally.
+            const isGoogleModalOpen = document.querySelectorAll('div[class*="fc-"]').length > 0;
+            
+            if (!isGoogleModalOpen) {
+                window.location.href = 'privacy.html';
+            }
+        }, 500); // 500ms timeout
     }
 </script>
 
