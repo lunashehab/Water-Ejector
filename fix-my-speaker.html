@@ -196,10 +196,6 @@
         .callout-box { background: rgba(57, 255, 20, 0.05); border-left: 3px solid var(--neon-green); padding: 20px; margin: 25px 0; border-radius: 0 8px 8px 0; }
         .callout-box p { margin: 0; color: #ddd; font-size: 15px; }
         .callout-box strong { color: var(--neon-green); }
-        
-        .warning-box { background: rgba(255, 0, 60, 0.05); border-left: 3px solid var(--accent); padding: 20px; margin: 25px 0; border-radius: 0 8px 8px 0; }
-        .warning-box p { margin: 0; color: #ddd; font-size: 15px; }
-        .warning-box strong { color: var(--accent); }
 
         .action-banner {
             background: linear-gradient(45deg, #050505, #111); border: 1px solid var(--accent);
@@ -242,6 +238,9 @@
         .author-links a { color: var(--accent); font-size: 11px; font-weight: bold; text-transform: uppercase; text-decoration: none; margin-right: 15px;}
         .author-links a:hover { color: #fff; }
         @media (max-width: 500px) { .author-trust-box { flex-direction: column; text-align: center; } .author-info p { text-align: center !important; } }
+
+        /* --- TIMESTAMPS --- */
+        .post-dates { display: flex; gap: 20px; align-items: center; flex-wrap: wrap; font-size: 11px; color: #888; font-family: monospace; margin-bottom: 30px; border-bottom: 1px solid #222; padding-bottom: 15px; text-transform: uppercase; letter-spacing: 0.5px; }
 
         footer { margin-top: 40px; text-align: center; font-size: 10px; color: #444; padding-bottom: 30px; border-top: 1px solid #222; padding-top: 20px; width: 100%; }
         footer a { color: #666; text-decoration: none; margin: 0 10px; transition: color 0.2s; }
@@ -286,7 +285,7 @@
         </div>
         
         <div class="article-content">
-            <p>If you have ever dropped your smartphone in a puddle, a sink, or exposed it to a heavy rainstorm...
+            <p>If you have ever dropped your smartphone in a puddle, a sink, or exposed it to a heavy rainstorm...</p>
             <div class="action-banner">
                 <h3>Skip the Reading and Fix It Now</h3>
                 <p>If your phone was just dropped in water or sounds completely muffled, run our diagnostic cleaning tool right now to forcefully clear the speaker mesh.</p>
@@ -391,7 +390,7 @@
             </script>
 
         </div>
-    <footer>
+    </div> <footer>
         <a href="index.html">Home</a> • 
         <a href="about.html">About</a> • 
         <a href="articles.html">Guides</a> • 
@@ -402,8 +401,7 @@
         <a href="privacy.html" onclick="openCookieSettings(event)">Privacy & Cookie Settings</a>
         <span class="don-sig">© 2026 DON SYSTEMS</span>
     </footer>
-</script>
-<script>
+</div> <script>
     function openCookieSettings(e) {
         // Check if the Google CMP is loaded and available
         if (typeof googlefc !== 'undefined' && googlefc.callbackQueue) {
