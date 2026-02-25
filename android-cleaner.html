@@ -159,6 +159,9 @@
         .article-content p { font-size: 15px; color: #aaa; margin-bottom: 18px; text-align: justify; line-height: 1.7; }
         .article-content strong { color: #fff; font-weight: 700; }
         
+        /* --- IMAGE STYLES --- */
+        .article-img { width: 100%; border-radius: 8px; border: 1px solid #333; margin: 20px 0; box-shadow: 0 5px 15px rgba(0,0,0,0.5); display: block; }
+        
         .warning-box { background: rgba(255, 0, 60, 0.05); border-left: 3px solid var(--accent); padding: 20px; margin: 25px 0; border-radius: 0 8px 8px 0; }
         .warning-box p { margin: 0; color: #ddd; font-size: 14px; }
         
@@ -262,7 +265,7 @@
 
             <p>Because the physical dimensions of the speaker cavities differ, their <strong>mechanical resonant frequencies</strong> also differ. If you play a 165Hz sine wave on a device that resonates best at 285Hz, the speaker diaphragm will not achieve the maximum "excursion" (movement) required to punch water out of the micro-mesh.</p>
 
-            
+            <img src="android-speaker-hardware-fragmentation.jpg" alt="Diagram showing different speaker cavity sizes and resonant frequencies across Android devices like Samsung, Pixel, and Xiaomi" class="article-img">
 
             <p>Our Android Resonance Optimizer actively reads your dropdown selection and uses the browser's Web Audio API to dynamically shift the output frequency to match the exact physical tuning of your manufacturer. This guarantees maximum acoustic pressure without digital clipping or hardware strain.</p>
 
@@ -312,7 +315,9 @@
             </div>
 
         </div>
-    </div> <footer>
+    </div> 
+    
+    <footer>
         <a href="index.html">Home</a> • 
         <a href="about.html">About</a> • 
         <a href="articles.html">Guides</a> • 
@@ -325,7 +330,9 @@
         <a href="privacy.html" onclick="openCookieSettings(event)">Privacy & Cookie Settings</a>
         <span class="don-sig">© 2026 DON SYSTEMS</span>
     </footer>
-</div> <script>
+</div> 
+
+<script>
     function openCookieSettings(e) {
         e.preventDefault(); 
         if (typeof googlefc !== 'undefined' && googlefc.callbackQueue) {
