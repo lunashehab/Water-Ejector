@@ -170,16 +170,6 @@
         .page-title { font-size: 20px; font-weight: 900; color: var(--accent); letter-spacing: 1px; margin-bottom: 10px; }
         .page-desc { font-size: 13px; color: #888; max-width: 700px; margin: 0 auto; text-transform: none; font-weight: 500;}
 
-        /* --- E-E-A-T BYLINE --- */
-        .byline-block { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #222; padding-bottom: 20px; margin-bottom: 25px; flex-wrap: wrap; gap: 15px; }
-        .author-mini { display: flex; align-items: center; gap: 10px; }
-        .avatar-mini { width: 36px; height: 36px; border-radius: 50%; background: #111; border: 1px solid var(--accent); display: flex; align-items: center; justify-content: center; font-size: 14px; color: var(--accent); font-weight: 900; }
-        .author-name { font-size: 14px; font-weight: 800; color: #fff; line-height: 1.2; }
-        .author-role { font-size: 10px; color: #888; text-transform: uppercase; letter-spacing: 1px; }
-        .date-mini { text-align: right; }
-        .date-label { font-size: 10px; color: #888; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 2px;}
-        .date-val { font-size: 13px; color: var(--neon-green); font-weight: 700; font-family: monospace;}
-
         /* --- EDITORIAL INTRO --- */
         .editorial-intro {
             background: rgba(10, 10, 10, 0.9); border: 1px solid var(--border);
@@ -189,6 +179,9 @@
         .editorial-intro h2 { font-size: 22px; font-weight: 900; color: #fff; margin-bottom: 15px; text-transform: uppercase;}
         .editorial-intro p { font-size: 14px; color: #aaa; line-height: 1.8; margin-bottom: 15px; text-align: justify;}
         .editorial-intro strong { color: #fff; }
+        
+        /* --- IMAGE STYLES --- */
+        .article-img { width: 100%; border-radius: 8px; border: 1px solid #333; margin: 20px 0; box-shadow: 0 5px 15px rgba(0,0,0,0.5); display: block; }
 
         /* --- CHANGELOG / UPDATE CADENCE --- */
         .changelog-box {
@@ -270,6 +263,16 @@
         .author-links a:hover { color: #fff; }
         @media (max-width: 500px) { .author-trust-box { flex-direction: column; text-align: center; } .author-info p { text-align: center; } }
 
+        /* --- E-E-A-T BYLINE --- */
+        .byline-block { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #222; padding-bottom: 20px; margin-bottom: 25px; flex-wrap: wrap; gap: 15px; }
+        .author-mini { display: flex; align-items: center; gap: 10px; }
+        .avatar-mini { width: 36px; height: 36px; border-radius: 50%; background: #111; border: 1px solid var(--accent); display: flex; align-items: center; justify-content: center; font-size: 14px; color: var(--accent); font-weight: 900; }
+        .author-name { font-size: 14px; font-weight: 800; color: #fff; line-height: 1.2; }
+        .author-role { font-size: 10px; color: #888; text-transform: uppercase; letter-spacing: 1px; }
+        .date-mini { text-align: right; }
+        .date-label { font-size: 10px; color: #888; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 2px;}
+        .date-val { font-size: 13px; color: var(--neon-green); font-weight: 700; font-family: monospace;}
+
         footer { margin-top: 20px; text-align: center; font-size: 10px; color: #444; padding-bottom: 30px; border-top: 1px solid #222; padding-top: 20px; width: 100%; }
         footer a { color: #666; text-decoration: none; margin: 0 10px; transition: color 0.2s; }
         footer a:hover { color: var(--accent); }
@@ -317,7 +320,7 @@
         <h2>The Fight Against Hardware Degradation</h2>
         <p>Smartphones are subjected to incredibly hostile environments. From high-humidity bathrooms and sudden drops in swimming pools to the silent, daily accumulation of metallic pocket lint, your device's acoustic hardware is constantly under attack. When audio quality degrades, the tech industry's default response is to charge you $150 for a "blown speaker" replacement.</p>
         
-        
+        <img src="smartphone-hardware-degradation.jpg" alt="Smartphone internal acoustic hardware showing speaker mesh degradation from dust and water" class="article-img">
         
         <p>As a web developer working remotely from cafes, beaches, and co-working spaces, I realized that <strong>80% of perceived hardware failures are actually reversible physical blockages</strong>. The guides in this directory are the culmination of years spent testing acoustic displacement theories, reverse-engineering mobile hardware arrays, and writing clean, native Web Audio API code. This is not a list of generic tips; this is a highly technical, actively maintained knowledge base designed to help you bypass predatory repair shops and fix your own hardware safely.</p>
 
@@ -374,7 +377,7 @@
         <div class="cat-header"><span class="cat-icon">🛠️</span> Diagnostics & Troubleshooting</div>
         <p class="cat-editorial">Not all audio issues are caused by water. Sometimes, a speaker crackles due to digital clipping, and sometimes it sounds muffled due to software ghosts. Before you assume the physical voice coil is torn, utilize these diagnostic routines to isolate the exact cause of your audio degradation.</p>
         
-        
+        <img src="digital-audio-waveform-clipping.jpg" alt="Digital audio waveform clipping and distortion analysis chart" class="article-img">
         
         <div class="guide-grid">
             <a href="fix-my-speaker.html" class="guide-card">
