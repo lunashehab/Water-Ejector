@@ -404,6 +404,9 @@
         .step-title { font-size: 11px; font-weight: 800; color: #fff; margin-bottom: 4px; text-transform: uppercase;}
         .step-desc { font-size: 10px; color: #888; line-height: 1.5; }
 
+        /* --- IMAGE STYLES --- */
+        .article-img { width: 100%; border-radius: 8px; border: 1px solid #333; margin: 15px 0; box-shadow: 0 5px 15px rgba(0,0,0,0.5); display: block; }
+
         /* --- SYSTEM LOG --- */
         #system-log {
             font-family: monospace; font-size: 9px; color: var(--neon-green);
@@ -824,6 +827,9 @@
                 </div>
             </div>
         </div>
+        
+        <img src="how-speaker-cleaner-works.jpg" alt="Diagram showing acoustic sound waves ejecting water droplets from a smartphone speaker grill" class="article-img">
+        
         <p style="font-size: 11px; color: #aaa; margin-top: 15px; line-height: 1.6; text-align: justify;">Speaker Cleaner Pro utilizes your browser's native HTML5 Web Audio API. This means the soundwaves are generated locally on your device's processor in real-time. We do not use highly-compressed, pre-recorded MP3 files that can cause digital clipping and harm your voice coil.</p>
         
         <p style="font-size: 11px; color: #aaa; margin-top: 15px; line-height: 1.6; text-align: justify;">By relying on pure mathematical waveforms, the tool stays within the safe amplitude limits defined by your operating system's audio drivers.</p>
@@ -923,8 +929,6 @@
             <div class="hub-content">
                 <p>Understanding how the <strong>Speaker Cleaner Pro</strong> operates requires an analysis of fluid dynamics and resonant frequencies. When a mobile device is submerged, water enters the speaker's acoustic chamber. Due to <strong>surface tension</strong> and the microscopic nature of the speaker grill ports, this water becomes "locked" in place. Standard audio cannot displace this mass because the vibration lacks the necessary kinetic force.</p>
                 
-                
-                
                 <h3>Frequency Resonance Theory</h3>
                 <p>Every mechanical diaphragm has a resonant frequency. Our primary <strong>165Hz Sine Wave</strong> is engineered to match the mechanical resonance of modern micro-speakers found in flagship smartphones. By vibrating the diaphragm at its resonant peak, we create a high-pressure air cushion behind the water. This pressure overcomes the surface tension, physically forcing droplets through the mesh holes at high velocity.</p>
                 
@@ -947,6 +951,8 @@
             </div>
             <div class="hub-content">
                 <p>Not all speakers are created equal. High-end devices like the <strong>Samsung S24 Ultra</strong> or <strong>iPhone 16 Pro</strong> use specialized waterproof membranes. However, once water is trapped <em>outside</em> that membrane but <em>inside</em> the grill, audio quality drops by up to 80%.</p>
+                
+                <img src="supported-devices-speaker-cleaner.jpg" alt="Apple iPhone, Samsung Galaxy, and AirPods showing compatibility with Speaker Cleaner Pro" class="article-img">
                 
                 <h3>iPhone "Water Eject" Optimization</h3>
                 <p>Apple’s acoustic design relies on a vertical chamber. For best results, we recommend using the <strong>Apple 165Hz Mode</strong> while holding the phone vertically. Gravity acts as a secondary force, assisting the sonic waves in pulling the water down through the bottom ports. Avoid using high-heat hair dryers, as this can melt the IP68-rated adhesive seals.</p>
@@ -1563,7 +1569,7 @@
         else if (/Mac/i.test(ua)) device = "Macintosh Core";
 
         const bar = document.getElementById('device-name');
-        const container = document.getElementById('smart-device-bar'); // Target the container for styling
+        const container = document.getElementById('smart-device-bar'); 
         
         if (bar && container) {
             setTimeout(() => { bar.innerText = "DETECTED: " + device; }, 1500);
