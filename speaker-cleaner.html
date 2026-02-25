@@ -216,6 +216,9 @@
         .article-content ul, .article-content ol { margin: 0 0 20px 20px; color: #aaa; font-size: 15px; }
         .article-content li { margin-bottom: 10px; line-height: 1.6; }
 
+        /* --- IMAGE STYLES --- */
+        .article-img { width: 100%; border-radius: 8px; border: 1px solid #333; margin: 20px 0; box-shadow: 0 5px 15px rgba(0,0,0,0.5); display: block; }
+
         .callout-box { background: rgba(57, 255, 20, 0.05); border-left: 3px solid var(--neon-green); padding: 20px; margin: 25px 0; border-radius: 0 8px 8px 0; }
         .callout-box p { margin: 0; color: #ddd; font-size: 15px; }
         .callout-box strong { color: var(--neon-green); }
@@ -234,7 +237,6 @@
         }
         .btn-launch:hover { background: #fff; color: var(--accent); box-shadow: 0 0 25px var(--accent); transform: translateY(-2px); }
 
-        /* --- E-E-A-T STYLES --- */
         .field-note {
             background: linear-gradient(135deg, #050505, #111);
             border-left: 4px solid var(--accent);
@@ -280,7 +282,7 @@
         <a href="faq.html">FAQ</a>
         <a href="contact.html">Contact</a>
     </nav>
-
+    
     <a href="articles.html" class="back-btn">← Back to Guides</a>
 
     <header>
@@ -330,7 +332,7 @@
             <h2>The Anatomy of Audio Degradation</h2>
             <p>To understand why you need a speaker cleaner, you must understand the environment your phone lives in. The bottom edge of your smartphone, where the primary speaker is usually located, is constantly exposed to hostile elements.</p>
             
-            
+            <img src="smartphone-speaker-cross-section.jpg" alt="Cross section of a smartphone speaker showing the voice coil, diaphragm, and protective mesh grill" class="article-img">
             
             <h3>The Magnetic Magnetism Trap</h3>
             <p>Inside your phone's speaker is a voice coil. To produce sound, this coil generates a rapidly shifting electromagnetic field. While this is great for moving the speaker diaphragm, it creates an unintended side effect: your speaker is a literal magnet. Every time you set your phone down on a dusty table, near a workbench, or even in a cup holder, microscopic metallic dust particles are actively pulled into the speaker grill.</p>
@@ -373,7 +375,7 @@
             <h3>1. The Low-Frequency Square Wave (The Jackhammer)</h3>
             <p>When dealing with hardened dust and lint, the tool initiates a low-frequency <strong>Square Wave</strong> (typically around 60Hz to 100Hz). A normal sound wave (a sine wave) curves smoothly up and down. A square wave, however, snaps violently from maximum positive amplitude to maximum negative amplitude.</p>
             
-            [Image comparing a smooth sine wave to a sharp square wave for acoustic cleaning]
+            <img src="sine-wave-vs-square-wave.jpg" alt="Visual comparison of a smooth sine wave versus a sharp square wave for acoustic speaker cleaning" class="article-img">
             
             <p>This creates a harsh, physical "clicking" or "buzzing" impact on the speaker cone. This physical jarring fractures the hardened audio crust, breaking the solid dirt into smaller, manageable particles.</p>
 
