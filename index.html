@@ -205,6 +205,11 @@
             --text-main: #ffffff;
             --text-muted: #666666;
             --border: #333333;
+            /* Social Colors */
+            --fb-color: #1877F2;
+            --rd-color: #FF4500;
+            --tw-color: #1DA1F2;
+            --wa-color: #25D366;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
@@ -530,14 +535,33 @@
         .dir-tag:hover { border-color: var(--accent); color: #fff; background: rgba(255, 0, 60, 0.1); }
         .dir-category { width: 100%; text-align: left; font-size: 10px; color: #fff; font-weight: 700; margin: 15px 0 5px 0; border-bottom: 1px solid #222; padding-bottom: 5px; }
 
-        /* --- FOOTER & SHARE --- */
-        .btn-share {
-            width: 100%; background: #fff; border: none; color: #000; padding: 15px; border-radius: 8px;
-            font-weight: 900; text-transform: uppercase; cursor: pointer;
-            box-shadow: 0 0 20px rgba(255,255,255,0.2); margin-bottom: 20px; display: flex; align-items: center; justify-content: center; gap: 10px;
+        /* --- FOOTER & NEW SOCIAL SHARE BUTTONS --- */
+        .social-share-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        .social-btn {
+            display: flex; align-items: center; justify-content: center; gap: 8px;
+            padding: 12px; border-radius: 8px; font-size: 10px; font-weight: 900; text-transform: uppercase;
+            text-decoration: none; color: #fff; border: 1px solid #333; background: #111;
+            transition: 0.3s; cursor: pointer;
+        }
+        .social-btn svg { width: 16px; height: 16px; fill: currentColor; }
+        
+        .social-btn.fb:hover { background: var(--fb-color); border-color: var(--fb-color); box-shadow: 0 0 15px rgba(24,119,242,0.4); }
+        .social-btn.rd:hover { background: var(--rd-color); border-color: var(--rd-color); box-shadow: 0 0 15px rgba(255,69,0,0.4); }
+        .social-btn.tw:hover { background: var(--tw-color); border-color: var(--tw-color); box-shadow: 0 0 15px rgba(29,161,242,0.4); }
+        .social-btn.wa:hover { background: var(--wa-color); border-color: var(--wa-color); box-shadow: 0 0 15px rgba(37,211,102,0.4); }
+
+        .btn-share-copy {
+            width: 100%; background: transparent; border: 1px solid var(--accent); color: var(--accent); 
+            padding: 15px; border-radius: 8px; font-weight: 900; text-transform: uppercase; cursor: pointer;
+            margin-bottom: 20px; display: flex; align-items: center; justify-content: center; gap: 10px;
             transition: 0.2s; letter-spacing: 1px; font-size: 11px;
         }
-        .btn-share:hover { background: var(--accent); color: #fff; box-shadow: 0 0 20px var(--accent); }
+        .btn-share-copy:hover { background: var(--accent); color: #000; box-shadow: 0 0 20px var(--accent-glow); }
         
         .footer-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 15px; }
         .btn-mini {
@@ -885,9 +909,29 @@
     <div class="panel">
         <div class="panel-title"><span id="lbl-trans">Transmission</span> <span id="lbl-uplink">Uplink</span></div>
         <img src="transmission-uplink-sharing.jpg" alt="Graphic showing wireless transmission and sharing of the Phone Speaker Cleaner tool between mobile devices" class="article-img" style="margin-top: 0; margin-bottom: 15px;">
-        <button class="btn-share" onclick="shareSite()" id="btn-share" aria-label="Share Site">
-            <svg style="width:16px;height:16px;fill:currentColor;margin-right:5px;" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.66 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92s-1.31-2.92-2.92-2.92z"/></svg>
-            <span id="lbl-btn-share">SEND TO A FRIEND</span>
+        
+        <div class="social-share-grid">
+            <a href="#" onclick="openSocial(event, 'fb')" class="social-btn fb">
+                <svg viewBox="0 0 24 24"><path d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.312h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.325-1.325z"/></svg>
+                Facebook
+            </a>
+            <a href="#" onclick="openSocial(event, 'tw')" class="social-btn tw">
+                <svg viewBox="0 0 24 24"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723 10.054 10.054 0 01-3.127 1.184 4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/></svg>
+                Twitter
+            </a>
+            <a href="#" onclick="openSocial(event, 'rd')" class="social-btn rd">
+                <svg viewBox="0 0 24 24"><path d="M24 11.779c0-1.459-1.192-2.645-2.657-2.645-.715 0-1.363.286-1.84.746-1.81-1.191-4.259-1.949-6.971-2.046l1.483-4.669 4.016.941-.006.058c0 1.193.975 2.163 2.174 2.163 1.198 0 2.172-.97 2.172-2.163s-.975-2.164-2.172-2.164c-.92 0-1.704.574-2.021 1.379l-4.329-1.015c-.189-.046-.381.063-.44.249l-1.654 5.207c-2.838.034-5.409.798-7.3 2.025-.474-.438-1.103-.712-1.799-.712-1.465 0-2.656 1.187-2.656 2.646 0 .97.533 1.811 1.317 2.271-.052.282-.086.567-.086.857 0 3.911 4.808 7.093 10.719 7.093s10.72-3.182 10.72-7.093c0-.274-.029-.544-.075-.81.832-.447 1.405-1.312 1.405-2.318zm-17.224 1.816c0-.868.71-1.575 1.582-1.575.872 0 1.581.707 1.581 1.575s-.709 1.574-1.581 1.574-1.582-.706-1.582-1.574zm9.061 4.669c-1.797 1.715-5.486 1.684-5.547 1.684-.06 0-3.774.063-5.569-1.657-.224-.216-.236-.57-.025-.806.21-.237.558-.255.782-.038 1.479 1.408 4.382 1.341 4.811 1.341.406 0 3.308.035 4.774-1.368.216-.208.568-.184.78.046.213.232.193.585-.006.8zm-.253-3.095c-.872 0-1.581-.706-1.581-1.574 0-.868.709-1.575 1.581-1.575s1.581.707 1.581 1.575c0 .868-.709 1.574-1.581 1.574z"/></svg>
+                Reddit
+            </a>
+            <a href="#" onclick="openSocial(event, 'wa')" class="social-btn wa">
+                <svg viewBox="0 0 24 24"><path d="M12.031 0C5.385 0 .001 5.387.001 12.035c0 2.128.552 4.2 1.6 6.03L0 24l6.104-1.603c1.782.973 3.805 1.488 5.927 1.488 6.643 0 12.028-5.387 12.028-12.035C24 5.387 18.674 0 12.031 0zm3.847 17.202c-.595 1.674-2.887 2.215-3.992 2.306-.99.082-2.316-.178-4.908-1.258-3.13-1.306-5.178-4.52-5.335-4.728-.157-.208-1.272-1.696-1.272-3.235 0-1.539.805-2.296 1.09-2.61.285-.314.622-.392.83-.392.208 0 .416.002.598.01.193.008.45-.075.704.536.265.632.882 2.155.961 2.323.078.168.13.364.026.574-.104.21-.156.34-.312.55-.156.21-.325.46-.456.586-.143.14-.294.292-.132.571.162.278.72 1.196 1.584 1.98 1.114 1.01 2.016 1.32 2.294 1.46.278.14.441.116.608-.06.166-.176.716-.832.909-1.118.193-.286.386-.238.646-.142.26.096 1.645.776 1.927.915.282.14.471.21.538.326.068.117.068.675-.527 2.349z"/></svg>
+                WhatsApp
+            </a>
+        </div>
+        
+        <button class="btn-share-copy" onclick="copySocialMessage()" id="btn-share-copy" aria-label="Copy for Instagram">
+            <svg style="width:16px;height:16px;fill:currentColor;margin-right:5px;" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+            <span id="lbl-btn-copy">COPY FOR INSTA / DISCORD</span>
         </button>
 
         <div style="text-align:center; color:#666; font-size:9px; margin-bottom:10px; text-transform:uppercase;" id="lbl-qr">Mobile Uplink Code</div>
@@ -1291,7 +1335,9 @@
         setTxt('lbl-cleans', t.cleans);
         setTxt('lbl-trans', t.trans);
         setTxt('lbl-uplink', t.uplink);
-        setTxt('lbl-btn-share', t.share);
+        
+        // Removed generic send to friend text swap to handle new social grid
+        
         setTxt('lbl-qr', t.qr);
         setTxt('lbl-coffee', t.coffee);
         setTxt('lbl-tool', t.tool);
@@ -1318,17 +1364,44 @@
     document.querySelector('.lang-select').value = savedLang;
     changeLang(savedLang);
 
-    function shareSite() {
-        const shareData = {
-            title: 'Phone Speaker Cleaner',
-            text: 'Fix your speaker in 30 seconds.',
-            url: 'https://waterinmyspeaker.com'
-        };
+    // --- NEW SOCIAL SHARE ENGINE ---
+    const shareMessage = "My phone got soaked and the sound went crazy 🌊😭. This site fixed it instantly — save this for emergencies: https://waterinmyspeaker.com";
+    const shareUrl = "https://waterinmyspeaker.com";
 
-        if (navigator.share) {
-            navigator.share(shareData).catch(console.error);
+    function openSocial(e, platform) {
+        e.preventDefault();
+        let url = '';
+        
+        if (platform === 'fb') {
+            url = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}&quote=${encodeURIComponent(shareMessage)}`;
+        } else if (platform === 'tw') {
+            url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareMessage)}`;
+        } else if (platform === 'rd') {
+            url = `https://reddit.com/submit?url=${encodeURIComponent(shareUrl)}&title=${encodeURIComponent("My phone got soaked! This fixed it.")}`;
+        } else if (platform === 'wa') {
+            url = `https://api.whatsapp.com/send?text=${encodeURIComponent(shareMessage)}`;
+        }
+
+        if (url) {
+            window.open(url, '_blank', 'width=600,height=400');
+        }
+    }
+
+    function copySocialMessage() {
+        if (navigator.clipboard) {
+            navigator.clipboard.writeText(shareMessage).then(() => {
+                const toast = document.getElementById('copy-toast');
+                toast.classList.add('show');
+                setTimeout(() => toast.classList.remove('show'), 2000);
+            }).catch(console.error);
         } else {
-            navigator.clipboard.writeText("Fix your speaker in 30 seconds: https://waterinmyspeaker.com");
+            // Fallback for older browsers
+            const tempInput = document.createElement("textarea");
+            tempInput.value = shareMessage;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand("copy");
+            document.body.removeChild(tempInput);
             const toast = document.getElementById('copy-toast');
             toast.classList.add('show');
             setTimeout(() => toast.classList.remove('show'), 2000);
