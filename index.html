@@ -376,6 +376,31 @@
             100% { box-shadow: 0 0 10px var(--accent); }
         }
 
+        /* --- IOS WARNING BANNER --- */
+        #ios-warning {
+            display: none; /* Hidden by default */
+            background: rgba(255, 0, 60, 0.15);
+            border: 1px solid var(--accent);
+            color: #fff;
+            padding: 12px;
+            border-radius: 8px;
+            margin: 0 auto 20px auto;
+            width: 100%;
+            text-align: center;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            line-height: 1.5;
+            box-shadow: 0 0 15px var(--accent-glow);
+            animation: warning-pulse 1.5s infinite;
+        }
+        #ios-warning span { color: var(--accent); font-weight: 900; }
+        @keyframes warning-pulse {
+            0% { box-shadow: 0 0 10px var(--accent-glow); }
+            50% { box-shadow: 0 0 20px var(--accent); }
+            100% { box-shadow: 0 0 10px var(--accent-glow); }
+        }
+
         /* --- ADVANCED GRID --- */
         .advanced-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 25px; }
         @media (max-width: 400px) { .advanced-grid { grid-template-columns: 1fr; } }
@@ -727,6 +752,10 @@
 
     <button id="master-toggle" class="btn-toggle-master" onclick="stop()" aria-label="Stop Cleaning">STOP</button>
     <div style="text-align: center; margin-bottom: 20px; font-size: 11px; font-weight: 700; color: #fff; text-transform: uppercase; letter-spacing: 1px;">Turn your phone volume to max.</div>
+
+    <div id="ios-warning">
+        ⚠️ <span>IPHONE DETECTED:</span> You must turn OFF your physical Silent/Ring switch on the side of your phone for the cleaning sound to play.
+    </div>
 
     <div class="advanced-grid">
         <a href="water-eject.html" class="tool-btn">
@@ -1636,6 +1665,12 @@
         const ua = navigator.userAgent;
         let device = "Audio Hardware";
         
+        // Show silent switch warning ONLY for iOS devices
+        if (/iPhone|iPad|iPod/i.test(ua)) {
+            const iosWarning = document.getElementById('ios-warning');
+            if (iosWarning) iosWarning.style.display = 'block';
+        }
+
         if (/iPhone/i.test(ua)) device = "Apple iPhone";
         else if (/iPad/i.test(ua)) device = "Apple iPad";
         else if (/Samsung|SM-|Galaxy/i.test(ua)) device = "Samsung Galaxy Architecture";
