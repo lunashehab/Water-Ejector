@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+   <script async src="https://www.googletagmanager.com/gtag/js?id=G-REWM5YFB9L"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
-      
+      gtag('js', new Date());
+
       // 1. GLOBAL DEFAULT (Rest of the World) - GRANTED
       gtag('consent', 'default', {
         'ad_storage': 'granted',
@@ -21,6 +23,9 @@
         'analytics_storage': 'denied',
         'region': ['AT', 'BE', 'BG', 'HR', 'CY', 'CZ', 'DK', 'EE', 'FI', 'FR', 'DE', 'GR', 'HU', 'IS', 'IE', 'IT', 'LV', 'LI', 'LT', 'LU', 'MT', 'NL', 'NO', 'PL', 'PT', 'RO', 'SK', 'SI', 'ES', 'SE', 'GB', 'CH']
       });
+
+      // Initialize your specific property
+      gtag('config', 'G-REWM5YFB9L');
     </script>
     <script async src="https://fundingchoicesmessages.google.com/i/pub-5129097020907805?ers=1"></script>
     <script>(function() { function signalGooglefcPresent() { if (!window.frames['googlefcPresent']) { if (document.body) { const iframe = document.createElement('iframe'); iframe.style = 'width: 0; height: 0; border: none; z-index: -1000; left: -1000px; top: -1000px;'; iframe.style.display = 'none'; iframe.name = 'googlefcPresent'; document.body.appendChild(iframe); } else { setTimeout(signalGooglefcPresent, 0); } } } signalGooglefcPresent(); })();</script>
